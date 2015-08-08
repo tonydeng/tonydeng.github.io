@@ -49,7 +49,7 @@
 {% endif %}
 
 {% if theme.favicon %}
-  <link rel="shorticon icon" type="image/x-icon" href="{{ url_for(theme.favicon) }}?v={{ theme.version }}" />
+  <link rel="shortcut icon" type="image/x-icon" href="{{ url_for(theme.favicon) }}?v={{ theme.version }}" />
 {% endif %}
 
 {{ open_graph({
