@@ -1,18 +1,19 @@
 $(document).ready(function() {
-
-  $('.content img').each(function () {
+  $('.content img').not('.group-picture img').each(function () {
     var $image = $(this);
     var $imageWrapLink = $image.parent('a');
 
     if ($imageWrapLink.size() < 1) {
       $imageWrapLink = $image.wrap('<a href="' + this.getAttribute('src') + '"></a>').parent('a');
     }
+
     $imageWrapLink.addClass('fancybox');
-    $imageWrapLink.attr('rel', 'group');
-    if ($image.attr("title")) {
-      $imageWrapLink.append('<div class="pic-title"><span>' + $image.attr("title") + '</span></div>');
-      $imageWrapLink.attr("title",$image.attr("title")); //make sure img title tag will show correctly in fancybox
-    };
+
+    //make sure img title tag will show correctly in fancybox
+    if (this.title) {
+      $imageWrapLink.attr("title", this.title);
+    }
+
   });
 });
 $('.fancybox').fancybox({
