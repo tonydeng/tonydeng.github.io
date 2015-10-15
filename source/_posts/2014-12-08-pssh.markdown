@@ -1,0 +1,216 @@
+---
+layout: post
+title: "PSSH基本使用介绍"
+date: 2014-12-08 15:33:36 +0800
+comments: true
+categories: [linux, pssh]
+keywords: ssh, pssh, brew, linux, 远程服务器控制
+description: pssh是一个用python编写的可以在多台服务器上执行命令的工具，同时支持拷贝文件等功能，在同类工具中还是很方便使用的
+---
+pssh是一个用python编写的可以在多台服务器上执行命令的工具，同时支持拷贝文件等功能，在同类工具中还是很方便使用的。项目地址：[parallel-ssh](https://code.google.com/p/parallel-ssh/)
+
+## 安装方法
+
+Mac下可以直接使用brew来安装。
+
+``` bash
+brew  install pssh
+==> Downloading https://parallel-ssh.googlecode.com/files/pssh-2.3.1.tar.gz
+######################################################################## 100.0%
+==> python setup.py install --prefix=/usr/local/Cellar/pssh/2.3.1 --install-data=/usr/local/Cellar/pssh/2.3.1/share
+==> Caveats
+Python modules have been installed and Homebrew's site-packages is not
+in your Python sys.path, so you will not be able to import the modules
+this formula installed. If you plan to develop with these modules,
+please run:
+  mkdir -p /Users/tonydeng/Library/Python/2.7/lib/python/site-packages
+  echo 'import site; site.addsitedir("/usr/local/lib/python2.7/site-packages")' >> /Users/tonydeng/Library/Python/2.7/lib/python/site-packages/homebrew.pth
+==> Summary
+🍺  /usr/local/Cellar/pssh/2.3.1: 40 files, 228K, built in 9 seconds
+```
+
+其他平台安装方法类似
+
+```bash
+wget https://parallel-ssh.googlecode.com/files/pssh-2.3.1.tar.gz
+tar zxvf pssh-2.3.1.tar.gz
+cd pssh-2.3.1
+python setup.py install
+```
+
+pssh安装包给我们提供了多个非常实用的工具，我们可以查看一下。
+
+```bash
+➜  pssh  ll /usr/local/Cellar/pssh/2.3.1/bin
+total 48
+-r-xr-xr-x  1 tonydeng  admin   141B 12  8 15:32 pnuke
+-r-xr-xr-x  1 tonydeng  admin   142B 12  8 15:32 prsync
+-r-xr-xr-x  1 tonydeng  admin   140B 12  8 15:32 pscp
+-r-xr-xr-x  1 tonydeng  admin   142B 12  8 15:32 pslurp
+-r-xr-xr-x  1 tonydeng  admin   140B 12  8 15:32 pssh
+-r-xr-xr-x  1 tonydeng  admin   148B 12  8 15:32 pssh-askpass
+```
+
+提供的工具作用如下：
+
+1. parallel-ssh （pssh） 在多个主机上并行地运行命令。
+2. parallel-scp （pscp）把文件并行地复制到多个主机上。
+3. parallel-rsync （psync）通过 rsync 协议把文件高效地并行复制到多个主机上。
+4. parallel-slurp （pslurp）把文件并行地从多个远程主机复制到中心主机上。
+5. parallel-nuke （pnuke）并行地在多个远程主机上杀死进程。
+
+
+
+## pssh基本使用方法
+
+```bash
+pssh -h host.txt -P "command"
+```
+
+如果对pssh的参数不太明白的话，可使用--help来获得帮助。
+
+```bash
+➜  pssh  pssh --help
+Usage: pssh [OPTIONS] command [...]
+
+Options:
+  --version             show program's version number and exit
+  --help                show this help message and exit
+  -h HOST_FILE, --hosts=HOST_FILE
+                        hosts file (each line "[user@]host[:port]")
+  -H HOST_STRING, --host=HOST_STRING
+                        additional host entries ("[user@]host[:port]")
+  -l USER, --user=USER  username (OPTIONAL)
+  -p PAR, --par=PAR     max number of parallel threads (OPTIONAL)
+  -o OUTDIR, --outdir=OUTDIR
+                        output directory for stdout files (OPTIONAL)
+  -e ERRDIR, --errdir=ERRDIR
+                        output directory for stderr files (OPTIONAL)
+  -t TIMEOUT, --timeout=TIMEOUT
+                        timeout (secs) (0 = no timeout) per host (OPTIONAL)
+  -O OPTION, --option=OPTION
+                        SSH option (OPTIONAL)
+  -v, --verbose         turn on warning and diagnostic messages (OPTIONAL)
+  -A, --askpass         Ask for a password (OPTIONAL)
+  -x ARGS, --extra-args=ARGS
+                        Extra command-line arguments, with processing for
+                        spaces, quotes, and backslashes
+  -X ARG, --extra-arg=ARG
+                        Extra command-line argument
+  -i, --inline          inline aggregated output and error for each server
+  --inline-stdout       inline standard output for each server
+  -I, --send-input      read from standard input and send as input to ssh
+  -P, --print           print output as we get it
+
+Example: pssh -h hosts.txt -l irb2 -o /tmp/foo uptime
+```
+
+
+简单解释一下pssh help提供的例子。在hosts.txt中列出来的服务器上远程执行uptime命令，并将执行结果输出到/tmp/uptime目录下相应地服务器的文件中。
+
+```bash
+pssh -h hosts.txt -l root -o /tmp/uptime uptime
+```
+
+其中相关参数说明：
+
+> -h hosts.txt 指定服务器列表的文件为hosts.txt
+>
+> -l root 指定远程用户为root
+>
+> -o /tmp/uptime 指定远程命令执行返回结果输出目录为/tmp/uptime
+>
+> uptime 指定远程服务器上执行的命令为uptime
+
+我们执行一下看看，执行结果说明在172.18.10.25和172.18.10.24两台服务器上执行成功。
+
+```bash
+[1] 09:51:28 [SUCCESS] 172.18.10.25
+[2] 09:51:28 [SUCCESS] 172.18.10.24
+```
+
+查看执行结果输出
+
+```bash
+ls -l /tmp/uptime
+-rw-r--r--  1 tonydeng  wheel    71B 12  9 09:51 172.18.10.24
+-rw-r--r--  1 tonydeng  wheel    71B 12  9 09:51 172.18.10.25
+```
+
+```
+cat /tmp/uptime/172.18.10.24
+09:51:26 up 59 days, 13:48,  0 users,  load average: 0.00, 0.00, 0.00
+
+cat /tmp/uptime/172.18.10.25
+09:51:26 up 59 days, 13:47,  0 users,  load average: 0.00, 0.00, 0.00
+```
+
+通过这个例子大家应该能够明白pssh的使用方法了吧。
+
+## pscp基本用法
+`pscp`用来将文件并行的复制到多个主机上。
+
+`pscp`和`pssh`的很多参数都是一样的，就不在多说了，举一个简单的例子来说明一下`pscp`的简单实用。
+
+基本使用方法:
+
+```bash
+pscp -h ip文件 本地文件 远程目录
+```
+
+例子:将本机的`/tmp/i.txt`文件复制到`host.txt`列出的主机上的`/tmp`目录
+
+```bash
+pscp -h hosts.txt -l root /tmp/i.txt /tmp
+[1] 09:52:28 [SUCCESS] 172.18.10.25
+[2] 09:52:28 [SUCCESS] 172.18.10.24
+```
+
+**特别参数说明：**
+
+```bash
+-r 用于递归的复制目录
+```
+## pslurp基本用法
+`pslurp`把文件并行地从多个远程主机复制到中心主机上
+
+基本用法:
+
+```
+plurp -h ip文件  -L 本地目录  远程文件 本地文件名称
+```
+
+例子： 将`host.txt`列出的主机上的`/tmp/i.txt`文件复制到本机的`/tmp/i.txt`
+
+```bash
+pslurp -h host.txt -l root -L /tmp /tmp/i.txt i.txt
+[1] 09:53:28 [SUCCESS] 172.18.10.25
+[2] 09:53:28 [SUCCESS] 172.18.10.24
+```
+
+特别参数说明：
+
+```
+-L 指定本地存放文件的目录
+```
+
+虽然帮助文档中说 `-L` 参数是可选的，但是经过我试验 `-L` 参数是必须的，要不然会报错。
+
+增加 `-L` 参数后，会在 `-L` 指定的本地目录下创建`[用户@]主机IP[:端口]`目录，对应的目录下用于存放从改主机复制过来的文件。
+
+## pnuke基本使用
+
+`pnuke`并行地在多个远程主机上杀死进程。
+
+`pnuke` 的参数与`pssh`一样,只是最后的字符串为要结束的进程名称
+
+例子： 将`host.txt`列出的主机上的`httpd`进程杀死
+
+```bash
+pnuke -h host.txt -l root httpd
+[1] 09:55:28 [SUCCESS] 172.18.10.25
+[2] 09:55:28 [SUCCESS] 172.18.10.24
+```
+
+
+
