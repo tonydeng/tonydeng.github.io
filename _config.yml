@@ -88,7 +88,7 @@ fancybox: true
 vendors: vendors
 css: css
 js: js
-images: images
+images: img
 
 # Theme version
 version: 0.4.5.1
