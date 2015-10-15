@@ -5,6 +5,7 @@ date: 2014-12-22 11:07:49 +0800
 published: true
 comments: true
 categories: [golang, sublime, engineered]
+tags: [golang, sublime, engineered]
 keywords: go, golang, sublime,use sublime develop golang
 description: 使用Sublime开发Golang
 

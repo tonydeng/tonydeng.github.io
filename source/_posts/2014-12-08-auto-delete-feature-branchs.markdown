@@ -4,6 +4,7 @@ title: "效率脚本:删除指定项目的所有feature分支"
 date: 2014-12-08 11:14:02 +0800
 comments: true
 categories: [shell, git]
+tags: [shell, git]
 keywords: shell, git, gitflow, shell script，效率脚本
 description: 效率脚本:删除指定项目的所有feature分支 由于我们基于gitlab来进行code review，所有的分支都会push到远程仓库来进行code review。当一个版本完成之后，在远程和本地都会存在一些过期的、无用的分支。对于有些强迫症的我来说，保留这些无用的分支实在很难受，一个一个手工的删除这些分支也不符合我的风格，还是写个脚本来批量处理吧。
 ---
@@ -39,4 +40,3 @@ echo $BRANCHS
 ``` bash
 ~/sh/git/feature_branch_del.sh your_git_project
 ```
-

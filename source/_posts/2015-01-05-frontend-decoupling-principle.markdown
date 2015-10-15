@@ -5,6 +5,7 @@ date: 2015-01-05 18:29:52 +0800
 published: true
 comments: true
 categories: [front-end, engineered]
+tags: [front-end, engineered]
 keywords: 前端 解耦
 description: 当你能够做到修改一个组件而不需要更改其他组件时，就做到了松耦合，松耦合对于代码可维护性来说是至关重要的。
 ---

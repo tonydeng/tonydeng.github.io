@@ -5,6 +5,7 @@ date: 2015-07-08 17:04:12 +0800
 published: true
 comments: true
 categories: git
+tags: git
 keywords: git undo
 description: Git各种Undo技巧
 ---

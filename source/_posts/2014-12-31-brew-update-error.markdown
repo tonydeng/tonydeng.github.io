@@ -4,7 +4,8 @@ title: "Brew Update失败处理方法"
 date: 2014-12-31 00:21:39 +0800
 published: true
 comments: true
-categories: [brew, osx] 
+categories: [brew, osx]
+tags: [brew, osx] 
 keywords: mac osx brew update error
 description: brew update失败处理方法
 ---
@@ -32,7 +33,7 @@ git reset --hard FETCH_HEAD
 ```
 cd /usr/local && sudo git reset --hard FETCH_HEAD
 ```
- 
+
 
 ```
 cd `brew --prefix`
@@ -40,7 +41,7 @@ git remote add origin https://github.com/mxcl/homebrew.git
 git fetch origin
 git reset --hard origin/master
 ```
- 
+
 方法3.保留更改，brew update，再应用更改
 
 ```

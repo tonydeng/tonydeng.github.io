@@ -4,6 +4,7 @@ title: "PSSH基本使用介绍"
 date: 2014-12-08 15:33:36 +0800
 comments: true
 categories: [linux, pssh]
+tags: [linux, pssh]
 keywords: ssh, pssh, brew, linux, 远程服务器控制
 description: pssh是一个用python编写的可以在多台服务器上执行命令的工具，同时支持拷贝文件等功能，在同类工具中还是很方便使用的
 ---
@@ -211,6 +212,3 @@ pnuke -h host.txt -l root httpd
 [1] 09:55:28 [SUCCESS] 172.18.10.25
 [2] 09:55:28 [SUCCESS] 172.18.10.24
 ```
-
-
-

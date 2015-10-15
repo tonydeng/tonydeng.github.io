@@ -5,6 +5,7 @@ date: 2015-09-20 21:03:35 +0800
 published: true
 comments: true
 categories: [java, netty]
+tags: [java, netty]
 keywords: java netty
 description:  Netty 5用户指南
 ---
@@ -224,7 +225,7 @@ public void channelRead(ChannelHandlerContext ctx, Object msg) {
 ```
 
 * 这个低效的循环事实上可以简化为:`System.out.println(in.toString(io.netty.util.CharsetUtil.US_ASCII))`
-    
+
 * 或者，你可以在这里调用`in.release()`。
 
 如果你再次运行`telnet`命令，你将会看到服务端打印出了他所接收到的消息。

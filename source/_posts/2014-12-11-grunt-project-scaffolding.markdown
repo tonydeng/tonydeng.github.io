@@ -5,6 +5,7 @@ date: 2014-12-11 14:04:00 +0800
 published: true
 comments: true
 categories: [grunt,front-end,nodejs,engineered]
+tags: [grunt,front-end,nodejs,engineered]
 keywords: grunt, scaffold, front-end, nodejs, engineered, grunt-init
 description: grunt-init 是一个脚手架工具，用于自动创建项目。基于当前的环境和几个问题的答案创建一个完整的目录结构。确切的文件和内容取决于所选的模板，和模板提出的问题的答案。
 

@@ -5,6 +5,7 @@ date: 2015-03-09 15:59:08 +0800
 published: true
 comments: true
 categories: [osx, nginx]
+tags: [osx, nginx]
 keywords: tengine osx make error
 description: Tengine+ssl编译解决方案
 ---
@@ -17,7 +18,7 @@ description: Tengine+ssl编译解决方案
 原来的编译的参数
 
 ```
-./configure --prefix=/usr/local/tengine-2.1.0 --with-http_ssl_module 
+./configure --prefix=/usr/local/tengine-2.1.0 --with-http_ssl_module
 ```
 
 configure阶段没有任何问题，但是在进行make编译的时候，却报了下面的错误。

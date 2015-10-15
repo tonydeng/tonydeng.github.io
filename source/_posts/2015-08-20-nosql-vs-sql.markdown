@@ -4,7 +4,8 @@ title: "NoSQL vs SQL By Alphabet高可用架构微信群"
 date: 2015-08-20 22:06:33 +0800
 published: true
 comments: true
-categories: [database] 
+categories: [database]
+tags: [database] 
 keywords: Database NoSQL SQL
 description: NoSQL vs SQL By Alphabet高可用架构微信群
 ---
@@ -49,7 +50,7 @@ description: NoSQL vs SQL By Alphabet高可用架构微信群
 
 一般来说Map有两类实现，第一类是Hash，第二类是有序树。
 
-有了这个随需应变的集合，我们就可以把事情变成这样： 
+有了这个随需应变的集合，我们就可以把事情变成这样：
 
 ```
 map.put("轮子",轮子对象);
@@ -172,7 +173,7 @@ select被拆解为fromList/WhereClause等细碎的字串。
 
 第一个SQL是 select * from tab where id = ? ，上面的那个则是一个表格。
 
-如果我们用map来表示，可以表示成这样： 
+如果我们用map来表示，可以表示成这样：
 
 ```
 Map: key -> primaryKey, value -> [pk,user_id,Name]
@@ -389,34 +390,34 @@ DRDS的能力更多体系在双十一开始和双十一结束。我们需要在�
     一个偏重分布式，一个偏重单机
 
 问题2. 请问阿里的DRDS如何实现join sql语句来执行多表关联查询的？如何兼容单机存储的SQL？需要注意哪些坑？
-    
+
     方案很多，其实如果大家对join有所了解，也就那么几种，hash/index nest loop/sort merge，没有什么魔法。http://coding-geek.com/how-databases-work/ 这个不错，我比较推荐。
-    
+
 问题3. 请问schema less/free你怎么看？
 
     这俩似乎没见过拼一起哈，我分开。但是本质是同一个东西，我个人觉得有市场。不过能有多大，不知道。
     优势：业务模型更灵活。
     劣势：额外的空间占用。
-    
+
     技术债也一定要还的......我清楚的记得当年我维护的一个cms系统，所有数据都是map。结果最后有一些诡异的数据不知道什么时候被塞到里面，然后最后也没有人知道是在哪里塞的，debug都很难找到。
     所以，一般来说，结合会更好一些。
-    
+
     目前pg/mysql都开始支持json了，这东西其实只是工作量的问题，没有什么技术上的难度。
-    
+
 问题4. 最近很多声音说不要在用户mongodb了，如何来看？
 
     这个就纯属于个人意见了啊...... 我个人不喜欢mongodb那帮人的嘴脸......
-    
+
     [MongoDB核心贡献者：不是MongoDB不行，而是你不懂！](http://www.cnblogs.com/shanyou/archive/2012/11/17/2774344.html)
 
     然而，为什么会这样？还不是某些人为了骗分，默认配置特别激进...... 而开发者不会告诉你，如果改成安全配置，他们的性能没比MySQL强哪里去。
-    
+
     一个存储引擎，至少10年才能稳定。前两天刚碰到一个游戏客户说某nosql数据文件损坏无法恢复，问我们有没有办法，我说，下次选择谨慎点......性能不是唯一的。这次请节哀。
-    
+
 问题5. 海量，低延时（毫秒级），高并发（十万以上），目前关系型数据库是否有并存的方案？
 
     10w并发不算很高了，DRDS是你最好的选择。
-    
+
 问题6. 非结构化数据，如文本，树图等，这些sql无法处理的，是否是用nosql更合理？
 
     非结构化数据也是一个重要的门类，一直都存在，以后也会存在，但是nosql为了宣传，把所有的东西都拉到自己阵营，这其实与其初衷已经违背了。

@@ -5,6 +5,7 @@ date: 2015-09-18 13:32:48 +0800
 published: true
 comments: true
 categories: maven
+tags: maven
 keywords: maven
 description: 解决Maven使用artchetype:create创建工程失败的问题
 ---
@@ -80,7 +81,7 @@ mvn archetype:generate \
 这两个参数的意义分别如下：
 
 > -DinteractiveMode=false  指定不使用交互模式
-> 
+>
 > -DarchetypeCatalog=internal 指定不从远程服务器上取catalog，
 
 完整的命令如下：

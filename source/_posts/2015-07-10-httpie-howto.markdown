@@ -5,6 +5,7 @@ date: 2015-07-10 17:58:49 +0800
 published: true
 comments: true
 categories: [http,httpie,shell]
+tags: [http,httpie,shell]
 keywords: http httpie shell
 description:  HTTPie:超爽的HTTP命令行客户端
 ---
@@ -68,7 +69,7 @@ pip install --upgrade https://github.com/jkbrzt/httpie/tarball/master
 #### 定制头部
 
 ```bash
-http tonydeng.github.io/blog/2015/07/10/httpie-howto/ User-Agent:Xmodlo/1.0 Referer:http://tonydeng.github.io 
+http tonydeng.github.io/blog/2015/07/10/httpie-howto/ User-Agent:Xmodlo/1.0 Referer:http://tonydeng.github.io
 ```
 
 这个HTTP请求看起是这样。

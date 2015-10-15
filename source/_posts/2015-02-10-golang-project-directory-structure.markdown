@@ -5,6 +5,7 @@ date: 2015-02-10 10:29:15 +0800
 published: true
 comments: true
 categories: [golang]
+tags: [golang]
 keywords: golang project directory structure
 description: Go项目的目录结构
 ---

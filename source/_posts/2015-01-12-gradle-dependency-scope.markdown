@@ -5,6 +5,7 @@ date: 2015-01-12 13:47:19 +0800
 published: true
 comments: true
 categories: [gradle,engineered]
+tags: [gradle,engineered]
 keywords:  gradle dependency
 description: gradle依赖范围介绍
 ---
