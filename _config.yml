@@ -1,8 +1,8 @@
 # when running hexo in a subdirectory (e.g. domain.tld/blog), remove leading slashes ( "/archives" -> "archives" )
 menu:
   home: /
-  #categories: /categories
-  #about: /about
+  categories: /categories
+  about: /about
   archives: /archives
   tags: /tags
   #commonweal: /404.html
@@ -37,7 +37,7 @@ mathjax:
 
 
 # Schemes
-#scheme: Mist
+scheme: Mist
 
 
 # Sidebar, available value:
@@ -64,6 +64,7 @@ auto_excerpt:
 # Use Lato font
 # Note: this option is avialable only when the language is not `zh-Hans`
 use_font_lato: true
+# language: zh-Hans
 
 # Make duoshuo show UA
 # user_id must NOT be null when admin_enable is true!
