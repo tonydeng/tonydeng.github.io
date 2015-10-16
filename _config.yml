@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
+title: Wolff's Blog
+subtitle: “In me the tiger sniffes the rose.” -- Siegfried Sasson
 description:
-author: John Doe
-language:
+author: Tony Deng
+language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://localhost:4000
+url: http://tonydeng.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -28,7 +28,8 @@ i18n_dir: :lang
 skip_render:
 
 # Writing
-new_post_name: :title.md # File name of new posts
+# new_post_name: :title.md # File name of new posts
+new_post_name: :year-:month-:day-:title.md
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
@@ -65,6 +66,29 @@ pagination_dir: page
 ## Themes: http://hexo.io/themes/
 # theme: landscape
 theme: next
+
+# Index Page
+index_generator:
+  per_page: 10  ## 首页默认10篇文章标题
+
+# Archive Page
+archive_generator:
+  per_page: 10  ## 首页默认10篇文章标题
+  yearly: true  ## 生成年视图
+  monthly: true ## 生成月视图
+# Tag Page
+tag_generator:
+  per_page: 10  ## 标签分类页面默认10篇文章
+
+# Category Page
+category_generator:
+  per_page: 10  ## 分类页面默认10篇文章
+
+# Feed
+feed:
+  type: atom  ## feed类型，使用atom，可以使用rss2
+  path: atom.xml  ## feed路径
+  limit: 20 ## feed文章最小数量
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html

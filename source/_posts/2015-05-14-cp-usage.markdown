@@ -1,0 +1,51 @@
+---
+layout: post
+title: "CP命令不为人知的特殊使用"
+date: 2015-05-14 17:52:46 +0800
+published: true
+comments: true
+categories: linux
+tags: linux
+keywords: linux, cp
+description: CP命令不为人知的特殊使用
+---
+
+![linux command](/images/blog/linux-command.jpg)
+
+就算如司空见惯的 **cp** 命令，某些用法我们或许也不了解。
+
+## 快速复制
+
+说是快速复制，实则只是少打几个字而已。该复制利用 **Shell** 的花括号展开特性。
+
+```sh
+cp file{1,2}
+```
+
+## 保留文件属性
+
+在复制时，可以保留源文件的时间戳、模式、所有权等属性。
+
+```sh
+cp --preserve=timestamps file file1 # 保留时间戳
+cp --preserve=mode file file1       # 保留模式
+cp --preserve=ownership file file1  # 保留所有权
+cp -p file file1                    # 包括上述三者
+```
+
+## 创建软/硬链接
+
+在 **Linux** 下，创建软/硬链接本是 **ln** 的专职，但 **cp** 却可以代劳。
+
+```sh
+cp -l file file1 # 创建硬链
+cp -s file file1 # 创建软链接
+```
+
+## 更新文件
+
+仅当源文件比目标文件更新时才复制。
+
+```sh
+cp -u file1 file2
+```
