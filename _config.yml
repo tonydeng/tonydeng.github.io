@@ -29,11 +29,11 @@ icon_font: default
 # Code Highlight theme
 # Available value: normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: normal
+highlight_theme: night bright
 
 
 # MathJax Support
-mathjax:
+mathjax: true
 
 
 # Schemes
