@@ -1,0 +1,445 @@
+<!--
+    Powered By nodePPT - This is probably the best web presentation tool so far!
+    version: 0.9.8-3
+    site: https://github.com/ksky521/nodePPT
+-->
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>高性能服务端三要素 - By Tony Deng</title>
+    <link rel="stylesheet" media="all" href="/stylesheets/ppts/nodeppt2.css">
+    <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="/stylesheets/ppts/phone.css">
+    <link rel="stylesheet" media="print" href="/stylesheets/ppts/pdf.css">
+    <link rel="stylesheet" href="/stylesheets/ppts/monokai_sublime.css">
+    <link rel="stylesheet" href="/stylesheets/ppts/font-awesome.css">
+</head>
+<body style="opacity: 1;">
+<div class="slides">
+    <slides id="container">
+        <slide class="slide fill current pagedown" data-transition="vertical3d" style="background-image:url('/images/ppts/high-performance_server/cover.jpg')"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>高性能服务端三要素</h1>
+<p><small>Tony Deng</small></p>
+<p><a href="https://twitter.com/wolfdeng" target="_blank">https://twitter.com/wolfdeng</a></p>
+<p><a href="https://delicious.com/wolf.deng" target="_blank">https://delicious.com/wolf.deng</a></p>
+<p><a href="https://friendfeed/tonydeng" target="_blank">https://friendfeed/tonydeng</a></p>
+
+</article></section></slide>
+<slide class="slide next pagedown" data-transition="vertical3d"><section class="slide-wrapper"><article>
+<h2>引言</h2>
+<p>开发一个高性能的服务端需要些什么？</p>
+
+</article></section></slide>
+<slide class="slide far-next pagedown" data-transition="kontext"><section class="slide-wrapper"><hgroup>
+<h2>牛逼开发语言？</h2>
+
+</hgroup><article>
+
+<ul class="moveIn">
+<li data-index="0" class="to-build"><code>Java</code></li>
+<li data-index="1" class="to-build"><code>Go</code></li>
+<li data-index="2" class="to-build"><code>Scala</code></li>
+<li data-index="3" class="to-build"><code>PHP</code></li>
+<li data-index="4" class="to-build"><code>C \ C++</code></li>
+<li data-index="5" class="to-build"><code>Ruby</code></li>
+<li data-index="6" class="to-build"><code>NodeJS</code></li>
+<li data-index="7" class="to-build"><code>Python</code></li>
+</ul>
+
+</article></section></slide>
+<slide class="slide" data-transition="vkontext"><section class="slide-wrapper"><hgroup>
+<h2>牛逼的开发框架？</h2>
+
+</hgroup><article>
+
+<ul class="moveIn">
+<li data-index="0" class="to-build"><code>Spring</code></li>
+<li data-index="1" class="to-build"><code>Martini</code></li>
+<li data-index="2" class="to-build"><code>Play</code></li>
+<li data-index="3" class="to-build"><code>Yii</code></li>
+<li data-index="4" class="to-build"><code>ROR</code></li>
+<li data-index="5" class="to-build"><code>Express</code></li>
+<li data-index="6" class="to-build"><code>Django</code></li>
+</ul>
+
+</article></section></slide>
+<slide class="slide" data-transition="circle"><section class="slide-wrapper"><article>
+<h2>牛逼的服务器？</h2>
+
+</article></section></slide>
+<slide class="slide" data-transition="earthquake"><section class="slide-wrapper"><hgroup>
+<h2>上面的讨论，可能我们期待的是这样场面</h2>
+
+</hgroup><article>
+
+<p><img src="/images/ppts/high-performance_server//mm.jpg" alt="美女打架" title="美女打架"></p>
+
+</article></section></slide>
+<slide class="slide" data-transition="cards"><section class="slide-wrapper"><hgroup>
+<h2>然而实际可能产生的结果可能是......</h2>
+
+</hgroup><article>
+
+<p><img src="/images/ppts/high-performance_server//gorilla-fight.jpg" alt="程序猿打架" title="程序猿打架"></p>
+<p>别忘了，美女对于程序猿这个职业来说，基本上是非常非常稀奇的资源</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="glue"><section class="slide-wrapper"><article>
+<h2>So</h2>
+<p>我们今天不谈硬件，不谈操作系统，不评论开发语言及框架，不谈论算法</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="stick"><section class="slide-wrapper"><article>
+<h2>三个关键词</h2>
+<p><strong> <code>Cache</code> </strong>
+<strong> <code>Asynchronous</code> </strong>
+<strong> <code>Concurrent</code> </strong></p>
+
+</article></section></slide>
+<slide class="slide" data-transition="kontext"><section class="slide-wrapper"><article>
+<h2>Cache</h2>
+
+</article></section></slide>
+<slide class="slide" data-transition="kontext"><section class="slide-wrapper"><article>
+<p>Cache翻译成中文就是<strong>“缓存”</strong>，台湾的叫法是<strong>“快取”</strong></p>
+<p>其本质是将<code>获取缓慢</code>或<code>计算缓慢</code>的数据结果暂时存储起来，以便以后再次获取或计算<code>同样地数据</code>可以直接从存储中获得结果，从而可能<code>提升性能</code>的一种手段。</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="vkontext"><section class="slide-wrapper"><article>
+<h2>Cache的起源</h2>
+<p>Cache其实最早应用在计算机的CPU中，有兴趣的同学可以自行Google</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="earthquake"><section class="slide-wrapper"><article>
+<pre><code class=" hljs fix"><span class="hljs-attribute">1+2+3+4+..+99+100</span>=<span class="hljs-string">?
+</span></code></pre><p>每隔一分钟进行上面的计算，你会怎么做？</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="cards"><section class="slide-wrapper"><article>
+<h2>下面几个方式，你会选择哪个？</h2>
+<ul class="bounceIn">
+<li data-index="0" class="to-build">一个一个的加一遍 </li>
+<li data-index="1" class="to-build">OK，这是一个<strong>发散级数</strong>的计算，直接使用公式<code>(1/2)*100*(100+1)</code>，或者这样的公式<code>100*(100+1)/2</code>，（估计我需要一秒钟）</li>
+<li data-index="2" class="to-build">第一次算完之后就直接在某张纸上记住上面计算的结果，等到下一分钟直接给出来就好了</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide" data-transition="zoomin"><section class="slide-wrapper"><article>
+<p>计算机只会选择第一种方式来完成这个要求。</p>
+<p>虽然上面的计算对于计算机来说，纸上小菜一碟，但是计算机往往面临的计算量比这个大的多得多</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="zoomout"><section class="slide-wrapper"><article>
+<p>就像刚才那个场景一样，你会发现一些非常复杂的计算结果是可以复用的，而且把这个结果暂时存储在某个地方，查起来也很方便。（就像我们之前用小纸条来记录计算结果一样）</p>
+<p><code>这个小纸条就是Cache</code></p>
+
+</article></section></slide>
+<slide class="slide" data-transition="newspaper"><section class="slide-wrapper"><article>
+<h2>缓存策略</h2>
+<p>理解了Chace，我们可以来思考一些缓存的设计策略</p>
+<blockquote>
+<p>不同的缓存策略和具体的业务场景关系非常大，制定缓存策略需要根据具体的情况来分析。</p>
+</blockquote>
+
+</article></section></slide>
+<slide class="slide" data-transition="slide"><section class="slide-wrapper"><article>
+<h2>常用的策略</h2>
+<ul class="fadeIn">
+<li data-index="0" class="to-build">最终结果型缓存<ul>
+<li>这种缓存往往提升性能效果最为明显，但是命中率却低，也就是可重用性不高。</li>
+</ul>
+</li>
+<li data-index="1" class="to-build">中间结果型缓存<ul>
+<li>比如上面的例子，1加到100，可以构建1加到10，10加到20...一直到90加到100。</li>
+<li>好处是：如果要计算1加到60的时候，你依然可以使用这些缓存结果</li>
+<li>坏处也很明显：你取到几个缓存的结果后 ，不得不再一次进行计算</li>
+<li>实际情况，往往是在最终结果和中间结果之前找个平衡点，或者是两者配合使用</li>
+</ul>
+</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide" data-transition="slide"><section class="slide-wrapper"><article>
+<h2>其他需要缓存的场景</h2>
+<p>上面的<code>1+2+3+...+100=5050</code>这个结果是永远不会变化的，但是如果我们需要缓存今天的天气情况呢？或者需要缓存某一个列表，当这个列表发生变化了，我们应该怎么使用缓存呢？</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="slide1"><section class="slide-wrapper"><article>
+<h2>缓存的过期策略</h2>
+<ul class="bounceIn">
+<li data-index="0" class="to-build">永久式缓存<ul>
+<li>结果在任何情况下都不发生改变，无需清除或更新</li>
+</ul>
+</li>
+<li data-index="1" class="to-build">会过期的缓存<ul>
+<li>在特定时间或时间段后失效</li>
+</ul>
+</li>
+<li data-index="2" class="to-build">触发式失效缓存<ul>
+<li>当某一事件产生时，缓存失效</li>
+<li>缓存过期也可以理解成时间点或时间段到期为触发条件的触发式失效缓存</li>
+</ul>
+</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide" data-transition="slide2"><section class="slide-wrapper"><article>
+<h2>缓存的更新</h2>
+<p>既然提到了缓存的更新或清除，那么就涉及到缓存的更新策略。</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="slide2"><section class="slide-wrapper"><article>
+<h2>例子永远好于理论</h2>
+<p>假如我们要缓存某个分类的书籍列表，那么我们有些什么样的策略来进行缓存呢？</p>
+<ul class="moveIn">
+<li data-index="0" class="to-build">当用户请求时，检查是否存在这样的缓存。<ul class="moveIn">
+<li data-index="1" class="to-build">如果有，则直接返回缓存数据；</li>
+<li data-index="2" class="to-build">否则，我们通过计算生成这个列表，将这个数据返回给用户并将书籍缓存起来，以便以后的用户请求时直接获取。 这个缓存我们可以设定一个合理的过期时间，或者当这个分类的书籍信息发生变化时，清除这个缓存。</li>
+</ul>
+</li>
+<li data-index="3" class="to-build">每当这个分类的书籍发生变化时，我们都重新构建这个缓存，用户每次查看分类的书籍列表都是取缓存数据</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide" data-transition="slide2"><section class="slide-wrapper"><article>
+<h2>缓存的更新策略</h2>
+<ul class="zoomIn">
+<li data-index="0" class="to-build">被动式缓存<ul>
+<li>需要时才构建</li>
+</ul>
+</li>
+<li data-index="1" class="to-build">主动式缓存<ul>
+<li>预先构建</li>
+</ul>
+</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide" data-transition="newspaper"><section class="slide-wrapper"><article>
+<h2>Asynchronous</h2>
+
+</article></section></slide>
+<slide class="slide" data-transition="newspaper"><section class="slide-wrapper"><article>
+<h2>什么是<strong>异步</strong>？</h2>
+<p>就是不在第一时间告知调用者结果，告诉他我已经收到这个任务了，我会处理，处理完了通知你结果。</p>
+<blockquote>
+<p>如果你不是等不到结果就无法进行下去的话，你完全可以先去做别的事情。</p>
+</blockquote>
+
+</article></section></slide>
+<slide class="slide" data-transition="move"><section class="slide-wrapper"><article>
+<h2>继续举栗子</h2>
+<blockquote>
+<p>你去一个咖啡店点了一杯咖啡，服务员告诉你需要15分钟才能做好，那在咖啡做好之前，你肯定不会一直在柜台前盯着服务员或咖啡师15分钟（如果美女
+可能会有例外...）。你肯定会干点别的，比如会看看手机或者和身边的朋友聊天......总之，你不会傻乎乎的等着。等到咖啡做好了，服务员会给你把咖
+啡送过来。</p>
+</blockquote>
+<p>你在等待咖啡的过程中做了很多与这次购买咖啡无关的事情，这就是<strong>异步</strong>。你的大脑不必为一个漫长的过程卡住，可以继续其他的事情</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="move"><section class="slide-wrapper"><article>
+<p>异步已经在现在各种编程语言和框架中都有相应地支持，比如AJAX，就是一种异步的手段。</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="move"><section class="slide-wrapper"><article>
+<h2>简单说一下AJAX的原理</h2>
+<p>AJAX使用回调的方式来支持异步，大致流程是：A交代给B一个任务，并且告知B “任务完成后继续执行哪段程序（往往包装成一个匿名的函数）”，B执行完任务后，执行这个匿名的方法，这样来完成异步过程。</p>
+<p>在Javascript中大量的使用这种回调的异步方案，已经不再局限于一个缓慢的过程了，可以对于几乎所有的过程都采用异步处理。（基于Javascript的NodeJS更是将这种异步方案使用到极致）</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="move"><section class="slide-wrapper"><article>
+<h2>AJAX流程图</h2>
+<p><img src="/images/ppts/high-performance_server//ajax.gif" alt="Ajax流程图"></p>
+
+</article></section></slide>
+<slide class="slide" data-transition="move"><section class="slide-wrapper"><article>
+<h2>异步的方式</h2>
+<p>在服务端的程序中，除了使用<a href="http://zh.wikipedia.org/zh-cn/%E7%BA%BF%E7%A8%8B" target="_blank">线程</a>、<a href="http://zh.wikipedia.org/zh-cn/%E7%BA%BF%E7%A8%8B" target="_blank">协程</a>、<a href="http://zh.wikipedia.org/zh-cn/%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0" target="_blank">回调</a>以外，另外一种常见的异步的支持方式就是<a href="http://zh.wikipedia.org/zh-cn/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97" target="_blank">消息队列</a>。</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="move"><section class="slide-wrapper"><article>
+<h2>消息队列原理</h2>
+<p>生产者发送消息到消息队列中，消费者监听这个队列，当发现有消息之后，从队列取出消息，并作出相应处理，并把结果存储起来或者通过某种方式告知生产者。</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="move"><section class="slide-wrapper"><article>
+<h2>注意</h2>
+<p>异步再很多时候，可以运用现代化计算机CPU的多核特性和分布式计算特性，能显著的提升应用的性能，但是一定要注意一个<strong>前提</strong>就是：</p>
+<blockquote>
+<p>异步任务的结果必须是主进程进行下一步操作所不依赖的，否则主进程必须等待，直到这个任务执行结束，拿到结果再进行下一步，这时就变成传统的同步计算了。</p>
+</blockquote>
+
+</article></section></slide>
+<slide class="slide" data-transition="circle"><section class="slide-wrapper"><article>
+<h2>Concurrent</h2>
+
+</article></section></slide>
+<slide class="slide" data-transition="circle"><section class="slide-wrapper"><article>
+<h2>Concurrent的意思就是并行。</h2>
+<p>如果将一个任务拆分成多个更小的任务，同时来进行，这样是不是更快些呢？</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="circle"><section class="slide-wrapper"><article>
+<p>现代的CPU往往具有多个核心，而且有些CPU也具有超线程能力，我们完全可以将一个任务拆成多个小得任务，交给CPU的多个核心，或者分布式计算系统的多个计算节点，就可以充分利用并行计算来提升性能。</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="circle"><section class="slide-wrapper"><article>
+<h2>前提</h2>
+<p>你要拆分的各个小任务之间<strong>不要有相互依赖</strong>的关系。</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="circle"><section class="slide-wrapper"><article>
+<h2>依然是栗子</h2>
+<p>有一批用户，我们需要计算他们的活跃度。</p>
+<ul class="moveIn">
+<li data-index="0" class="to-build">传统的方式： <ul>
+<li>查出这一批用户，然后写一个循环，然后轮流计算他们的积分，最后得到的结果</li>
+</ul>
+</li>
+<li data-index="1" class="to-build">并行的方式： <ul>
+<li>其实每个用户的计算都是独立的，相互不依赖，那么我们就可以利用这一点来进行并行计算</li>
+</ul>
+</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide" data-transition="circle"><section class="slide-wrapper"><article>
+<h2>上代码</h2>
+
+</article></section></slide>
+<slide class="slide" data-transition="circle"><section class="slide-wrapper"><article>
+<h2>某段使用了并行计算的代码</h2>
+<pre><code class="java hljs "><span class="hljs-keyword">public</span> List&lt;Commit&gt; <span class="hljs-title">getCommits</span>(String objectId, String path, <span class="hljs-keyword">int</span> offset, <span class="hljs-keyword">int</span> maxCount) {
+        List&lt;String&gt; shas = getCommitsSha(<span class="hljs-keyword">this</span>, objectId, path, offset, maxCount);
+        List&lt;Commit&gt; commits = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+
+        <span class="hljs-keyword">if</span> (shas != <span class="hljs-keyword">null</span>) {
+            List&lt;GetCommit&gt; getCommits = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+            <span class="hljs-keyword">for</span> (String sha : shas) {
+                getCommits.add(<span class="hljs-keyword">new</span> GetCommit(<span class="hljs-keyword">this</span>, sha));
+            }
+
+            <span class="hljs-comment">//声明一个自适应的线程池</span>
+            ExecutorService executor = Executors.newFixedThreadPool(<span class="hljs-number">8</span>);
+
+            List&lt;Future&lt;Commit&gt;&gt; futureList = <span class="hljs-keyword">null</span>;
+
+            <span class="hljs-comment">//并发的调用getCommit</span>
+            futureList = executor.invokeAll(getCommits);
+            executor.shutdown();
+
+            <span class="hljs-keyword">for</span> (Future&lt;Commit&gt; future : futureList) {
+                Commit commit = future.get();
+                commits.add(commit);
+            }
+        }
+        <span class="hljs-keyword">return</span> commits;
+    }
+</code></pre>
+
+</article></section></slide>
+<slide class="slide" data-transition="circle"><section class="slide-wrapper"><article>
+<h2>关键代码</h2>
+<p>利用Java的Cocurrent包来做并发循环，充分利用多核来尽快得到执行结果</p>
+<pre><code class="java hljs "><span class="hljs-comment">//声明一个自适应的线程池</span>
+ExecutorService executor = Executors.newFixedThreadPool(<span class="hljs-number">8</span>);
+
+List&lt;Future&lt;Commit&gt;&gt; futureList = <span class="hljs-keyword">null</span>;
+
+<span class="hljs-comment">//并发的调用getCommit</span>
+futureList = executor.invokeAll(getCommits);
+executor.shutdown();
+</code></pre>
+
+</article></section></slide>
+<slide class="slide" data-transition="cards"><section class="slide-wrapper"><article>
+<h2>总结</h2>
+
+</article></section></slide>
+<slide class="slide" data-transition="cards"><section class="slide-wrapper"><article>
+<p>关于高性能服务端程序需要注意的点还有很多，这里只是简单介绍了Cahce（缓存）、Asynchronous（异步）、Concurrent（并
+行）三个利器。即便我介绍的也只是这三个利器的冰山一角，但是请相信，如果你理解了这三个东西，从和你关系思考服务端变成，会获得不少的收获。</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="cards"><section class="slide-wrapper"><article>
+<p>这三者也是相辅相成的关系，很多时候都是配合着使用才能起到很好的效果。异步和并行在某种程度上是有重叠的，而我们经常使用异步的方式去主动构建缓存。</p>
+
+</article></section></slide>
+<slide class="slide" data-transition="kontext"><section class="slide-wrapper"><article>
+<h2>最后的小提示</h2>
+<ul>
+<li>不要让CPU闲着（CPU正常情况下压力大的时候自然不会闲着，这里指CPU负载低的时候，可以让它主动构建缓存，或者做一些准备工作等等）。</li>
+<li>提升CPU效率，即不要总让CPU做重复的劳动，用空间换时间的理念来减轻CPU的压力。</li>
+<li>不要让无关紧要的任务卡住主进程，让他们在后台慢慢做。</li>
+<li>可以提前做好准备工作，这个比较抽象，但是举个栗子就明白了：连接池、主动缓存以及之前的代码栗子都是很好地栗子</li>
+</ul>
+
+</article></section></slide>
+        <slide data-transition="cover-diamond" class="slide thank-you-slide segue nobackground">
+            <article class="flexbox vleft auto-fadein">
+                <h2>Q &amp; A</h2>
+                <h3>&lt;Thank You!&gt;</h3>
+            </article>
+        </slide>
+        <slide data-transition="cover-diamond" class="slide logoslide dark nobackground">
+            <article class="flexbox vcenter">
+              <h2 style="color: white;">Powered By nodePPT v0.9.8-3</h2>
+            </article>
+          </slide>
+        <div class="slideTip" id="tip"></div>
+    </slides>
+</div>
+<canvas style="display: none;" id="drawBoard" class="draw-board" width="900" height="700"></canvas>
+<div class="progress"><span style="width: 2.17391%;" id="progress"></span></div>
+<div id="_buttons">
+    <div class="_btn-box" id="_btn-box" style="display:none;">
+        <button class="fa fa-arrow-circle-left" id="_btn-prev"></button>
+        <button class="fa fa-arrow-circle-right" id="_btn-next"></button>
+        <button class="fa fa-paint-brush" id="_btn-brush"></button>
+        <button class="fa fa-compress" id="_btn-overview" data-toggle="fa fa-expand"></button>
+    </div>
+    <button class="fa fa-bars" id="_btn-bar" data-toggle="fa fa-close"></button>
+</div>
+<script src="/javascripts/ppts/mix.js"></script>
+<script>
+var base = location.protocol + '//' + location.host;
+
+MixJS.config({
+    baseURL: [ base, 'js'].join('/')+'/'
+});
+
+</script>
+<script src="/javascripts/ppts/broadcast.js"></script>
+<script src="/javascripts/ppts/nodeppt.js"></script>
+<script>
+Slide.init({
+    containerID: 'container',
+    drawBoardID: 'drawBoard',
+    slideClass: '.slide',
+    buildClass: '.build',
+    progressID: 'progress',
+    transition: 'cover-diamond',
+    width: 1100,
+    dir: './',
+
+    //打开下面的注释就开启postMessage方式
+    //访问网址127.0.0.1:8080/ppt/demo#client
+    control:{
+        type: 'postMessage',
+        args:{
+            isControl:  false
+        }
+    },
+
+    tipID: 'tip'
+});
+MixJS.loadJS('highlight/hljs-0.8.js',function(){
+    hljs.tabReplace = '  ';
+    hljs.initHighlightingOnLoad();
+});
+</script>
+<script src="/javascripts/ppts/demo.js"></script>
+<link rel="stylesheet" href="/stylesheets/ppts/demo.css">
+
+
+<div id="xunlei_com_thunder_helper_plugin_d462f475-c18e-46be-bd10-327458d045bd"></div><div class="img-full transparent"></div><canvas width="1436" height="798" style="position: absolute; top: 0px;"></canvas></body></html>
