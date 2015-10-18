@@ -4,7 +4,7 @@ title: "重新安装Homebrew"
 date: 2015-07-11 23:59:30 +0800
 published: true
 comments: true
-categories: [mac,brew]
+categories: [Mac OSX]
 tags: [mac,brew]
 keywords: macosx, homebrew, brew
 description: Macosx下重新安装Homebrew

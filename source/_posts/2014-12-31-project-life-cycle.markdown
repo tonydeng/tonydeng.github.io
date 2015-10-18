@@ -4,8 +4,8 @@ title: "互联网项目生命周期"
 date: 2014-12-31 13:49:44 +0800
 published: true
 comments: true
-categories: [project]
-tags: [project]
+categories: [管理]
+tags: [project, product, mananger]
 keywords: project life cycle
 description: 互联网项目生命周期
 ---

@@ -4,8 +4,8 @@ title: "使用HTML5的应用缓存"
 date: 2015-01-13 21:56:27 +0800
 published: true
 comments: true
-categories: [html5, front-end, engineered]
-tags: [html5, front-end, engineered]
+categories: [性能]
+tags: [html5, front-end, performance]
 keywords:
 description:
 ---

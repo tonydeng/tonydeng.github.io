@@ -4,8 +4,8 @@ title: "CP命令不为人知的特殊使用"
 date: 2015-05-14 17:52:46 +0800
 published: true
 comments: true
-categories: linux
-tags: linux
+categories: [效率]
+tags: [linux]
 keywords: linux, cp
 description: CP命令不为人知的特殊使用
 ---

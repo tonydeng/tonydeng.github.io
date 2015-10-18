@@ -4,8 +4,8 @@ title: "Git的各种Undo技巧"
 date: 2015-07-08 17:04:12 +0800
 published: true
 comments: true
-categories: git
-tags: git
+categories: [效率]
+tags: [git, undo]
 keywords: git undo
 description: Git各种Undo技巧
 ---

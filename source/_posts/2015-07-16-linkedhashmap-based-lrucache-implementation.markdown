@@ -4,8 +4,8 @@ title: "基于LinkedHashMap的LRUCache实现"
 date: 2015-07-16 23:44:41 +0800
 published: true
 comments: true
-categories: [java,cache]
-tags: [java,cache]
+categories: [程序设计]
+tags: [java,cache, lru]
 keywords: Java LinkedHashMap LRU Cache LRUCache
 description: LinkedHashMap based LRUCache implementation, 基于LinkedHashMap的LRUCache实现
 ---

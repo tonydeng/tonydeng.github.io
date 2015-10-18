@@ -4,7 +4,7 @@ title: "HTTPie:超爽的HTTP命令行客户端"
 date: 2015-07-10 17:58:49 +0800
 published: true
 comments: true
-categories: [http,httpie,shell]
+categories: [工具]
 tags: [http,httpie,shell]
 keywords: http httpie shell
 description:  HTTPie:超爽的HTTP命令行客户端

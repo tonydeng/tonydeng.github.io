@@ -3,8 +3,8 @@ layout: post
 title: "Octopress Can Not Create new Post on Zsh"
 date: 2014-12-07 14:44:12 +0800
 comments: true
-categories: [zsh, octopress]
-tags: [zsh, octopress]
+categories: [效率]
+tags: [zsh,shell, octopress]
 keywords: zsh, octopress, shell,no matches , widcard, rake new_post, 通配符
 description: Octopress Can Not Create new Post on Zsh 执行rake new_post 时会报错，提示no matches found
 ---

@@ -4,7 +4,7 @@ title: "Linux下文件系统结构与权限"
 date: 2014-12-26 17:36:54 +0800
 published: false
 comments: true
-categories: [linux]
+categories: [Linux]
 tags: [linux]
 keywords: linux, filesystem, permissions, 文件系统, 权限
 description: Linux下文件系统结构与权限

@@ -4,7 +4,7 @@ title: "Go项目的目录结构"
 date: 2015-02-10 10:29:15 +0800
 published: true
 comments: true
-categories: [golang]
+categories: [程序设计]
 tags: [golang]
 keywords: golang project directory structure
 description: Go项目的目录结构

@@ -4,7 +4,7 @@ title: "Netty 5用户指南"
 date: 2015-09-20 21:03:35 +0800
 published: true
 comments: true
-categories: [java, netty]
+categories: [工具]
 tags: [java, netty]
 keywords: java netty
 description:  Netty 5用户指南

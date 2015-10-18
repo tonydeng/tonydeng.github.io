@@ -4,8 +4,8 @@ title: "Linux TCP/IP调优"
 date: 2015-05-25 14:21:03 +0800
 published: true
 comments: true
-categories: linux
-tags: linux
+categories: [性能]
+tags: [linux, tcp/ip]
 keywords: linux tcp/ip
 description: linux TCP/IP调优
 ---

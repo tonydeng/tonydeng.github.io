@@ -4,7 +4,7 @@ title: "linux performance tools"
 date: 2014-12-09 17:54:47 +0800
 published: true
 comments: true
-categories: [linux, performance]
+categories: [性能]
 categories: [linux, performance]
 keywords: linux, performance, tools
 description:

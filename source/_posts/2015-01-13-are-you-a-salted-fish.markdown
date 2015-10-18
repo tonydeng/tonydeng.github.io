@@ -4,7 +4,7 @@ title: "你是咸鱼吗？"
 date: 2015-01-13 10:20:48 +0800
 published: true
 comments: true
-categories: [life]
+categories: [生活感悟]
 tags: [life]
 keywords: 咸鱼 梦想
 description:  朋友，你还记得自己最初的梦想吗？不要变成“咸鱼”哦

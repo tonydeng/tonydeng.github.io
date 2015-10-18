@@ -4,7 +4,7 @@ title: "OSX下编译Tengine+SSL错误的解决办法"
 date: 2015-03-09 15:59:08 +0800
 published: true
 comments: true
-categories: [osx, nginx]
+categories: [Mac OSX]
 tags: [osx, nginx]
 keywords: tengine osx make error
 description: Tengine+ssl编译解决方案

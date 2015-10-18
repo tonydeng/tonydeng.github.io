@@ -4,8 +4,8 @@ title: "NoSQL vs SQL By Alphabet高可用架构微信群"
 date: 2015-08-20 22:06:33 +0800
 published: true
 comments: true
-categories: [database]
-tags: [database] 
+categories: [数据库]
+tags: [database, rdb, nosql, sql] 
 keywords: Database NoSQL SQL
 description: NoSQL vs SQL By Alphabet高可用架构微信群
 ---

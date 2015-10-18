@@ -4,8 +4,8 @@ title: "Brew Update失败处理方法"
 date: 2014-12-31 00:21:39 +0800
 published: true
 comments: true
-categories: [brew, osx]
-tags: [brew, osx] 
+categories: [Mac OSX]
+tags: [brew, mac osx] 
 keywords: mac osx brew update error
 description: brew update失败处理方法
 ---

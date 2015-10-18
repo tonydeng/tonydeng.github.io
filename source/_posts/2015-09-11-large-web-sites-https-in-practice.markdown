@@ -4,7 +4,7 @@ title: "大型网站的HTTPS实践ByBaidu"
 date: 2015-09-11 09:35:05 +0800
 published: false
 comments: true
-categories: [https]
+categories: [性能]
 tags: [https]
 keywords: https
 description: 大型网站的HTTPS实践ByBaidu
