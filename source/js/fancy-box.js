@@ -1,6 +1,7 @@
 $(document).ready(function() {
   $('.content img').not('.group-picture img').each(function () {
     var $image = $(this);
+    var imageTitle = $image.attr('title');
     var $imageWrapLink = $image.parent('a');
 
     if ($imageWrapLink.size() < 1) {
