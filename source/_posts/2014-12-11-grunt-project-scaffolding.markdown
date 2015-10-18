@@ -26,21 +26,21 @@ grunt-init 是一个脚手架工具，用于自动创建项目。基于当前的
 npm install -g grunt-init
 ```
 
-这将把将命令 ```grunt-init``` 放入系统路径中，从而可以从任意目录运行它。
+这将把将命令 `grunt-init` 放入系统路径中，从而可以从任意目录运行它。
 
 注：你可能需要使用指令 sudo 或者以管理员身份运行命令解释程序来做到这一点。
 
 # 3. 用法
 
-* 使用 ```grunt-init --help``` 获取程序帮助和可用的模板列表。
-* 使用 ```grunt-init TEMPLATE``` 基于一个可用的模板创建一个项目。
-* 使用 ```grunt-init /path/to/TEMPLATE``` 基于一个任意位置的模板创建一个项目。
+* 使用 `grunt-init --help` 获取程序帮助和可用的模板列表。
+* 使用 `grunt-init TEMPLATE` 基于一个可用的模板创建一个项目。
+* 使用 `grunt-init /path/to/TEMPLATE` 基于一个任意位置的模板创建一个项目。
 
 需要注意的是，大多数模板在当前目录中生成它们的文件，因此一定要先切换到一个新目录，如果不希望覆盖已有文件的话。
 
 # 4. 安装模板
 
-一旦模板被安装到 ```~/.grunt-init/``` 目录（在 Windows 上是 ```(%USERPROFILE%\.grunt=init\）```，就可以通过 grunt-init 使用它们。使用你使用 git 拷贝一个模范到该目录中。例如，可以这样安装 [grunt-init-jquery](https://github.com/gruntjs/grunt-init-jquery) 模板：
+一旦模板被安装到 `~/.grunt-init/` 目录（在 Windows 上是 `(%USERPROFILE%\.grunt=init\）`，就可以通过 grunt-init 使用它们。使用你使用 git 拷贝一个模范到该目录中。例如，可以这样安装 [grunt-init-jquery](https://github.com/gruntjs/grunt-init-jquery) 模板：
 
 ```
 git clone git@github.com:gruntjs/grunt-init-jquery.git ~/.grunt-init/jquery
