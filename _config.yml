@@ -5,7 +5,7 @@ menu:
   archives: /archives
   tags: /tags
   # ppts: /ppts
-  # gitbook: /gitbook-zh
+  gitbook: /gitbook-zh
   about: /about
   #commonweal: /404.html
 
