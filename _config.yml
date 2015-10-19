@@ -25,7 +25,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: [gitbook-zh/gitbook-howtouse/*,gitbook-zh/gitbook-howtouse/**/*]
 
 # Writing
 # new_post_name: :title.md # File name of new posts
@@ -66,6 +66,12 @@ pagination_dir: page
 ## Themes: http://hexo.io/themes/
 # theme: landscape
 theme: next
+
+# Copy Assets
+## Plugins: https://github.com/f111fei/hexo-processor-copyassets
+## 能自定义source中的指定文件或文件夹，在执行generate命令的时候能直接复制到public文件夹中而不经过渲染
+## 多个文件夹用,分隔
+# copyAssets: gitbook-zh/gitbook-howtouse
 
 # Index Page
 index_generator:
