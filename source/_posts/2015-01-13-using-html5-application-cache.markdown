@@ -55,7 +55,7 @@ manifest 特性与 **缓存清单(cache manifest)** 文件关联，这个文件�
 
 # 存储位置与清除离线缓存
 
-在 Chrome 中，你可以在设置中选择 「清除浏览器数据...」 或访问 [chrome://appcache-internals/](chrome://appcache-internals/) 来清除缓存。
+在 Chrome 中，你可以在设置中选择 「清除浏览器数据...」 或访问 [chrome://appcache-internals](chrome://appcache-internals) 来清除缓存。
 
 Safari 在设置中有一个类似的"清空缓存" 选项，但是需要重启浏览器后才能生效。
 
@@ -257,7 +257,7 @@ example/bar/ example.html
 
 # 测试缓存清单的更新
 
-你可以使用 JavaScript 来写程序检测应用是否拥有一个可以更新的缓存清单文件。因为缓存清单文件可能会在脚本添加事件前完成更新，所以脚本应该始终检测 window.applicationCache.status。
+你可以使用 JavaScript 来写程序检测应用是否拥有一个可以更新的缓存清单文件。因为缓存清单文件可能会在脚本添加事件前完成更新，所以脚本应该始终检测 `window.applicationCache.status`。
 
 ```javascript
 function onUpdateReady() {
@@ -269,15 +269,16 @@ if(window.applicationCache.status === window.applicationCache.UPDATEREADY) {
 }
 ```
 
- 若要手动测试一个新的清单文件，你可以使用 ```window.applicationCache.update()``` 。
+ 若要手动测试一个新的清单文件，你可以使用 `window.applicationCache.update()` 。
 
 # 陷阱
 
-* 永远不要使用传统 GET 参数(例如 ```other-cached-page.html?parameterName=value```) 来访问缓存文件。这会使浏览器绕过缓存，直接从网络获取。若想链接一个参数需要在 JavaScript 中解析的资源，你可以将参数放到链接的 hash 部分，例如 ```other-cached-page.html#whatever?parameterName=value``` 。
+* 永远不要使用传统 GET 参数(例如 `other-cached-page.html?parameterName=value`) 来访问缓存文件。这会使浏览器绕过缓存，直接从网络获取。若想链接一个参数需要在 JavaScript 中解析的资源，你可以将参数放到链接的 hash 部分，例如 `other-cached-page.html#whatever?parameterName=value` 。
 
-* 当应用被缓存后，仅仅更新在 web 页面中使用的资源(文件)还不足以更新被缓存的文件。你需要在浏览器获取和使用更新的文件前，去更新缓存清单文件本身。你可以使用 ```window.applicationCache.swapCache()``` 以编程的方式完成上述目的，虽然这无法影响到已经加载完毕的资源。为了保证资源从应用缓存的最新版本中加载，最理想的办法就是刷新页面。
+* 当应用被缓存后，仅仅更新在 web 页面中使用的资源(文件)还不足以更新被缓存的文件。你需要在浏览器获取和使用更新的文件前，去更新缓存清单文件本身。你可以使用 `window.applicationCache.swapCache()` 以编程的方式完成上述目的，虽然这无法影响到已经加载完毕的资源。为了保证资源从应用缓存的最新版本中加载，最理想的办法就是刷新页面。
 
-* 通过在 web 服务器上设置 ```expires header``` 来使 ```*.appcache``` 文件立即过期是个好主意。这避免了将清单文件缓存的风险。例如，在 Apache 中，你可以指定下面的配置项：
+* 通过在 web 服务器上设置 `expires header` 来使 `*.appcache` 文件立即过期是个好主意。这避免了将清单文件缓存的风险。例如，在 Apache 中，你可以指定下面的配置项：
+
 ```
     ExpiresByType text/cache-manifest "access plus 0 seconds"
 ```
