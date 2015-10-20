@@ -7,7 +7,6 @@ comments: true
 categories: [数据库]
 tags: [database, rdb, nosql, sql] 
 keywords: Database NoSQL SQL
-description: NoSQL vs SQL By Alphabet高可用架构微信群
 ---
 
 本文所有内容来自Alphabet高可用架构微信群内部分享，分享是阿里巴巴的沈询老师。
@@ -17,6 +16,8 @@ description: NoSQL vs SQL By Alphabet高可用架构微信群
 ![A history of databases in No-tation](/images/blog/nosql_vs_sql/a_history_of_databases_in_no-tation.jpg)
 
 看完以后我真的噗嗤就笑了，黑的漂亮。
+
+<!-- more -->
 
 作为一个对数据库历史有点了解的人来说，这图真的反应了我们在数据库存储领域螺旋上升一样的发展历程的最佳代表，这哥们真的是天赋异禀。
 

@@ -7,7 +7,6 @@ comments: true
 categories: [效率]
 tags: [gradle,engineered]
 keywords:  gradle dependency
-description: gradle依赖范围介绍
 ---
 
 ![Gradle Logo](/images/blog/gradle.png)
@@ -16,6 +15,7 @@ description: gradle依赖范围介绍
 
 对于开发工程师来说，像Gradle这样的工具，第一体验是对依赖的管理。团队里面有不少原来是使用[Maven](http://maven.apache.org)的同学，会有这样的问题：“maven的依赖管理除了最基本的坐标体系（groupId、artifactId、version、packaging）以外，还有一个scope的概念。那作为继承了maven的依赖体系的gradle，它的依赖范围又有哪些？”
 
+<!-- more -->
 
 ### 那我们来看看Gradle的依赖范围（dependent scope到底有哪些）。
 

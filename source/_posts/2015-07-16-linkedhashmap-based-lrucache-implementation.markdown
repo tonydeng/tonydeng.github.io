@@ -7,13 +7,14 @@ comments: true
 categories: [程序设计]
 tags: [java,cache, lru]
 keywords: Java LinkedHashMap LRU Cache LRUCache
-description: LinkedHashMap based LRUCache implementation, 基于LinkedHashMap的LRUCache实现
 ---
 ![LRU Cache](/images/blog/lru/lru-cache.png)
 
 让面试者描述一下缓存算法，以及经典的缓存算法LRU的实现，是我在面试过程中经常会问到的题目。
 
 能够当场说出LRU算法实现思路的人基本没有，甚至不少人都无法说清楚LRU是一个实现什么功能的算法。（现在肯专心研究数据结构和算法的人不多了）
+
+<!-- more -->
 
 那我们今天就说一下LRU算法，分两点来说一下。
 

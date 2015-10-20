@@ -7,12 +7,13 @@ comments: true
 categories: [工具]
 tags: [http,httpie,shell]
 keywords: http httpie shell
-description:  HTTPie:超爽的HTTP命令行客户端
 ---
 
 ![HTTPie Logo](/images/blog/httpie/httpie-logo.png)
 
 之前在命令行下进行HTTP服务的调试和信息查看都是使用经典的[cURL](http://curl.haxx.se)，不过前段时间发现一个交互更加友好的工具，就是[HTTPie](https://github.com/jakubroztocil/httpie)。
+
+<!-- more -->
 
 先放一个HTTPie官方的一个HTTPie VS cURL的图给大家看看。
 

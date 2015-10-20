@@ -6,8 +6,8 @@ comments: true
 categories: [效率]
 tags: [zsh,shell, octopress]
 keywords: zsh, octopress, shell,no matches , widcard, rake new_post, 通配符
-description: Octopress Can Not Create new Post on Zsh 执行rake new_post 时会报错，提示no matches found
 ---
+
 在**zsh**中执行rake new_post["Title"]时会报错，提示"no matches found"。
 
 原因是**zsh**中若出现下列符合，则将识别为查找文件名的通配符。
@@ -22,6 +22,8 @@ description: Octopress Can Not Create new Post on Zsh 执行rake new_post 时会
 ➜  tonydeng.github.io git:(source) rake new_post["title"]
 zsh: no matches found: new_post[title]
 ```
+
+<!-- more -->
 
 解决方法有两个：
 

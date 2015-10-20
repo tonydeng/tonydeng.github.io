@@ -6,8 +6,6 @@ comments: true
 categories: [效率]
 categories: [zsh, shell]
 keywords: zsh, scp, shell,no matches , widcard, 通配符
-description: zsh在scp时不能使用通配符的原因和解决方案
-
 ---
 
 scp是我们经常使用的一个本地与远程服务器相互cp数据的命令，zsh是我最喜欢的shell，但是在zsh下使用scp来cp远程服务器的文件时，却出现这样的错误。
@@ -18,6 +16,8 @@ zsh: no matches found: ip:/home/tonydeng/logs/*.log
 ```
 
 同样地命令，在bash下确实可以执行的，这个原因是什么呢？
+
+<!-- more -->
 
 由于zsh不会按照远程地址上的文件去扩展参数，当你使用```ip:/home/tonydeng/logs/*.log```，因为本地当前目录中，是不存在```ip:/home/tonydeng/logs/*.log```，所以匹配失败。默认情况下，bash 在匹配失败时就使用原来的内容，zsh 则报告一个```no matches```的错误。
 

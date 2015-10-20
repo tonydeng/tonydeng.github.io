@@ -7,12 +7,13 @@ comments: true
 categories: [程序设计]
 tags: [golang]
 keywords: golang project directory structure
-description: Go项目的目录结构
 ---
 
 ![Golang](/images/blog/GoLangKulani.jpg)
 
 项目结构如何来组织，一般的开发语言都没有在语言层面上做规定，基本上都是在项目生命周期管理工具上对项目结构来做规定。不过Go在这方面做了相应地规定，这样可以在Go的开发者中保持一致。
+
+<!-- more -->
 
 ## 一、一个Go项目在GOPATH下，会有如下三个目录
 

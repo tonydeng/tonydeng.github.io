@@ -7,7 +7,6 @@ comments: true
 categories: [Linux]
 tags: [linux]
 keywords: linux, filesystem, permissions, 文件系统, 权限
-description: Linux下文件系统结构与权限
 ---
 
 ## 人生若只如初见

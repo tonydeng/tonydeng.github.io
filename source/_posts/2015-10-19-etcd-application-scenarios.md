@@ -7,10 +7,9 @@ footer: true
 categories: [架构]
 tags: [etcd]
 date: 2015-10-19 15:49:41
-keywords:
-description:
+keywords: etcd, 应用场景
 ---
-
+![etcd logo](/images/blog/etcd/etcd2-0.png)
 # etcd是什么？
 
 很多人对这个问题的第一反应可能是，它是一个键值存储仓库，却没有重视官方定义的后半句，用于**配置共享**和**服务发现**。

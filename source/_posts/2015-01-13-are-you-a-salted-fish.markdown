@@ -7,12 +7,14 @@ comments: true
 categories: [生活感悟]
 tags: [life]
 keywords: 咸鱼 梦想
-description:  朋友，你还记得自己最初的梦想吗？不要变成“咸鱼”哦
 ---
+
 ![咸鱼](/images/blog/salted_fish.jpg)
 
 我在05年的时候，写了一篇《你是咸鱼吗？》的Blog，转眼十年过去了。回头看看这十年来走过的路程，虽然有些弯弯绕绕、曲曲折折，但是很欣慰的是，我还记得当初的梦想，我没有变成咸鱼。
 
+
+<!-- more -->
 
 下面是我05年写得blog，整理并转载一下。
 

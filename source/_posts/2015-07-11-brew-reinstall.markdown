@@ -7,12 +7,13 @@ comments: true
 categories: [Mac OSX]
 tags: [mac,brew]
 keywords: macosx, homebrew, brew
-description: Macosx下重新安装Homebrew
 ---
 
 ![Homebrew](/images/blog/homebrew.png)
 
 Mac Book用了几年之后，基本上其他的笔记本都已经看不上了，这个看不上不仅仅是设计感、硬件性价比等原因，更多是对工作效率的提高（尤其对于一个多年的互联网工作者），工作效率极有可能会成为一个公司成功或失败的一个不可忽视的原因。[Homebrew](http://brew.sh/)是我在Mac下一直使用的包管理系统，而且我觉得[Homebrew](http://brew.sh)是提高工作效率的非常重要的组成部分。
+
+<!-- more -->
 
 前段时间给[媳妇](http://janehao.github.io)也买了一台13寸的Mac Book Pro，当天就配置好了[Homebrew](http://brew.sh)环境，但是不知怎么回事，今天在使用brew时，提示下面的错误信息：
 

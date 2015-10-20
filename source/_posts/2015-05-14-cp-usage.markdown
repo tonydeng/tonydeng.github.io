@@ -7,12 +7,13 @@ comments: true
 categories: [效率]
 tags: [linux]
 keywords: linux, cp
-description: CP命令不为人知的特殊使用
 ---
 
 ![linux command](/images/blog/linux-command.jpg)
 
 就算如司空见惯的 **cp** 命令，某些用法我们或许也不了解。
+
+<!-- more -->
 
 ## 快速复制
 

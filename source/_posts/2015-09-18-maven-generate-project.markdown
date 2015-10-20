@@ -7,12 +7,13 @@ comments: true
 categories: [工具]
 tags: [maven, java, project]
 keywords: maven
-description: 解决Maven使用artchetype:create创建工程失败的问题
 ---
 
 ![maven java](/images/blog/maven/maven-jee.png)
 
 Maven是我一直用来管理Java项目生命周期的工具，从2006年开始使用，到现在快十年了。没想到今天碰到一个新的问题，就是使用 `mvn artchetype:create` 来创建项目时失败了。
+
+<!-- more -->
 
 问题如下：
 

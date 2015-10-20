@@ -7,24 +7,24 @@ comments: true
 categories: [效率]
 tags: [golang, sublime, program]
 keywords: go, golang, sublime,use sublime develop golang
-description: 使用Sublime开发Golang
-
 ---
 
-![golang logo](./images/blog/golang.jpg)
+![golang logo](/images/blog/golang.jpg)
 
 ## 安装Golang
 
 在[官网](http://golang.org)上直接下载安装包就可以了。下载pkg格式的最新安装包 ，直接双击运行，一路按照提示操作就可以完成安装。
 
-或者使用brew进行安装```brew install go```
+或者使用brew进行安装 `brew install go`
 
-完成安装之后，打开终端，输入```go version```，检查golang sdk是否安装成功。
+完成安装之后，打开终端，输入 `go version` ，检查golang sdk是否安装成功。
 
 ```go
 ➜  ~  go version
 go version go1.3.3 darwin/amd64
 ```
+
+<!-- more -->
 
 ## 环境变量配置
 
@@ -41,7 +41,7 @@ GOPATH=~/workspace/demo/go-demo
 source ~/.golangrc
 ```
 
-> 如果你在GOLANG中配置了多个目录的话，当你下载开源包是(```go get *****```)，开源包默认会找到第一个目录，会统一下到第一个目录的pkg目录下。
+> 如果你在GOLANG中配置了多个目录的话，当你下载开源包是(`go get *****`)，开源包默认会找到第一个目录，会统一下到第一个目录的pkg目录下。
 
 ## go官方推荐的项目结构
 
@@ -73,8 +73,8 @@ src/
 
 Package Control如何安装我就不说了。直接安装[GoSublime](https://github.com/DisposaBoy/GoSublime)插件
 
-Mac OSX下使用Command + Shift + P打开```Package Control```，然后输入 ```pcip``` (Package Control:Install Package的缩写)
+Mac OSX下使用Command + Shift + P打开`Package Control`，然后输入 `pcip` (Package Control:Install Package的缩写)
 
-在随后的界面中输入```GoSublime```，回车，就开始安装GoSubmlime了。
+在随后的界面中输入`GoSublime`，回车，就开始安装GoSubmlime了。
 
-当你可以在Sublime的 ```Preferences -> Package Settings``` 看到 ```GoSublime``` ，那么恭喜你，你的基于Sublime的Golang开发环境就搭建完成了。
+当你可以在Sublime的 `Preferences -> Package Settings` 看到 `GoSublime` ，那么恭喜你，你的基于Sublime的Golang开发环境就搭建完成了。

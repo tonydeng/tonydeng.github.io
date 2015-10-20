@@ -7,11 +7,12 @@ comments: true
 categories: [Mac OSX]
 tags: [osx, nginx]
 keywords: tengine osx make error
-description: Tengine+ssl编译解决方案
 ---
 ![Nginx+SSL](/images/blog/nginx-ssl.jpg)
 
 [Tengine](http://tengine.taobao.org/)（Tengine是由淘宝基于[Nignx](http://nginx.org/)开发的Web服务器）是一个非常要用的Web服务器，我基本上在测试及生产环境中都使用它来代替Nginx。不过之前都是在Linux下来编译和安装，这几天由于要调试之前已经离职的工程师的PHP项目，需要在自己的Mac配置一个可以使用的PHP开发调试环境。于是开始了OSX下的PHP+Nginx之旅。
+
+<!-- more -->
 
 由于我不太希望用**brew**来安装PHP和Tengine，还是使用最原始的编译安装的方式。安装PHP时基本上没有遇到任何问题，在安装Tengine时却碰到这样的错误。
 

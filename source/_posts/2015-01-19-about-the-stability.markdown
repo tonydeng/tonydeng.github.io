@@ -7,7 +7,6 @@ comments: true
 categories: [生活感悟]
 tags: [life]
 keywords: about the stability
-description:
 ---
 
 为什么大部分的人都喜欢稳定呢？
@@ -17,6 +16,8 @@ description:
 稳定不是平衡，稳定也不是持久，稳定的科学定义是对**外界干扰的抵抗能力**。
 
 换而言之，稳定不关乎状态的好坏，**稳定只关乎是否能够保持原来的状态**，哪怕这个状态并不是那么理想。
+
+<!-- more -->
 
 ### 我们来看看下面的三个小球。
 

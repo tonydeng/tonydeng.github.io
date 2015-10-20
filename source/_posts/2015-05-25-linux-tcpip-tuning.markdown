@@ -7,11 +7,12 @@ comments: true
 categories: [性能]
 tags: [linux, tcp/ip]
 keywords: linux tcp/ip
-description: linux TCP/IP调优
 ---
 ![tcp/ip](/images/blog/tcpip.png)
 
 根据 [杨云1028的Blog](http://yangrong.blog.51cto.com/6945369/1321594) 整理的参数的说明：
+
+<!-- more -->
 
 ## Linux内核参数注释
 

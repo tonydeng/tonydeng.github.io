@@ -6,9 +6,12 @@ comments: true
 categories: [效率]
 tags: [linux, pssh]
 keywords: ssh, pssh, brew, linux, 远程服务器控制
-description: pssh是一个用python编写的可以在多台服务器上执行命令的工具，同时支持拷贝文件等功能，在同类工具中还是很方便使用的
 ---
+
+![PSSH](/images/blog/pssh.png)
+
 pssh是一个用python编写的可以在多台服务器上执行命令的工具，同时支持拷贝文件等功能，在同类工具中还是很方便使用的。项目地址：[parallel-ssh](https://code.google.com/p/parallel-ssh/)
+<!-- more -->
 
 ## 安装方法
 

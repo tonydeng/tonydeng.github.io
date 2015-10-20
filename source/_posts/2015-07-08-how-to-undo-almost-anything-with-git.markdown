@@ -7,7 +7,6 @@ comments: true
 categories: [效率]
 tags: [git, undo]
 keywords: git undo
-description: Git各种Undo技巧
 ---
 
 ![git undo](/images/blog/git-undo/git-undo.jpg)
@@ -20,6 +19,8 @@ description: Git各种Undo技巧
 当你进行一个新的提交时，Git会保存你在这个特定时间点的快照到本地的仓库中，之后，你可以通过Git来回到你早期的某个版本。
 
 我们来先看看一些需要你“撤销”的常见场景，你可以尝试使用Git来用最佳的方式来解决它。
+
+<!-- more -->
 
 ## 撤销已经推送到远程的变更
 
