@@ -1,4 +1,12 @@
+layout: post
 title: {{ title }}
 date: {{ date }}
-tags:
----
+published: false
+comments: true
+sharing: true
+footer: true
+categories: []
+tags: []
+keywords: 
+description:
+------------
