@@ -95,8 +95,8 @@ keywords: linux tcp/ip
 
 ### 修改内核参数的方法
 
-1. 使用 ```echo value``` 方式直接追加到文件中。 如 ``` echo "1" > /proc/sys/net/ipv4/tcp_syn_retries``` ，但是这种方式设备重启后，会恢复成默认值。
-2. 把参数添加到 ``` /etc/sysctl.conf``` 中，然后执行 ``` sysctl -p ``` 使参数生效。这种方式是永久有效的。
+1. 使用 `echo value` 方式直接追加到文件中。 如 ` echo "1" > /proc/sys/net/ipv4/tcp_syn_retries` ，但是这种方式设备重启后，会恢复成默认值。
+2. 把参数添加到 ` /etc/sysctl.conf` 中，然后执行 ` sysctl -p ` 使参数生效。这种方式是永久有效的。
 
 ### 生产环境常用的参数
 
