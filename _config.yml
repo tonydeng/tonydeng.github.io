@@ -2,8 +2,6 @@
 ## Docs: http://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
 
-avatar: https://avatars1.githubusercontent.com/u/629519?v=3&s=460
-
 # Site
 title: TonyDeng's Blog
 subtitle: “In me the tiger sniffes the rose.” -- Siegfried Sasson
@@ -11,6 +9,8 @@ description:
 author: Tony Deng
 language: zh-Hans
 timezone:
+avatar: https://avatars1.githubusercontent.com/u/629519?v=3&s=460
+since: 2014
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
