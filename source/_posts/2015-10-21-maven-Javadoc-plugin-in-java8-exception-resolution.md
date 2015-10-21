@@ -5,9 +5,9 @@ comments: true
 sharing: true
 footer: true
 categories: [效率]
-tags: [java,java8, maven, javadoc,javadoc-plugin,maven-plugin,plugin]
+tags: [java,java8,DocLint, maven, javadoc,javadoc-plugin,maven-plugin,plugin]
 date: 2015-10-21 20:45:09
-keywords: java java8 maven javadoc javadoc-plugin maven-plugin plugin
+keywords: java java8 maven javadoc javadoc-plugin maven-plugin plugin DocLint
 ---
 ## 问题
 今天用maven在release代码时，又出现新的问题了，生成javadoc出现异常，导致release失败。
@@ -62,7 +62,7 @@ javadoc的插件配置是这样
 
 OK，找到线索了，那就查查看。
 
-先看看[Java8的特性列表](http://openjdk.java.net/projects/jdk8/features)吧。果然，Java8添加了一个Javadoc注释内容检查的特性[Doclint](http://openjdk.java.net/jeps/172)。
+先看看[Java8的特性列表](http://openjdk.java.net/projects/jdk8/features)吧。果然，Java8添加了一个Javadoc注释内容检查的特性[DocLint](http://openjdk.java.net/jeps/172)。
 
 DocLint提供了一种方法来检测Javadoc的注释中的错误，希望能够在开发周期的早期和容易链接回源代码的方式。
 

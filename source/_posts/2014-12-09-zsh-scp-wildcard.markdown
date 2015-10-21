@@ -4,7 +4,6 @@ title: "zsh在scp时不能使用通配符的原因和解决方案"
 date: 2014-12-09 12:01:38 +0800
 comments: true
 categories: [效率]
-categories: [zsh, shell]
 keywords: zsh, scp, shell,no matches , widcard, 通配符
 ---
 
