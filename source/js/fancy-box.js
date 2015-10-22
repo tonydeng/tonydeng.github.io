@@ -1,5 +1,6 @@
 $(document).ready(function() {
   $('.content img').not('.group-picture img').each(function () {
+
     var $image = $(this);
     var imageTitle = $image.attr('title');
     var $imageWrapLink = $image.parent('a');
@@ -9,14 +10,15 @@ $(document).ready(function() {
     }
 
     $imageWrapLink.addClass('fancybox');
+    $imageWrapLink.attr('rel', 'group');
 
-    //make sure img title tag will show correctly in fancybox
-    if (this.title) {
-      $imageWrapLink.attr("title", this.title);
+    if (imageTitle) {
+      $imageWrapLink.append('<div class="pic-title"><span>' + imageTitle + '</span></div>');
+      $imageWrapLink.attr("title", imageTitle); //make sure img title tag will show correctly in fancybox
     }
-
   });
 });
+
 $('.fancybox').fancybox({
   helpers: {
     overlay: {
