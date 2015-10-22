@@ -8,14 +8,6 @@ footer: true
 ---
 
 Hi, I’m Tony Deng...
-
-* E-Mail : wolf.deng@gmail.com
-* Linkedin : https://www.linkedin.com/in/tonydeng1
-* Twitter : https://twitter.com/wolfdeng
-* SlideShare : https://www.slideshare.net/tonydeng
-* Delicious : http://delicious.com/wolf.deng
-
-<!--
 ```
 {
     "name": "Tony Deng",
@@ -45,4 +37,3 @@ Hi, I’m Tony Deng...
     ]
 }
 ```
--->
