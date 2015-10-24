@@ -5,7 +5,7 @@ date: 2015-01-19 11:48:33 +0800
 published: true
 comments: true
 categories: [生活感悟]
-tags: [life]
+tags: [life，thinking]
 keywords: about the stability
 ---
 

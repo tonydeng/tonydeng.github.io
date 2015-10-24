@@ -5,7 +5,7 @@ date: 2015-01-13 10:20:48 +0800
 published: true
 comments: true
 categories: [生活感悟]
-tags: [life]
+tags: [life,thinking]
 keywords: 咸鱼 梦想
 ---
 

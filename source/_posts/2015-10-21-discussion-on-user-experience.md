@@ -5,7 +5,7 @@ comments: true
 sharing: true
 footer: true
 categories: [产品设计]
-tags: [user experience,UE,product]
+tags: [user experience,UE,product,thinking]
 date: 2015-10-21 21:52:15
 keywords:
 ---
