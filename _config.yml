@@ -14,7 +14,7 @@ keywords: "Hexo, NexT"
 rss:
 
 # Specify the date when the site was setup
-#since: 2015
+since: 2014
 
 
 
@@ -59,7 +59,7 @@ menu_icons:
 # ---------------------------------------------------------------
 
 # Schemes
-#scheme: Mist
+scheme: Mist
 
 
 
@@ -138,7 +138,7 @@ custom_logo:
 # Available value:
 #    normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: normal
+highlight_theme: night bright
 
 # Automatically scroll page to section which is under :!-- more --> mark.
 scroll_to_more: true
