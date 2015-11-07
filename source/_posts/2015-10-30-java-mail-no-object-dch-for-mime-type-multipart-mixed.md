@@ -257,6 +257,8 @@ mail mimetypes:'text/*'
 
 其实也很简单，将`mailcap.default`重命名为`mailcap`就好了。`MailcapCommandMap`不管怎么样都会读取到`mailcap`文件了。
 
+## MailcapCommandMap相关代码
+
 ```
         LogSupport.log("MailcapCommandMap: load JAR");
         this.loadAllResources(dbv, "META-INF/mailcap");
@@ -267,6 +269,31 @@ mail mimetypes:'text/*'
             }
         }
 
+```
+
+## mailcap配置
+
+```
+#
+#
+# Default mailcap file for the JavaMail System.
+#
+# JavaMail content-handlers:
+#
+text/plain;;		x-java-content-handler=com.sun.mail.handlers.text_plain
+text/html;;		x-java-content-handler=com.sun.mail.handlers.text_html
+text/xml;;		x-java-content-handler=com.sun.mail.handlers.text_xml
+multipart/*;;		x-java-content-handler=com.sun.mail.handlers.multipart_mixed; x-java-fallback-entry=true
+message/rfc822;;	x-java-content-handler=com.sun.mail.handlers.message_rfc822
+```
+
+## Maven assembly中mailcap相关配置
+
+```
+        <file>
+            <source>src/main/resources/META-INF/mailcap</source>
+            <outputDirectory>META-INF</outputDirectory>
+        </file>
 ```
 
 # 参考
