@@ -10,7 +10,11 @@ date: 2015-10-30 18:00:50
 keywords: mailcap,java,engineered,email, no object dch for mime type multipart/mixed"异常的解决办法及过程
 ---
 
+![email error](/images/blog/email-error/error.jpg)
+
 前两天写了一个发送邮件的功能，结果出现了一个比较灵异的状况，现在整理一下解决办法和中间的过程。
+
+<!-- more -->
 
 # 发送邮件配置及代码
 
@@ -40,8 +44,6 @@ keywords: mailcap,java,engineered,email, no object dch for mime type multipart/m
     <version>1.1.1</version>
  </dependency>
 ```
-
-<!-- more -->
 
 发送邮件的代码也非常简单：
 
