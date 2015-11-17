@@ -1,6 +1,6 @@
 layout: post
 title: Linux文件的特殊权限
-published: true
+published: false
 comments: true
 sharing: true
 footer: true
