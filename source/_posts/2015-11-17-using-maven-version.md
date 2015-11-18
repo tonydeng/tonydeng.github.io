@@ -10,6 +10,8 @@ date: 2015-11-17 18:56:48
 keywords: java, maven, properties, version
 ---
 
+![HSC Maven Version](/images/blog/using-maven-version.png)
+
 ## 场景描述
 
 我们在开发一些项目的时候需要知道当前的版本状态，比如传递版本客户端信息到服务端等等。
