@@ -9,6 +9,7 @@ tags: [shell, iconv]
 date: 2015-11-27 12:11:11
 keywords: shell , iconv
 ---
+![encoding](/images/blog/encoding.png)
 # 需求
 
 之前同事有一个项目给过来，由于他之前的开发环境是Windows的，文件编码都是GBK的，看起挺不爽的，不符合我们现在的规范。需要将里面的文件全部转换成UTF8的文件编码。
