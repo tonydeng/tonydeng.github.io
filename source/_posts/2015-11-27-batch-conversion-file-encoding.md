@@ -1,6 +1,6 @@
 layout: post
 title: 批量转换文件编码
-published: false
+published: true
 comments: true
 sharing: true
 footer: true
