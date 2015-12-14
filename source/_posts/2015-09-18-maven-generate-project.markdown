@@ -97,4 +97,18 @@ mvn archetype:generate \
     -T20
 ```
 
+
+创建webapp项目命令如下：
+
+```
+mvn archetype:generate \
+    -DarchetypeGroupId=org.apache.maven.archetypes \
+    -DinteractiveMode=false \
+    -DarchetypeCatalog=internal \
+    -DgroupId=com.github.tonydeng.bluebrid \
+    -DartifactId=bluebrid-webapp \
+    -DarchetypeArtifactId=maven-archetype-webapp \
+    -T20
+```
+
 遇到同样问题的同学们，你们可以试试我的方法，应该能够快速的解决你们的问题。
