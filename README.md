@@ -36,6 +36,10 @@ git checkout develop
 cd tonydeng.github.io/themes
 
 git clone git@github.com:tonydeng/hexo-theme-next.git next
+
+cd next
+
+git checkout master
 ```
 
 ## Blog构建
