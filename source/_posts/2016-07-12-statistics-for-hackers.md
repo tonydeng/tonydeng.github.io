@@ -188,3 +188,8 @@ print(p)  # 0.186
 ## 小结
 
 相对抽象的统计学公式而言，抽样方法是一种更符合直觉的计算近似法。只要会写 `for` 循环，就可以做统计分析。
+
+## 参考
+
+[《Statistics for Hackers》](https://speakerdeck.com/jakevdp/statistics-for-hackers)
+
