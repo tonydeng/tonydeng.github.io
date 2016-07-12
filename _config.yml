@@ -186,7 +186,7 @@ disqus_shortname: tonydengblog
 
 
 # Google Analytics
-#google_analytics:
+google_analytics: UA-80673215-1
 
 
 # Make duoshuo show UA
