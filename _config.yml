@@ -159,11 +159,11 @@ use_font_lato: true
 # ---------------------------------------------------------------
 
 # MathJax Support
-mathjax:
+# mathjax:
 
 
 # Swiftype Search API Key
-#swiftype_key:
+swiftype_key: zKUrq677LKuCamnTyd9h
 
 # Baidu Analytics ID
 baidu_analytics: 43d979b191269e68beffa09e2d17a081
