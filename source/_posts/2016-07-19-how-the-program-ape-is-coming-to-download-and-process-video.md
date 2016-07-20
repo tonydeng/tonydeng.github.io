@@ -78,4 +78,4 @@ ffmpeg -i "concat:1.ts|2.ts" -c copy -bsf:a aac_adtstoasc "工程师的痛只有
 附上这个视频吧,有兴趣的人可以看看。
 
 
-<embed src="http://player.youku.com/player.php/sid/XNzE1NTk3Mzky/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+<iframe height=498 width=510 src="http://player.youku.com/embed/XNzE1NTk3Mzky" frameborder=0 allowfullscreen></iframe>
