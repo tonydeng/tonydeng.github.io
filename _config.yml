@@ -14,7 +14,7 @@ keywords: "Hexo, NexT"
 rss:
 
 # Specify the date when the site was setup
-since: 2014
+since: 2005
 
 
 
@@ -80,8 +80,10 @@ sidebar: post
 
 
 # Social links
-# social:
-  #GitHub:
+social:
+  GitHub: https://github.com/tonydeng
+  Twitter: https://twitter.com/wolfdeng
+  知乎: http://www.zhihu.com/people/tonydeng
   #Others:
 
 # Social Icons
@@ -91,6 +93,7 @@ social_icons:
   GitHub: github
   Twitter: twitter
   Weibo: weibo
+  知乎: zhihu
 
 
 # Sidebar Avatar
@@ -159,20 +162,20 @@ use_font_lato: true
 # ---------------------------------------------------------------
 
 # MathJax Support
-mathjax:
+# mathjax:
 
 
 # Swiftype Search API Key
-#swiftype_key:
+swiftype_key: zKUrq677LKuCamnTyd9h
 
 # Baidu Analytics ID
-#baidu_analytics:
+baidu_analytics: 43d979b191269e68beffa09e2d17a081
 
 # Duoshuo ShortName
 #duoshuo_shortname:
 
 # Disqus
-#disqus_shortname:
+disqus_shortname: tonydengblog
 
 # Share
 #jiathis:
@@ -186,16 +189,16 @@ mathjax:
 
 
 # Google Analytics
-#google_analytics:
+google_analytics: UA-80673215-1
 
 
 # Make duoshuo show UA
 # user_id must NOT be null when admin_enable is true!
 # you can visit http://dev.duoshuo.com get duoshuo user id.
-duoshuo_info:
-  ua_enable: true
-  admin_enable: false
-  user_id: 0
+# duoshuo_info:
+#   ua_enable: true
+#   admin_enable: false
+#   user_id: 0
   #admin_nickname: ROOT
 
 
