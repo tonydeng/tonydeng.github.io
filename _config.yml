@@ -80,8 +80,10 @@ sidebar: post
 
 
 # Social links
-# social:
-  #GitHub:
+social:
+  GitHub: https://github.com/tonydeng
+  Twitter: https://twitter.com/wolfdeng
+  知乎: http://www.zhihu.com/people/tonydeng
   #Others:
 
 # Social Icons
@@ -91,6 +93,7 @@ social_icons:
   GitHub: github
   Twitter: twitter
   Weibo: weibo
+  知乎: zhihu
 
 
 # Sidebar Avatar
