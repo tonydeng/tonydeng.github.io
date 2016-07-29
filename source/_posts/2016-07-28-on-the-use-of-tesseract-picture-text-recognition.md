@@ -66,8 +66,6 @@ brew install tesseract --all-languages
 
 更多Tesseract的安装可以查看这儿[Install Tesseract via pre-built binary package](https://github.com/tesseract-ocr/tesseract/wiki)或 [build it from source](https://github.com/tesseract-ocr/tesseract/wiki/Compiling)
 
-http://tesseract-ocr.github.io/index.html
-
 ## 命令行使用
 
 这里只见到讲一下Tesseract识别图像的基本用法，关于训练和开发将来在另开新篇来专门讲述。
@@ -151,4 +149,9 @@ tesseract paper.png paper tess_1.conf -l chi_sim tess_2.conf
 ```
 
 至于 `Tesseract` 那些参数各有什么含义，官方没有提供任何文档来进行解释，这里有一个[链接](http://www.sk-spell.sk.cx/tesseract-ocr-parameters-in-302-version)提供了部分参数的用处说明，应该是阅读了 `Tesseract` 源代码后得到的结论。
+
+## 另外
+
+关于`Tesseract`的文档，可以查看[Tetesseract官方Blog](http://tesseract-ocr.github.io/index.html
+)
 
