@@ -4,7 +4,7 @@ published: true
 comments: true
 sharing: true
 footer: true
-categories: [效率]
+categories: [工程师文化]
 tags: [statistics, hacker]
 date: 2016-07-12 16:45:38
 keywords: 黑客 统计学 hacker statistics 黑客统计学
