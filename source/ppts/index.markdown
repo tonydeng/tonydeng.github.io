@@ -7,6 +7,8 @@ sharing: true
 footer: true
 ---
 
-[高性能服务端三要素](/ppts/high-performance_server_three_elements/)
+[漫谈职业规划](/slideshare/career-plaannin/)
 
-[版本控制和常用的分支模型](/ppts/revison_contorl_branch_pattern/)
+[高性能服务端三要素](/slideshare/high-performance-server/)
+
+[版本控制和常用的分支模型](/slideshare/revison-contorl/)
