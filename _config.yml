@@ -32,7 +32,7 @@ menu:
   categories: /categories
   archives: /archives
   tags: /tags
-  # ppts: /ppts
+  ppts: /ppts
   gitbook: /gitbook-zh
   about: /about
   #commonweal: /404.html
