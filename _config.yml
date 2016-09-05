@@ -99,6 +99,11 @@ feed:
   path: atom.xml  ## feed路径
   limit: 20 ## feed文章最小数量
 
+# Search
+search:
+  path: search.xml
+  field: post
+
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
