@@ -7,7 +7,7 @@ footer: true
 categories: [程序设计]
 tags: [etcd, etcd4j, java]
 date: 2016-11-03 13:19:42
-keywords:
+keywords: etcd etcd4j java block json jackson maven
 ---
 
 ![debug](/images/blog/etcd4j/debug.jpg)
