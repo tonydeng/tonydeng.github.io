@@ -16,6 +16,7 @@ keywords:
 
 最近将整个微服务的体系从原来的通过使用[TCP4J](https://github.com/tonydeng/tcp4j)加上固定的`HOST+PORT`的方式转成使用[ETCD](https://github.com/coreos/etcd)的服务发现体系（大家想了解ETCD可以关注我之前的两篇博文[初试ETCD](/2015/11/24/etcd-the-first-using/),[ETCD应用场景 ](/2015/10/19/etcd-application-scenarios/)）。
 
+<!-- more -->
 
 ### 基于ETCD的注册 & 服务发现架构
 
