@@ -35,6 +35,7 @@ menu:
   ppts: /ppts
   gitbook: /gitbook-zh
   about: /about
+  schedule: /schedule
   #commonweal: /404.html
 
 
@@ -44,11 +45,12 @@ menu:
 #   Key is the name of menu item and value is the name of FontAwsome icon. Key is case-senstive.
 #   When an question mask icon presenting up means that the item has no mapping icon.
 menu_icons:
-  enable: true
+  enable: false
   #KeyMapsToMenuItemKey: NameOfTheIconFromFontAwesome
   home: home
   about: user
   categories: th
+  schedule: calendar
   tags: tags
   archives: archive
   commonweal: heartbeat
@@ -110,6 +112,7 @@ font:
   codes:
     external: true
     family:
+    size:
 
 
 
@@ -256,11 +259,13 @@ disqus_shortname: tonydengblog
 # Baidu Share
 # Available value:
 #    button | slide
+# Warning: Baidu Share does not support https.
 #baidushare:
 ##  type: button
 
 # Share
 #jiathis:
+# Warning: JiaThis does not support https.
 #add_this_id:
 
 # Share
@@ -302,7 +307,9 @@ facebook_sdk:
 # If facebook_sdk.enable is false, Facebook comments plugin is unavailable.
 facebook_comments_plugin:
   enable: false
-  num_of_posts: 10
+  num_of_posts: 10  # min posts num is 1
+  width: 100%       # default width is 550px
+  scheme: light     # default scheme is light (light or dark)
 
 
 # Show number of visitors to each article.
@@ -336,6 +343,22 @@ busuanzi_count:
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
 baidu_push: false
 
+# Google Calendar
+# Share your recent schedule to others via calendar page
+#
+# API Documentation:
+# https://developers.google.com/google-apps/calendar/v3/reference/events/list
+calendar:
+  enable: false
+  calendar_id: <required>
+  api_key: <required>
+  orderBy: startTime
+  offsetMax: 24
+  offsetMin: 4
+  timeZone:
+  showDeleted: false
+  singleEvents: true
+  maxResults: 250
 
 
 #! ---------------------------------------------------------------
@@ -355,40 +378,41 @@ fancybox: true
 # For example
 #    jquery: https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js
 # Be aware that you should use the same version as internal ones to avoid potential problems.
+# Please use the https protocol of CDN files when you enable https on your site.
 vendors:
   # Internal path prefix. Please do not edit it.
-  _internal: vendors
+  _internal: lib
 
   # Internal version: 2.1.3
   jquery:
 
   # Internal version: 2.1.5
-  # http://fancyapps.com/fancybox/
+  # See: http://fancyapps.com/fancybox/
   fancybox:
   fancybox_css:
 
   # Internal version: 1.0.6
-  # https://github.com/ftlabs/fastclick
+  # See: https://github.com/ftlabs/fastclick
   fastclick:
 
   # Internal version: 1.9.7
-  # https://github.com/tuupola/jquery_lazyload
+  # See: https://github.com/tuupola/jquery_lazyload
   lazyload:
 
   # Internal version: 1.2.1
-  # http://VelocityJS.org
+  # See: http://VelocityJS.org
   velocity:
 
   # Internal version: 1.2.1
-  # http://VelocityJS.org
+  # See: http://VelocityJS.org
   velocity_ui:
 
   # Internal version: 0.7.9
-  # https://faisalman.github.io/ua-parser-js/
+  # See: https://faisalman.github.io/ua-parser-js/
   ua_parser:
 
   # Internal version: 4.4.0
-  # http://fontawesome.io/
+  # See: http://fontawesome.io/
   fontawesome:
 
 
@@ -398,4 +422,4 @@ js: js
 images: img
 
 # Theme version
-version: 5.0.1
+version: 5.0.2
