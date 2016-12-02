@@ -12,3 +12,5 @@ footer: true
 [高性能服务端三要素](https://tonydeng.github.io/slideshare/high-performance-server/)
 
 [版本控制和常用的分支模型](https://tonydeng.github.io/slideshare/revision-contorl/)
+
+[基于命令行的Git Plugin开发回顾](https://tonydeng.github.io/slideshare/a-review-of-plugin-git-development-based-on-the-command-line/)
