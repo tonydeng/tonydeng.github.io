@@ -1,22 +1,23 @@
 language: node_js
-
-node_js:
-  - "7.0"
-
+node_js: stable
 branchs:
-    only:
-        - develop       # 只监测develop分支
-
+  only:
+  - develop
 before_install:
-    - npm install -g hexo-cli   # 只安装hexo
-
+- export TZ='Asia/Shanghai'
 install:
-    - npm install # 安装额外的文件
-
+- npm install
 script:
-    - hexo generate
-
+- hexo clean
+- hexo generate
 after_success:
-    - git config --global user.name "Tony Deng"
-    - git config --global user.email "wolf.deng@gmail.com"
-    - hexo deploy
+- cd .public
+- git init
+- git config --global user.name "Tony Deng"
+- git config --global user.email "wolf.deng@gmail.com"
+- git add .
+- git commit -m 'update'
+- git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+env:
+  global:
+  - GH_REF: github.com/tonydeng/tonydeng.github.io.git
