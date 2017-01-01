@@ -1,0 +1,24 @@
+language: node_js
+
+node_js:
+    - '0.12'
+
+branchs:
+    only:
+        - develop       # 只监测develop分支
+
+before_install:
+    - npm install -g hexo-cli   # 只安装hexo
+
+install:
+    - npm install # 安装额外的文件
+
+script:
+    - git submodule init
+    - git submodule update
+    - hexo generate
+
+after_success:
+    - git config --global user.name "Tony Deng"
+    - git config --global user.email "wolf.deng@gmail.com"
+    - hexo deploy
