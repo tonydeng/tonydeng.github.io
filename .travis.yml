@@ -11,13 +11,16 @@ script:
 - hexo clean
 - hexo generate
 after_success:
-- cd .public
-- git init
+# - cd .public
+# - git init
 - git config --global user.name "Tony Deng"
 - git config --global user.email "wolf.deng@gmail.com"
-- git add .
-- git commit -m 'update'
-- git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+# - git add .
+# - git commit -m 'update'
+# - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+- sed -i'' "s~git@github.com:${GH_REF}~https://${GH_TOKEN}:x-oauth-basic@github.com/${GH_REF}~" _config.yml
+- hexo deploy
 env:
   global:
-  - GH_REF: github.com/tonydeng/tonydeng.github.io.git
+  - GH_REF: tonydeng/tonydeng.github.io.git
+  - secure: EcEfk3nQmsoqz5V0U5TLc1K7xZrYGHodularifADjK17d7I3TUKqMPs14r/Ny8fI0MS7kWPM0AzGo35IoOUuEAsTCMLjzG50dIM5I8UL6J84sM0Gq6SDhNTBMqqXtPDFUxXLedsX7W/zkAI/5g5do5h4LmvnnAMA5apPH/OcRQM=
