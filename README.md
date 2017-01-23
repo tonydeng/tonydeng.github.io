@@ -1,5 +1,7 @@
 # TonyDeng's Blog
 
+[![Build Status](https://travis-ci.org/tonydeng/tonydeng.github.io.svg?branch=develop)](https://travis-ci.org/tonydeng/tonydeng.github.io)
+
 ## 安装NodeJS及NPM
 
 ### 安装node.js
