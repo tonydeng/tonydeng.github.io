@@ -6,11 +6,12 @@ comments: true
 sharing: true
 footer: true
 ---
+1. [海量用户积分排名算法](https://tonydeng.github.io/slideshare/massive-user-ranking-algorithm/)
 
-[产品经理和工程师如何有效沟通 -- 九字真言](https://tonydeng.github.io/slideshare/product-nine-words/)
+1. [基于命令行的Git Plugin开发回顾](https://tonydeng.github.io/slideshare/a-review-of-plugin-git-development-based-on-the-command-line/)
 
-[高性能服务端三要素](https://tonydeng.github.io/slideshare/high-performance-server/)
+1. [产品经理和工程师如何有效沟通 -- 九字真言](https://tonydeng.github.io/slideshare/product-nine-words/)
 
-[版本控制和常用的分支模型](https://tonydeng.github.io/slideshare/revision-contorl/)
+1. [高性能服务端三要素](https://tonydeng.github.io/slideshare/high-performance-server/)
 
-[基于命令行的Git Plugin开发回顾](https://tonydeng.github.io/slideshare/a-review-of-plugin-git-development-based-on-the-command-line/)
+1. [版本控制和常用的分支模型](https://tonydeng.github.io/slideshare/revision-contorl/)
