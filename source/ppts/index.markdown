@@ -6,6 +6,8 @@ comments: true
 sharing: true
 footer: true
 ---
+1. [通过机器学习来写诗](https://tonydeng.github.io/slideshare/r-poems/)
+
 1. [海量用户积分排名算法](https://tonydeng.github.io/slideshare/massive-user-ranking-algorithm/)
 
 1. [基于命令行的Git Plugin开发回顾](https://tonydeng.github.io/slideshare/a-review-of-plugin-git-development-based-on-the-command-line/)
