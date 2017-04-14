@@ -302,12 +302,9 @@ baidu_analytics: 43d979b191269e68beffa09e2d17a081
 #duoshuo_shortname:
 
 # Disqus
-<<<<<<< HEAD
-disqus_shortname: tonydengblog
-=======
 disqus:
-  enable: false
-  shortname:
+  enable: true
+  shortname: tonydengblog
   count: true
 
 # Hypercomments
@@ -329,7 +326,6 @@ changyan:
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)
 #livere_uid: your uid
->>>>>>> source/master
 
 # Baidu Share
 # Available value:
