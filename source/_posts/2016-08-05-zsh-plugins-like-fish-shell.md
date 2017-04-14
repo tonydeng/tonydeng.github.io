@@ -10,7 +10,7 @@ date: 2016-08-05 14:26:00
 keywords: zsh fish shell autosuggestions color
 ---
 
-![](http://cdn.makeuseof.com/wp-content/uploads/2016/02/fish-shell-644x250.jpg)
+![](/images/blog/zsh-like-fish-shell/fish-shell.jpg)
 
 很久之前就见过同事用过[`Fish Shell`](https://fishshell.com)，看到几个非常棒的特性和效果，比如下面两个特性就非常吸引我。
 
@@ -26,7 +26,7 @@ keywords: zsh fish shell autosuggestions color
 
 * 无插件系统，功能上还是比[`Oh My ZSH`](http://ohmyz.sh/)少了很多
 * 不兼容`bash`语法，导致我之前的很多脚本无法运行
- 
+
 > [`Oh My ZSH`](http://ohmyz.sh/)才是我的真爱！
 
 

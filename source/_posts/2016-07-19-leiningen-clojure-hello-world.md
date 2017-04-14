@@ -10,7 +10,7 @@ date: 2016-07-19 09:01:58
 keywords: Leiningen + Clojure Hello World!
 ---
 
-![hello world](http://www.sandraconn.com/wp-content/uploads/2014/08/hello-world-v02.jpg)
+![hello world](/images/blog/hello-world.jpg)
 
 我们之前已经写过[Leiningen + Clojure之旅](/categories/Leiningen-Clojure之旅/)一篇Blog[安装Leiningen](/2015/11/19/install-leiningen/)。
 
