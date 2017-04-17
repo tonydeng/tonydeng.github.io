@@ -20,6 +20,7 @@
     "hexo-renderer-ejs": "latest",
     "hexo-renderer-marked": "latest",
     "hexo-renderer-stylus": "latest",
-    "hexo-server": "latest"
+    "hexo-server": "latest",
+    "hexo-tag-mermaid": "latest"
   }
 }

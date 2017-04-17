@@ -33,3 +33,6 @@
   {% set internal_script = url_for(theme.vendors._internal) + '/' + internal %}
   <script type="text/javascript" src="{{ theme.vendors[name] | default(internal_script) }}"></script>
 {% endfor %}
+
+{# mermaid js #}
+<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
