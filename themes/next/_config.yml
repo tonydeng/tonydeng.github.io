@@ -303,9 +303,9 @@ baidu_analytics: 43d979b191269e68beffa09e2d17a081
 
 # Disqus
 disqus:
-  enable: true
+  enable: false
   shortname: tonydengblog
-  count: true
+  count: false
 
 # Hypercomments
 #hypercomments_id:
@@ -364,7 +364,7 @@ google_analytics: UA-80673215-1
 # user_id must NOT be null when admin_enable is true!
 # you can visit http://dev.duoshuo.com get duoshuo user id.
 duoshuo_info:
-  ua_enable: true
+  ua_enable: false
   admin_enable: false
   user_id: 0
   #admin_nickname: Author
