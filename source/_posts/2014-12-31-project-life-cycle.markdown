@@ -5,7 +5,7 @@ date: 2014-12-31 13:49:44 +0800
 published: true
 comments: true
 categories: [管理]
-tags: [project, product, mananger]
+tags: [project, product, management]
 keywords: project life cycle
 ---
 

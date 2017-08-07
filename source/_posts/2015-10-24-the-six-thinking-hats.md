@@ -5,7 +5,7 @@ comments: true
 sharing: true
 footer: true
 categories: [管理]
-tags: [thinking,the six thinking hasts,六顶思考帽,manager]
+tags: [thinking,the six thinking hasts,六顶思考帽,management]
 date: 2015-10-24 21:55:06
 keywords: thinking,the six thinking hasts, 六顶思考帽
 ---
