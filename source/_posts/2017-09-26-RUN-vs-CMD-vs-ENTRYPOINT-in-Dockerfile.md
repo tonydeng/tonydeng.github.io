@@ -10,7 +10,7 @@ date: 2017-09-26 17:09:47
 keywords: RUN vs CMD vs ENTRYPOINT in Dockerfile
 ---
 
-![docker logo](https://cdn.kelu.org/blog/tags/docker.jpg)
+![docker logo](http://logo-logos.com/wp-content/uploads/2016/10/Docker_logo_horizontal.png)
 
 `RUN`、`CMD` 和 `ENTIRYPOINT`这三个`Dockerfile`指令看起来都很类似，很容易搞混。我们来通过一些实践来详细讨论一下它们之间的差别。
 
