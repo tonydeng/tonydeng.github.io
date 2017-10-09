@@ -5,7 +5,7 @@ comments: true
 sharing: true
 footer: true
 categories: [JUnit5 Tutorial]
-tags: [junit5,junit,tutorial]
+tags: [junit5,junit,tutorial,unit testing]
 date: 2017-10-09 11:09:07
 keywords: JUnit5教程 简介
 ---
@@ -34,6 +34,10 @@ JUnit5的第一个可用性版本是在2017年9月10日发布的。
 
 > JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage
 
+下图是JUnit的架构图
+
+![junit 5 architecture ](https://www.ibm.com/developerworks/library/j-introducing-junit5-part1-jupiter-api/Figure-1.png)
+
 ### 1. JUnit Platform
 
 启动Junit测试、IDE、构建工具或插件都需要包含和扩展Platform API，它定义了`TestEngine`在平台运行的新测试框架的API。
@@ -47,6 +51,10 @@ JUnit5的第一个可用性版本是在2017年9月10日发布的。
 ### 3. JUnit Vintage
 
 它主要的目的是支持在JUnit5的测试代码中运行JUnit3和4方式写的测试，它能够向前兼容之前的测试代码。
+
+下图是JUnit5的依赖关系图
+
+![junit 5 dependence](https://www.ibm.com/developerworks/java/library/j-introducing-junit5-part2-vintage-jupiter-extension-model/Figure-1.png)
 
 ## 安装
 
@@ -92,7 +100,7 @@ JUnit5提供了以下的注解来编写测试代码。
 
 ## 使用JUnit5编写测试
 
-JUnit4和JUnit5在测试编码风格上没有太大变化。这是其[生命周期]()方法的样本测试。
+JUnit4和JUnit5在测试编码风格上没有太大变化。这是其[生命周期](/2017/10/09/junit-5-test-lifecycle/)方法的样本测试。
 
 ```java
 import org.junit.jupiter.api.AfterAll;
