@@ -1,5 +1,5 @@
 layout: post
-title: JUnit5测试生命周期
+title: JUnit5教程-测试生命周期
 published: true
 comments: true
 sharing: true

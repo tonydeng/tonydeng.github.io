@@ -54,7 +54,7 @@ JUnit5的第一个可用性版本是在2017年9月10日发布的。
 
 下图是JUnit5的依赖关系图
 
-![junit 5 dependence](https://www.ibm.com/developerworks/java/library/j-introducing-junit5-part2-vintage-jupiter-extension-model/Figure-1.png)
+![junit 5 dependence](http://junit.org/junit5/docs/current/user-guide/images/component-diagram.svg)
 
 ## 安装
 
@@ -97,6 +97,8 @@ JUnit5提供了以下的注解来编写测试代码。
 |`@Nested`|用于创建嵌套测试类|
 |`@Tag`|用于测试发现或过滤的标签来标记测试方法或类|
 |`@TestFactory`|标记一种方法是动态测试的测试工场|
+
+> 可以查看详细的[JUnit5注解](/2017/10/10/junit-5-annotations/)说明
 
 ## 使用JUnit5编写测试
 
