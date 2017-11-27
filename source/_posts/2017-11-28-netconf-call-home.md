@@ -9,7 +9,10 @@ tags: [NETCONF, RFC, RFC8071]
 date: 2017-11-28 00:18:35
 keywords: SDN之NETCONF Call Home
 ---
-本文主要内容都来自于[RFC8071](https://tools.ietf.org/html/rfc8071)。
+
+![rfc8071 datatracker status](https://github.com/tonydeng/sdn-handbook/blob/master/sdn/images/rfc8071-datatracker-status.jpg?raw=true)
+
+本文主要内容都来自于今年二月发布的[RFC8071 - NETCONF Call Home and RESTCONF Call Home](https://tools.ietf.org/html/rfc8071)，该RFC从2015年4月提出到最终发布一共修改了17个版本，其间修改内容可以[点击查看详细内容](https://datatracker.ietf.org/doc/rfc8071/)。
 
 ## 介绍
 
@@ -17,6 +20,7 @@ keywords: SDN之NETCONF Call Home
 > `NETCONF`协议​​的绑定到`SSH`在[RFC6242](https://tools.ietf.org/html/rfc6242)中定义。
 > `NETCONF`协议​​的绑定到`TLS`在[RFC7589](https://tools.ietf.org/html/rfc7589)中定义。
 > `SSH`协议在[RFC4253](https://tools.ietf.org/html/rfc4253)中定义，`TLS`协议是在[RFC5246](https://tools.ietf.org/html/rfc4253)中定义。`SSH`和`TLS`协议都是`TCP`协议之上的协议。
+<!-- more -->
 
 ### 动机
 
@@ -33,7 +37,7 @@ keywords: SDN之NETCONF Call Home
 - 网络设备可以配置为“隐身模式”，因此没有任何的端口可以提供给管理系统打开连接。
 
 - 运营商可能倾向于让网络设备发起管理连接，认为在数据中心中保护一个开放端口比在网络中的每个网络设备上具有开放端口更容易。
-<!-- more -->
+
 ### 解决方案概述
 
 下图说明了协议分层的`call home`

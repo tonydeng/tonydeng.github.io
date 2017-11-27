@@ -9,6 +9,7 @@ tags: [git, branch, scm]
 date: 2017-08-31 16:41:28
 keywords: git git分支 分支管理实践
 ---
+![git branches](https://wac-cdn.atlassian.com/dam/jcr:389059a7-214c-46a3-bc52-7781b4730301/hero.svg?cdnVersion=if)
 
 Git是目前最流行的代码版本管理系统，像[Github](https://github.io)也被称为全球最大的同性交友网站 ;-) 可见Git在工程师人群中的流行程度。不过在使用Git时，经常会碰到一个问题，就是采用什么样用的分支模型进行管理，Git官方也提供了很多分支模型推荐（[分布式工作流程](https://git-scm.com/book/zh/v2/%E5%88%86%E5%B8%83%E5%BC%8F-Git-%E5%88%86%E5%B8%83%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B)这篇文章有相应的记载）。
 
