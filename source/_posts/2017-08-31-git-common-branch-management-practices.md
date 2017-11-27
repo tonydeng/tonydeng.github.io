@@ -87,7 +87,7 @@ Git Flow流程中包含5类分支，分别是master、develop、feature（新功
 
 #### Release分支
 
-![release branches](/images/blog/git-flow-release-branchs.jpg)
+![release branches](/images/blog/git-flow-release-branches.jpg)
 
 `release`分支可能来源于`develop`，并且只能合并回`develop`和`master`。
 
