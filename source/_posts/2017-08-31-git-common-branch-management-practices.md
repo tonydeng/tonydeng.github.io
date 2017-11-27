@@ -32,11 +32,6 @@ TBD的特点是所有团队成员都在单个主干分支上进行开发。当�
 
 不过好处是由于分支所带来的额外开销非常小。开发人员不用频繁在不同的分支之间切换。
 
-
-![Github Flow的分支流程](https://www.ibm.com/developerworks/cn/java/j-lo-git-mange/img002.png)
-
-`GitHub flow`的好处在于非常简单实用。开发人员需要注意的事项非常少，很容易形成习惯。当需要进行任何修改时，总是从`master`分支创建新分支。完成之后通过`pull request`和相关的代码审查来合并回`master`分支。`GitHub flow `要求项目有完善的自动化测试、持续集成和部署等相关的基础设施。每个新分支都需要测试和部署，如果这些不能自动化进行，会增加开发人员的工作量，导致无法有效地实施该流程。这种分支实践也要求团队有代码审查的相应流程。
-
 ## Git Flow
 
 [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/)应该是目前流传最广的Git分支管理实践。
@@ -111,6 +106,10 @@ Git Flow流程中包含5类分支，分别是master、develop、feature（新功
 
 [Github Flow](http://scottchacon.com/2011/08/31/github-flow.html)是[Github](https://github.com)所使用的一种流程，它主要是依托于`git-flow`，并依托Github的`pull request`功能创建的分支模型和流程。
 
+![Github Flow的分支流程](https://www.ibm.com/developerworks/cn/java/j-lo-git-mange/img002.png)
+
+`GitHub flow`的好处在于非常简单实用。开发人员需要注意的事项非常少，很容易形成习惯。当需要进行任何修改时，总是从`master`分支创建新分支。完成之后通过`pull request`和相关的代码审查来合并回`master`分支。`GitHub flow `要求项目有完善的自动化测试、持续集成和部署等相关的基础设施。每个新分支都需要测试和部署，如果这些不能自动化进行，会增加开发人员的工作量，导致无法有效地实施该流程。这种分支实践也要求团队有代码审查的相应流程。
+
 在`Github Flow`中，`master`分支中也是代表着稳定的代码。该分支已经或即将被部署在生产环境。
 
 ![pull requests](https://cloud.githubusercontent.com/assets/70/6769770/61a2dcba-d0a8-11e4-9924-3576232053ee.png)
@@ -120,4 +119,3 @@ Git Flow流程中包含5类分支，分别是master、develop、feature（新功
 对于代码的任何修改，包括`bug`修复，`hotfix`、新功能开发都在单独的分支中进行。不管是一行代码的小改动，还是需要几个星期开发的新功能，都采用同样的方式来管理。当需要进行修改时，从`master`创建一个新的分支。新分支的名称应该简单清晰的描述该分支的作用。所有相关的代码修改都在新分支中进行。开发人员可以自由的提交代码和`push`到远程仓库。
 
 当新分支中的代码全部完成之后，通过`Github`提交一个新的`pull request`。团队中的其他人会对代码进行审核，提出相关修改意见。由持续集成服务器（如`Jenkins`）对新分支进行自动化测试。当代码通过自动化测试和代码审核之后，该分支的代码被合并到`master`分支。然后从`master`分支不是到生产环境。
-
