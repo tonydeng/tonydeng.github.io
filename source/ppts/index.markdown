@@ -6,6 +6,9 @@ comments: true
 sharing: true
 footer: true
 ---
+
+1. [NETCONF over WebSocket](https://tonydeng.github.io/slideshare/netconf-websocket/)
+
 1. [通过机器学习来写诗](https://tonydeng.github.io/slideshare/r-poems/)
 
 1. [海量用户积分排名算法](https://tonydeng.github.io/slideshare/massive-user-ranking-algorithm/)
