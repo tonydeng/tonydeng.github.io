@@ -7,7 +7,7 @@ sharing: true
 footer: true
 ---
 
+1. [RFC6241 - Network Configuration Protocol(NETCONF)翻译](https://tonydeng.github.io/rfc6241-zh/)
 1. [SDN手册](https://tonydeng.gitbooks.io/sdn/content/index.html)
 1. [简约至上：交互式设计四策略（Simple and Usable Web,Mobile, and Interaction Design）笔记](https://tonydeng.gitbooks.io/simple-and-usable-web-mobile-and-interaction-desi/content/index.html)
 1. [Gitbook使用入门](/gitbook-zh/gitbook-howtouse/)
-
