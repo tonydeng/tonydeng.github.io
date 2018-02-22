@@ -1,5 +1,5 @@
 layout: post
-title: 创建产品的两大原则
+title: 理想的创业团队原型和创建产品原则
 published: true
 comments: true
 sharing: true
