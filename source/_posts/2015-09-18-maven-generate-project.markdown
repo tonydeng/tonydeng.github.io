@@ -4,7 +4,7 @@ title: "解决Maven使用artchetype:create创建工程失败的问题"
 date: 2015-09-18 13:32:48 +0800
 published: true
 comments: true
-categories: [工具]
+categories: [效率]
 tags: [maven, java, project]
 keywords: maven
 ---

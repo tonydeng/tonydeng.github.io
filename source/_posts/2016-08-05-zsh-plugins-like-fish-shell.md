@@ -4,7 +4,7 @@ published: true
 comments: true
 sharing: true
 footer: true
-categories: [工具]
+categories: [效率]
 tags: [zsh,autosuggestions,color]
 date: 2016-08-05 14:26:00
 keywords: zsh fish shell autosuggestions color
