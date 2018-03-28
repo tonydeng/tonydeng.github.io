@@ -5,6 +5,7 @@ date: 2015-01-19 14:33
 comments: true
 sharing: true
 footer: true
+keywords: NETCONF 机器学习 海量用户积分 Git Plugin 产品经理 高性能服务端三要素 版本控制和常用分支模型
 ---
 
 1. [NETCONF over WebSocket](https://tonydeng.github.io/slideshare/netconf-websocket/)
