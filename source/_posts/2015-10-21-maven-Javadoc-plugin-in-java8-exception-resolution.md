@@ -13,7 +13,7 @@ keywords: java java8 maven javadoc javadoc-plugin maven-plugin plugin DocLint
 今天用maven在release代码时，又出现新的问题了，生成javadoc出现异常，导致release失败。
 
 
-```
+```bash
 Refer to the generated Javadoc files in './target/site/apidocs' dir.
 
 org.apache.maven.reporting.MavenReportException:
@@ -27,7 +27,7 @@ Exit code: 1 -./src/main/java/com/github/tonydeng/commons/utils/DigestUtils.java
 
 javadoc的插件配置是这样
 
-```
+```xml
 <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-javadoc-plugin</artifactId>
@@ -72,7 +72,7 @@ DocLint提供了一种方法来检测Javadoc的注释中的错误，希望能够
 
 最后的配置如下：
 
-```
+```xml
 <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-javadoc-plugin</artifactId>
@@ -89,7 +89,9 @@ DocLint提供了一种方法来检测Javadoc的注释中的错误，希望能够
         <configuration>
         <encoding>UTF-8</encoding>
         <charset>UTF-8</charset>
-        <additionalparam>-Xdoclint:none</additionalparam>
+		<additionalOptions>
+		    <additionalOption>-Xdoclint:none</additionalOption>
+	    </additionalOptions>
     </configuration>
  </plugin>
 ```
