@@ -10,7 +10,7 @@ date: 2017-11-28 00:18:35
 keywords: SDN之NETCONF Call Home
 ---
 
-![rfc8071 datatracker status](https://github.com/tonydeng/sdn-handbook/blob/master/sdn/images/rfc8071-datatracker-status.jpg?raw=true)
+![rfc8071 datatracker status](/images/blog/netconf-callhome/rfc8071-datatracker-status.jpg)
 
 本文主要内容都来自于今年二月发布的[RFC8071 - NETCONF Call Home and RESTCONF Call Home](https://tools.ietf.org/html/rfc8071)，该RFC从2015年4月提出到最终发布一共修改了17个版本，其间修改内容可以[点击查看详细内容](https://datatracker.ietf.org/doc/rfc8071/)。
 
@@ -42,7 +42,7 @@ keywords: SDN之NETCONF Call Home
 
 下图说明了协议分层的`call home`
 
-![NETCONF Call Home Sequence](https://raw.githubusercontent.com/tonydeng/sdn-handbook/master/sdn/images/netconf-call-home-sequence.png)
+![NETCONF Call Home Sequence](/images/blog/netconf-callhome/netconf-call-home-sequence.png)
 
 > 消息层流程PlantUML请查看[netconf-messages-layer-flow.puml](https://raw.githubusercontent.com/tonydeng/sdn-handbook/master/puml/netconf-call-home.puml)
 
