@@ -8,6 +8,10 @@ footer: true
 keywords: Gitbook NETCONF RESTCONF SDN SDN手册 RFC RFC8040 RFC6241 RFC7950 交互设计
 ---
 
+## 架构设计
+
+1. [架构师手册](https://tonydeng.github.io/architect-manual)
+
 ## SDN
 
 1. [SDN手册](https://tonydeng.github.io/sdn-handbook/)
