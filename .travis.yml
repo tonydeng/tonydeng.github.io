@@ -11,16 +11,12 @@ script:
 - hexo clean
 - hexo generate
 after_success:
-# - cd .public
-# - git init
 - git config --global user.name "Tony Deng"
 - git config --global user.email "wolf.deng@gmail.com"
-# - git add .
-# - git commit -m 'update'
-# - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
-- sed -i'' "s~git@github.com:${GH_REF}~https://${GH_TOKEN}:x-oauth-basic@github.com/${GH_REF}~" _config.yml
+- sed -i'' "s~git@github.com:${GH_REF}~https://${GH_TOKEN}:x-oauth-basic@github.com/${GH_REF}~"
+  _config.yml
 - hexo deploy
 env:
   global:
   - GH_REF: tonydeng/tonydeng.github.io.git
-  - secure: EcEfk3nQmsoqz5V0U5TLc1K7xZrYGHodularifADjK17d7I3TUKqMPs14r/Ny8fI0MS7kWPM0AzGo35IoOUuEAsTCMLjzG50dIM5I8UL6J84sM0Gq6SDhNTBMqqXtPDFUxXLedsX7W/zkAI/5g5do5h4LmvnnAMA5apPH/OcRQM=
+  - secure: gJ6z6EVQWFSl/P3h3SAcCdV7GWchcDq/QuqXtFbtG5HeHquZ7TdKWXJQRgr0zxqtaX3pnXdCVpRNqX5mrWfZ8yLFvQVzxAs6i/ctg/Z/Xm7agHZ0Q+L4rOXq7xy5ToUPZrSg6hRQiMAgrqyFa8wFr5VJ0nTQyaMLsOdny9EIKwarT73R46KsqP1QTNeHOFdC4PprLP63yUvaUG9vdtx01uMl9f2sWvaBz0NmbVLP6swlizMA+0BR2YALKREycXFMlfzZ7jmRs0NoAGoQP6xOgR7IqWcCsgPkv1uVVPPK7xy1oAn3+gV+I4jTBcqdxaNvyIfekKB5ZjbHFvnfNrNPl5fm2Zz9xIiHu1ce7SaDa/CrKxiCkPRajxeaV/wr2pLPf8BYUCgOJlLLC6J3l0kln35S7A2jr9FCsBP1o+NR6JTwKHJiMyzLwZEhT9gFAxbXpxWGcmubFF83Zv0zumtDnWNH1350k/Oe1RE2AwTW29GVlEwfVgnC+wtOXSCXMQH+l5ffxMvJ9MqYYe5mV5YAe9SkY9/b44lG/I1eZ1T+FXu3GVZmfBn9FLNpofacjQy4wOQqF9RKNe8IMmAAwt6aAtAYnF982tMFkkL3UzudqLGCk23MyoLb5BYKZsFDlUelkA1kueA8uwvlENRveKlvhjztfLy/2nhTDxsWBt3ULlY=
