@@ -1,0 +1,1126 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="grunt, scaffold, front-end, nodejs, engineered, grunt-init">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="原文： https://github.com/gruntjs/grunt-docs/blob/master/Project-Scaffolding.md  1. grunt-initgrunt-init 是一个脚手架工具，用于自动创建项目。基于当前的环境和几个问题的答案创建一个完整的目录结构。确切的文件和内容取决于所选的模板，和模板提出的问题的答案。 注：本独立程序曾经作为“init”任务内置于">
+<meta name="keywords" content="grunt, scaffold, front-end, nodejs, engineered, grunt-init">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Grunt项目脚手架">
+<meta property="og:url" content="http://tonydeng.github.io/2014/12/11/grunt-project-scaffolding/index.html">
+<meta property="og:site_name" content="TonyDeng&#39;s Blog">
+<meta property="og:description" content="原文： https://github.com/gruntjs/grunt-docs/blob/master/Project-Scaffolding.md  1. grunt-initgrunt-init 是一个脚手架工具，用于自动创建项目。基于当前的环境和几个问题的答案创建一个完整的目录结构。确切的文件和内容取决于所选的模板，和模板提出的问题的答案。 注：本独立程序曾经作为“init”任务内置于">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-20T12:10:27.462Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Grunt项目脚手架">
+<meta name="twitter:description" content="原文： https://github.com/gruntjs/grunt-docs/blob/master/Project-Scaffolding.md  1. grunt-initgrunt-init 是一个脚手架工具，用于自动创建项目。基于当前的环境和几个问题的答案创建一个完整的目录结构。确切的文件和内容取决于所选的模板，和模板提出的问题的答案。 注：本独立程序曾经作为“init”任务内置于">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tonydeng.github.io/2014/12/11/grunt-project-scaffolding/">
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+
+
+  <title> Grunt项目脚手架 | TonyDeng's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80673215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43d979b191269e68beffa09e2d17a081";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TonyDeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">“In me the tiger sniffes the rose.” -- Siegfried Sasson</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ppts">
+          <a href="/ppts" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            PPT
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gitbook">
+          <a href="/gitbook-zh" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            GitBook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2014/12/11/grunt-project-scaffolding/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Grunt项目脚手架
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-12-11T14:04:00+08:00">
+                2014-12-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/效率/" itemprop="url" rel="index">
+                    <span itemprop="name">效率</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>原文： <a href="https://github.com/gruntjs/grunt-docs/blob/master/Project-Scaffolding.md" target="_blank" rel="noopener">https://github.com/gruntjs/grunt-docs/blob/master/Project-Scaffolding.md</a></p>
+</blockquote>
+<h1 id="1-grunt-init"><a href="#1-grunt-init" class="headerlink" title="1. grunt-init"></a>1. grunt-init</h1><p>grunt-init 是一个脚手架工具，用于自动创建项目。基于当前的环境和几个问题的答案创建一个完整的目录结构。确切的文件和内容取决于所选的模板，和模板提出的问题的答案。</p>
+<p>注：本独立程序曾经作为“init”任务内置于 Grunt。关于该变化的更多信息查看 Grunt 从 0.3 升级到 0.4 指南。</p>
+<a id="more"></a>
+
+<h1 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h1><p>为了使用 <strong>grunt-init</strong> ，你需要全局安装它。</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install</span> -g grunt-init</span><br></pre></td></tr></table></figure>
+
+<p>这将把将命令 <code>grunt-init</code> 放入系统路径中，从而可以从任意目录运行它。</p>
+<p>注：你可能需要使用指令 sudo 或者以管理员身份运行命令解释程序来做到这一点。</p>
+<h1 id="3-用法"><a href="#3-用法" class="headerlink" title="3. 用法"></a>3. 用法</h1><ul>
+<li>使用 <code>grunt-init --help</code> 获取程序帮助和可用的模板列表。</li>
+<li>使用 <code>grunt-init TEMPLATE</code> 基于一个可用的模板创建一个项目。</li>
+<li>使用 <code>grunt-init /path/to/TEMPLATE</code> 基于一个任意位置的模板创建一个项目。</li>
+</ul>
+<p>需要注意的是，大多数模板在当前目录中生成它们的文件，因此一定要先切换到一个新目录，如果不希望覆盖已有文件的话。</p>
+<h1 id="4-安装模板"><a href="#4-安装模板" class="headerlink" title="4. 安装模板"></a>4. 安装模板</h1><p>一旦模板被安装到 <code>~/.grunt-init/</code> 目录（在 Windows 上是 <code>(%USERPROFILE%\.grunt=init\）</code>，就可以通过 grunt-init 使用它们。使用你使用 git 拷贝一个模范到该目录中。例如，可以这样安装 <a href="https://github.com/gruntjs/grunt-init-jquery" target="_blank" rel="noopener">grunt-init-jquery</a> 模板：</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">git clone git@github<span class="selector-class">.com</span>:gruntjs/grunt-init-jquery<span class="selector-class">.git</span> ~/.grunt-init/jquery</span><br></pre></td></tr></table></figure>
+
+<p>注：如果你想以<em>“foobarbaz”</em>在本地使用模板，你可以在拷贝时指定<code>~/.grunt-init/foobarbaz</code>。grunt-init 将使用模板在目录 <code>~/.grunt-init/</code> 中的实际目录名。</p>
+<p>一些 grunt-init 模板由官方维护：</p>
+<ul>
+<li><a href="https://github.com/gruntjs/grunt-init-commonjs" target="_blank" rel="noopener">grunt-init-commonjs</a> - 创建一个 commonjs 模块，包括 Nodeunit 单元测试。（<a href="https://github.com/gruntjs/grunt-init-commonjs-sample/tree/generated" target="_blank" rel="noopener">生成的样本库</a> | <a href="https://github.com/gruntjs/grunt-init-commonjs-sample#project-creation-transcript" target="_blank" rel="noopener">创建记录</a>）</li>
+<li><a href="https://github.com/gruntjs/grunt-init-gruntfile" target="_blank" rel="noopener">grunt-init-gruntfile</a> - 创建一个基本的 Gruntfile。（<a href="https://github.com/gruntjs/grunt-init-gruntfile-sample/tree/generated" target="_blank" rel="noopener">生成的样本库</a> | <a href="https://github.com/gruntjs/grunt-init-gruntfile-sample#project-creation-transcript" target="_blank" rel="noopener">创建记录</a>）</li>
+<li><a href="https://github.com/gruntjs/grunt-init-gruntplugin" target="_blank" rel="noopener">grunt-init-gruntplugin</a> -创建一个 Grunt 插件，包含 Nodeunit 单元测试。（<a href="https://github.com/gruntjs/grunt-init-gruntplugin-sample/tree/generated" target="_blank" rel="noopener">生成的样本库</a> | <a href="https://github.com/gruntjs/grunt-init-gruntplugin-sample#project-creation-transcript" target="_blank" rel="noopener">创建记录</a>）</li>
+<li><a href="https://github.com/gruntjs/grunt-init-jquery" target="_blank" rel="noopener">grunt-init-jquery</a> - 创建一个 jQuery 插件，包含 Nodeunit 单元测试。（<a href="https://github.com/gruntjs/grunt-init-jquery-sample/tree/generated" target="_blank" rel="noopener">生成的样本库</a> | <a href="https://github.com/gruntjs/grunt-init-jquery-sample#project-creation-transcript" target="_blank" rel="noopener">创建记录</a>）</li>
+<li><a href="https://github.com/gruntjs/grunt-init-node" target="_blank" rel="noopener">grunt-init-node</a> - 创建一个 Node.js 模块，包含 Nodeunit 单元测试。（<a href="https://github.com/gruntjs/grunt-init-node-sample/tree/generated" target="_blank" rel="noopener">生成的样本库</a> | <a href="https://github.com/gruntjs/grunt-init-node-sample#project-creation-transcript" target="_blank" rel="noopener">创建记录</a>）</li>
+</ul>
+<h1 id="5-自定义模板"><a href="#5-自定义模板" class="headerlink" title="5. 自定义模板"></a>5. 自定义模板</h1><p>你可以创建和使用自定义模板。你的模板必须遵循与上述模板同样的结构。</p>
+<p>一个命名为 <code>my-template</code> 的模板要遵循下面的通用文件结构：</p>
+<ul>
+<li>my-template/template.js - 主模板文件.</li>
+<li>my-template/rename.json - 模板特定的命名规则，作为模板处理。</li>
+<li>my-template/root/ - 拷贝到目标位置的文件。</li>
+</ul>
+<p>假设这些文件已经在 <code>/path/to/my-template</code>，可以用命令 <code>grunt-init /path/to/my-template</code> 处理该模板。多个不重名的模板可以存在于同一个目录项，就像内置模板一样。</p>
+<blockquote>
+<p>没有在内置模板中找到多个不重名模板，疑问中</p>
+</blockquote>
+<p>此外，如果将自定义模板放入 <code>~/.grunt-init/</code> 目录（Windows 上是 <code>%USERPROFILE%\.grunt-init\</code>），运行 <code>grunt-init my-template</code> 将自动被使用。</p>
+<h2 id="5-1-拷贝文件"><a href="#5-1-拷贝文件" class="headerlink" title="5.1 拷贝文件"></a>5.1 拷贝文件</h2><p>当 init 模板运行时，只要一个模板使用方法 <code>init.filesToCopy</code> 和 <code>init.copyAndProcess</code>，目录 <code>root/</code> 中的所有文件将被复制到当前目录。</p>
+<p>请注意，所以拷贝文件会被当作模板处理，模板 <code>{ % % }</code> 将在收集的 <code>props</code> 数据对象下处理，除非设置了选项 <code>noProcess</code>。看看 <a href="https://github.com/gruntjs/grunt-init-jquery" target="_blank" rel="noopener">jQuery 模板</a>例子。</p>
+<h2 id="5-2-重命名或不包括模板文件"><a href="#5-2-重命名或不包括模板文件" class="headerlink" title="5.2 重命名或不包括模板文件"></a>5.2 重命名或不包括模板文件</h2><p><code>rename.json</code> 描述 <code>sourcepath</code> 到 <code>destpath</code> 的重命名映射。<code>sourcepath</code> 必须是 <code>root/</code> 文件夹下将被拷贝文件的路径，而 <code>destpath</code> 值可以包含 <code>{ % % }</code> 模板，描述目标路径是什么。</p>
+<p>如果指定 <code>destpath</code> 为 <code>false</code>，该文件不会被复制。此外，<code>srcpath</code> 支持通配符。</p>
+<h1 id="6-指定默认提示答案"><a href="#6-指定默认提示答案" class="headerlink" title="6. 指定默认提示答案"></a>6. 指定默认提示答案</h1><p>没有初始化提示或者有一个硬编码的默认值，或者产看当前环境来尝试判断默认值。如果你想覆盖个别提示的默认值，你可以在选项文件 <code>~/.grunt-init/defaults.json</code>（OS X 或 Linux）或 <code>%USERPROFILE%\.grunt-init\defaults.json</code>（Window）中这么做。</p>
+<p>例如，我的 <code>defaults.json</code> 文件看起来就像这样，因为我想用一个稍微不同的名称而不是默认名称，想要排除我的电子邮件地址，想自动指定一个作者网址。</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"author_name"</span>: <span class="string">"\"Cowboy\" Ben Alman"</span>,</span><br><span class="line">  <span class="attr">"author_email"</span>: <span class="string">"none"</span>,</span><br><span class="line">  <span class="attr">"author_url"</span>: <span class="string">"http://benalman.com/"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：在所有内置提示被文档化之前，你可以在<a href="https://github.com/gruntjs/grunt-init/blob/master/tasks/init.js" target="_blank" rel="noopener">源代码</a>中找到它们的名称和默认值。</p>
+<h1 id="7-定义一个初始化模板"><a href="#7-定义一个初始化模板" class="headerlink" title="7. 定义一个初始化模板"></a>7. 定义一个初始化模板</h1><blockquote>
+<p>对照 ~/.grunt-init/node/template.js 理解。</p>
+</blockquote>
+<h2 id="7-1-exports-description"><a href="#7-1-exports-description" class="headerlink" title="7.1 exports.description"></a>7.1 exports.description</h2><p>当用户运行 <code>grunt init</code> 或 <code>grunt-init</code> 来显示所有有效的初始化模板列表时，简短的模板描述随模板名称一起显示。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">exports.description = descriptionString;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-2-exports-notes"><a href="#7-2-exports-notes" class="headerlink" title="7.2 exports.notes"></a>7.2 exports.notes</h2><p>如果指定了，该可选的扩展描述将在所有提示之前显示。这是一个很好的向用户提供一点点帮助解释命名约定的地方，哪些提示是必须或可选的，等等。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">exports.notes = notesString;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-3-exports-warnOn"><a href="#7-3-exports-warnOn" class="headerlink" title="7.3 exports.warnOn"></a>7.3 exports.warnOn</h2><p>如果该可选（但是推荐）的通配符或通配符数组被（已存在的文件或目录）匹配，Grunt 将中止，并导致一条警告信息，用户可以使用 <code>--force</code> 覆盖该行为。这些初试化模板可能潜在的覆盖已存在文件时非常有用。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">exports.warnOn = wildcardPattern;</span><br></pre></td></tr></table></figure>
+
+<p>而最常见的值是 ‘*’，匹配所有文件或文件夹，使用的 <a href="https://github.com/isaacs/minimatch" target="_blank" rel="noopener">minimatch</a> 通配符语法允许很大的灵活性。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">exports.warnOn = <span class="string">'Gruntfile.js'</span>;    <span class="comment">// Warn on a Gruntfile.js file.</span></span><br><span class="line">exports.warnOn = <span class="string">'*.js'</span>;            <span class="comment">// Warn on any .js file.</span></span><br><span class="line">exports.warnOn = <span class="string">'*'</span>;               <span class="comment">// Warn on any non-dotfile or non-dotdir.</span></span><br><span class="line">exports.warnOn = <span class="string">'.*'</span>;              <span class="comment">// Warn on any dotfile or dotdir.</span></span><br><span class="line">exports.warnOn = <span class="string">'&#123;.*,*&#125;'</span>;          <span class="comment">// Warn on any file or dir (dot or non-dot).</span></span><br><span class="line">exports.warnOn = <span class="string">'!*/**'</span>;           <span class="comment">// Warn on any file (ignoring dirs).</span></span><br><span class="line">exports.warnOn = <span class="string">'*.&#123;png,gif,jpg&#125;'</span>; <span class="comment">// Warn on any image file.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// This is another way of writing the last example.</span></span><br><span class="line">exports.warnOn = [<span class="string">'*.png'</span>, <span class="string">'*.gif'</span>, <span class="string">'*.jpg'</span>];</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-4-exports-template"><a href="#7-4-exports-template" class="headerlink" title="7.4 exports.template"></a>7.4 exports.template</h2><p>虽然 <code>exports</code> 属性定义在该函数之外，但是所有实际的初始化代码在该函数内指定。三个参数被传给该函数。参数 <code>grunt</code> 指向 grunt，包含了所有的 <a href="http://gruntjs.com/api/grunt" target="_blank" rel="noopener">grunt 方法和库</a>。参数 <code>init</code> 是一个包含了特定于该初始化模板的方法和属性的对象。参数 <code>done</code> 是一个函数，当初始化模板执行完成时必须调用该函数。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">exports.template = <span class="function"><span class="keyword">function</span>(<span class="params">grunt, init, done</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// See the "Inside an init template" section.</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="8-初始化模板内部"><a href="#8-初始化模板内部" class="headerlink" title="8. 初始化模板内部"></a>8. 初始化模板内部</h1><h2 id="8-1-init-addLicenseFiles"><a href="#8-1-init-addLicenseFiles" class="headerlink" title="8.1 init.addLicenseFiles"></a>8.1 init.addLicenseFiles</h2><p>添加适当命名的许可证文件到 files 对象。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> files = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> licenses = [<span class="string">'MIT'</span>];</span><br><span class="line">init.addLicenseFiles(files, licenses);</span><br><span class="line"><span class="comment">// files === &#123;'LICENSE-MIT': 'licenses/LICENSE-MIT'&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-2-init-availableLicenses"><a href="#8-2-init-availableLicenses" class="headerlink" title="8.2 init.availableLicenses"></a>8.2 init.availableLicenses</h2><p>返回有效许可证数组。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> licenses = init.availableLicenses();</span><br><span class="line"><span class="comment">// licenses === [ 'Apache-2.0', 'GPL-2.0', 'MIT', 'MPL-2.0' ]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-3-init-copy"><a href="#8-3-init-copy" class="headerlink" title="8.3 init.copy"></a>8.3 init.copy</h2><p>复制一个文件，指定一个绝对或相对源路径和一个可选的相对目标路径，可以通过传入的回调函数处理复制的文件。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.copy(srcpath[, destpath], options)</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-4-init-copyAndProcess"><a href="#8-4-init-copyAndProcess" class="headerlink" title="8.4 init.copyAndProcess"></a>8.4 init.copyAndProcess</h2><p>遍历传入的对象中的所有文件，拷贝源文件到目标地址，并处理文件内容。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.copyAndProcess(files, props[, options])</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-5-init-defaults"><a href="#8-5-init-defaults" class="headerlink" title="8.5 init.defaults"></a>8.5 init.defaults</h2><p><code>defaults.json</code> 中用户指定的默认初始值。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.defaults</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-6-init-destpath"><a href="#8-6-init-destpath" class="headerlink" title="8.6 init.destpath"></a>8.6 init.destpath</h2><p>绝对目标文件路径。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.destpath()</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-7-init-expand"><a href="#8-7-init-expand" class="headerlink" title="8.7 init.expand"></a>8.7 init.expand</h2><p>与 <a href="https://github.com/gruntjs/grunt/wiki/grunt.file#wiki-grunt-file-expand" target="_blank" rel="noopener">grunt.file.expand</a> 一致。</p>
+<p>返回一个不重复数组，含有匹配通配符模式的所有文件和目录路径。该方法接收逗号分割的痛佩服模式，或者通配符模式数组。匹配以 ! 开头的模式的路径将从返回值中排除。模式被顺序处理，所以包含和排除的顺序是重要的。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.expand([options, ] patterns)</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-8-init-filesToCopy"><a href="#8-8-init-filesToCopy" class="headerlink" title="8.8 init.filesToCopy"></a>8.8 init.filesToCopy</h2><p>返回一个包含了待复制文件的对象，包含绝对源路径和相对目标路径，按照 <code>rename.json</code>（如果存在的话）中的规则重命名（或忽略）。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> files = init.filesToCopy(props);</span><br><span class="line"><span class="comment">/* files === &#123; '.gitignore': 'template/root/.gitignore',</span></span><br><span class="line"><span class="comment">  '.jshintrc': 'template/root/.jshintrc',</span></span><br><span class="line"><span class="comment">  'Gruntfile.js': 'template/root/Gruntfile.js',</span></span><br><span class="line"><span class="comment">  'README.md': 'template/root/README.md',</span></span><br><span class="line"><span class="comment">  'test/test_test.js': 'template/root/test/name_test.js' &#125; */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-9-init-getFile"><a href="#8-9-init-getFile" class="headerlink" title="8.9 init.getFile"></a>8.9 init.getFile</h2><p>返回单个任务文件路径。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.getFile(filepath[, ...])</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-10-init-getTemplates"><a href="#8-10-init-getTemplates" class="headerlink" title="8.10 init.getTemplates"></a>8.10 init.getTemplates</h2><p>返回含有所有有效模板的对象。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.getTemplates()</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-11-init-initSearchDirs"><a href="#8-11-init-initSearchDirs" class="headerlink" title="8.11 init.initSearchDirs"></a>8.11 init.initSearchDirs</h2><p>初始化目录来搜索初始化模板。这里的<code>模板</code>是指模板路径。会包括 <code>~/.grunt-init/</code> 和 <code>grunt-init</code> 中的核心初始化任务。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.initSearchDirs([filename])</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-12-init-process"><a href="#8-12-init-process" class="headerlink" title="8.12 init.process"></a>8.12 init.process</h2><p>启动进程，开始提示输入。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.process(options, prompts, done)</span><br><span class="line"></span><br><span class="line">init.process(&#123;&#125;, [</span><br><span class="line">  <span class="comment">// Prompt for these values</span></span><br><span class="line">  init.prompt(<span class="string">'name'</span>),</span><br><span class="line">  init.prompt(<span class="string">'description'</span>),</span><br><span class="line">  init.prompt(<span class="string">'version'</span>)</span><br><span class="line">], <span class="function"><span class="keyword">function</span>(<span class="params">err, props</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// All finished, do something with the properties</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-13-init-prompt"><a href="#8-13-init-prompt" class="headerlink" title="8.13 init.prompt"></a>8.13 init.prompt</h2><p>提示用户输入。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.prompt(name[, <span class="keyword">default</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-14-init-prompts"><a href="#8-14-init-prompts" class="headerlink" title="8.14 init.prompts"></a>8.14 init.prompts</h2><p>含有所有提示的对象。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> prompts = init.prompts;</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-15-init-readDefaults"><a href="#8-15-init-readDefaults" class="headerlink" title="8.15 init.readDefaults"></a>8.15 init.readDefaults</h2><p>从任务文件（如果存在的话）读取 JSON 默认值，并合并到一个数据对象中。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.readDefaults(filepath[, ...])</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-16-init-renames"><a href="#8-16-init-renames" class="headerlink" title="8.16 init.renames"></a>8.16 init.renames</h2><p>模板的重命名规则。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> renames = init.renames;</span><br><span class="line"><span class="comment">// renames === &#123; 'test/name_test.js': 'test/\&#123;\%= name \%\&#125;_test.js' &#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-17-init-searchDirs"><a href="#8-17-init-searchDirs" class="headerlink" title="8.17 init.searchDirs"></a>8.17 init.searchDirs</h2><p>目录数组，用于在其中搜索模板。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> dirs = init.searchDirs;</span><br><span class="line"><span class="comment">/* dirs === [ '/Users/shama/.grunt-init',</span></span><br><span class="line"><span class="comment">  '/usr/local/lib/node_modules/grunt-init/templates' ] */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-18-init-srcpath"><a href="#8-18-init-srcpath" class="headerlink" title="8.18 init.srcpath"></a>8.18 init.srcpath</h2><p>通过文件名搜索初始化模板路径，并返回一个绝对路径。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.srcpath(filepath[, ...])</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-19-init-userDir"><a href="#8-19-init-userDir" class="headerlink" title="8.19 init.userDir"></a>8.19 init.userDir</h2><p>返回用户模板路径的绝对路径。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> dir = init.userDir();</span><br><span class="line"><span class="comment">// dir === '/Users/shama/.grunt-init'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8-20-init-writePackageJSON"><a href="#8-20-init-writePackageJSON" class="headerlink" title="8.20 init.writePackageJSON"></a>8.20 init.writePackageJSON</h2><p>保存一个 package.json 文件到目标目录。回调函数可以用来后置处理属性，或添加或移除或其他任何操作。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.writePackageJSON(filename, props[, callback])</span><br></pre></td></tr></table></figure>
+
+<h1 id="9-内置提示"><a href="#9-内置提示" class="headerlink" title="9. 内置提示"></a>9. 内置提示</h1><h2 id="9-1-author-email"><a href="#9-1-author-email" class="headerlink" title="9.1 author_email"></a>9.1 author_email</h2><p>Author’s email address to use in the <code>package.json</code>. Will attempt to find a default value from the user’s git config.</p>
+<h2 id="9-2-author-name"><a href="#9-2-author-name" class="headerlink" title="9.2 author_name"></a>9.2 author_name</h2><p>Author’s full name to use in the <code>package.json</code> and copyright notices. Will attempt to find a default value from the user’s git config.</p>
+<h2 id="9-3-author-url"><a href="#9-3-author-url" class="headerlink" title="9.3 author_url"></a>9.3 author_url</h2><p>A public URL to the author’s website to use in the <code>package.json</code>.</p>
+<h2 id="9-4-bin"><a href="#9-4-bin" class="headerlink" title="9.4 bin"></a>9.4 bin</h2><p>A relative path from the project root for a cli script.</p>
+<h2 id="9-5-bugs"><a href="#9-5-bugs" class="headerlink" title="9.5 bugs"></a>9.5 bugs</h2><p>A public URL to the project’s issues tracker. Will default to the github issue tracker if the project has a github repository.</p>
+<h2 id="9-6-description"><a href="#9-6-description" class="headerlink" title="9.6 description"></a>9.6 description</h2><p>A description of the project. Used in the package.json and README files.</p>
+<h2 id="9-7-grunt-version"><a href="#9-7-grunt-version" class="headerlink" title="9.7 grunt_version"></a>9.7 grunt_version</h2><p>A valid semantic version range descriptor of Grunt the project requires.</p>
+<h2 id="9-8-homepage"><a href="#9-8-homepage" class="headerlink" title="9.8 homepage"></a>9.8 homepage</h2><p>A public URL to the project’s home page. Will default to the github url if a github repository.</p>
+<h2 id="9-9-jquery-version"><a href="#9-9-jquery-version" class="headerlink" title="9.9 jquery_version"></a>9.9 jquery_version</h2><p>If a jQuery project, the version of jQuery the project requires. Must be a valid semantic version range descriptor.</p>
+<h2 id="9-10-licenses"><a href="#9-10-licenses" class="headerlink" title="9.10 licenses"></a>9.10 licenses</h2><p>The license(s) for the project. Multiple licenses are separated by spaces. The licenses built-in are: MIT, MPL-2.0, GPL-2.0, and Apache-2.0. Defaults to MIT. Add custom licenses with init.addLicenseFiles.</p>
+<h2 id="9-11-main"><a href="#9-11-main" class="headerlink" title="9.11 main"></a>9.11 main</h2><p>The primary entry point of the project. Defaults to the project name within the lib folder.</p>
+<h2 id="9-12-name"><a href="#9-12-name" class="headerlink" title="9.12 name"></a>9.12 name</h2><p>The name of the project. Will be used heavily throughout the project template. Defaults to the current working directory.</p>
+<h2 id="9-13-node-version"><a href="#9-13-node-version" class="headerlink" title="9.13 node_version"></a>9.13 node_version</h2><p>The version of Node.js the project requires. Must be a valid semantic version range descriptor.</p>
+<h2 id="9-14-npm-test"><a href="#9-14-npm-test" class="headerlink" title="9.14 npm_test"></a>9.14 npm_test</h2><p>The command to run tests on your project. Defaults to grunt.</p>
+<h2 id="9-15-repository"><a href="#9-15-repository" class="headerlink" title="9.15 repository"></a>9.15 repository</h2><p>Project’s git repository. Defaults to a guess of a github url.<br>9.16 title ⬆</p>
+<p>A human readable project name. Defaults to the actual project name altered to be more human readable.</p>
+<h2 id="9-17-version"><a href="#9-17-version" class="headerlink" title="9.17 version"></a>9.17 version</h2><p>The version of the project. Defaults to the first valid semantic version, 0.1.0.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/engineered/" rel="tag"># engineered</a>
+          
+            <a href="/tags/grunt/" rel="tag"># grunt</a>
+          
+            <a href="/tags/front-end/" rel="tag"># front-end</a>
+          
+            <a href="/tags/nodejs/" rel="tag"># nodejs</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/12/09/linux-performance-tools/" rel="next" title="linux performance tools">
+                <i class="fa fa-chevron-left"></i> linux performance tools
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/12/22/use-sublime-develop-golang/" rel="prev" title="使用Sublime开发Golang">
+                使用Sublime开发Golang <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <p class="site-author-name" itemprop="name">Tony Deng</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tonydeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wolfdeng" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/tonydeng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-global"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-grunt-init"><span class="nav-number">1.</span> <span class="nav-text">1. grunt-init</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-安装"><span class="nav-number">2.</span> <span class="nav-text">2. 安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-用法"><span class="nav-number">3.</span> <span class="nav-text">3. 用法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-安装模板"><span class="nav-number">4.</span> <span class="nav-text">4. 安装模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-自定义模板"><span class="nav-number">5.</span> <span class="nav-text">5. 自定义模板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-拷贝文件"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 拷贝文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-重命名或不包括模板文件"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 重命名或不包括模板文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-指定默认提示答案"><span class="nav-number">6.</span> <span class="nav-text">6. 指定默认提示答案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-定义一个初始化模板"><span class="nav-number">7.</span> <span class="nav-text">7. 定义一个初始化模板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-exports-description"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 exports.description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-exports-notes"><span class="nav-number">7.2.</span> <span class="nav-text">7.2 exports.notes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-exports-warnOn"><span class="nav-number">7.3.</span> <span class="nav-text">7.3 exports.warnOn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-exports-template"><span class="nav-number">7.4.</span> <span class="nav-text">7.4 exports.template</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-初始化模板内部"><span class="nav-number">8.</span> <span class="nav-text">8. 初始化模板内部</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-init-addLicenseFiles"><span class="nav-number">8.1.</span> <span class="nav-text">8.1 init.addLicenseFiles</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-init-availableLicenses"><span class="nav-number">8.2.</span> <span class="nav-text">8.2 init.availableLicenses</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-init-copy"><span class="nav-number">8.3.</span> <span class="nav-text">8.3 init.copy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-init-copyAndProcess"><span class="nav-number">8.4.</span> <span class="nav-text">8.4 init.copyAndProcess</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-5-init-defaults"><span class="nav-number">8.5.</span> <span class="nav-text">8.5 init.defaults</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-6-init-destpath"><span class="nav-number">8.6.</span> <span class="nav-text">8.6 init.destpath</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-7-init-expand"><span class="nav-number">8.7.</span> <span class="nav-text">8.7 init.expand</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-8-init-filesToCopy"><span class="nav-number">8.8.</span> <span class="nav-text">8.8 init.filesToCopy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-9-init-getFile"><span class="nav-number">8.9.</span> <span class="nav-text">8.9 init.getFile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-10-init-getTemplates"><span class="nav-number">8.10.</span> <span class="nav-text">8.10 init.getTemplates</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-11-init-initSearchDirs"><span class="nav-number">8.11.</span> <span class="nav-text">8.11 init.initSearchDirs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-12-init-process"><span class="nav-number">8.12.</span> <span class="nav-text">8.12 init.process</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-13-init-prompt"><span class="nav-number">8.13.</span> <span class="nav-text">8.13 init.prompt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-14-init-prompts"><span class="nav-number">8.14.</span> <span class="nav-text">8.14 init.prompts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-15-init-readDefaults"><span class="nav-number">8.15.</span> <span class="nav-text">8.15 init.readDefaults</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-16-init-renames"><span class="nav-number">8.16.</span> <span class="nav-text">8.16 init.renames</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-17-init-searchDirs"><span class="nav-number">8.17.</span> <span class="nav-text">8.17 init.searchDirs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-18-init-srcpath"><span class="nav-number">8.18.</span> <span class="nav-text">8.18 init.srcpath</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-19-init-userDir"><span class="nav-number">8.19.</span> <span class="nav-text">8.19 init.userDir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-20-init-writePackageJSON"><span class="nav-number">8.20.</span> <span class="nav-text">8.20 init.writePackageJSON</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-内置提示"><span class="nav-number">9.</span> <span class="nav-text">9. 内置提示</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-author-email"><span class="nav-number">9.1.</span> <span class="nav-text">9.1 author_email</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-author-name"><span class="nav-number">9.2.</span> <span class="nav-text">9.2 author_name</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-author-url"><span class="nav-number">9.3.</span> <span class="nav-text">9.3 author_url</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-4-bin"><span class="nav-number">9.4.</span> <span class="nav-text">9.4 bin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-5-bugs"><span class="nav-number">9.5.</span> <span class="nav-text">9.5 bugs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-6-description"><span class="nav-number">9.6.</span> <span class="nav-text">9.6 description</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-7-grunt-version"><span class="nav-number">9.7.</span> <span class="nav-text">9.7 grunt_version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-8-homepage"><span class="nav-number">9.8.</span> <span class="nav-text">9.8 homepage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-9-jquery-version"><span class="nav-number">9.9.</span> <span class="nav-text">9.9 jquery_version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-10-licenses"><span class="nav-number">9.10.</span> <span class="nav-text">9.10 licenses</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-11-main"><span class="nav-number">9.11.</span> <span class="nav-text">9.11 main</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-12-name"><span class="nav-number">9.12.</span> <span class="nav-text">9.12 name</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-13-node-version"><span class="nav-number">9.13.</span> <span class="nav-text">9.13 node_version</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-14-npm-test"><span class="nav-number">9.14.</span> <span class="nav-text">9.14 npm_test</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-15-repository"><span class="nav-number">9.15.</span> <span class="nav-text">9.15 repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-17-version"><span class="nav-number">9.16.</span> <span class="nav-text">9.17 version</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2005 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Deng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

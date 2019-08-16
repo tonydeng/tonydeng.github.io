@@ -1,0 +1,1174 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JUnit5教程 注解 junit5 annotations">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="JUnit5提供的注解   Annotations 描述    @BeforeEach 在方法上注解，在每个测试方法运行之前执行。   @AfterEach 在方法上注解，在每个测试方法运行之后执行   @BeforeAll 该注解方法会在所有测试方法之前运行，该方法必须是静态的。   @AfterAll 该注解方法会在所有测试方法之后运行，该方法必须是静态的。   @Test 用于将方法标记为">
+<meta name="keywords" content="JUnit5教程 注解 junit5 annotations">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JUnit5教程-注解">
+<meta property="og:url" content="http://tonydeng.github.io/2017/10/10/junit-5-annotations/index.html">
+<meta property="og:site_name" content="TonyDeng&#39;s Blog">
+<meta property="og:description" content="JUnit5提供的注解   Annotations 描述    @BeforeEach 在方法上注解，在每个测试方法运行之前执行。   @AfterEach 在方法上注解，在每个测试方法运行之后执行   @BeforeAll 该注解方法会在所有测试方法之前运行，该方法必须是静态的。   @AfterAll 该注解方法会在所有测试方法之后运行，该方法必须是静态的。   @Test 用于将方法标记为">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://junit.org/junit4/images/junit5-banner.png">
+<meta property="og:image" content="https://image.slidesharecdn.com/junit5vsjunit4-170324194457/95/junit-5-vs-junit-4-9-638.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2017/10/10/8iA7q.png">
+<meta property="og:updated_time" content="2019-06-20T12:10:27.480Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JUnit5教程-注解">
+<meta name="twitter:description" content="JUnit5提供的注解   Annotations 描述    @BeforeEach 在方法上注解，在每个测试方法运行之前执行。   @AfterEach 在方法上注解，在每个测试方法运行之后执行   @BeforeAll 该注解方法会在所有测试方法之前运行，该方法必须是静态的。   @AfterAll 该注解方法会在所有测试方法之后运行，该方法必须是静态的。   @Test 用于将方法标记为">
+<meta name="twitter:image" content="http://junit.org/junit4/images/junit5-banner.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tonydeng.github.io/2017/10/10/junit-5-annotations/">
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+
+
+  <title> JUnit5教程-注解 | TonyDeng's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80673215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43d979b191269e68beffa09e2d17a081";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TonyDeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">“In me the tiger sniffes the rose.” -- Siegfried Sasson</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ppts">
+          <a href="/ppts" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            PPT
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gitbook">
+          <a href="/gitbook-zh" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            GitBook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2017/10/10/junit-5-annotations/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JUnit5教程-注解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T10:33:44+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JUnit5-Tutorial/" itemprop="url" rel="index">
+                    <span itemprop="name">JUnit5 Tutorial</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://junit.org/junit4/images/junit5-banner.png" alt="junit5 logo"></p>
+<h2 id="JUnit5提供的注解"><a href="#JUnit5提供的注解" class="headerlink" title="JUnit5提供的注解"></a>JUnit5提供的注解</h2><table>
+<thead>
+<tr>
+<th>Annotations</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@BeforeEach</code></td>
+<td>在方法上注解，在每个测试方法运行之前执行。</td>
+</tr>
+<tr>
+<td><code>@AfterEach</code></td>
+<td>在方法上注解，在每个测试方法运行之后执行</td>
+</tr>
+<tr>
+<td><code>@BeforeAll</code></td>
+<td>该注解方法会在所有测试方法之前运行，该方法必须是静态的。</td>
+</tr>
+<tr>
+<td><code>@AfterAll</code></td>
+<td>该注解方法会在所有测试方法之后运行，该方法必须是静态的。</td>
+</tr>
+<tr>
+<td><code>@Test</code></td>
+<td>用于将方法标记为测试方法</td>
+</tr>
+<tr>
+<td><code>@DisplayName</code></td>
+<td>用于为测试类或测试方法提供任何自定义显示名称</td>
+</tr>
+<tr>
+<td><code>@Disable</code></td>
+<td>用于禁用或忽略测试类或方法</td>
+</tr>
+<tr>
+<td><code>@Nested</code></td>
+<td>用于创建嵌套测试类</td>
+</tr>
+<tr>
+<td><code>@Tag</code></td>
+<td>用于测试发现或过滤的标签来标记测试方法或类</td>
+</tr>
+<tr>
+<td><code>@TestFactory</code></td>
+<td>标记一种方法是动态测试的测试工场</td>
+</tr>
+</tbody></table>
+<a id="more"></a>
+
+<h2 id="JUnit5-VS-JUnit4"><a href="#JUnit5-VS-JUnit4" class="headerlink" title="JUnit5 VS JUnit4"></a>JUnit5 VS JUnit4</h2><p><img src="https://image.slidesharecdn.com/junit5vsjunit4-170324194457/95/junit-5-vs-junit-4-9-638.jpg" alt="junit5 vs junit4"></p>
+<blockquote>
+<p>本图来自<a href="https://www.slideshare.net/rkmael" target="_blank" rel="noopener">Ismael</a>在Slideshare分享的<a href="https://www.slideshare.net/rkmael/junit-5-vs-junit-4" target="_blank" rel="noopener">JUnit 5 vs JUnit 4</a></p>
+</blockquote>
+<p>接下来来我们来一个个注解详细介绍。</p>
+<h2 id="BeforeAll"><a href="#BeforeAll" class="headerlink" title="@BeforeAll"></a>@BeforeAll</h2><p>如[JUnit5 VS JUnit4](#JUnit5 VS JUnit4)图中所示，<code>@BeforeAll</code>是替换JUnit4的<code>@BeforeClass</code>。它用于表示在当前测试类中的所有测试之前应该执行注解的方法。</p>
+<h3 id="BeforeAll使用"><a href="#BeforeAll使用" class="headerlink" title="@BeforeAll使用"></a>@BeforeAll使用</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@BeforeAll</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Before All init() method called"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>@BeforeAll</code>注解方法必须是静态方法，否则会抛出运行时错误。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">org.junit.platform.commons.JUnitException: <span class="meta">@BeforeAll</span> method <span class="string">'public void com.github.tonydeng.junit5.examples.JUnit5AnnotationsExample.init()'</span> must be <span class="keyword">static</span>.</span><br><span class="line">at org.junit.jupiter.engine.descriptor.LifecycleMethodUtils.assertStatic(LifecycleMethodUtils.java:<span class="number">66</span>)</span><br><span class="line">at org.junit.jupiter.engine.descriptor.LifecycleMethodUtils.lambda$findBeforeAllMethods$<span class="number">0</span>(LifecycleMethodUtils.java:<span class="number">42</span>)</span><br><span class="line">at java.util.ArrayList.forEach(ArrayList.java:<span class="number">1249</span>)</span><br><span class="line">at java.util.Collections$UnmodifiableCollection.forEach(Collections.java:<span class="number">1080</span>)</span><br><span class="line">at org.junit.jupiter.engine.descriptor.LifecycleMethodUtils.findBeforeAllMethods(LifecycleMethodUtils.java:<span class="number">42</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="BeforeAll示例"><a href="#BeforeAll示例" class="headerlink" title="@BeforeAll示例"></a>@BeforeAll示例</h3><p>我们来举个例子。我使用了一个<code>Calculator</code>类并添加了一个<code>add</code>方法。我将使用<code>@RepeatedTest</code>注解测试它5次。此注解将导致<code>add</code>测试运行5次。但<code>@BeforeAll</code>注解方法只能调用一次。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.github.tonydeng.junit5.examples;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Assertions;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.BeforeAll;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.DisplayName;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.RepeatedTest;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.TestInfo;</span><br><span class="line"><span class="keyword">import</span> org.junit.platform.runner.JUnitPlatform;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(JUnitPlatform.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JUnit5AnnotationsExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@DisplayName</span>(<span class="string">"Add operation test"</span>)</span><br><span class="line">    <span class="meta">@RepeatedTest</span>(<span class="number">5</span>)</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addNumber</span><span class="params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">        Calculator calculator = <span class="keyword">new</span> Calculator();</span><br><span class="line">        Assertions.assertEquals(<span class="number">2</span>, calculator.add(<span class="number">1</span>, <span class="number">1</span>), <span class="string">"1 + 1 should equal 2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@BeforeAll</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Before All init() method called"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>计算器类是：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.github.tonydeng.junit5.examples;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Calculator</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在执行测试，您将在控制台输出下方看到：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Before All init() method called</span><br></pre></td></tr></table></figure>
+
+<p>显然，@BeforeAll注解init()方法只调用一次。</p>
+<h2 id="BeforeEach"><a href="#BeforeEach" class="headerlink" title="@BeforeEach"></a>@BeforeEach</h2><p>如[JUnit5 VS JUnit4](#JUnit5 VS JUnit4)图中所示，<code>@BeforeEach</code>注解是替换JUnit4中的<code>@Before</code>注解。它用于表示<code>@Test</code>在当前类中的每个方法之前应该执行注解方法。</p>
+<h3 id="BeforeEach用法"><a href="#BeforeEach用法" class="headerlink" title="@BeforeEach用法"></a>@BeforeEach用法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@BeforeEach</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initEach</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Before Each initEach() method called"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>@BeforeEach 注解方法不能是静态方法，否则会抛出运行时错误。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">org.junit.platform.commons.JUnitException: <span class="meta">@BeforeEach</span> method <span class="string">'public static void com.github.tonydeng.junit5.examples.JUnit5AnnotationsExample.initEach()'</span> must not be <span class="keyword">static</span>.</span><br><span class="line">    at org.junit.jupiter.engine.descriptor.LifecycleMethodUtils.assertNonStatic(LifecycleMethodUtils.java:<span class="number">73</span>)</span><br><span class="line">    at org.junit.jupiter.engine.descriptor.LifecycleMethodUtils.lambda$findBeforeEachMethods$<span class="number">2</span>(LifecycleMethodUtils.java:<span class="number">54</span>)</span><br><span class="line">    at java.util.ArrayList.forEach(ArrayList.java:<span class="number">1249</span>)</span><br><span class="line">    at java.util.Collections$UnmodifiableCollection.forEach(Collections.java:<span class="number">1080</span>)</span><br><span class="line">    at org.junit.jupiter.engine.descriptor.LifecycleMethodUtils.findBeforeEachMethods(LifecycleMethodUtils.java:<span class="number">54</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="BeforeEach示例"><a href="#BeforeEach示例" class="headerlink" title="@BeforeEach示例"></a>@BeforeEach示例</h3><p>我还是使用之前<code>Calculator</code>类的add方法。我将使用<code>@RepeatedTest</code>注解测试它5次。此注解将导致<code>add</code>测试运行5次。对于每次运行的测试方法，<code>@BeforeEach</code>注解方法也应该每次运行。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.github.tonydeng.junit5.examples;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Assertions;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.BeforeAll;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.BeforeEach;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.DisplayName;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.RepeatedTest;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.TestInfo;</span><br><span class="line"><span class="keyword">import</span> org.junit.platform.runner.JUnitPlatform;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(JUnitPlatform.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JUnit5AnnotationsExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@DisplayName</span>(<span class="string">"Add operation test"</span>)</span><br><span class="line">    <span class="meta">@RepeatedTest</span>(<span class="number">5</span>)</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addNumber</span><span class="params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">        Calculator calculator = <span class="keyword">new</span> Calculator();</span><br><span class="line">        Assertions.assertEquals(<span class="number">2</span>, calculator.add(<span class="number">1</span>, <span class="number">1</span>), <span class="string">"1 + 1 should equal 2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@BeforeAll</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Before All init() method called"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@BeforeEach</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initEach</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Before Each initEach() method called"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在执行测试，您将在控制台输出下方看到：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Before All init() method called</span><br><span class="line">Before Each initEach() method called</span><br><span class="line">Before Each initEach() method called</span><br><span class="line">Before Each initEach() method called</span><br><span class="line">Before Each initEach() method called</span><br><span class="line">Before Each initEach() method called</span><br><span class="line">Before Each initEach() method called</span><br></pre></td></tr></table></figure>
+
+<p>显然，每个测试方法调用调用一次<code>@BeforeEach</code>注解<code>initEach()</code>方法。</p>
+<h2 id="AfterEach"><a href="#AfterEach" class="headerlink" title="@AfterEach"></a>@AfterEach</h2><p>如[JUnit5 VS JUnit4](#JUnit5 VS JUnit4)图中所示，<code>@AfterJUnit</code>注解是替换JUnit4中的<code>@Before</code>注解。它用于表示<code>@Test</code>在当前类中的每个方法之前应该执行注解方法。</p>
+<h3 id="AfterEach注解用法"><a href="#AfterEach注解用法" class="headerlink" title="@AfterEach注解用法"></a>@AfterEach注解用法</h3><p>注解方法@AfterEach如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@AfterEach</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cleanUpEach</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"After Each cleanUpEach() method called"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>@AfterEach 注解方法不能是静态方法，否则会抛出运行时错误。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">org.junit.platform.commons.JUnitException: <span class="meta">@AfterEach</span> method <span class="string">'public static void com.github.tonydeng.junit5.examples.JUnit5AnnotationsExample.cleanUpEach()'</span> must not be <span class="keyword">static</span>.</span><br><span class="line">    at org.junit.jupiter.engine.descriptor.LifecycleMethodUtils.assertNonStatic(LifecycleMethodUtils.java:<span class="number">73</span>)</span><br><span class="line">    at org.junit.jupiter.engine.descriptor.LifecycleMethodUtils.lambda$findAfterEachMethods$<span class="number">3</span>(LifecycleMethodUtils.java:<span class="number">60</span>)</span><br><span class="line">    at java.util.ArrayList.forEach(ArrayList.java:<span class="number">1249</span>)</span><br><span class="line">    at java.util.Collections$UnmodifiableCollection.forEach(Collections.java:<span class="number">1080</span>)</span><br><span class="line">    at org.junit.jupiter.engine.descriptor.LifecycleMethodUtils.findAfterEachMethods(LifecycleMethodUtils.java:<span class="number">60</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="AfterEach注解示例"><a href="#AfterEach注解示例" class="headerlink" title="@AfterEach注解示例"></a>@AfterEach注解示例</h3><p>我还是使用之前<code>Calculator</code>类的add方法。我将使用<code>@RepeatedTest</code>注解测试它5次。此注解将导致<code>add</code>测试运行5次。对于每次运行的测试方法，<code>@AfterEach</code>注解方法也应该每次运行。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.github.tonydeng.junit5.examples;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.AfterAll;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.AfterEach;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Assertions;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.DisplayName;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.RepeatedTest;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.TestInfo;</span><br><span class="line"><span class="keyword">import</span> org.junit.platform.runner.JUnitPlatform;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(JUnitPlatform.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JUnit5AnnotationsExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@DisplayName</span>(<span class="string">"Add operation test"</span>)</span><br><span class="line">    <span class="meta">@RepeatedTest</span>(<span class="number">5</span>)</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addNumber</span><span class="params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">        Calculator calculator = <span class="keyword">new</span> Calculator();</span><br><span class="line">        Assertions.assertEquals(<span class="number">2</span>, calculator.add(<span class="number">1</span>, <span class="number">1</span>), <span class="string">"1 + 1 should equal 2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterAll</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">cleanUp</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"After All cleanUp() method called"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterEach</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cleanUpEach</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"After Each cleanUpEach() method called"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在执行测试，您将在控制台输出下方看到：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">After Each cleanUpEach() method called</span><br><span class="line">After Each cleanUpEach() method called</span><br><span class="line">After Each cleanUpEach() method called</span><br><span class="line">After Each cleanUpEach() method called</span><br><span class="line">After Each cleanUpEach() method called</span><br><span class="line">After Each cleanUpEach() method called</span><br><span class="line">After All cleanUp() method called</span><br></pre></td></tr></table></figure>
+
+<p>显然，每个测试方法调用调用一次<code>@AfterEach</code>注解<code>cleanUpEach()</code>方法。</p>
+<h2 id="AfterAll"><a href="#AfterAll" class="headerlink" title="@AfterAll"></a>@AfterAll</h2><p>如[JUnit5 VS JUnit4](#JUnit5 VS JUnit4)图中所示，<code>@AfterAll</code>注解是替换JUnit4中的<code>@AfterClass</code>注解。它用于表示在当前测试类中的所有测试后应执行注解方法。</p>
+<h3 id="AfterAll注解使用"><a href="#AfterAll注解使用" class="headerlink" title="@AfterAll注解使用"></a>@AfterAll注解使用</h3><p>注解方法@AfterAll如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@AfterAll</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">cleanUp</span><span class="params">()</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"After All cleanUp() method called"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>@AfterAll 注解方法必须是静态方法，否则会抛出运行时错误。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">org.junit.platform.commons.JUnitException: <span class="meta">@AfterAll</span> method <span class="string">'public void com.github.tonydeng.junit5.examples.JUnit5AnnotationsExample.cleanUp()'</span> must be <span class="keyword">static</span>.</span><br><span class="line">    at org.junit.jupiter.engine.descriptor.LifecycleMethodUtils.assertStatic(LifecycleMethodUtils.java:<span class="number">66</span>)</span><br><span class="line">    at org.junit.jupiter.engine.descriptor.LifecycleMethodUtils.lambda$findAfterAllMethods$<span class="number">1</span>(LifecycleMethodUtils.java:<span class="number">48</span>)</span><br><span class="line">    at java.util.ArrayList.forEach(ArrayList.java:<span class="number">1249</span>)</span><br><span class="line">    at java.util.Collections$UnmodifiableCollection.forEach(Collections.java:<span class="number">1080</span>)</span><br><span class="line">    at org.junit.jupiter.engine.descriptor.LifecycleMethodUtils.findAfterAllMethods(LifecycleMethodUtils.java:<span class="number">48</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="AfterAll注解示例"><a href="#AfterAll注解示例" class="headerlink" title="@AfterAll注解示例"></a>@AfterAll注解示例</h3><p>我还是使用之前<code>Calculator</code>类的add方法。我将使用<code>@RepeatedTest</code>注解测试它5次。此注解将导致<code>add</code>测试运行5次。但<code>@AfterAll</code>注解方法只能调用一次。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.github.tonydeng.junit5.examples;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.AfterAll;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.AfterEach;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Assertions;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.DisplayName;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.RepeatedTest;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.TestInfo;</span><br><span class="line"><span class="keyword">import</span> org.junit.platform.runner.JUnitPlatform;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(JUnitPlatform.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JUnit5AnnotationsExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@DisplayName</span>(<span class="string">"Add operation test"</span>)</span><br><span class="line">    <span class="meta">@RepeatedTest</span>(<span class="number">5</span>)</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addNumber</span><span class="params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">        Calculator calculator = <span class="keyword">new</span> Calculator();</span><br><span class="line">        Assertions.assertEquals(<span class="number">2</span>, calculator.add(<span class="number">1</span>, <span class="number">1</span>), <span class="string">"1 + 1 should equal 2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterAll</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">cleanUp</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"After All cleanUp() method called"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterEach</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cleanUpEach</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"After Each cleanUpEach() method called"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在执行测试，您将在控制台输出下方看到：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">After Each cleanUpEach() method called</span><br><span class="line">After Each cleanUpEach() method called</span><br><span class="line">After Each cleanUpEach() method called</span><br><span class="line">After Each cleanUpEach() method called</span><br><span class="line">After Each cleanUpEach() method called</span><br><span class="line">After Each cleanUpEach() method called</span><br><span class="line">After All cleanUp() method called</span><br></pre></td></tr></table></figure>
+
+<p>显然，<code>@AfterAll</code>注解<code>cleanUp()</code>方法只调用一次。</p>
+<h2 id="RepeatedTest"><a href="#RepeatedTest" class="headerlink" title="@RepeatedTest"></a>@RepeatedTest</h2><p>JUnit5 <code>@RepeatedTest</code>注解能够编写可重复的测试模板，可以多次运行。频率可以配置为<code>@RepeatedTest</code>注解的参数。</p>
+<h3 id="RepeatedTest注解用法"><a href="#RepeatedTest注解用法" class="headerlink" title="@RepeatedTest注解用法"></a>@RepeatedTest注解用法</h3><p>要创建可重复的测试模板方法，请使用注解方法@RepeatedTest。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="meta">@DisplayName</span>(<span class="string">"Add operation test"</span>)</span><br><span class="line"><span class="meta">@RepeatedTest</span>(<span class="number">5</span>)</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addNumber</span><span class="params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">    Calculator calculator = <span class="keyword">new</span> Calculator();</span><br><span class="line">    Assertions.assertEquals(<span class="number">2</span>, calculator.add(<span class="number">1</span>, <span class="number">1</span>), <span class="string">"1 + 1 should equal 2"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的代码中，<code>addNumber()</code>测试将重复5次。请注意，重复测试的每次调用的行为就像一个常规<code>@Test</code>方法的执行，并且完全支持相同的生命周期回调和扩展。这意味着，<code>@BeforeEach</code>和<code>@AfterEach</code>注解的方法将被调用，他们适合在测试生命周期，为每个单独的调用。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.github.tonydeng.junit5.examples;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.AfterAll;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.AfterEach;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Assertions;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.BeforeAll;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.BeforeEach;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.DisplayName;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.RepeatedTest;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.TestInfo;</span><br><span class="line"><span class="keyword">import</span> org.junit.platform.runner.JUnitPlatform;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(JUnitPlatform.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JUnit5AnnotationsExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@BeforeAll</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Before All init() method called"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@BeforeEach</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initEach</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Before Each initEach() method called"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@DisplayName</span>(<span class="string">"Add operation test"</span>)</span><br><span class="line">    <span class="meta">@RepeatedTest</span>(<span class="number">5</span>)</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addNumber</span><span class="params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">        Calculator calculator = <span class="keyword">new</span> Calculator();</span><br><span class="line">        Assertions.assertEquals(<span class="number">2</span>, calculator.add(<span class="number">1</span>, <span class="number">1</span>), <span class="string">"1 + 1 should equal 2"</span>);</span><br><span class="line">        System.out.println(<span class="string">"===addNumber testcase executed==="</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterEach</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cleanUpEach</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"After Each cleanUpEach() method called"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterAll</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">cleanUp</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"After All cleanUp() method called"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上程序的输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Before All init() method called</span><br><span class="line"></span><br><span class="line">Before Each initEach() method called</span><br><span class="line">===addNumber testcase executed===</span><br><span class="line">After Each cleanUpEach() method called</span><br><span class="line"></span><br><span class="line">Before Each initEach() method called</span><br><span class="line">===addNumber testcase executed===</span><br><span class="line">After Each cleanUpEach() method called</span><br><span class="line"></span><br><span class="line">Before Each initEach() method called</span><br><span class="line">===addNumber testcase executed===</span><br><span class="line">After Each cleanUpEach() method called</span><br><span class="line"></span><br><span class="line">Before Each initEach() method called</span><br><span class="line">===addNumber testcase executed===</span><br><span class="line">After Each cleanUpEach() method called</span><br><span class="line"></span><br><span class="line">Before Each initEach() method called</span><br><span class="line">===addNumber testcase executed===</span><br><span class="line">After Each cleanUpEach() method called</span><br><span class="line"></span><br><span class="line">Before Each initEach() method called</span><br><span class="line">===addNumber testcase executed===</span><br><span class="line">After Each cleanUpEach() method called</span><br><span class="line"></span><br><span class="line">After All cleanUp() method called</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-RepeatedTest注解定制显示名称"><a href="#使用-RepeatedTest注解定制显示名称" class="headerlink" title="使用@RepeatedTest注解定制显示名称"></a>使用@RepeatedTest注解定制显示名称</h3><p>除了指定重复次数之外，您还可以为每次重复提供自定义显示名称。此自定义显示名称可以是静态文本+动态占位符的组合。目前支持3名占有者：</p>
+<ul>
+<li><code>{displayName}</code>：显示<code>@RepeatedTest</code>方法名称。</li>
+<li><code>{currentRepetition}</code>：当前重复计数。</li>
+<li><code>{totalRepetitions}</code>：重复的总数。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(JUnitPlatform.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JUnit5AnnotationsExample</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@DisplayName</span>(<span class="string">"Add operation test"</span>)</span><br><span class="line">    <span class="meta">@RepeatedTest</span>(value = <span class="number">5</span>, name = <span class="string">"&#123;displayName&#125; - repetition &#123;currentRepetition&#125; of &#123;totalRepetitions&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addNumber</span><span class="params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">        Calculator calculator = <span class="keyword">new</span> Calculator();</span><br><span class="line">        Assertions.assertEquals(<span class="number">2</span>, calculator.add(<span class="number">1</span>, <span class="number">1</span>), <span class="string">"1 + 1 should equal 2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在IDE中运行该测试，将会产生类似下图的运行记录：</p>
+<p><img src="https://s1.ax1x.com/2017/10/10/8iA7q.png" alt="RepeatedTest Run results"></p>
+<p>您可以使用两个预定义的格式之一，即<code>RepeatedTest.LONG_DISPLAY_NAME</code>和<code>RepeatedTest.SHORT_DISPLAY_NAME</code>。<code>SHORT_DISPLAY_NAME</code>是未指定的默认格式。</p>
+<ul>
+<li><code>RepeatedTest.LONG_DISPLAY_NAME</code> - {displayName} :: repet {currentRepetition} {totalRepetitions}</li>
+<li><code>RepeatedTest.SHORT_DISPLAY_NAME</code> - repetition {currentRepetition} {totalRepetitions}</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="meta">@DisplayName</span>(<span class="string">"Add operation test"</span>)</span><br><span class="line"><span class="meta">@RepeatedTest</span>(value = <span class="number">5</span>, name = RepeatedTest.LONG_DISPLAY_NAME)</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addNumber</span><span class="params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">    Calculator calculator = <span class="keyword">new</span> Calculator();</span><br><span class="line">    Assertions.assertEquals(<span class="number">2</span>, calculator.add(<span class="number">1</span>, <span class="number">1</span>), <span class="string">"1 + 1 should equal 2"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用RepetitionInfo接口"><a href="#使用RepetitionInfo接口" class="headerlink" title="使用RepetitionInfo接口"></a>使用RepetitionInfo接口</h3><p><a href="http://junit.org/junit5/docs/current/api/org/junit/jupiter/api/RepetitionInfo.html" target="_blank" rel="noopener">RepetitionInfo</a>用于将关于当前重复的重复测试的信息注入到<code>@RepeatedTest</code>和<code>@BeforeEach</code>，和<code>@AfterEach</code>方法中。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(JUnitPlatform.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JUnit5AnnotationsExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@BeforeEach</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initEach</span><span class="params">(RepetitionInfo info)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> currentRepetition = info.getCurrentRepetition();</span><br><span class="line">        <span class="keyword">int</span> totalRepetitions = info.getTotalRepetitions();</span><br><span class="line">        <span class="comment">//Use information as needed</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@DisplayName</span>(<span class="string">"Add operation test"</span>)</span><br><span class="line">    <span class="meta">@RepeatedTest</span>(value = <span class="number">5</span>, name=<span class="string">"&#123;displayName&#125; :: repetition &#123;currentRepetition&#125; of &#123;totalRepetitions&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addNumber</span><span class="params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">        Calculator calculator = <span class="keyword">new</span> Calculator();</span><br><span class="line">        Assertions.assertEquals(<span class="number">2</span>, calculator.add(<span class="number">1</span>, <span class="number">1</span>), <span class="string">"1 + 1 should equal 2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterEach</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cleanUpEach</span><span class="params">(RepetitionInfo info)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> currentRepetition = info.getCurrentRepetition();</span><br><span class="line">        <span class="keyword">int</span> totalRepetitions = info.getTotalRepetitions();</span><br><span class="line">        <span class="comment">//Use information as needed</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>到目前为止，整个<code>@RepeatedTest</code>功能处于<code>Experimental</code>状态。将来可以更新甚至删除。</p>
+</blockquote>
+<h2 id="Disabled"><a href="#Disabled" class="headerlink" title="@Disabled"></a>@Disabled</h2><p><a href="http://junit.org/junit5/docs/current/api/org/junit/jupiter/api/Disabled.html" target="_blank" rel="noopener">@Disabled</a>注解可用于禁用测试套件的测试方法。此注解可以应用于测试类以及单独的测试方法。</p>
+<p>它只接受一个可选参数，指示该测试被禁用的原因。</p>
+<h3 id="Disabled测试类"><a href="#Disabled测试类" class="headerlink" title="@Disabled测试类"></a>@Disabled测试类</h3><p>当@Disabled通过测试类应用时，该类中的所有测试方法也将自动禁用。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Assumptions;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Disabled;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Disabled</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testOnDev</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.setProperty(<span class="string">"ENV"</span>, <span class="string">"DEV"</span>);</span><br><span class="line">        Assumptions.assumeFalse(<span class="string">"DEV"</span>.equals(System.getProperty(<span class="string">"ENV"</span>)));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testOnProd</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.setProperty(<span class="string">"ENV"</span>, <span class="string">"PROD"</span>);</span><br><span class="line">        Assumptions.assumeFalse(<span class="string">"DEV"</span>.equals(System.getProperty(<span class="string">"ENV"</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意运行次数：2/2（2跳过）。</p>
+</blockquote>
+<h3 id="Disabled测试方法"><a href="#Disabled测试方法" class="headerlink" title="@Disabled测试方法"></a>@Disabled测试方法</h3><p>@Disabled用于表示注解的测试方法当前已禁用，不应执行。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Assumptions;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Disabled;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Disabled</span>(<span class="string">"Do not run in lower environment"</span>)</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testOnDev</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.setProperty(<span class="string">"ENV"</span>, <span class="string">"DEV"</span>);</span><br><span class="line">        Assumptions.assumeFalse(<span class="string">"DEV"</span>.equals(System.getProperty(<span class="string">"ENV"</span>)));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testOnProd</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.setProperty(<span class="string">"ENV"</span>, <span class="string">"PROD"</span>);</span><br><span class="line">        Assumptions.assumeFalse(<span class="string">"DEV"</span>.equals(System.getProperty(<span class="string">"ENV"</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意运行次数：2/2（1跳过）。</p>
+</blockquote>
+<h2 id="Tag"><a href="#Tag" class="headerlink" title="@Tag"></a>@Tag</h2><p> <a href="http://junit.org/junit5/docs/current/api/org/junit/jupiter/api/Tag.html" target="_blank" rel="noopener">@Tag</a>可用于从测试计划中过滤测试用例。它可以帮助为不同环境，不同用例或任何特定要求创建多个不同的测试计划。您可以通过在测试计划OR中仅包括那些标记的测试来排除测试计划中的其他测试来执行一组测试。</p>
+<h3 id="Tag注解用法"><a href="#Tag注解用法" class="headerlink" title="@Tag注解用法"></a>@Tag注解用法</h3><p>您可以<code>@Tag</code>在测试类或测试方法或两者上应用注解。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Tag</span>(<span class="string">"development"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassATest</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Tag</span>(<span class="string">"userManagement"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testCaseA</span><span class="params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">您也可以在单个测试用例上应用多个标签，以便将其包含在多个测试计划中。</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassATest</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Tag</span>(<span class="string">"development"</span>)</span><br><span class="line">    <span class="meta">@Tag</span>(<span class="string">"production"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testCaseA</span><span class="params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-IncludeTags和-ExcludeTags创建测试计划"><a href="#使用-IncludeTags和-ExcludeTags创建测试计划" class="headerlink" title="使用@IncludeTags和@ExcludeTags创建测试计划"></a>使用@IncludeTags和@ExcludeTags创建测试计划</h3><p>可以在测试计划中使用<code>@IncludeTags</code>或<code>@ExcludeTags</code>注解来过滤测试或包含测试。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//@IncludeTags example</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(JUnitPlatform.class)</span><br><span class="line"><span class="meta">@SelectPackages</span>(<span class="string">"com.github.tonydeng.junit5.examples"</span>)</span><br><span class="line"><span class="meta">@IncludeTags</span>(<span class="string">"production"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JUnit5Example</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//@ExcludeTags example</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(JUnitPlatform.class)</span><br><span class="line"><span class="meta">@SelectPackages</span>(<span class="string">"com.github.tonydeng.junit5.examples"</span>)</span><br><span class="line"><span class="meta">@ExcludeTags</span>(<span class="string">"production"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JUnit5Example</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>要添加多个标签，请将所需标注的字符串数组传递给所需的注解。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(JUnitPlatform.class)</span><br><span class="line"><span class="meta">@SelectPackages</span>(<span class="string">"com.github.tonydeng.junit5.examples"</span>)</span><br><span class="line"><span class="meta">@IncludeTags</span>(&#123;<span class="string">"production"</span>,<span class="string">"development"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JUnit5Example</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>不能在单个测试计划中同时包含<code>@IncludeTags</code>和<code>@ExcludeTags</code>注解。</p>
+</blockquote>
+<h3 id="Tag示例"><a href="#Tag示例" class="headerlink" title="@Tag示例"></a>@Tag示例</h3><p>假设我们有3个测试，我们想在开发环境中运行所有3个测试; 但是想在生产中只运行一个。所以我们将标记测试如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassATest</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Tag</span>(<span class="string">"development"</span>)</span><br><span class="line">    <span class="meta">@Tag</span>(<span class="string">"production"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testCaseA</span><span class="params">(TestInfo testInfo)</span> </span>&#123; <span class="comment">//run in all environments</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassBTest</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Tag</span>(<span class="string">"development"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testCaseB</span><span class="params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassCTest</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="meta">@Tag</span>(<span class="string">"development"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testCaseC</span><span class="params">(TestInfo testInfo)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>让我们为这两种环境创建测试计划。</p>
+<h4 id="测试在生产环境中运行"><a href="#测试在生产环境中运行" class="headerlink" title="测试在生产环境中运行"></a>测试在生产环境中运行</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(JUnitPlatform.class)</span><br><span class="line"><span class="meta">@SelectPackages</span>(<span class="string">"com.github.tonydeng.junit5.examples"</span>)</span><br><span class="line"><span class="meta">@IncludeTags</span>(<span class="string">"production"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProductionTests</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="测试在开发环境中运行"><a href="#测试在开发环境中运行" class="headerlink" title="测试在开发环境中运行"></a>测试在开发环境中运行</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(JUnitPlatform.class)</span><br><span class="line"><span class="meta">@SelectPackages</span>(<span class="string">"com.github.tonydeng.junit5.examples"</span>)</span><br><span class="line"><span class="meta">@IncludeTags</span>(<span class="string">"development"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DevelopmentTests</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/junit5/" rel="tag"># junit5</a>
+          
+            <a href="/tags/junit/" rel="tag"># junit</a>
+          
+            <a href="/tags/tutorial/" rel="tag"># tutorial</a>
+          
+            <a href="/tags/unit-testing/" rel="tag"># unit testing</a>
+          
+            <a href="/tags/annotations/" rel="tag"># annotations</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/09/junit-5-test-lifecycle/" rel="next" title="JUnit5教程-测试生命周期">
+                <i class="fa fa-chevron-left"></i> JUnit5教程-测试生命周期
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/28/netconf-call-home/" rel="prev" title="SDN之NETCONF Call Home">
+                SDN之NETCONF Call Home <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <p class="site-author-name" itemprop="name">Tony Deng</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tonydeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wolfdeng" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/tonydeng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-global"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JUnit5提供的注解"><span class="nav-number">1.</span> <span class="nav-text">JUnit5提供的注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JUnit5-VS-JUnit4"><span class="nav-number">2.</span> <span class="nav-text">JUnit5 VS JUnit4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BeforeAll"><span class="nav-number">3.</span> <span class="nav-text">@BeforeAll</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BeforeAll使用"><span class="nav-number">3.1.</span> <span class="nav-text">@BeforeAll使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BeforeAll示例"><span class="nav-number">3.2.</span> <span class="nav-text">@BeforeAll示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BeforeEach"><span class="nav-number">4.</span> <span class="nav-text">@BeforeEach</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BeforeEach用法"><span class="nav-number">4.1.</span> <span class="nav-text">@BeforeEach用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BeforeEach示例"><span class="nav-number">4.2.</span> <span class="nav-text">@BeforeEach示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AfterEach"><span class="nav-number">5.</span> <span class="nav-text">@AfterEach</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AfterEach注解用法"><span class="nav-number">5.1.</span> <span class="nav-text">@AfterEach注解用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AfterEach注解示例"><span class="nav-number">5.2.</span> <span class="nav-text">@AfterEach注解示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AfterAll"><span class="nav-number">6.</span> <span class="nav-text">@AfterAll</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AfterAll注解使用"><span class="nav-number">6.1.</span> <span class="nav-text">@AfterAll注解使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AfterAll注解示例"><span class="nav-number">6.2.</span> <span class="nav-text">@AfterAll注解示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RepeatedTest"><span class="nav-number">7.</span> <span class="nav-text">@RepeatedTest</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RepeatedTest注解用法"><span class="nav-number">7.1.</span> <span class="nav-text">@RepeatedTest注解用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-RepeatedTest注解定制显示名称"><span class="nav-number">7.2.</span> <span class="nav-text">使用@RepeatedTest注解定制显示名称</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用RepetitionInfo接口"><span class="nav-number">7.3.</span> <span class="nav-text">使用RepetitionInfo接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Disabled"><span class="nav-number">8.</span> <span class="nav-text">@Disabled</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Disabled测试类"><span class="nav-number">8.1.</span> <span class="nav-text">@Disabled测试类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Disabled测试方法"><span class="nav-number">8.2.</span> <span class="nav-text">@Disabled测试方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tag"><span class="nav-number">9.</span> <span class="nav-text">@Tag</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tag注解用法"><span class="nav-number">9.1.</span> <span class="nav-text">@Tag注解用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-IncludeTags和-ExcludeTags创建测试计划"><span class="nav-number">9.2.</span> <span class="nav-text">使用@IncludeTags和@ExcludeTags创建测试计划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tag示例"><span class="nav-number">9.3.</span> <span class="nav-text">@Tag示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#测试在生产环境中运行"><span class="nav-number">9.3.1.</span> <span class="nav-text">测试在生产环境中运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试在开发环境中运行"><span class="nav-number">9.3.2.</span> <span class="nav-text">测试在开发环境中运行</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2005 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Deng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

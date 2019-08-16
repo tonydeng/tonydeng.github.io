@@ -1,0 +1,1061 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="SDN之NETCONF Call Home">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="本文主要内容都来自于今年二月发布的RFC8071 - NETCONF Call Home and RESTCONF Call Home，该RFC从2015年4月提出到最终发布一共修改了17个版本，其间修改内容可以点击查看详细内容。 介绍NETCONF Call Home支持两种安全传输网络配置协议分别是Secure Shell(SSH)和传输层安全(TLS)。    NETCONF协议​​的绑定">
+<meta name="keywords" content="SDN之NETCONF Call Home">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SDN之NETCONF Call Home">
+<meta property="og:url" content="http://tonydeng.github.io/2017/11/28/netconf-call-home/index.html">
+<meta property="og:site_name" content="TonyDeng&#39;s Blog">
+<meta property="og:description" content="本文主要内容都来自于今年二月发布的RFC8071 - NETCONF Call Home and RESTCONF Call Home，该RFC从2015年4月提出到最终发布一共修改了17个版本，其间修改内容可以点击查看详细内容。 介绍NETCONF Call Home支持两种安全传输网络配置协议分别是Secure Shell(SSH)和传输层安全(TLS)。    NETCONF协议​​的绑定">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/netconf-callhome/rfc8071-datatracker-status.jpg">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/netconf-callhome/netconf-call-home-sequence.png">
+<meta property="og:updated_time" content="2019-06-20T12:19:23.312Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SDN之NETCONF Call Home">
+<meta name="twitter:description" content="本文主要内容都来自于今年二月发布的RFC8071 - NETCONF Call Home and RESTCONF Call Home，该RFC从2015年4月提出到最终发布一共修改了17个版本，其间修改内容可以点击查看详细内容。 介绍NETCONF Call Home支持两种安全传输网络配置协议分别是Secure Shell(SSH)和传输层安全(TLS)。    NETCONF协议​​的绑定">
+<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/netconf-callhome/rfc8071-datatracker-status.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tonydeng.github.io/2017/11/28/netconf-call-home/">
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+
+
+  <title> SDN之NETCONF Call Home | TonyDeng's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80673215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43d979b191269e68beffa09e2d17a081";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TonyDeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">“In me the tiger sniffes the rose.” -- Siegfried Sasson</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ppts">
+          <a href="/ppts" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            PPT
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gitbook">
+          <a href="/gitbook-zh" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            GitBook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2017/11/28/netconf-call-home/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SDN之NETCONF Call Home
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-28T00:18:35+08:00">
+                2017-11-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SDN/" itemprop="url" rel="index">
+                    <span itemprop="name">SDN</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/blog/netconf-callhome/rfc8071-datatracker-status.jpg" alt="rfc8071 datatracker status"></p>
+<p>本文主要内容都来自于今年二月发布的<a href="https://tools.ietf.org/html/rfc8071" target="_blank" rel="noopener">RFC8071 - NETCONF Call Home and RESTCONF Call Home</a>，该RFC从2015年4月提出到最终发布一共修改了17个版本，其间修改内容可以<a href="https://datatracker.ietf.org/doc/rfc8071/" target="_blank" rel="noopener">点击查看详细内容</a>。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><code>NETCONF Call Home</code>支持两种安全传输网络配置协议分别是<code>Secure Shell(SSH)</code>和传输层安全<code>(TLS)</code>。  </p>
+<blockquote>
+<p><code>NETCONF</code>协议​​的绑定到<code>SSH</code>在<a href="https://tools.ietf.org/html/rfc6242" target="_blank" rel="noopener">RFC6242</a>中定义。<br><code>NETCONF</code>协议​​的绑定到<code>TLS</code>在<a href="https://tools.ietf.org/html/rfc7589" target="_blank" rel="noopener">RFC7589</a>中定义。<br><code>SSH</code>协议在<a href="https://tools.ietf.org/html/rfc4253" target="_blank" rel="noopener">RFC4253</a>中定义，<code>TLS</code>协议是在<a href="https://tools.ietf.org/html/rfc4253" target="_blank" rel="noopener">RFC5246</a>中定义。<code>SSH</code>和<code>TLS</code>协议都是<code>TCP</code>协议之上的协议。</p>
+</blockquote>
+<a id="more"></a>
+
+<h3 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h3><p><code>call home</code>对于网络设备的初始化部署和持续管理都是非常有帮助的。那网络设备为什么使用<code>call home</code>这种方式？</p>
+<ul>
+<li>网络设备在第一次启动后可以主动<code>call home</code>，以便在其管理系统上注册。</li>
+</ul>
+<ul>
+<li><p>网络设备可以以一种动态分配<code>IP</code>地址的方式访问网络，但是不会将其分配的IP地址注册到映射服务(例如，动态<code>DNS</code>)。</p>
+</li>
+<li><p>网络设备可以部署在实现所有内部网络IP地址的网络地址转换（NAT）的防火墙后面。</p>
+</li>
+<li><p>网络设备元件可以部署在不允许任何管理访问内部网络的防火墙之后。</p>
+</li>
+<li><p>网络设备可以配置为“隐身模式”，因此没有任何的端口可以提供给管理系统打开连接。</p>
+</li>
+<li><p>运营商可能倾向于让网络设备发起管理连接，认为在数据中心中保护一个开放端口比在网络中的每个网络设备上具有开放端口更容易。</p>
+</li>
+</ul>
+<h3 id="解决方案概述"><a href="#解决方案概述" class="headerlink" title="解决方案概述"></a>解决方案概述</h3><p>下图说明了协议分层的<code>call home</code></p>
+<p><img src="/images/blog/netconf-callhome/netconf-call-home-sequence.png" alt="NETCONF Call Home Sequence"></p>
+<blockquote>
+<p>消息层流程PlantUML请查看<a href="https://raw.githubusercontent.com/tonydeng/sdn-handbook/master/puml/netconf-call-home.puml" target="_blank" rel="noopener">netconf-messages-layer-flow.puml</a></p>
+</blockquote>
+<p>这张图有以下几点：</p>
+<ol>
+<li><code>NETCONF</code>服务器首先启动一个<code>TCP</code>连接到<code>NETCONF</code>客户端。</li>
+<li>使用这个<code>TCP</code>连接，<code>NETCONF</code>客户端启动到<code>NETCONF</code>服务器的<code>SSH/TLS</code>会话。</li>
+<li>使用此<code>SSH/TLS</code>会话，<code>NETCONF</code>客户端启动一个到<code>NETCONF</code>服务器的<code>NETCONF</code>会话。</li>
+</ol>
+<h2 id="NETCONF客户端"><a href="#NETCONF客户端" class="headerlink" title="NETCONF客户端"></a>NETCONF客户端</h2><p>术语“客户端”在<a href="https://tools.ietf.org/html/rfc6241#section-1.1" target="_blank" rel="noopener">RFC6241第1.1节</a>中定义。 在网络管理的情况下，<code>NETCONF</code>客户端可能是一个网络管理系统。</p>
+<h3 id="客户端协议操作事项"><a href="#客户端协议操作事项" class="headerlink" title="客户端协议操作事项"></a>客户端协议操作事项</h3><ul>
+<li>C1 <code>NETCONF</code>客户端侦听来自<code>NETCONF</code>服务器的<code>TCP</code>连接请求。 客户端必须支持在<a href="https://tools.ietf.org/html/rfc8071#section-6" target="_blank" rel="noopener">第6节</a>中定义的<code>IANA</code>分配的端口上接受<code>TCP</code>连接，但可以配置为侦听不同的端口。</li>
+<li>C2 <code>NETCONF</code>客户端接受传入的<code>TCP</code>连接请求，并建立<code>TCP</code>连接。</li>
+<li>C3 使用此<code>TCP</code>连接，<code>NETCONF</code>客户端启动<code>SSH</code>客户端<a href="https://tools.ietf.org/html/rfc4253" target="_blank" rel="noopener">RFC4253</a>或<code>TLS</code>客户端<a href="https://tools.ietf.org/html/rfc5246" target="_blank" rel="noopener">RFC5246</a>协议。 例如，假定使用<code>IANA分</code>配的端口，则在端口<code>4334</code>接受连接时启动<code>SSH</code>客户端协议，并且在端口<code>4335</code>或端口<code>4336</code>上接受连接时启动<code>TLS</code>客户端协议。</li>
+<li>C4 当使用<code>TLS</code>时，<code>NETCONF</code>客户端必须告知<code>&quot;peer_allowed_to_send&quot;</code>，如<a href="https://tools.ietf.org/html/rfc6520" target="_blank" rel="noopener">RFC6520</a>所定义。 这是必需的，以便<code>NETCONF</code>服务器知道在<code>call home</code>连接时需要发送心跳包，保持长连接。</li>
+<li>C5 作为建立<code>SSH</code>或<code>TLS</code>连接的一部分，<code>NETCONF</code>客户端必须验证服务器提供的主机密钥或证书。 该验证可以通过证书路径验证或通过将主机密钥或证书与先前信任的或“固定的”值进行比较来完成。 如果证书被提交并且包含撤销检查信息，<code>NETCONF</code>客户端应该检查证书的撤销状态。 如果确定证书已被吊销，客户端必须马上关闭连接。</li>
+<li>C6 如果使用证书路径验证，则<code>NETCONF</code>客户端必须确保提供的证书具有对预先配置的颁发者证书的有效信任链，并且所呈现的证书对客户端之前知道的“标识符”<a href="https://tools.ietf.org/html/rfc6125" target="_blank" rel="noopener">RFC6125</a>进行编码 连接尝试。 如何在证书中编码标识符可以由与证书颁发者相关的策略来确定。 例如，可以知道给定的颁发者只在<code>X.509</code>证书的<code>“CommonName”</code>字段中签署具有唯一标识符（例如，序列号）的<code>IDevID</code>证书<a href="https://tools.ietf.org/html/rfc8071#ref-Std-802.1AR-2009" target="_blank" rel="noopener">Std-802.1AR-2009</a>。</li>
+<li>C7 服务器的主机密钥或证书经过验证后，客户端将以<code>SSH</code>或<code>TLS</code>协议进行建立<code>SSH</code>或<code>TLS</code>连接。 在使用<code>NETCONF</code> 服务器执行客户端认证时，<code>NETCONF</code>客户端必须仅使用先前为<code>NETCONF</code>服务器提供的主机密钥或服务器证书关联的凭证。</li>
+<li>C8 一旦<code>SSH</code>或<code>TLS</code>连接建立，<code>NETCONF</code>客户端启动<code>NETCONF</code>客户端<a href="https://tools.ietf.org/html/rfc6241" target="_blank" rel="noopener">RFC6241</a>或<code>RESTCONF</code>客户端<a href="https://tools.ietf.org/html/rfc8040" target="_blank" rel="noopener">RFC8040</a>协议。 假设使用<code>IANA</code>分配的端口，当在端口<code>4334</code>或端口<code>4335</code>上接受连接时启动<code>NETCONF</code>客户端协议，并且当在端口<code>4336</code>上接受连接时启动<code>RESTCONF</code>客户端协议。</li>
+</ul>
+<h3 id="客户端配置数据模型"><a href="#客户端配置数据模型" class="headerlink" title="客户端配置数据模型"></a>客户端配置数据模型</h3><p>如何配置<code>NETCONF</code>或<code>RESTCONF</code>客户端超出了本文的范围。</p>
+<p>例如，可以使用什么样的配置来启用对<code>call home</code>的监听，配置可信证书颁发者，或者为预期的连接配置标识符。 也就是说，在<a href="https://tools.ietf.org/html/rfc8071#ref-NETCONF-MODELS" target="_blank" rel="noopener">NETCONF-MODELS</a>和<a href="https://tools.ietf.org/html/rfc8071#ref-RESTCONF-MODELS" target="_blank" rel="noopener">RESTCONF-MODELS</a>中提供了用于配置<code>NETCONF</code>和<code>RESTCONF</code>客户端的<code>YANG</code> <a href="https://tools.ietf.org/html/rfc7950" target="_blank" rel="noopener">RFC7950</a>数据模块，包括<code>call home</code>。</p>
+<h2 id="NETCONF服务器"><a href="#NETCONF服务器" class="headerlink" title="NETCONF服务器"></a>NETCONF服务器</h2><p>术语“服务器”在<a href="https://tools.ietf.org/html/rfc6241#section-1.1" target="_blank" rel="noopener">RFC6241第1.1节</a>中定义。 在网络管理的情况下，<code>NETCONF</code>服务器可能是网络元件或设备。</p>
+<h3 id="服务器协议操作"><a href="#服务器协议操作" class="headerlink" title="服务器协议操作"></a>服务器协议操作</h3><ul>
+<li>S1 <code>NETCONF</code>服务器向<code>NETCONF</code>客户端发起<code>TCP</code>连接请求。 源端口可以根据本地策略或由操作系统随机分配。 服务器必须支持连接到<a href="https://tools.ietf.org/html/rfc8071#section-6" target="_blank" rel="noopener">第6节</a>中定义的一个<code>IANA</code>分配的端口，但可以配置为连接到不同的端口。 使用<code>IANA</code>分配的端口，服务器通过<code>SSH</code>连接到<code>NETCONF</code>的端口<code>4334</code>，通过<code>TLS</code>连接到<code>NETCONF</code>的端口<code>4335</code>和通过<code>TLS</code>的<code>RESTCONF</code>的端口<code>4336</code>。</li>
+<li>S2 <code>TCP</code>连接请求被接受，<code>TCP</code>连接被建立。</li>
+<li>S3 使用此<code>TCP</code>连接，<code>NETCONF</code>服务器将启动<code>SSH</code>服务器<a href="https://tools.ietf.org/html/rfc4253" target="_blank" rel="noopener">RFC4253</a>或<code>TLS</code>服务器<a href="https://tools.ietf.org/html/rfc5246" target="_blank" rel="noopener">RFC5246</a>协议，具体取决于它如何配置。 例如，假定使用<code>IANA</code>分配的端口，则在连接到远程端口<code>4334</code>之后使用<code>SSH</code>服务器协议，并且在连接到远程端口<code>4335</code>或远程端口<code>4336</code>之后使用<code>TLS</code>服务器协议。</li>
+<li>S4 作为建立<code>SSH</code>或<code>TLS</code>连接的一部分，<code>NETCONF</code>服务器会将其主机密钥或证书发送给客户端。 如果发送了一个证书，服务器还必须发送所有中间证书到一个知名和可信赖的发行者。 如何发送证书列表在<a href="https://tools.ietf.org/html/rfc6187#section-2.1" target="_blank" rel="noopener">RFC6187第2.1节</a>中为<code>SSH</code>定义，在<a href="https://tools.ietf.org/html/rfc5246#section-7.4.2" target="_blank" rel="noopener">RFC5246第7.4.2节</a>中为<code>TLS</code>定义。</li>
+<li>S5 建立<code>SSH</code>或<code>TLS</code>会话需要在所有情况下对客户端证书进行服务器身份验证，但<code>RESTCONF</code>除外，其中一些客户端身份验证方案在<code>安全传输连接（TLS）</code>建立后发生。 如果需要传输级（<code>SSH</code>或<code>TLS</code>）客户端身份验证，并且客户端无法在本地策略定义的时间内成功向服务器进行身份验证，则服务器必须关闭连接。</li>
+<li>S6 一旦建立了<code>SSH</code>或<code>TLS</code>连接，<code>NETCONF</code>/<code>RESTCONF</code>服务器将启动<code>NETCONF</code>服务器<a href="https://tools.ietf.org/html/rfc6241" target="_blank" rel="noopener">RFC6241</a>或<code>RESTCONF</code>服务器<a href="https://tools.ietf.org/html/rfc8040" target="_blank" rel="noopener">RFC8040</a>协议，具体取决于如何配置。 假设使用<code>IANA</code>分配的端口，则在连接到远程端口<code>4334</code>或远程端口<code>4335</code>之后使用<code>NETCONF</code>服务器协议，并且在连接到远程端口<code>4336</code>之后使用<code>RESTCONF</code>服务器协议。</li>
+<li>S7 如果需要长连接，作为连接发起者的<code>NETCONF</code>/<code>RESTCONF</code>服务器应该使用<code>keep-alive</code>机制主动测试连接的活跃性。 对于基于<code>TLS</code>的连接，<code>NETCONF</code>/<code>RESTCONF</code>服务器应该发送<a href="https://tools.ietf.org/html/rfc6520" target="_blank" rel="noopener">RFC6520</a>定义的<code>HeartbeatRequest</code>消息。 对于基于<code>SSH</code>的连接，根据<a href="https://tools.ietf.org/html/rfc4254#section-4" target="_blank" rel="noopener">RFC4254的第4节</a>，服务器应该发送一个<code>SSH_MSG_GLOBAL_REQUEST</code>消息，其中包含一个特别不存在的<code>&quot;request name&quot;</code>值（例如<a href="mailto:keepalive@ietf.org" target="_blank" rel="noopener">keepalive@ietf.org</a>）和<code>&quot;want reply&quot;</code>值设置为<code>&quot;1&quot;</code>。</li>
+</ul>
+<h3 id="服务器配置数据模型"><a href="#服务器配置数据模型" class="headerlink" title="服务器配置数据模型"></a>服务器配置数据模型</h3><p>如何配置<code>NETCONF</code>或<code>RESTCONF</code>服务器超出了本文的范围。</p>
+<p>这包括可能用于指定主机名，<code>IP</code>地址，端口，算法或其他相关参数的配置。 也就是说，<a href="https://tools.ietf.org/html/rfc8071#ref-NETCONF-MODELS" target="_blank" rel="noopener">NETCONF-MODELS</a>和<a href="https://tools.ietf.org/html/rfc8071#ref-RESTCONF-MODELS" target="_blank" rel="noopener">RESTCONF-MODELS</a>中提供了用于配置NETCONF和RESTCONF服务器的YANG <a href="https://tools.ietf.org/html/rfc7950" target="_blank" rel="noopener">RFC7950</a>数据模块，包括<code>call home</code>。</p>
+<h2 id="安全考虑"><a href="#安全考虑" class="headerlink" title="安全考虑"></a>安全考虑</h2><p><a href="https://tools.ietf.org/html/rfc6242" target="_blank" rel="noopener">RFC6242</a>和<a href="https://tools.ietf.org/html/rfc7589" target="_blank" rel="noopener">RFC7589</a>以及扩展<a href="https://tools.ietf.org/html/rfc4253" target="_blank" rel="noopener">RFC4253</a>，<a href="https://tools.ietf.org/html/rfc5246" target="_blank" rel="noopener">RFC5246 </a>和<a href="https://tools.ietf.org/html/rfc8040" target="_blank" rel="noopener">RFC8040</a>中描述的安全考虑也适用于此处。</p>
+<p>这个<code>RFC</code>与<code>SSH</code>/<code>TLS</code>服务器启动底层TCP连接的方式背离了标准的<code>SSH</code>和<code>TLS</code>的使用。 这种逆转与<a href="https://tools.ietf.org/html/rfc4253" target="_blank" rel="noopener">RFC4253</a>中的“客户端启动连接”和<a href="https://tools.ietf.org/html/rfc6125" target="_blank" rel="noopener">RFC6125</a>不一致，它们表示<strong>“客户端必须构建可接受的引用标识符列表，并且必须独立于服务提供的标识符“</strong> 。</p>
+<p>与这些差异有关的风险主要集中在服务器认证上，客户无法将独立构建的引用标识符与服务器提供的引用标识符进行比较。为了减轻这些风险，要求<code>NETCONF</code>/<code>RESTCONF</code>客户端验证服务器的<code>SSH</code>主机密钥或证书，通过对预先配置的发行者证书进行证书路径验证，或者通过将主机密钥或证书与先前信任或“固定”值。此外，当使用证书时，要求客户端能够将在提供的证书中编码的标识符与客户端预先配置的标识符（例如，序列号）相匹配。</p>
+<p>对于<code>NETCONF</code>/<code>RESTCONF</code>服务器提供<code>X.509</code>证书的情况，<code>NETCONF</code>/<code>RESTCONF</code>客户端应确保用于证书路径验证的<code>&quot;\&quot;</code>预配置颁发者证书对于服务器的制造商是唯一的。也就是说，证书不应该属于可能为多个制造商颁发证书的第三方认证机构。当使用将共享秘密（例如，密码）传递给服务器的客户机认证机制时，这是特别重要的。否则可能会导致客户端将共享密钥发送到恰好与客户端配置期望的服务器具有相同身份（例如，序列号）的另一个服务器的情况。</p>
+<p>接下来会考虑与服务器身份验证无关的问题。</p>
+<p>运行<code>NETCONF Call Home</code>或<code>RESTCONF Call Home</code>的面向<code>Internet</code>的主机将通过诸如”<a href="https://tools.ietf.org/html/rfc8071#ref-zmap" target="_blank" rel="noopener">zmap</a>“之类的扫描工具进行指纹识别。 <code>SSH</code>和<code>TLS</code>都提供了许多方法可以在主机上进行指纹识别。 <code>SSH</code>和<code>TLS</code>服务器相当成熟，能够抵御攻击，但是<code>SSH</code>和<code>TLS</code>客户端可能不够强大。实施者和部署需要确保提供软件更新机制，以便及时修复漏洞。</p>
+<p>攻击者可以在推断出攻击者没有拥有有效密钥之前，对<code>NETCONF</code>/<code>RESTCONF</code>客户端进行拒绝服务（<code>DoS</code>）攻击，执行计算量大的操作。 例如，在<a href>TLS1.3</a>中，<code>ClientHello</code>消息包含成本很高的非对称密钥操作的密钥共享值。 推荐使用常见的减轻<code>DoS</code>攻击的预防措施，例如在一系列不成功的登录尝试后暂时将源地址列入黑名单。</p>
+<p>当使用带有<code>RESTCONF</code>协议的<code>call home</code>时，在使用一些<code>HTTP</code>认证方案时，特别要注意传送共享密钥（例如密码）的<code>Basic</code> <a href="https://tools.ietf.org/html/rfc7617" target="_blank" rel="noopener">RFC7617</a>和<code>Digest</code> <a href="https://tools.ietf.org/html/rfc7616" target="_blank" rel="noopener">RFC7616</a>方案。 对于使用的任何<code>HTTP</code>客户机认证方案，实施者和部署都应确保查看<code>RFC</code>中的“安全注意事项”部分。</p>
+<h2 id="IANA考虑事项"><a href="#IANA考虑事项" class="headerlink" title="IANA考虑事项"></a>IANA考虑事项</h2><p>IANA已经在“用户端口”范围内为服务名称“<code>netconf-ch-ssh</code>”，“<code>netconf-ch-tls</code>”和“<code>restconf-ch-tls</code>”分配了三个<code>TCP</code>端口号。 这些端口将是<code>NETCONF Call Home</code>和<code>RESTCONF Call Home</code>协议的默认端口。 以下是遵循<a href="https://tools.ietf.org/html/rfc6335" target="_blank" rel="noopener">RFC6335</a>中的规则的注册模板。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Service Name:           netconf-ch-ssh</span><br><span class="line">Port Number:            4334</span><br><span class="line">Transport Protocol(s):  TCP</span><br><span class="line">Description:            NETCONF Call Home (SSH)</span><br><span class="line">Assignee:               IESG &lt;iesg@ietf.org&gt;</span><br><span class="line">Contact:                IETF Chair &lt;chair@ietf.org&gt;</span><br><span class="line">Reference:              RFC 8071</span><br><span class="line"></span><br><span class="line">Service Name:           netconf-ch-tls</span><br><span class="line">Port Number:            4335</span><br><span class="line">Transport Protocol(s):  TCP</span><br><span class="line">Description:            NETCONF Call Home (TLS)</span><br><span class="line">Assignee:               IESG &lt;iesg@ietf.org&gt;</span><br><span class="line">Contact:                IETF Chair &lt;chair@ietf.org&gt;</span><br><span class="line">Reference:              RFC 8071</span><br><span class="line"></span><br><span class="line">Service Name:           restconf-ch-tls</span><br><span class="line">Port Number:            4336</span><br><span class="line">Transport Protocol(s):  TCP</span><br><span class="line">Description:            RESTCONF Call Home (TLS)</span><br><span class="line">Assignee:               IESG &lt;iesg@ietf.org&gt;</span><br><span class="line">Contact:                IETF Chair &lt;chair@ietf.org&gt;</span><br><span class="line">Reference:              RFC 8071</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考实现"><a href="#参考实现" class="headerlink" title="参考实现"></a>参考实现</h2><p>关于<code>NETCONF Call Home</code>的实现，可以参考<code>Juniper</code>在<a href="https://github.com/Juniper" target="_blank" rel="noopener">github</a>上开源的<a href="https://github.com/Juniper/netconf-call-home" target="_blank" rel="noopener">netconf-call-home</a>。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://tools.ietf.org/html/rfc8071" target="_blank" rel="noopener">RFC 8071 - NETCONF Call Home and RESTCONF Call Home</a></li>
+<li><a href="https://tools.ietf.org/html/rfc6242" target="_blank" rel="noopener">RFC6242 - Using the NETCONF Protocol over Secure Shell (SSH)</a></li>
+<li><a href="https://tools.ietf.org/html/rfc7589" target="_blank" rel="noopener">RFC7589 - Using the NETCONF Protocol over Transport Layer Security (TLS) with Mutual X.509 Authentication</a></li>
+<li><a href="https://tools.ietf.org/html/rfc4253" target="_blank" rel="noopener">RFC4253 -  The Secure Shell (SSH) Transport Layer Protocol</a></li>
+<li><a href="https://tools.ietf.org/html/rfc5246" target="_blank" rel="noopener">RFC5246 -  The Transport Layer Security (TLS) Protocol Version 1.2</a></li>
+<li><a href="https://tools.ietf.org/html/rfc8040" target="_blank" rel="noopener">RFC8040 - RESTCONF Protocol</a></li>
+<li><a href="https://github.com/Juniper/netconf-call-home" target="_blank" rel="noopener">Juniper netconf-call-home</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NETCONF/" rel="tag"># NETCONF</a>
+          
+            <a href="/tags/RFC/" rel="tag"># RFC</a>
+          
+            <a href="/tags/RFC8071/" rel="tag"># RFC8071</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/10/junit-5-annotations/" rel="next" title="JUnit5教程-注解">
+                <i class="fa fa-chevron-left"></i> JUnit5教程-注解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/13/the-two-laws-of-building-products/" rel="prev" title="理想的创业团队原型和创建产品原则">
+                理想的创业团队原型和创建产品原则 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <p class="site-author-name" itemprop="name">Tony Deng</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tonydeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wolfdeng" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/tonydeng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-global"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动机"><span class="nav-number">1.1.</span> <span class="nav-text">动机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案概述"><span class="nav-number">1.2.</span> <span class="nav-text">解决方案概述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NETCONF客户端"><span class="nav-number">2.</span> <span class="nav-text">NETCONF客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端协议操作事项"><span class="nav-number">2.1.</span> <span class="nav-text">客户端协议操作事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端配置数据模型"><span class="nav-number">2.2.</span> <span class="nav-text">客户端配置数据模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NETCONF服务器"><span class="nav-number">3.</span> <span class="nav-text">NETCONF服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器协议操作"><span class="nav-number">3.1.</span> <span class="nav-text">服务器协议操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器配置数据模型"><span class="nav-number">3.2.</span> <span class="nav-text">服务器配置数据模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全考虑"><span class="nav-number">4.</span> <span class="nav-text">安全考虑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IANA考虑事项"><span class="nav-number">5.</span> <span class="nav-text">IANA考虑事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考实现"><span class="nav-number">6.</span> <span class="nav-text">参考实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2005 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Deng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

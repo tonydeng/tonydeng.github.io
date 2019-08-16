@@ -1,0 +1,1022 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Leiningen + Clojure Hello World!">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="我们之前已经写过Leiningen + Clojure之旅一篇Blog安装Leiningen。 今天我们在看看如何结合Leiningen写一个Clojure的Hello World，毕竟开始一门语言，都是从Hello World开始。">
+<meta name="keywords" content="Leiningen + Clojure Hello World!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leiningen + Clojure Hello World!">
+<meta property="og:url" content="http://tonydeng.github.io/2016/07/19/leiningen-clojure-hello-world/index.html">
+<meta property="og:site_name" content="TonyDeng&#39;s Blog">
+<meta property="og:description" content="我们之前已经写过Leiningen + Clojure之旅一篇Blog安装Leiningen。 今天我们在看看如何结合Leiningen写一个Clojure的Hello World，毕竟开始一门语言，都是从Hello World开始。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/hello-world.jpg">
+<meta property="og:updated_time" content="2019-06-20T12:10:27.476Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leiningen + Clojure Hello World!">
+<meta name="twitter:description" content="我们之前已经写过Leiningen + Clojure之旅一篇Blog安装Leiningen。 今天我们在看看如何结合Leiningen写一个Clojure的Hello World，毕竟开始一门语言，都是从Hello World开始。">
+<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/hello-world.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tonydeng.github.io/2016/07/19/leiningen-clojure-hello-world/">
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+
+
+  <title> Leiningen + Clojure Hello World! | TonyDeng's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80673215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43d979b191269e68beffa09e2d17a081";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TonyDeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">“In me the tiger sniffes the rose.” -- Siegfried Sasson</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ppts">
+          <a href="/ppts" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            PPT
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gitbook">
+          <a href="/gitbook-zh" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            GitBook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2016/07/19/leiningen-clojure-hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Leiningen + Clojure Hello World!
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-19T09:01:58+08:00">
+                2016-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Leiningen-Clojure之旅/" itemprop="url" rel="index">
+                    <span itemprop="name">Leiningen + Clojure之旅</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/blog/hello-world.jpg" alt="hello world"></p>
+<p>我们之前已经写过<a href="/categories/Leiningen-Clojure之旅/">Leiningen + Clojure之旅</a>一篇Blog<a href="/2015/11/19/install-leiningen/">安装Leiningen</a>。</p>
+<p>今天我们在看看如何结合Leiningen写一个Clojure的Hello World，毕竟开始一门语言，都是从Hello World开始。</p>
+<a id="more"></a>
+
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>我们还是先用lein创建一个项目，使用标准项目模板。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ lein new app clojure-demo --force</span><br><span class="line">Generating a project called clojure-demo based on the <span class="string">'app'</span> template.</span><br></pre></td></tr></table></figure>
+
+<p>这儿有关于new这个指令的详细使用介绍，包括项目模板的介绍。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ lein <span class="built_in">help</span> new</span><br><span class="line">Generate scaffolding <span class="keyword">for</span> a new project based on a template.</span><br><span class="line"></span><br><span class="line">If only one argument is passed to the <span class="string">"new"</span> task, the default template</span><br><span class="line">is used and the argument is used as the name of the project.</span><br><span class="line"></span><br><span class="line">If two arguments are passed, the first should be the name of a template,</span><br><span class="line">and the second is used as the name of the project, <span class="keyword">for</span> example:</span><br><span class="line"></span><br><span class="line">    lein new <span class="variable">$TEMPLATE_NAME</span> <span class="variable">$PROJECT_NAME</span></span><br><span class="line"></span><br><span class="line">To generate to a directory different than your project<span class="string">'s name use --to-dir:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    lein new $TEMPLATE_NAME $PROJECT_NAME --to-dir $DIR</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">By default, the "new" task will not write to an existing directory.</span></span><br><span class="line"><span class="string">Supply the --force option to override this behavior:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    lein new $TEMPLATE_NAME $PROJECT_NAME --force</span></span><br><span class="line"><span class="string">    lein new $TEMPLATE_NAME $PROJECT_NAME --to-dir $DIR --force</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Arguments can be passed to templates by adding them after "new"'</span>s options. Use</span><br><span class="line">`--` to separate arguments to lein new and the actual template you are using:</span><br><span class="line"></span><br><span class="line">    lein new <span class="variable">$TEMPLATE_NAME</span> <span class="variable">$PROJECT_NAME</span> --to-dir <span class="variable">$DIR</span> -- template-arg-1 template-arg-2</span><br><span class="line"></span><br><span class="line">If you<span class="string">'d like to use an unreleased (ie, SNAPSHOT) template, pass in --snapshot:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    lein new $TEMPLATE_NAME $PROJECT_NAME --snapshot</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">If you'</span>d rather like to use a specific version of template, specify the version</span><br><span class="line">with --template-version option:</span><br><span class="line"></span><br><span class="line">    lein new <span class="variable">$TEMPLATE_NAME</span> <span class="variable">$PROJECT_NAME</span> --template-version <span class="variable">$TEMPLATE_VERSION</span></span><br><span class="line"></span><br><span class="line">If you use the `--snapshot` or `--template-version` argument with template args</span><br><span class="line">you may need to use `--` to prevent template args from being interpreted as</span><br><span class="line">arguments to `lein new`:</span><br><span class="line"></span><br><span class="line">    lein new <span class="variable">$TEMPLATE_NAME</span> <span class="variable">$PROJECT_NAME</span> --snapshot -- template-arg-1 template-arg-2</span><br><span class="line"></span><br><span class="line">Third-party templates can be found at https://clojars.org/search?q=lein-template.</span><br><span class="line">When creating a new project from a third-party template, use its group-id</span><br><span class="line">as the template name. Note that there<span class="string">'s no need to "install" a given third-</span></span><br><span class="line"><span class="string">party template --- lein will automatically fetch it for you.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Use `lein new :show $TEMPLATE` to see details about a given template.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">To create a new template of your own, see the documentation for the</span></span><br><span class="line"><span class="string">lein-new Leiningen plug-in.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Subtasks available:</span></span><br><span class="line"><span class="string">default    A general project template for libraries.</span></span><br><span class="line"><span class="string">plugin     A leiningen plugin project template.</span></span><br><span class="line"><span class="string">app        An application project template.</span></span><br><span class="line"><span class="string">template   A meta-template for '</span>lein new<span class="string">' templates.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Run `lein help new $SUBTASK` for subtask details.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Arguments: ([project-name] [template project-name [-- &amp; args]])</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="project-clj说明"><a href="#project-clj说明" class="headerlink" title="project.clj说明"></a>project.clj说明</h2><p><code>project.clj</code>是<code>Leigingen</code>为项目添加的配置文件，类似于<code>Maven</code>的<code>pom.xml</code>。我们来先看看都有些什么内容。</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name">defproject</span> clojure-demo <span class="string">"0.1.0-SNAPSHOT"</span></span><br><span class="line">  <span class="symbol">:description</span> <span class="string">"FIXME: write description"</span></span><br><span class="line">  <span class="symbol">:url</span> <span class="string">"http://example.com/FIXME"</span></span><br><span class="line">  <span class="symbol">:license</span> &#123;<span class="symbol">:name</span> <span class="string">"Eclipse Public License"</span></span><br><span class="line">            <span class="symbol">:url</span> <span class="string">"http://www.eclipse.org/legal/epl-v10.html"</span>&#125;</span><br><span class="line">  <span class="symbol">:dependencies</span> [[org.clojure/clojure <span class="string">"1.8.0"</span>]]</span><br><span class="line">  <span class="symbol">:main</span> ^<span class="symbol">:skip-aot</span> clojure-demo.core</span><br><span class="line">  <span class="symbol">:target-path</span> <span class="string">"target/%s"</span></span><br><span class="line">  <span class="symbol">:profiles</span> &#123;<span class="symbol">:uberjar</span> &#123;<span class="symbol">:aot</span> <span class="symbol">:all</span>&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>第一行，描述了项目名称以及版本，当前的项目名称就是 <code>clojure-demo</code>,版本是<code>0.1.0-SNAPSHOT</code>。如果一个项目版本以<code>SNAPSHOT</code>结尾，通常表明该项目还处于开发阶段，还没有正式的release。</li>
+<li><code>description</code>是该项目的简要描述。</li>
+<li><code>url</code>是可选的网址，可以是你项目将来上线后的实际地址。</li>
+<li><code>license</code>是该项目使用License，默认给你设置为<code>Eclipse Public License</code>。</li>
+<li><code>dependencies</code>是我们初期最需要关注的内容，也就是我们项目中需要依赖的其他项目及其版本的配置。比如<code>clojure-demo</code>这个项目就依赖了clojore-1.8.0的版本。</li>
+<li><code>main</code>是配置了当前项目执行的文件，比如<code>clojure-demo.core</code>这个配置就表明了，执行文件就在<code>src/clojure-demo/core.clj</code>。</li>
+<li><code>profiles</code>是我们自己个性化定制的不同profile的指令，比如，我们现在可以通过<code>lein uberjar</code>将项目生成一个jar供其他项目使用。</li>
+</ol>
+<h2 id="结合IntelliJ"><a href="#结合IntelliJ" class="headerlink" title="结合IntelliJ"></a>结合IntelliJ</h2><p>当你用IntelliJ打开<code>clojure-demo</code>，发现你根本看不到项目的结构，只能看到最外层的文件，比如<code>project.clj</code>等。src,test等目录和实际的代码你根本就看不到。那该怎么办？</p>
+<p>可以先执行下面的命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ lein pom</span><br></pre></td></tr></table></figure>
+
+<p>这样lein帮你生成了一个<code>pom.xml</code>，你就可以按照Maven的方式import到IntelliJ中了。</p>
+<h2 id="执行Hello-World"><a href="#执行Hello-World" class="headerlink" title="执行Hello World!"></a>执行Hello World!</h2><p>好，项目也生成了，IDE也可以使用了，我们就开始经典的<code>Hello World</code>吧。</p>
+<p>我们在<code>project.clj</code>中配置了直接运行的方式，那我们现在开始编辑一下<code>core.clj</code>。</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">ns</span></span> clojure-demo.core</span><br><span class="line">  (<span class="symbol">:gen-class</span>))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> -main</span><br><span class="line">  <span class="string">"I don't do a whole lot ... yet."</span></span><br><span class="line">  [&amp; args]</span><br><span class="line">  (<span class="name">println</span> <span class="string">"Hello, Clojure World!"</span>))</span><br></pre></td></tr></table></figure>
+
+<p>执行一下看看效果</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ lein run</span><br><span class="line">Hello, Clojure World!</span><br></pre></td></tr></table></figure>
+
+<h2 id="执行测试"><a href="#执行测试" class="headerlink" title="执行测试"></a>执行测试</h2><p>我们先添加一个简单的方法，然后测试一下。</p>
+<p>在<code>core.clj</code>中添加<code>my-plus</code>方法，简单计算一下两个数的相加</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">defn</span></span> my-plus</span><br><span class="line">  <span class="string">"I don't do a whole lot."</span></span><br><span class="line">  [a b]</span><br><span class="line">  (<span class="name"><span class="builtin-name">+</span></span> a b))</span><br></pre></td></tr></table></figure>
+
+<p>在<code>core_test.clj</code>中添加<code>my-plus-test</code>的测试方法，测试一下1+1是否等于2</p>
+<figure class="highlight clojure"><table><tr><td class="code"><pre><span class="line">(<span class="name">deftest</span> my-plus-test</span><br><span class="line">  (<span class="name">testing</span> <span class="string">"Test my plus."</span></span><br><span class="line">    (<span class="name">is</span> (<span class="name"><span class="builtin-name">=</span></span> (<span class="name">my-plus</span> <span class="number">1</span> <span class="number">1</span>) <span class="number">2</span>)))</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ lein <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">lein <span class="built_in">test</span> clojure-demo.core-test</span><br><span class="line"></span><br><span class="line">Ran 1 tests containing 1 assertions.</span><br><span class="line">0 failures, 0 errors.</span><br></pre></td></tr></table></figure>
+
+<p>如果，你做到这一步的话，欢迎你来到Leiningen + Clojure的世界，Java工程师也可以体验一把Clojure带给你的不同体验吧。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leiningen/" rel="tag"># leiningen</a>
+          
+            <a href="/tags/clojure/" rel="tag"># clojure</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/14/product-seven-words/" rel="next" title="靠谱的产品经理之七字真言">
+                <i class="fa fa-chevron-left"></i> 靠谱的产品经理之七字真言
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/19/how-the-program-ape-is-coming-to-download-and-process-video/" rel="prev" title="看看程序猿是如何来下载和处理视频">
+                看看程序猿是如何来下载和处理视频 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <p class="site-author-name" itemprop="name">Tony Deng</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tonydeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wolfdeng" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/tonydeng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-global"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建项目"><span class="nav-number">1.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#project-clj说明"><span class="nav-number">2.</span> <span class="nav-text">project.clj说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结合IntelliJ"><span class="nav-number">3.</span> <span class="nav-text">结合IntelliJ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行Hello-World"><span class="nav-number">4.</span> <span class="nav-text">执行Hello World!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行测试"><span class="nav-number">5.</span> <span class="nav-text">执行测试</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2005 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Deng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

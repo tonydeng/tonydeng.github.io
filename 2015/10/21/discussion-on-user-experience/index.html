@@ -1,0 +1,1544 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="product,thinking,user experience,UE,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="昨天晚上媳妇跟我说，他们的产品负（jiao）责（shi）人（gun）说”交互设计就是UI，产品界面上什么按钮该放哪儿，页面该怎么跳转，这些都是用户体验“，转达了他们产品负责人的话之后，媳妇继续问：“我觉得她说的不对，我认为用户体验是UI（界面设计）+UE（交互设计）。” 媳妇的这个问题让我陷入了思考，现在互联网从业人员都在谈“用户体验”，包括传统行业的从业人员也在谈“互联网思维”，也谈“用户体验">
+<meta name="keywords" content="product,thinking,user experience,UE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于用户体验的讨论和思考">
+<meta property="og:url" content="http://tonydeng.github.io/2015/10/21/discussion-on-user-experience/index.html">
+<meta property="og:site_name" content="TonyDeng&#39;s Blog">
+<meta property="og:description" content="昨天晚上媳妇跟我说，他们的产品负（jiao）责（shi）人（gun）说”交互设计就是UI，产品界面上什么按钮该放哪儿，页面该怎么跳转，这些都是用户体验“，转达了他们产品负责人的话之后，媳妇继续问：“我觉得她说的不对，我认为用户体验是UI（界面设计）+UE（交互设计）。” 媳妇的这个问题让我陷入了思考，现在互联网从业人员都在谈“用户体验”，包括传统行业的从业人员也在谈“互联网思维”，也谈“用户体验">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/user-experience.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/more-information.jpg">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/user-experience-in-the-areas-of.jpg">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/the-elements-of-user-expexrience-en.jpg">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/the-elements-of-user-expexrience-zh.jpg">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/00.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/01.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/02.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/03.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/04.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/05.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/06.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/07.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/08.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/09.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/10.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/11.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/12.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/13.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/14.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/15.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/16.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/17.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/18.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/19.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/20.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/21.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/22.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/23.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/24.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/25.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/26.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/27.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/28.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/29.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/30.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/31.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/32.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/33.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/34.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/35.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/36.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/37.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/38.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/39.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/40.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/41.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/42.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/43.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/44.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/45.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/46.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/47.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/48.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/49.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/50.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/51.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/52.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/53.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/54.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/55.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/56.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/57.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/58.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/59.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/60.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/61.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/62.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/63.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/64.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/65.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/66.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/67.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/68.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/69.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/70.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/71.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/user-experience/ppt/72.png">
+<meta property="og:updated_time" content="2019-06-20T12:10:27.470Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于用户体验的讨论和思考">
+<meta name="twitter:description" content="昨天晚上媳妇跟我说，他们的产品负（jiao）责（shi）人（gun）说”交互设计就是UI，产品界面上什么按钮该放哪儿，页面该怎么跳转，这些都是用户体验“，转达了他们产品负责人的话之后，媳妇继续问：“我觉得她说的不对，我认为用户体验是UI（界面设计）+UE（交互设计）。” 媳妇的这个问题让我陷入了思考，现在互联网从业人员都在谈“用户体验”，包括传统行业的从业人员也在谈“互联网思维”，也谈“用户体验">
+<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/user-experience/user-experience.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tonydeng.github.io/2015/10/21/discussion-on-user-experience/">
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+
+
+  <title> 关于用户体验的讨论和思考 | TonyDeng's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80673215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43d979b191269e68beffa09e2d17a081";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TonyDeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">“In me the tiger sniffes the rose.” -- Siegfried Sasson</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ppts">
+          <a href="/ppts" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            PPT
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gitbook">
+          <a href="/gitbook-zh" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            GitBook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2015/10/21/discussion-on-user-experience/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                关于用户体验的讨论和思考
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-21T21:52:15+08:00">
+                2015-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/产品设计/" itemprop="url" rel="index">
+                    <span itemprop="name">产品设计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/blog/user-experience/user-experience.png" alt="user experience"></p>
+<p>昨天晚上媳妇跟我说，他们的产品负（jiao）责（shi）人（gun）说”交互设计就是UI，产品界面上什么按钮该放哪儿，页面该怎么跳转，这些都是<strong>用户体验</strong>“，转达了他们产品负责人的话之后，媳妇继续问：“我觉得她说的不对，我认为用户体验是UI（界面设计）+UE（交互设计）。”</p>
+<p>媳妇的这个问题让我陷入了思考，现在互联网从业人员都在谈“用户体验”，包括传统行业的从业人员也在谈“互联网思维”，也谈“用户体验”。<strong>那么用户体验到底是一个什么东西？是否就是UI+UE？</strong>，也让我有了写这篇Blog的冲动。</p>
+<a id="more"></a>
+<h2 id="什么是用户体验"><a href="#什么是用户体验" class="headerlink" title="什么是用户体验"></a>什么是用户体验</h2><p>简略来说，用户体验是一种在用户<strong>使用</strong>一个产品（服务）的<strong>过程</strong>中建立起来的<strong>纯主观</strong>的<strong>心理感受</strong>。</p>
+<p>而从系统上讲，用户体验是一个<strong>全方位的概念</strong>，在产品的<strong>不同阶段</strong>，<strong>不同渠道</strong>，每一个可能和产品、服务，以及企业本身<strong>接触的地方都能产生用户体验</strong>。</p>
+<p>互联网产品的用户体验比其他任何产品都重要。因为它是一个“自助式”的产品，没有事先阅读的说明书，没有任何操作培训或讨论会，也没有客户服务代表来帮助用户了解这个产品如何使用。</p>
+<p>不过，现在很多互联网公司也主要到了原来互联网产品在这块的问题，现在很多APP都添加了很多用户使用引导的功能，相信大家也都体会过，对自己实际使用这个产品的帮助并不是那么大，更多使用方式的都是靠自己摸索。</p>
+<h2 id="影响用户体验的因素"><a href="#影响用户体验的因素" class="headerlink" title="影响用户体验的因素"></a>影响用户体验的因素</h2><p>我们来看看一张网络上的老图。</p>
+<p><img src="/images/blog/user-experience/more-information.jpg" alt="more infomation"></p>
+<p>虽然只是讲了建设一个网站的工作并不像表面看起来的那么简单，但是就像我们上面描述的那样，用户主观的心理感受不是仅仅只是表面的工作能够满足到的。所以，用户体验当然不仅仅是“UI+UE”。</p>
+<p>有许多因素可以影响用户时间使用的体验，用户的个体差异也决定了每个用户的真实感受/体验是无法通过有效途径来完全模拟或再现的。不过，对于一个界定明确的用户群体来讲，其用户体验的共性是能够通过良好设计的测试/实验来认识到的。</p>
+<p>我们来看相对全面的用户体验所涉及的领域：</p>
+<p><img src="/images/blog/user-experience/user-experience-in-the-areas-of.jpg" alt="用户体验涉及的领域"></p>
+<p>所以，谈到用户体验，作为提供产品（服务）的组织来说，其实涉及到该组织内每一个成员的贡献。</p>
+<p>就拿互联网企业来说，产品功能设计（产品经理）、用户界面设计（UI）、用户交互设计（UE）、产品内容（运营、商务、BD）、产品稳定性和响应速度（技术）等方面对用户的体验都是有影响的。大家想一想看看是不是这样？</p>
+<p>说到底，“用户体验”就是一切以用户为中心。国外有一句经典商业名言：“客户就是上帝”，古代的中国商人也用“衣食父母”来比喻客户对商家的重要性（虽然，最早的出处是关汉卿在《<a href="http://baike.baidu.com/subview/13964/5887709.htm" target="_blank" rel="noopener">窦娥冤</a>》中由昏官桃杌太守之口说出）。</p>
+<p>所以，作为我们每一个互联网从业人员来说，用户体验应该是我们始终在脑海中绷紧的一根弦，并且要在实际工作付诸行动的行为准则之一（并不是喊喊口号而已，也不是某些人掩饰自己能力不足的借口）。在产品开发的每一个步骤中，都要把用户体验列入到考虑范围中。</p>
+<h2 id="用户体验的要素"><a href="#用户体验的要素" class="headerlink" title="用户体验的要素"></a>用户体验的要素</h2><p>那什么样的用户体验才算是好呢？如何来验证呢？</p>
+<p>其实，在2000年3月（15年前）就有人总结出了用户体验的要素。</p>
+<p>我们来看看<a href="http://www.amazon.com/o/ASIN/0735712026/ref=nosim/jjgnet-20/" target="_blank" rel="noopener">《用户体验的要素》</a>的作者<a href="http://blog.jjg.net/" target="_blank" rel="noopener">Jesse James Garrett</a>是怎么来说的。</p>
+<p><img src="/images/blog/user-experience/the-elements-of-user-expexrience-en.jpg" alt="用户体验的要素"></p>
+<p>这张图是国人翻译的</p>
+<p><img src="/images/blog/user-experience/the-elements-of-user-expexrience-zh.jpg" alt="用户体验的要素"></p>
+<h2 id="附录：Jesse-James-Garrett关于用户体验要素的演讲"><a href="#附录：Jesse-James-Garrett关于用户体验要素的演讲" class="headerlink" title="附录：Jesse James Garrett关于用户体验要素的演讲"></a>附录：Jesse James Garrett关于用户体验要素的演讲</h2><p>我们来看看Jesse James Garrett再Adaptive path工作坊上的演讲《用户体验的要素》，这个PPT非常精彩，覆盖了整个团队内部分工、产品设计要素以及项目管理要点等各个方面，非常值得大家去仔细揣摩。</p>
+<h3 id="用户体验的要素-1"><a href="#用户体验的要素-1" class="headerlink" title="用户体验的要素"></a>用户体验的要素</h3><p><img src="/images/blog/user-experience/ppt/00.png" alt="00"></p>
+<h3 id="认识用户体验的要素"><a href="#认识用户体验的要素" class="headerlink" title="认识用户体验的要素"></a>认识用户体验的要素</h3><p><img src="/images/blog/user-experience/ppt/01.png" alt="01"></p>
+<h3 id="史上最差的一些电影"><a href="#史上最差的一些电影" class="headerlink" title="史上最差的一些电影"></a>史上最差的一些电影</h3><p><img src="/images/blog/user-experience/ppt/02.png" alt="02"></p>
+<h3 id="究竟谁应该受到指责呢？"><a href="#究竟谁应该受到指责呢？" class="headerlink" title="究竟谁应该受到指责呢？"></a>究竟谁应该受到指责呢？</h3><ul>
+<li>用户可能会说：“我可能没有好好选择？”，“我一定是没有好好看说明书”，“或许我不够聪明”….</li>
+<li>对于不优的产品，用户承担了不必要的责罚。</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/03.png" alt="03"></p>
+<h3 id="如果把产品也看做是人"><a href="#如果把产品也看做是人" class="headerlink" title="如果把产品也看做是人"></a>如果把产品也看做是人</h3><p><img src="/images/blog/user-experience/ppt/04.png" alt="04"></p>
+<h3 id="以用户为中心的设计"><a href="#以用户为中心的设计" class="headerlink" title="以用户为中心的设计"></a>以用户为中心的设计</h3><ul>
+<li>这是产品开发必须遵循的理念和态度</li>
+<li>产品自身不是结束</li>
+<li>产品是为了最终能提供满足用户优良的交互体验而生的一种手段</li>
+<li>它是强调理解用户而不是技术的理论体系</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/05.png" alt="05"></p>
+<h3 id="用户体验关注什么？"><a href="#用户体验关注什么？" class="headerlink" title="用户体验关注什么？"></a>用户体验关注什么？</h3><ul>
+<li>一个产品的行为是怎样的，在实际生活中如何应用</li>
+<li>超越产品自身，关注它与人们生活的联结</li>
+<li>它包含各个范畴的因素</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/06.png" alt="06"></p>
+<h3 id="外观层"><a href="#外观层" class="headerlink" title="外观层"></a>外观层</h3><p><img src="/images/blog/user-experience/ppt/07.png" alt="07"></p>
+<h3 id="框架层"><a href="#框架层" class="headerlink" title="框架层"></a>框架层</h3><p><img src="/images/blog/user-experience/ppt/08.png" alt="08"></p>
+<h3 id="结构层"><a href="#结构层" class="headerlink" title="结构层"></a>结构层</h3><p><img src="/images/blog/user-experience/ppt/09.png" alt="09"></p>
+<h3 id="范围层"><a href="#范围层" class="headerlink" title="范围层"></a>范围层</h3><p><img src="/images/blog/user-experience/ppt/10.png" alt="10"></p>
+<h3 id="战略层"><a href="#战略层" class="headerlink" title="战略层"></a>战略层</h3><p><img src="/images/blog/user-experience/ppt/11.png" alt="11"></p>
+<h3 id="用户体验要素的五大层级"><a href="#用户体验要素的五大层级" class="headerlink" title="用户体验要素的五大层级"></a>用户体验要素的五大层级</h3><p><img src="/images/blog/user-experience/ppt/12.png" alt="12"></p>
+<h3 id="扫除一些名词障碍"><a href="#扫除一些名词障碍" class="headerlink" title="扫除一些名词障碍"></a>扫除一些名词障碍</h3><p>信息设计、功能说明、交互设计、信息架构、界面设计、内容需求、导航设计</p>
+<p><img src="/images/blog/user-experience/ppt/13.png" alt="13"></p>
+<h3 id="网站的二元性：作为信息源的网站"><a href="#网站的二元性：作为信息源的网站" class="headerlink" title="网站的二元性：作为信息源的网站"></a>网站的二元性：作为信息源的网站</h3><p><img src="/images/blog/user-experience/ppt/14.png" alt="14"></p>
+<h3 id="网站的二元性：作为软件应用的网站"><a href="#网站的二元性：作为软件应用的网站" class="headerlink" title="网站的二元性：作为软件应用的网站"></a>网站的二元性：作为软件应用的网站</h3><p><img src="/images/blog/user-experience/ppt/15.png" alt="15"></p>
+<h3 id="网站基本的二元性"><a href="#网站基本的二元性" class="headerlink" title="网站基本的二元性"></a>网站基本的二元性</h3><p><img src="/images/blog/user-experience/ppt/16.png" alt="16"></p>
+<p><img src="/images/blog/user-experience/ppt/17.png" alt="17"></p>
+<h3 id="战略层-1"><a href="#战略层-1" class="headerlink" title="战略层"></a>战略层</h3><ul>
+<li>用户需求：网站必须为使用它的人提供些什么</li>
+<li>网站目的：网站必须为建立它的人做些什么</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/18.png" alt="18"></p>
+<h3 id="用户需求"><a href="#用户需求" class="headerlink" title="用户需求"></a>用户需求</h3><ul>
+<li>一些基本原则——用户使用产品必须能够：<ul>
+<li>工作</li>
+<li>可操作使用</li>
+<li>达到一些期望</li>
+</ul>
+</li>
+<li>但是大部分时候需要根据实际使用对象和产品具体分析</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/19.png" alt="19"></p>
+<h3 id="用户调研"><a href="#用户调研" class="headerlink" title="用户调研"></a>用户调研</h3><ul>
+<li>这是最好的方式来了解用户实际需求</li>
+<li>很多方式方法：从快速、廉价到长期、昂贵的都有</li>
+<li>推荐一本好书《Observing the User Experience》</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/20.png" alt="20"></p>
+<h3 id="用户细分"><a href="#用户细分" class="headerlink" title="用户细分"></a>用户细分</h3><ul>
+<li>可以控制地识别用户需求</li>
+<li>通过用户共性特征分类</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/21.png" alt="21"></p>
+<h3 id="用户模型"><a href="#用户模型" class="headerlink" title="用户模型"></a>用户模型</h3><ul>
+<li>以用户调研为基础的特征描述</li>
+<li>从一系列常规特征推论到具体事件</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/22.png" alt="22"></p>
+<h3 id="网站目的"><a href="#网站目的" class="headerlink" title="网站目的"></a>网站目的</h3><ul>
+<li>经常与商业性有关</li>
+<li>商业目的</li>
+<li>商业驱动</li>
+<li>商业需求</li>
+<li>需要具体问题具体分析</li>
+<li>独立于组织结构的其他行为</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/23.png" alt="23"></p>
+<h3 id="成功的度量流量"><a href="#成功的度量流量" class="headerlink" title="成功的度量流量"></a>成功的度量流量</h3><ul>
+<li>唯一的方法用来获知改变网站设计有何不同</li>
+<li>紧密地与站点目标连接</li>
+<li>未来将会更广泛应用</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/24.png" alt="24"></p>
+<h3 id="范围层-1"><a href="#范围层-1" class="headerlink" title="范围层"></a>范围层</h3><ul>
+<li>功能说明：网站应有的应用特色</li>
+<li>内容需求：网站必须包含的基本内容</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/25.png" alt="25"></p>
+<h3 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h3><ul>
+<li>什么样的特色应用是用户需要用来完成目标的？</li>
+<li>聚焦在“它该做什么”<ul>
+<li>而不是“它怎么工作”</li>
+<li>也不是“它什么不能做”</li>
+</ul>
+</li>
+<li>具体一些，但不要指使系统设计</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/26.png" alt="26"></p>
+<h3 id="内容需求"><a href="#内容需求" class="headerlink" title="内容需求"></a>内容需求</h3><ul>
+<li>什么样的信息是用户需要的或想从网站获取的</li>
+<li>它采用何种形式</li>
+<li>它的来源是哪里</li>
+<li>谁来负责？</li>
+<li>根据目的定义要点</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/27.png" alt="27"></p>
+<h3 id="跟进文档"><a href="#跟进文档" class="headerlink" title="跟进文档"></a>跟进文档</h3><ul>
+<li>文档是在浪费时间？<ul>
+<li>没人看</li>
+<li>它们从来不是最新的</li>
+<li>维护起来很麻烦</li>
+</ul>
+</li>
+<li>花在规划网站的时间是为制作网站的时候节约时间</li>
+<li>把文档融进进程，而不是作为一个独立的步骤</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/28.png" alt="28"></p>
+<h3 id="结构层-1"><a href="#结构层-1" class="headerlink" title="结构层"></a>结构层</h3><ul>
+<li>交互设计：用户如何在过程中从一步移到另一步</li>
+<li>信息架构：用户如何从一个内容要素移到下一个</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/29.png" alt="29"></p>
+<h3 id="交互设计"><a href="#交互设计" class="headerlink" title="交互设计"></a>交互设计</h3><ul>
+<li>交互行为<ul>
+<li>一方面用户能够使用系统</li>
+<li>另一方面系统能够反馈给用户信息</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/30.png" alt="30"></p>
+<h3 id="信息架构"><a href="#信息架构" class="headerlink" title="信息架构"></a>信息架构</h3><ul>
+<li>明确各内容要素间的概念关系</li>
+<li>影响用户思考主题</li>
+<li>常常是等级式的，但也不是一定的</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/31.png" alt="31"></p>
+<h3 id="自上而下-VS-自下而上"><a href="#自上而下-VS-自下而上" class="headerlink" title="自上而下 VS 自下而上"></a>自上而下 VS 自下而上</h3><ul>
+<li>自上而下以分类开始，再对内容进行归类</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/32.png" alt="32"></p>
+<h3 id="自上而下-VS-自下而上-1"><a href="#自上而下-VS-自下而上-1" class="headerlink" title="自上而下 VS 自下而上"></a>自上而下 VS 自下而上</h3><ul>
+<li>自下而上以内容开始，最后集结成几类</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/33.png" alt="33"></p>
+<h3 id="文档结构"><a href="#文档结构" class="headerlink" title="文档结构"></a>文档结构</h3><ul>
+<li>可视化的表达更有效</li>
+<li>根据需要，图表可繁可简</li>
+<li>更多说明欢迎访问以下网址</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/34.png" alt="34"></p>
+<h3 id="框架层-1"><a href="#框架层-1" class="headerlink" title="框架层"></a>框架层</h3><ul>
+<li>信息设计：帮助用户理解信息</li>
+<li>界面设计：帮助用户输入，促进系统输出</li>
+<li>导航设计：为用户提供更轻松便捷的移动操作</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/35.png" alt="35"></p>
+<h3 id="信息设计"><a href="#信息设计" class="headerlink" title="信息设计"></a>信息设计</h3><ul>
+<li>我们如何表达信息使得人们理解并使用它</li>
+<li>从不同信息中传达出相对重要的信息</li>
+<li>引导用户从一条信息到另一条</li>
+<li>提醒重要细节</li>
+<li>传达各元素联系</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/36.png" alt="36"></p>
+<h3 id="Google-Maps的例子"><a href="#Google-Maps的例子" class="headerlink" title="Google Maps的例子"></a>Google Maps的例子</h3><p><img src="/images/blog/user-experience/ppt/37.png" alt="37"></p>
+<h3 id="界面设计"><a href="#界面设计" class="headerlink" title="界面设计"></a>界面设计</h3><ul>
+<li>为用户提供与应用程序功能交互的一种可视化方式</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/38.png" alt="38"></p>
+<h3 id="导航设计"><a href="#导航设计" class="headerlink" title="导航设计"></a>导航设计</h3><ul>
+<li>表达出用户可以有哪些选择</li>
+<li>使用户移动操作更便利</li>
+<li>不同的设计有不同的效果</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/39.png" alt="39"></p>
+<h3 id="线框图"><a href="#线框图" class="headerlink" title="线框图"></a>线框图</h3><ul>
+<li>将所有框架议题放到一个高度概括的“草图”里</li>
+<li>图示表达页面元素相对优先级</li>
+<li>建议页面布局的方式</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/40.png" alt="40"></p>
+<h3 id="外观层-1"><a href="#外观层-1" class="headerlink" title="外观层"></a>外观层</h3><ul>
+<li>视觉设计：“外观和感觉”中的“外观”</li>
+<li>经常会有部分人认为你在说“网页设计”</li>
+<li>不仅是美学范畴</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/41.png" alt="41"></p>
+<h3 id="配色"><a href="#配色" class="headerlink" title="配色"></a>配色</h3><p><img src="/images/blog/user-experience/ppt/42.png" alt="42"></p>
+<h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><p><img src="/images/blog/user-experience/ppt/43.png" alt="43"></p>
+<h3 id="用户体验的要素-2"><a href="#用户体验的要素-2" class="headerlink" title="用户体验的要素"></a>用户体验的要素</h3><p><img src="/images/blog/user-experience/ppt/44.png" alt="44"></p>
+<h3 id="要素的应用举例"><a href="#要素的应用举例" class="headerlink" title="要素的应用举例"></a>要素的应用举例</h3><p><img src="/images/blog/user-experience/ppt/45.png" alt="45"></p>
+<h3 id="以搜索引擎为例"><a href="#以搜索引擎为例" class="headerlink" title="以搜索引擎为例"></a>以搜索引擎为例</h3><ul>
+<li>几乎所有的网站都有</li>
+<li>每个网站的方式都有差别</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/46.png" alt="46"></p>
+<h3 id="战略层-2"><a href="#战略层-2" class="headerlink" title="战略层"></a>战略层</h3><ul>
+<li>用户需求<ul>
+<li>用户需要搜索引擎吗？</li>
+<li>是否限制了那些需要搜索功能的用户的需求？</li>
+</ul>
+</li>
+<li>网站目的<ul>
+<li>使用可操作搜索可以获取我们提供的信息么？</li>
+<li>是否可操作搜索限制了网站所需要达成的目标？</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/47.png" alt="47"></p>
+<h3 id="范围层-2"><a href="#范围层-2" class="headerlink" title="范围层"></a>范围层</h3><ul>
+<li>产品功能说明书<ul>
+<li>关键词输入</li>
+<li>其他领域的特殊标准</li>
+<li>缩小搜索结果范围的能力</li>
+</ul>
+</li>
+<li>内容需求<ul>
+<li>标记</li>
+<li>结果数据</li>
+<li>帮助文档</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/48.png" alt="48"></p>
+<h3 id="结构层-2"><a href="#结构层-2" class="headerlink" title="结构层"></a>结构层</h3><ul>
+<li>交互设计<ul>
+<li>用户每一步可做的选择</li>
+<li>多控制下的系统行为</li>
+</ul>
+</li>
+<li>信息架构<ul>
+<li>作为搜索标准的构架范围</li>
+<li>元数据结构</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/49.png" alt="49"></p>
+<h3 id="框架层-2"><a href="#框架层-2" class="headerlink" title="框架层"></a>框架层</h3><ul>
+<li>信息设计<ul>
+<li>搜索结果的布局</li>
+<li>错误状态的表达</li>
+</ul>
+</li>
+<li>界面设计<ul>
+<li>用户输入的途径</li>
+</ul>
+</li>
+<li>导航设计<ul>
+<li>进入界面流和离开界面流</li>
+<li>通过搜索结果移动浏览</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/50.png" alt="50"></p>
+<h3 id="外观层-2"><a href="#外观层-2" class="headerlink" title="外观层"></a>外观层</h3><ul>
+<li>视觉设计<ul>
+<li>颜色</li>
+<li>字体样式</li>
+<li>布局</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/51.png" alt="51"></p>
+<h3 id="提出正确的问题"><a href="#提出正确的问题" class="headerlink" title="提出正确的问题"></a>提出正确的问题</h3><ul>
+<li>我们尝试解决哪些问题</li>
+<li>我们针对问题提出哪些解决方法会导致什么样的结果？</li>
+<li>解决办法是否促使我们重新思考其他问题？</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/52.png" alt="52"></p>
+<h3 id="马拉松和短距离冲刺"><a href="#马拉松和短距离冲刺" class="headerlink" title="马拉松和短距离冲刺"></a>马拉松和短距离冲刺</h3><ul>
+<li>冲刺是短期竞速<ul>
+<li>快速开始</li>
+<li>尽快燃烧能量</li>
+</ul>
+</li>
+<li>马拉松是长期赛跑<ul>
+<li>自己控制速度</li>
+<li>选择何时燃烧能量</li>
+</ul>
+</li>
+<li>你打算尝试那种运动？</li>
+<li>哪种运动你正在做？</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/53.png" alt="53"></p>
+<h3 id="回答出反对的理由"><a href="#回答出反对的理由" class="headerlink" title="回答出反对的理由"></a>回答出反对的理由</h3><ul>
+<li>“市场调研可以告诉我们所有关于用户的事”<ul>
+<li>人口数据可不是用户深入研究</li>
+</ul>
+</li>
+<li>“我们就遵照网上找来的指导挨个来做”<ul>
+<li>网上找的资料必定很普遍</li>
+</ul>
+</li>
+<li>“界面是简单的——技术是复杂的”<ul>
+<li>什么更复杂：机器还是人</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/54.png" alt="54"></p>
+<h3 id="回答出反对的理由-1"><a href="#回答出反对的理由-1" class="headerlink" title="回答出反对的理由"></a>回答出反对的理由</h3><ul>
+<li>“我们雇不起专家”<ul>
+<li>任何事你都不需要专家</li>
+</ul>
+</li>
+<li>“我们做的时候再弄明白”<ul>
+<li>爵士乐可以即兴创作，设计可不行</li>
+</ul>
+</li>
+<li>“我们做质量评估的时候再处理”<ul>
+<li>那时候就晚了</li>
+</ul>
+</li>
+<li>“时间表上没时间了”<ul>
+<li>下次发布的时候节约时间吧</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/55.png" alt="55"></p>
+<h3 id="该避免犯的错误"><a href="#该避免犯的错误" class="headerlink" title="该避免犯的错误"></a>该避免犯的错误</h3><ul>
+<li><strong>弃权式设计：</strong>“我们应该做哪些容易完成的事”</li>
+<li><strong>模仿式设计：</strong>“如果这对亚马逊网是足够好的，对我们也是”</li>
+<li><strong>命令式设计：</strong>“因为我说过”</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/56.png" alt="56"></p>
+<h3 id="瀑布式是危险的"><a href="#瀑布式是危险的" class="headerlink" title="瀑布式是危险的"></a>瀑布式是危险的</h3><p><img src="/images/blog/user-experience/ppt/57.png" alt="57"></p>
+<h3 id="迭代式发展"><a href="#迭代式发展" class="headerlink" title="迭代式发展"></a>迭代式发展</h3><ul>
+<li>网站更新不会停止</li>
+<li>做你现在要做的</li>
+<li>总是前瞻性地计划下次发布</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/58.png" alt="58"></p>
+<h3 id="职责"><a href="#职责" class="headerlink" title="职责"></a>职责</h3><ul>
+<li>具体你选的哪项职责无关紧要——只要你把所有板块都覆盖住</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/59.png" alt="59"></p>
+<h3 id="九大支柱"><a href="#九大支柱" class="headerlink" title="九大支柱"></a>九大支柱</h3><ul>
+<li>常见成功团队的核心能力</li>
+<li>影响团队的：<ul>
+<li>职责</li>
+<li>进程</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/60.png" alt="60"></p>
+<h3 id="用户调研-1"><a href="#用户调研-1" class="headerlink" title="用户调研"></a>用户调研</h3><ul>
+<li>以用户为中心设计的基础</li>
+<li>告知所有的战略决定</li>
+<li>基本职责是认识用户需求</li>
+<li>头衔：<ul>
+<li>用户调研员</li>
+<li>可用性分析师</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/61.png" alt="61"></p>
+<h3 id="站点战略"><a href="#站点战略" class="headerlink" title="站点战略"></a>站点战略</h3><ul>
+<li>基本职责是定义站点目的</li>
+<li>决定优先级和成功的度量法</li>
+<li>头衔：<ul>
+<li>商业分析师</li>
+<li>产品经理</li>
+<li>执行监制</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/62.png" alt="62"></p>
+<h3 id="技术战略"><a href="#技术战略" class="headerlink" title="技术战略"></a>技术战略</h3><ul>
+<li>主要负责功能说明书</li>
+<li>决定技术平台和采用标准</li>
+<li>头衔：<ul>
+<li>高级工程师</li>
+<li>开发主管</li>
+<li>技术领头人</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/63.png" alt="63"></p>
+<h3 id="内容战略"><a href="#内容战略" class="headerlink" title="内容战略"></a>内容战略</h3><ul>
+<li>主要负责内容需求</li>
+<li>决定合适的版式和主题</li>
+<li>头衔：<ul>
+<li>内容策划人</li>
+<li>内容编辑</li>
+<li>主编</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/64.png" alt="64"></p>
+<h3 id="抽象设计"><a href="#抽象设计" class="headerlink" title="抽象设计"></a>抽象设计</h3><ul>
+<li>把战略转向设计概念</li>
+<li>主要负责结构层</li>
+<li>有时负责范围和框架层</li>
+<li>头衔：<ul>
+<li>信息架构师</li>
+<li>交互设计师</li>
+<li>界面专家</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/65.png" alt="65"></p>
+<h3 id="技术执行"><a href="#技术执行" class="headerlink" title="技术执行"></a>技术执行</h3><ul>
+<li>有策略地执行技术战略</li>
+<li>可能要组合很多职能：从编码到整合到测试</li>
+<li>头衔：<ul>
+<li>软件工程师</li>
+<li>HTML开发者</li>
+<li>QA测试员</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/66.png" alt="66"></p>
+<h3 id="内容制作"><a href="#内容制作" class="headerlink" title="内容制作"></a>内容制作</h3><ul>
+<li>有策略地执行内容战略</li>
+<li>搜集，编辑，生产和部署内容（不仅是文本）</li>
+<li>头衔：<ul>
+<li>内容制作人</li>
+<li>作者</li>
+<li>编辑</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/67.png" alt="67"></p>
+<h3 id="视觉设计"><a href="#视觉设计" class="headerlink" title="视觉设计"></a>视觉设计</h3><ul>
+<li>有策略地实现抽象设计</li>
+<li>主要负责外观层</li>
+<li>有时负责框架和结构层</li>
+<li>头衔：<ul>
+<li>界面设计师</li>
+<li>视觉设计师</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/68.png" alt="68"></p>
+<h3 id="项目管理"><a href="#项目管理" class="headerlink" title="项目管理"></a>项目管理</h3><ul>
+<li>将所有策略能力绑定</li>
+<li>在小型组织里常常忽略</li>
+<li>头衔：<ul>
+<li>制作人</li>
+<li>项目管理</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/69.png" alt="69"></p>
+<h3 id="九大支柱-1"><a href="#九大支柱-1" class="headerlink" title="九大支柱"></a>九大支柱</h3><ul>
+<li>不是一个九人小组</li>
+<li>也不是一个九项步骤的过程</li>
+<li>应该正确结合两者并深入进去研究</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/70.png" alt="70">　</p>
+<h3 id="以上这些都是关于什么呢？"><a href="#以上这些都是关于什么呢？" class="headerlink" title="以上这些都是关于什么呢？"></a>以上这些都是关于什么呢？</h3><ul>
+<li>开发前要做计划</li>
+<li>对于你所有选择要有清晰的理由</li>
+<li>清楚明确地表达</li>
+<li>做人们喜爱的东西</li>
+</ul>
+<p><img src="/images/blog/user-experience/ppt/71.png" alt="71">　
+　　</p>
+<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><p><img src="/images/blog/user-experience/ppt/72.png" alt="72">　</p>
+<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><p><a href="http://cuikai-wh.com/about" target="_blank" rel="noopener">@小轰同学</a>-<a href="http://cuikai-wh.com/wp-content/uploads/2011/01/elements-of-ue-v1.png" target="_blank" rel="noopener">用户体验的要素-1.0版思维导图整合版本</a></p>
+<p><a href="http://www.adaptivepath.com/events/workshops/businessofux/elements0803.pdf" target="_blank" rel="noopener">Jesse James Garrett在adaptive path的演讲 – 用户体验的要素</a></p>
+<p><a href="http://www.jjg.net/ia/visvocab/chinese.html" target="_blank" rel="noopener">描绘信息架构和交换设计的图示词汇表</a></p>
+<p><a href="http://www.jjg.net/elements/pdf/elements.pdf" target="_blank" rel="noopener">The Elements of User Experience</a></p>
+<p><a href="http://ww3.sinaimg.cn/large/64945e3dtw1djew0x37yng.gif" target="_blank" rel="noopener">产品设计-概念图</a></p>
+<p><a href="http://ww3.sinaimg.cn/large/6694d7c8jw1duyly18i1mg.gif" target="_blank" rel="noopener">如何留住你的用户？设计你的用户体验流</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/product/" rel="tag"># product</a>
+          
+            <a href="/tags/thinking/" rel="tag"># thinking</a>
+          
+            <a href="/tags/user-experience/" rel="tag"># user experience</a>
+          
+            <a href="/tags/UE/" rel="tag"># UE</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/21/maven-Javadoc-plugin-in-java8-exception-resolution/" rel="next" title="Java8环境下的Maven javadoc插件的配置">
+                <i class="fa fa-chevron-left"></i> Java8环境下的Maven javadoc插件的配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/24/the-six-thinking-hats/" rel="prev" title="利用“六顶思考帽”优化会议效率">
+                利用“六顶思考帽”优化会议效率 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <p class="site-author-name" itemprop="name">Tony Deng</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tonydeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wolfdeng" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/tonydeng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-global"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是用户体验"><span class="nav-number">1.</span> <span class="nav-text">什么是用户体验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#影响用户体验的因素"><span class="nav-number">2.</span> <span class="nav-text">影响用户体验的因素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户体验的要素"><span class="nav-number">3.</span> <span class="nav-text">用户体验的要素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录：Jesse-James-Garrett关于用户体验要素的演讲"><span class="nav-number">4.</span> <span class="nav-text">附录：Jesse James Garrett关于用户体验要素的演讲</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户体验的要素-1"><span class="nav-number">4.1.</span> <span class="nav-text">用户体验的要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#认识用户体验的要素"><span class="nav-number">4.2.</span> <span class="nav-text">认识用户体验的要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#史上最差的一些电影"><span class="nav-number">4.3.</span> <span class="nav-text">史上最差的一些电影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#究竟谁应该受到指责呢？"><span class="nav-number">4.4.</span> <span class="nav-text">究竟谁应该受到指责呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果把产品也看做是人"><span class="nav-number">4.5.</span> <span class="nav-text">如果把产品也看做是人</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以用户为中心的设计"><span class="nav-number">4.6.</span> <span class="nav-text">以用户为中心的设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户体验关注什么？"><span class="nav-number">4.7.</span> <span class="nav-text">用户体验关注什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外观层"><span class="nav-number">4.8.</span> <span class="nav-text">外观层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架层"><span class="nav-number">4.9.</span> <span class="nav-text">框架层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构层"><span class="nav-number">4.10.</span> <span class="nav-text">结构层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范围层"><span class="nav-number">4.11.</span> <span class="nav-text">范围层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#战略层"><span class="nav-number">4.12.</span> <span class="nav-text">战略层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户体验要素的五大层级"><span class="nav-number">4.13.</span> <span class="nav-text">用户体验要素的五大层级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扫除一些名词障碍"><span class="nav-number">4.14.</span> <span class="nav-text">扫除一些名词障碍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网站的二元性：作为信息源的网站"><span class="nav-number">4.15.</span> <span class="nav-text">网站的二元性：作为信息源的网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网站的二元性：作为软件应用的网站"><span class="nav-number">4.16.</span> <span class="nav-text">网站的二元性：作为软件应用的网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网站基本的二元性"><span class="nav-number">4.17.</span> <span class="nav-text">网站基本的二元性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#战略层-1"><span class="nav-number">4.18.</span> <span class="nav-text">战略层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户需求"><span class="nav-number">4.19.</span> <span class="nav-text">用户需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户调研"><span class="nav-number">4.20.</span> <span class="nav-text">用户调研</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户细分"><span class="nav-number">4.21.</span> <span class="nav-text">用户细分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户模型"><span class="nav-number">4.22.</span> <span class="nav-text">用户模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网站目的"><span class="nav-number">4.23.</span> <span class="nav-text">网站目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成功的度量流量"><span class="nav-number">4.24.</span> <span class="nav-text">成功的度量流量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范围层-1"><span class="nav-number">4.25.</span> <span class="nav-text">范围层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能说明"><span class="nav-number">4.26.</span> <span class="nav-text">功能说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容需求"><span class="nav-number">4.27.</span> <span class="nav-text">内容需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跟进文档"><span class="nav-number">4.28.</span> <span class="nav-text">跟进文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构层-1"><span class="nav-number">4.29.</span> <span class="nav-text">结构层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交互设计"><span class="nav-number">4.30.</span> <span class="nav-text">交互设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息架构"><span class="nav-number">4.31.</span> <span class="nav-text">信息架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自上而下-VS-自下而上"><span class="nav-number">4.32.</span> <span class="nav-text">自上而下 VS 自下而上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自上而下-VS-自下而上-1"><span class="nav-number">4.33.</span> <span class="nav-text">自上而下 VS 自下而上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档结构"><span class="nav-number">4.34.</span> <span class="nav-text">文档结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架层-1"><span class="nav-number">4.35.</span> <span class="nav-text">框架层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息设计"><span class="nav-number">4.36.</span> <span class="nav-text">信息设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Google-Maps的例子"><span class="nav-number">4.37.</span> <span class="nav-text">Google Maps的例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#界面设计"><span class="nav-number">4.38.</span> <span class="nav-text">界面设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导航设计"><span class="nav-number">4.39.</span> <span class="nav-text">导航设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线框图"><span class="nav-number">4.40.</span> <span class="nav-text">线框图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外观层-1"><span class="nav-number">4.41.</span> <span class="nav-text">外观层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配色"><span class="nav-number">4.42.</span> <span class="nav-text">配色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字体"><span class="nav-number">4.43.</span> <span class="nav-text">字体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户体验的要素-2"><span class="nav-number">4.44.</span> <span class="nav-text">用户体验的要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要素的应用举例"><span class="nav-number">4.45.</span> <span class="nav-text">要素的应用举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以搜索引擎为例"><span class="nav-number">4.46.</span> <span class="nav-text">以搜索引擎为例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#战略层-2"><span class="nav-number">4.47.</span> <span class="nav-text">战略层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范围层-2"><span class="nav-number">4.48.</span> <span class="nav-text">范围层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构层-2"><span class="nav-number">4.49.</span> <span class="nav-text">结构层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架层-2"><span class="nav-number">4.50.</span> <span class="nav-text">框架层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外观层-2"><span class="nav-number">4.51.</span> <span class="nav-text">外观层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提出正确的问题"><span class="nav-number">4.52.</span> <span class="nav-text">提出正确的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#马拉松和短距离冲刺"><span class="nav-number">4.53.</span> <span class="nav-text">马拉松和短距离冲刺</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回答出反对的理由"><span class="nav-number">4.54.</span> <span class="nav-text">回答出反对的理由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回答出反对的理由-1"><span class="nav-number">4.55.</span> <span class="nav-text">回答出反对的理由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#该避免犯的错误"><span class="nav-number">4.56.</span> <span class="nav-text">该避免犯的错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#瀑布式是危险的"><span class="nav-number">4.57.</span> <span class="nav-text">瀑布式是危险的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代式发展"><span class="nav-number">4.58.</span> <span class="nav-text">迭代式发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#职责"><span class="nav-number">4.59.</span> <span class="nav-text">职责</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九大支柱"><span class="nav-number">4.60.</span> <span class="nav-text">九大支柱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户调研-1"><span class="nav-number">4.61.</span> <span class="nav-text">用户调研</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#站点战略"><span class="nav-number">4.62.</span> <span class="nav-text">站点战略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技术战略"><span class="nav-number">4.63.</span> <span class="nav-text">技术战略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容战略"><span class="nav-number">4.64.</span> <span class="nav-text">内容战略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象设计"><span class="nav-number">4.65.</span> <span class="nav-text">抽象设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技术执行"><span class="nav-number">4.66.</span> <span class="nav-text">技术执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容制作"><span class="nav-number">4.67.</span> <span class="nav-text">内容制作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视觉设计"><span class="nav-number">4.68.</span> <span class="nav-text">视觉设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目管理"><span class="nav-number">4.69.</span> <span class="nav-text">项目管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九大支柱-1"><span class="nav-number">4.70.</span> <span class="nav-text">九大支柱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以上这些都是关于什么呢？"><span class="nav-number">4.71.</span> <span class="nav-text">以上这些都是关于什么呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结束"><span class="nav-number">4.72.</span> <span class="nav-text">结束</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考："><span class="nav-number">5.</span> <span class="nav-text">参考：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2005 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Deng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

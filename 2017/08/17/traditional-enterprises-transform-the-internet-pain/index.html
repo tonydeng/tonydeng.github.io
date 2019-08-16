@@ -1,0 +1,1050 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="传统企业 转型 转型互联网 转型互联网之痛 传统企业转型互联网">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="最近几年的确有很多原来传统行业的企业都在做一件事情，就是拥抱互联网。这些企业都希望能够进入这个在中国发展只有20年（1996年-2017年），但是却制造了太多奇迹和富豪的行业。尤其是国家全面提出了“互联网+”这个概念，所有的人都蜂拥而至，貌似如果再不和这个奇妙的“Internet”建立联系，就会被整个时代所抛弃。 我这几年也一直在一家传统医疗器械出身的互联网医疗公司负责产品和技术相关的工作，最近也">
+<meta name="keywords" content="传统企业 转型 转型互联网 转型互联网之痛 传统企业转型互联网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈传统企业转型互联网">
+<meta property="og:url" content="http://tonydeng.github.io/2017/08/17/traditional-enterprises-transform-the-internet-pain/index.html">
+<meta property="og:site_name" content="TonyDeng&#39;s Blog">
+<meta property="og:description" content="最近几年的确有很多原来传统行业的企业都在做一件事情，就是拥抱互联网。这些企业都希望能够进入这个在中国发展只有20年（1996年-2017年），但是却制造了太多奇迹和富豪的行业。尤其是国家全面提出了“互联网+”这个概念，所有的人都蜂拥而至，貌似如果再不和这个奇妙的“Internet”建立联系，就会被整个时代所抛弃。 我这几年也一直在一家传统医疗器械出身的互联网医疗公司负责产品和技术相关的工作，最近也">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/traditional-enterprises-transform-the-internet-pain/change.png">
+<meta property="og:updated_time" content="2019-06-20T12:10:27.479Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈传统企业转型互联网">
+<meta name="twitter:description" content="最近几年的确有很多原来传统行业的企业都在做一件事情，就是拥抱互联网。这些企业都希望能够进入这个在中国发展只有20年（1996年-2017年），但是却制造了太多奇迹和富豪的行业。尤其是国家全面提出了“互联网+”这个概念，所有的人都蜂拥而至，貌似如果再不和这个奇妙的“Internet”建立联系，就会被整个时代所抛弃。 我这几年也一直在一家传统医疗器械出身的互联网医疗公司负责产品和技术相关的工作，最近也">
+<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/traditional-enterprises-transform-the-internet-pain/change.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tonydeng.github.io/2017/08/17/traditional-enterprises-transform-the-internet-pain/">
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+
+
+  <title> 浅谈传统企业转型互联网 | TonyDeng's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80673215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43d979b191269e68beffa09e2d17a081";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TonyDeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">“In me the tiger sniffes the rose.” -- Siegfried Sasson</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ppts">
+          <a href="/ppts" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            PPT
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gitbook">
+          <a href="/gitbook-zh" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            GitBook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2017/08/17/traditional-enterprises-transform-the-internet-pain/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                浅谈传统企业转型互联网
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-17T11:34:59+08:00">
+                2017-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/管理/" itemprop="url" rel="index">
+                    <span itemprop="name">管理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/blog/traditional-enterprises-transform-the-internet-pain/change.png" alt><br>最近几年的确有很多原来传统行业的企业都在做一件事情，就是<strong>拥抱互联网</strong>。这些企业都希望能够进入这个在中国发展只有20年（1996年-2017年），但是却制造了太多奇迹和富豪的行业。尤其是国家全面提出了“互联网+”这个概念，所有的人都蜂拥而至，貌似如果再不和这个奇妙的“Internet”建立联系，就会被整个时代所抛弃。</p>
+<p>我这几年也一直在一家传统医疗器械出身的互联网医疗公司负责产品和技术相关的工作，最近也和一些在类似从传统企业转型到互联网的老板们、管理者及员工聊在互联网转型过程中的一些事情，其中发现了很多共同的困境和痛苦。</p>
+<p>下面就简单聊聊，我在这方面的一些思考。</p>
+<a id="more"></a>
+
+<p>传统企业进行互联网转型很多时候是这样的，我用一个故事来描述一下。</p>
+<h2 id="卖袜子小贩的互联网造梦记"><a href="#卖袜子小贩的互联网造梦记" class="headerlink" title="卖袜子小贩的互联网造梦记"></a>卖袜子小贩的互联网造梦记</h2><blockquote>
+<p>一个卖袜子的小贩，之前生意做的也不错，但是同一个市场上的卖内衣裤的小贩将他们的商品放在电子商务网站上面卖的非常好，一个月的利润翻了几番，大家都在报道卖内衣裤的小贩，说他引领传统行业转型互联网的潮流。<br>卖袜子的小贩很眼红卖内衣裤的小贩所获得的利润和名声，心想：“不就是将做一个买东西的网站，并且将商品放上去销售吗？多么easy的事情，我也能干，还能比那个卖内衣裤的小子做的更好，我不仅仅只是要将袜子放在网站上卖，而且还要自己做一个卖袜子的网站，让所有卖袜子的其他小贩也使用我的网站，创造一个伟大的袜子电商公司。”</p>
+<p>小贩于是雇了一个写代码的做了一个卖袜子的网站。几个月之后，卖袜子的网站上线了，小贩的袜子也把他的袜子放在自己的网站上进行销售。<br>小贩认为有了网站，袜子就自然可以卖出去了，就可以是伟大的电子商务了，就可以收获到比卖内衣裤的小贩更大的利润和名声，。<br>写代码的也天天翻着Nginx、Java、MySQL、Redis等等一系列技术文档，朝着一个伟大的电子商务网站的方向努力。</p>
+</blockquote>
+<blockquote>
+<p>网站上线之后，小贩天天等着人来网站上买袜子，然而并没有人来这个网站上买袜子。<br>然而，这个伟大的电子商务网站，并没有给小贩带来想象中的收益，更别提名声了。</p>
+<p>小贩就觉得应该是网站上的功能并不够吸引人，于是让写代码的加着或者抄着其他网站各种奇怪的功能。写代码的也一味听着迎合小贩的想法，并且痛苦的实现着小贩的各种功能。</p>
+</blockquote>
+<blockquote>
+<p>过了几个月之后，小贩发现他这个卖袜子的网站依然没有给带来想象中的收益，反而是由于他将之前的积蓄和大部分的精力投入到网站建设中，他原来在市场上的销售下降了，马上就面临资金链断掉的问题。<br>小贩思考良久，将所有的问题都推到写代码的身上，因为别人也是在网上卖内衣裤，卖的就非常好。但是他的卖袜子网站就没有人光顾，肯定是写代码的做的网站不够好，不够吸引人。<br>于是他愤愤炒掉了那个写代码的，心痛的关掉了网站，感叹着“都是这个写代码的没有做好，害的我赔了夫人又折兵。互联网是一个吸血狂魔，以后一定要离它远远的。”</p>
+</blockquote>
+<h2 id="卖袜子小贩故事后面的思考"><a href="#卖袜子小贩故事后面的思考" class="headerlink" title="卖袜子小贩故事后面的思考"></a>卖袜子小贩故事后面的思考</h2><p>上面这个卖袜子小贩的故事，大家发现了一些什么问题吗？</p>
+<p>小贩是业务的主导，在他的眼中，写代码的是小贩用来生产网站的工具。小贩可能很懂得如何在他之前市场中如何销售袜子，知道来市场上买袜子的人要什么，他以为将袜子简单的放在网站上就可以轻松的将袜子卖给更多人，但是这些买袜子的人怎么来？这些人在哪儿？原来的市场和网站之间的关系和差异是什么？这些都问题他都不了解。结果可想而知，这件事情肯定是以失败而告终。</p>
+<p>小贩和写代码的失败的原因就是业务和工具没有结合。小贩只是看到了卖内衣裤的成功案例，并不了解网站是一个什么样的工具？现在是否有一些什么样的工具可以把他的袜子展示更生动，更加吸引顾客来购买？不清楚如何通过什么样的推广方式，让更多人了解到可以在他的网站上可以购买到适合的袜子？</p>
+<p>硅谷最近这几年更愿意投资公司的合伙人模式基本上都是“企业家+教授”模式，因为世界上任何一个成功的公司，尤其是互联网公司，背后一定是<strong>一群既懂得运营，又明白如何利用技术的业务和一群懂得驱动业务的技术大神们的故事</strong>。上述的组合其实指的是业务（商业）和工具（技术）要很好的结合，才能产生颠覆行业现状的新产品。</p>
+<p>传统行业与互联网结合本质上来说是对原来行业的其他公司进行一个<strong>升维攻击</strong>，把原来这个行业大家血腥厮杀的战场从传统战场转到互联网战场，但是不同的战场就好比不同的世界，参与者必须要了解这个世界的运行规则，要不然还没有开始战斗就会在这个新世界中“水土不服”。</p>
+<h2 id="互联网本质"><a href="#互联网本质" class="headerlink" title="互联网本质"></a>互联网本质</h2><h3 id="互联网不是什么"><a href="#互联网不是什么" class="headerlink" title="互联网不是什么"></a>互联网不是什么</h3><p>既然要和互联网结合，那互联网本质是什么？<a href="https://baike.baidu.com/item/%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E6%9C%AC%E8%B4%A8" target="_blank" rel="noopener">百度百科</a>上也有很多大佬们给出相应的解释。</p>
+<p>但我想，互联网不只是搜索、下载、游戏、电子商务、社交网络、移动终端、可穿戴设备、智能家居……这些只是互联网产品。</p>
+<p>也不是只有自由、分享、开放、免费、痛点、体验、参与、去中心化、颠覆传统、持续创新……这只是互联网精神。</p>
+<p>甚至也不是生态系统、个性定制、快速迭代、云计算、大数据、人工智能……这些知识互联网技术。</p>
+<p>互联网，起于信息，基于计算机网络技术，创造了互联网产业，深刻的改变了社会的方方面面，但这背后，应当有某种更本质的东西造就了这一切。</p>
+<h3 id="回顾过去"><a href="#回顾过去" class="headerlink" title="回顾过去"></a>回顾过去</h3><p>游牧时代 -&gt; 农业时代 -&gt; 工业时代 -&gt; 信息时代，这种划分标准是产业形态，产业是人类社会的根本。</p>
+<p>农业时代以动植物养殖技术获得比游牧时代更稳定的食物来源。<br> %&gt;%<br>工业时代利用了机器和化石能源，创造出大工业，制造出农业社会所不能想象的无数产品。工业一直在改造农业，如果有一天工业生产用人工合成物取代了动植物产品，则农业将会消亡。</p>
+<p>信息时代（互联网时代） 目前看来是以信息为生产对象，算是第三产业服务业的一部分。这本不该是什么巨变，自古人类社会就有信息的流通网络。然而计算机信息居然极大改变了世界，影响了工业和农业以及大量的服务业，独自成为这个时代的标志。</p>
+<p>而且，如同农业吞并牧业，工业改造农业，互联网也对工业进行改造，虽然刚刚开始。</p>
+<h3 id="互联网本质是人脑的延伸"><a href="#互联网本质是人脑的延伸" class="headerlink" title="互联网本质是人脑的延伸"></a>互联网本质是人脑的延伸</h3><p>我想，互联网的本质应当来源于人的本质。</p>
+<p>意识和物质世界的二元对立，是人类眼中的世界最大的对立。</p>
+<p><strong>人的本质就是大脑中意识</strong>。思想，灵魂，精神，自由意志，自我意识，也可以认为是一种程序软件。有些科学家认为，人类的意识就是人脑中的程序，换一个类似人脑的电脑载体，把程序拷进去，人依然还是人。</p>
+<p>人的本质就在于灵魂，灵魂就是算法和信息。</p>
+<p>人脑的意识通过感官获取信息，通过信息进行思想，意识也是一种信息。而互联网最基本的功能就是传递信息进入大脑，因此，信息互联网就是人脑的延伸，正如机器是身体的延伸。</p>
+<p>而且，同样为信息而生，互联网和人类的大脑非常像，人脑内部的神经网络就仿佛一个互联网，神经元的联网形成了人的自我意识，人和人的联网形成了社会，电脑和电脑联网形成了现在的信息互联网。科学家已经在模拟人脑了。见 <a href="http://www.guokr.com/article/403444/" target="_blank" rel="noopener">Spaun：最逼真的人工大脑IBM:用超级计算机模拟人脑</a></p>
+<p><strong>互联网的本质就是对人脑的延伸，从内容到形式都是。</strong></p>
+<p>从整个社会发展的过程来看，<strong>社会发展的趋势是追求生产力的高效和强大</strong>。 追求生产力的高效和强大必然会要求产业和社会的协调统一，互联网就实现人类社会协调统一的重要工具。</p>
+<h2 id="互相抱怨的农夫和铁匠"><a href="#互相抱怨的农夫和铁匠" class="headerlink" title="互相抱怨的农夫和铁匠"></a>互相抱怨的农夫和铁匠</h2><p>我们再来看另外一个农夫和铁匠的故事</p>
+<blockquote>
+<p>农夫拿着铁匠打造的镰刀年复一年的收割庄稼，农夫不停的对铁匠提出关于镰刀的需求，“不够锋利”，“再做大一点”，“做长一点”等等。铁匠也在每天不停抱怨需求不合理，“你根本不懂镰刀是怎么打出来的，还没有磨快，就叫我打大一点，你到底想怎么样？”。</p>
+<p>但是，铁匠还是每天在敲打这他的铁锤打着那把镰刀，抱怨多于思考。铁匠更多时候想的是换一个农夫，去给另一个农夫打镰刀，可能会不被挨骂。</p>
+<p>而农夫依然在用者他的那把镰刀不停的收割庄稼，心里想的永远是要把铁匠换掉。因为他觉得是他收割的粮食养活着这个铁匠，但是铁匠却不能给他提供更好的镰刀，让他在收割庄稼时能够省点力气，费力、费时又费钱，挺不靠谱的。</p>
+<p>这样日复一日，年复一年，农夫和铁匠一直这样互相抱怨、互相“折磨”的收割庄稼、打造镰刀。镰刀是越来越大，需要收割农田也越来越多，两人都累的要死。</p>
+</blockquote>
+<blockquote>
+<p>终于有一天有人开来一台收割机，此时农夫和铁匠只能在旁边看着这台收割机一天之内，把他们需要一个月收割的农田都收割完了。他们目惊口呆，互相望了一眼，异口同声的说，我们之前怎么没有想到这个东西？当他们现在想到了这样的工具和收割方式，但是农田已经和他们没有关系了。</p>
+</blockquote>
+<p>这个故事虽然比较简短，相信大家也在这个故事中看到了一些东西。</p>
+<h2 id="农夫和铁匠故事的思考"><a href="#农夫和铁匠故事的思考" class="headerlink" title="农夫和铁匠故事的思考"></a>农夫和铁匠故事的思考</h2><p>从故事上看，是收割机淘汰了这名农夫和铁匠。那我们来分析一下，收割机是怎么出现的？农夫每天的工作方式有没有可能提出一个要收割机的需求？正常分析来说不可能，因为他每天最核心的工作是在和庄稼的较量，更懂得是庄稼如何生长的，但并不会像镰刀怎么造出来的，也不会去弄明白使用镰刀是不是最合理的收割方式（当然，如果这个农夫见过收割机就另当别论，但是可能只是逼着铁匠打出一个很像收割机的镰刀而已）。</p>
+<p>每天打造镰刀的铁匠可不可能做出一个收割机呢？也不可能。因为他每天的核心工作永远是锤子和铁，并没有关心锄头被怎么使用，也不知道庄稼是如何被收割的。</p>
+<p>但是如果他们是互相渗透合作，倒是有可能做出收割机。可是实际上，从农夫的角度认为铁匠只是给他造工具的人，他自己才是一切。从铁匠的角度，农夫只是一个每天折磨他的魔鬼，让他不停的敲打这把锄头，而且他本身也忘记了做这个锄头的目的是什么？只是一味的迎合云顶的要求，没有更多的思索。此时铁匠只是农夫的一个工具，这就好比<strong>农夫是业务，铁匠好比技术</strong>。此时两者都是失败者，因为生产力的革命是不会停下来的，总有一天会有另一帮人带着更先进的方式来接替他们的工作。</p>
+<p>当然，有人可能会说，农夫为什么不给铁匠更多时间去思考，提出更合理的需求，更平等的地位，但是这真是问题的全部吗？仔细想想其实不然。农夫只是一味的想着用<strong>已知的方式</strong>收割庄稼（就是那把镰刀），并不懂镰刀是怎么做出来的，更不懂如何换一种方式去收割庄稼。</p>
+<p>那这样看<strong>农夫不是一个好业务</strong>。他没有合理的重组和整合资源。</p>
+<p>我们在来看看铁匠，是不是这个铁匠只是遇到了一个不懂事的农夫，而没有造出那个收割机？我觉得也不仅仅是这样，因为他也从来没有想过农夫是怎么来收割庄稼，镰刀是不是收割庄稼最好的工具。</p>
+<p><strong>铁匠也不是一个好技术</strong>，因为他没有真正的运用好、制造好工具。</p>
+<blockquote>
+<p>其实最可怜的是那个镰刀，它只是一个原始的工具，永远没有进化的机会。</p>
+</blockquote>
+<h2 id="传统企业如何和互联网结合？"><a href="#传统企业如何和互联网结合？" class="headerlink" title="传统企业如何和互联网结合？"></a>传统企业如何和互联网结合？</h2><p>对于传统企业来说，互联网本质上就是一个工具。</p>
+<p>通过农夫和铁匠的故事分析，可以大概明白了，业务、技术、工具三者之间的关系：<strong>业务与技术充分合作，制造出了工具，并在过程中不停升级进化工具，这样最终提升的是生产力，并在生产力的推动下，不停革着旧生产力的命</strong>。</p>
+<p>这样生产力的革命电费原有行业的例子还有很多，比如之前通过电话来叫出租车，这样的平台也很多，也活的很好。业务每天经营着他的电话，技术支撑着这个电话系统，其乐融融。但是在各大打车应用大行其道的今天，这些电话叫车的平台又在哪里？</p>
+<p>还有几年前有很多饭店也在做自己的订餐网站，自己送的并不快的外餐。一样在各大外卖平台的今天，这些小订餐网站去哪儿了？</p>
+<p>无不证明了一件事情，一个行业通过与技术的结合，产生的具体生产力正在颠覆着这个行业。</p>
+<p>而传统企业希望和互联网结合的目的也是为了通过互联网这样的一个新的技术和工具来颠覆原来行业，那就要考虑好传统业务如何和互联网技术整合，那必须要有一群懂的传统业务，同时也懂得互联网如何来运营、如何来工作的人，一起紧密结合来共同创造一个新的生态体系。</p>
+<p>比如我们来看看淘宝，淘宝真正的业务是淘宝的产品团队做的平台系统规划和实现。各个淘宝的店主正在这样的技术和业务之上做着他们的业务。微店等大量的平台级的应用也是如此。</p>
+<p>真正的技术和业务并不是小贩和他的程序员们，而是构建这个平台后面的技术和业务们。试想一下，如果这样的大平台是用这样的小贩和他的程序员们的方式可以做出来的吗？这不正是技术加业务提升了生产力之后对原生产力的革命吗（农夫铁匠的故事也是一样）？</p>
+<p>所以，在我看来，传统企业和互联网结合其实是一个已经成型的企业如何拥抱新的技术，新的工具的过程，是这个企业持续迭代的过程。<strong>任何一个产生生产力革命的行业一定是由业务和技术结合而产生的，但是革命之后也许有可能又回到新的“农夫和铁匠”的故事中</strong>。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/转型/" rel="tag"># 转型</a>
+          
+            <a href="/tags/互联网/" rel="tag"># 互联网</a>
+          
+            <a href="/tags/创业/" rel="tag"># 创业</a>
+          
+            <a href="/tags/产品/" rel="tag"># 产品</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/07/six-key-ability-of-managers/" rel="next" title="管理者的六项关键能力">
+                <i class="fa fa-chevron-left"></i> 管理者的六项关键能力
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/31/git-common-branch-management-practices/" rel="prev" title="Git常见分支管理实践">
+                Git常见分支管理实践 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <p class="site-author-name" itemprop="name">Tony Deng</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tonydeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wolfdeng" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/tonydeng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-global"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#卖袜子小贩的互联网造梦记"><span class="nav-number">1.</span> <span class="nav-text">卖袜子小贩的互联网造梦记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#卖袜子小贩故事后面的思考"><span class="nav-number">2.</span> <span class="nav-text">卖袜子小贩故事后面的思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#互联网本质"><span class="nav-number">3.</span> <span class="nav-text">互联网本质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#互联网不是什么"><span class="nav-number">3.1.</span> <span class="nav-text">互联网不是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回顾过去"><span class="nav-number">3.2.</span> <span class="nav-text">回顾过去</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#互联网本质是人脑的延伸"><span class="nav-number">3.3.</span> <span class="nav-text">互联网本质是人脑的延伸</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#互相抱怨的农夫和铁匠"><span class="nav-number">4.</span> <span class="nav-text">互相抱怨的农夫和铁匠</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#农夫和铁匠故事的思考"><span class="nav-number">5.</span> <span class="nav-text">农夫和铁匠故事的思考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传统企业如何和互联网结合？"><span class="nav-number">6.</span> <span class="nav-text">传统企业如何和互联网结合？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2005 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Deng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

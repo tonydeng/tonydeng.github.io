@@ -1,0 +1,1038 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="tesseract, 图片文字识别">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="一直以来都想尝试一下图片的中文识别，直到最近才有点空闲时间，主要目的是证实一下到底可不可行，正确率能否达到 95% 以上。自己从头写起十分费时间，因为图片处理很麻烦，所以我选用了Tesseract OCR。 所谓 OCR(Optical Character Recognition)是指对文本资料进行扫描，然后对图像文件进行分析处理，获取文字和版面信息的过程。OCR是图像识别领域中的一个子领域，该">
+<meta name="keywords" content="tesseract, 图片文字识别">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用Tesseract图片文字识别初探">
+<meta property="og:url" content="http://tonydeng.github.io/2016/07/28/on-the-use-of-tesseract-picture-text-recognition/index.html">
+<meta property="og:site_name" content="TonyDeng&#39;s Blog">
+<meta property="og:description" content="一直以来都想尝试一下图片的中文识别，直到最近才有点空闲时间，主要目的是证实一下到底可不可行，正确率能否达到 95% 以上。自己从头写起十分费时间，因为图片处理很麻烦，所以我选用了Tesseract OCR。 所谓 OCR(Optical Character Recognition)是指对文本资料进行扫描，然后对图像文件进行分析处理，获取文字和版面信息的过程。OCR是图像识别领域中的一个子领域，该">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/tesseract-to-pages.png">
+<meta property="og:image" content="http://linusp.github.io/assets/img/tesseract.gif">
+<meta property="og:updated_time" content="2019-06-20T12:10:27.476Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用Tesseract图片文字识别初探">
+<meta name="twitter:description" content="一直以来都想尝试一下图片的中文识别，直到最近才有点空闲时间，主要目的是证实一下到底可不可行，正确率能否达到 95% 以上。自己从头写起十分费时间，因为图片处理很麻烦，所以我选用了Tesseract OCR。 所谓 OCR(Optical Character Recognition)是指对文本资料进行扫描，然后对图像文件进行分析处理，获取文字和版面信息的过程。OCR是图像识别领域中的一个子领域，该">
+<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/tesseract-to-pages.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tonydeng.github.io/2016/07/28/on-the-use-of-tesseract-picture-text-recognition/">
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+
+
+  <title> 利用Tesseract图片文字识别初探 | TonyDeng's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80673215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43d979b191269e68beffa09e2d17a081";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TonyDeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">“In me the tiger sniffes the rose.” -- Siegfried Sasson</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ppts">
+          <a href="/ppts" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            PPT
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gitbook">
+          <a href="/gitbook-zh" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            GitBook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2016/07/28/on-the-use-of-tesseract-picture-text-recognition/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                利用Tesseract图片文字识别初探
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-28T08:58:19+08:00">
+                2016-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/效率/" itemprop="url" rel="index">
+                    <span itemprop="name">效率</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/blog/tesseract-to-pages.png" alt="tesseract-to-pages"></p>
+<p>一直以来都想尝试一下图片的中文识别，直到最近才有点空闲时间，主要目的是证实一下到底可不可行，正确率能否达到 95% 以上。自己从头写起十分费时间，因为图片处理很麻烦，所以我选用了<code>Tesseract OCR</code>。</p>
+<p>所谓 <code>OCR</code>(Optical Character Recognition)是指对文本资料进行扫描，然后对图像文件进行分析处理，获取文字和版面信息的过程。<code>OCR</code>是图像识别领域中的一个子领域，该领域专注于对图片中的文字信息进行识别并转换成能被常规文本编辑器编辑的文本。</p>
+<a id="more"></a>
+<h2 id="Tesseract介绍"><a href="#Tesseract介绍" class="headerlink" title="Tesseract介绍"></a>Tesseract介绍</h2><p><code>Tesseract</code>(/‘tesərækt/) 这个词的意思是”超立方体”，指的是几何学里的四维标准方体，又称”正八胞体”，是一款被广泛使用的开源 <code>OCR</code> 工具。</p>
+<p><img src="http://linusp.github.io/assets/img/tesseract.gif" alt="tesseract"></p>
+<p><code>Tesseract</code> 已经有 30 年历史，开始它是惠普实验室于1985年开始研发的一款专利软件，到1995年一件成为OCR业界内最准确的识别引擎之一。然而，HP不久便决定放弃OCR业务，<code>Tesseract</code>从此尘封。数年之后，HP意识到与其将Tesseract束之高阁，还不如贡献给开源，让其重焕新生。在 2005 年，<code>Tesseract</code>由美国内华达州信息技术研究所获得，并求助于<code>Google</code>对<code>Tesseract</code>进行改进、消除Bug、优化工作，并开源，其后一直由 <code>Google</code> 赞助进行后续的开发和维护。因为其免费与较好的效果，许多的个人开发者以及一些较小的团队在使用着 <code>Tesseract</code> ，诸如验证码识别、车牌号识别等应用中，不难见到 <code>Tesseract</code> 的身影。</p>
+<p>现在<code>Tesseract</code>托管在<code>Github</code>上，大家有兴趣可以上<code>Github</code>上<code>Star</code>或<code>Frok</code><a href="https://github.com/tesseract-ocr/tesseract" target="_blank" rel="noopener">该项目</a>。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="Mac-OSX"><a href="#Mac-OSX" class="headerlink" title="Mac OSX"></a>Mac OSX</h3><p>在<code>Mac</code>上安装<code>Tesseract</code>是一件非常简单的事情，我们还是使用<code>brew</code>来进行安装。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install tesseract</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ tesseract --version</span><br><span class="line">tesseract 3.04.01</span><br><span class="line"> leptonica-1.73</span><br><span class="line">  libjpeg 8d : libpng 1.6.23 : libtiff 4.0.6 : zlib 1.2.5</span><br></pre></td></tr></table></figure>
+
+<p>不过，如果你只是用上述命令来安装Tesseract的话，就会发现，只支持英文，因为它只默认安装了<code>eng</code>的语言包。如果我们需要识别其他的语言该如何来办呢？</p>
+<p>安装指定的语言包：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew intsall tesseract</span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/Cellar/tesseract/&#123;version&#125;/share/tessdata</span><br><span class="line">wget https://github.com/tesseract-ocr/tessdata/raw/master/chi_sim.traineddata</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>brew</code>安装所有语言包：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install tesseract --all-languages</span><br></pre></td></tr></table></figure>
+
+<h3 id="其他平台安装"><a href="#其他平台安装" class="headerlink" title="其他平台安装"></a>其他平台安装</h3><p>更多Tesseract的安装可以查看这儿<a href="https://github.com/tesseract-ocr/tesseract/wiki" target="_blank" rel="noopener">Install Tesseract via pre-built binary package</a>或 <a href="https://github.com/tesseract-ocr/tesseract/wiki/Compiling" target="_blank" rel="noopener">build it from source</a></p>
+<h2 id="命令行使用"><a href="#命令行使用" class="headerlink" title="命令行使用"></a>命令行使用</h2><p>这里只见到讲一下Tesseract识别图像的基本用法，关于训练和开发将来在另开新篇来专门讲述。</p>
+<p>由于Tesseract只提供命令行工具，这里讲的用法对于Linux和Windows平台都适用。</p>
+<p>首先可以通过<code>&quot;--list-langs&quot;</code>来查看哪些可用的“语言”，如果之前的<code>TESSDATA_PREFIX</code>环境变量没有设置错误，将看到这样的输出：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~tesseract --list-langs</span><br><span class="line">List of available languages (107):</span><br><span class="line">afr</span><br><span class="line">amh</span><br><span class="line">ara</span><br><span class="line">asm</span><br><span class="line">aze</span><br><span class="line">aze_cyrl</span><br><span class="line">bel</span><br><span class="line">ben</span><br><span class="line">bod</span><br><span class="line">bos</span><br><span class="line">bul</span><br><span class="line">cat</span><br><span class="line">ceb</span><br><span class="line">ces</span><br><span class="line">chi_sim</span><br><span class="line">chi_tra</span><br><span class="line">chr</span><br><span class="line">cym</span><br><span class="line">dan</span><br><span class="line">.....</span><br></pre></td></tr></table></figure>
+
+<p>大家可以看到，我安装了107个语言包，其中,<code>eng</code>和<code>chi_sim</code>是<code>Tesseract</code>提供的英文和简体中文的语言文件。</p>
+<p>另外，要说明的是，这里的 “语言文件” 的本质是包含了某种 “自然语言” 的文字的特征等辅助识别的一些资源，但像 <code>chi_sim</code> 这个中文简体里也包含了英文字母与阿拉伯数字的资源。而我们也可以为了特定的用途而去训练产生对应的资源，并且可以给这个资源自定义一个名字。</p>
+<p>如果发现以上命令的输出为空，那应该去检查一下 <code>TESSDATA_PREFIX</code> 这个环境变量。在这个环境变量无误且 “语言文件” 存在的情况下，假设我们有一张名为 <code>paper.png</code> 的图片，则通过以下命令对图片进行识别，</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tesseract paper.png paper -l chi_sim</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>第一个参数是待识别的图像的文件名</li>
+<li>第二个参数用于指定输出，如果希望直接输出而不是保存到文件，那么就使用 <code>stdout</code>，否则这个参数将会作为保存结果的文件的前缀</li>
+<li>-l <code>chi_sim</code> 这个应该很好理解，就是用来指定使用哪个 “语言文件”，如果是使用 英文(<code>eng</code>) ，这个参数可以不加，因为默认就是使用英文的 “语言文件” 来进行识别</li>
+</ol>
+<blockquote>
+<p>以上命令如不出错，结果将会保存到 paper.txt 这个文本文件中。</p>
+</blockquote>
+<p>此外 <code>Tesseract</code> 还提供非常丰富的可选参数来对识别过程进行调整，可用的参数及其默认值可以通过以下命令进行查看:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tesseract --<span class="built_in">print</span>-parameters</span><br></pre></td></tr></table></figure>
+
+<p>参数的使用有两种:</p>
+<ul>
+<li>使用 -c 选项来设定单项参数的值，比如:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tesseract paper.png paper -l chi_sim -c language_model_ngram_on=1</span><br></pre></td></tr></table></figure>
+
+<p>允许使用多个 -c 选项来设置多个参数的值。</p>
+<ul>
+<li>将多项参数设置写入文件，然后在识别时使用该文件，比如:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tesseract paper.png paper -l chi_sim tess.conf</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，如果使用配置文件，用作参数的配置文件名要放在最后面——这里也支持多个配置文件，但它们必须要在最后面。假如我有两个配置文件 tess_1.conf 和 tess_2.conf，那么这样是正确的:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tesseract paper.png paper -l chi_sim tess_1.conf tess_2.conf</span><br></pre></td></tr></table></figure>
+
+<p>而这样则是错误的:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tesseract paper.png paper tess_1.conf -l chi_sim tess_2.conf</span><br></pre></td></tr></table></figure>
+
+<p>至于 <code>Tesseract</code> 那些参数各有什么含义，官方没有提供任何文档来进行解释，这里有一个<a href="http://www.sk-spell.sk.cx/tesseract-ocr-parameters-in-302-version" target="_blank" rel="noopener">链接</a>提供了部分参数的用处说明，应该是阅读了 <code>Tesseract</code> 源代码后得到的结论。</p>
+<h2 id="另外"><a href="#另外" class="headerlink" title="另外"></a>另外</h2><p>关于<code>Tesseract</code>的文档，可以查看<a href="http://tesseract-ocr.github.io/index.html" target="_blank" rel="noopener">Tetesseract官方Blog</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tesseact/" rel="tag"># tesseact</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/19/how-the-program-ape-is-coming-to-download-and-process-video/" rel="next" title="看看程序猿是如何来下载和处理视频">
+                <i class="fa fa-chevron-left"></i> 看看程序猿是如何来下载和处理视频
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/05/zsh-plugins-like-fish-shell/" rel="prev" title="为ZSH实现Fish Shell的效果">
+                为ZSH实现Fish Shell的效果 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <p class="site-author-name" itemprop="name">Tony Deng</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tonydeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wolfdeng" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/tonydeng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-global"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tesseract介绍"><span class="nav-number">1.</span> <span class="nav-text">Tesseract介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac-OSX"><span class="nav-number">2.1.</span> <span class="nav-text">Mac OSX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他平台安装"><span class="nav-number">2.2.</span> <span class="nav-text">其他平台安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行使用"><span class="nav-number">3.</span> <span class="nav-text">命令行使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#另外"><span class="nav-number">4.</span> <span class="nav-text">另外</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2005 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Deng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

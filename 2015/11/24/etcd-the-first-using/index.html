@@ -1,0 +1,1101 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="etcd,restful,api,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="之前我们分享过ETCD应用场景，所有的应用场景都需要etcd提供的api来做支撑，所以这次我们就来看看ectd提供的REST API如何来使用。 etcd 2.0之后，规范了端口号的使用，并且写入了IANA组织的标准端口记录。etcd将提供给外部客户端的端口变为2379，而etcd服务间通信的端口变为2380（不过现在依然还是兼容原来4001和7001端口）。">
+<meta name="keywords" content="etcd,restful,api">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初试ETCD">
+<meta property="og:url" content="http://tonydeng.github.io/2015/11/24/etcd-the-first-using/index.html">
+<meta property="og:site_name" content="TonyDeng&#39;s Blog">
+<meta property="og:description" content="之前我们分享过ETCD应用场景，所有的应用场景都需要etcd提供的api来做支撑，所以这次我们就来看看ectd提供的REST API如何来使用。 etcd 2.0之后，规范了端口号的使用，并且写入了IANA组织的标准端口记录。etcd将提供给外部客户端的端口变为2379，而etcd服务间通信的端口变为2380（不过现在依然还是兼容原来4001和7001端口）。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/etcd/etcd-api.png">
+<meta property="og:updated_time" content="2019-06-20T12:10:27.472Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初试ETCD">
+<meta name="twitter:description" content="之前我们分享过ETCD应用场景，所有的应用场景都需要etcd提供的api来做支撑，所以这次我们就来看看ectd提供的REST API如何来使用。 etcd 2.0之后，规范了端口号的使用，并且写入了IANA组织的标准端口记录。etcd将提供给外部客户端的端口变为2379，而etcd服务间通信的端口变为2380（不过现在依然还是兼容原来4001和7001端口）。">
+<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/etcd/etcd-api.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tonydeng.github.io/2015/11/24/etcd-the-first-using/">
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+
+
+  <title> 初试ETCD | TonyDeng's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80673215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43d979b191269e68beffa09e2d17a081";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TonyDeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">“In me the tiger sniffes the rose.” -- Siegfried Sasson</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ppts">
+          <a href="/ppts" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            PPT
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gitbook">
+          <a href="/gitbook-zh" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            GitBook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2015/11/24/etcd-the-first-using/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                初试ETCD
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-24T17:11:55+08:00">
+                2015-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/架构/" itemprop="url" rel="index">
+                    <span itemprop="name">架构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/blog/etcd/etcd-api.png" alt="etcd logo"></p>
+<p>之前我们分享过<a href="/2015/10/19/etcd-application-scenarios/">ETCD应用场景</a>，所有的应用场景都需要etcd提供的api来做支撑，所以这次我们就来看看ectd提供的REST API如何来使用。</p>
+<p>etcd 2.0之后，规范了端口号的使用，并且写入了<a href="http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml" target="_blank" rel="noopener">IANA组织的标准端口记录</a>。etcd将提供给外部客户端的端口变为2379，而etcd服务间通信的端口变为2380（不过现在依然还是兼容原来4001和7001端口）。</p>
+<a id="more"></a>
+<h1 id="安装etcd"><a href="#安装etcd" class="headerlink" title="安装etcd"></a>安装etcd</h1><p>在mac osx下安装依然是非常简单，直接使用下面的命令就可以搞定。</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">➜  ~  brew install etcd</span><br><span class="line">==&gt; Downloading https:<span class="comment">//homebrew.bintray.com/bottles/etcd-2.2.1.el_capitan.bottle.tar.gz</span></span><br><span class="line">Already downloaded: /Library/Caches/Homebrew/etcd-<span class="number">2.2</span>.<span class="number">1</span><span class="selector-class">.el_capitan</span><span class="selector-class">.bottle</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br><span class="line">==&gt; Pouring etcd-<span class="number">2.2</span>.<span class="number">1</span><span class="selector-class">.el_capitan</span><span class="selector-class">.bottle</span><span class="selector-class">.tar</span><span class="selector-class">.gz</span></span><br><span class="line">==&gt; Caveats</span><br><span class="line">To have launchd start etcd at login:</span><br><span class="line">  ln -sfv /usr/local/opt/etcd<span class="comment">/*.plist ~/Library/LaunchAgents</span></span><br><span class="line"><span class="comment">Then to load etcd now:</span></span><br><span class="line"><span class="comment">  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.etcd.plist</span></span><br><span class="line"><span class="comment">==&gt; Summary</span></span><br><span class="line"><span class="comment">🍺  /usr/local/Cellar/etcd/2.2.1: 7 files, 39M</span></span><br></pre></td></tr></table></figure>
+
+<p>我们来测试一下是否安装成功。</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">➜  ~  etcd -version</span><br><span class="line">etcd <span class="string">Version:</span> <span class="number">2.2</span><span class="number">.1</span></span><br><span class="line">Git <span class="string">SHA:</span> GitNotFound</span><br><span class="line">Go <span class="string">Version:</span> go1<span class="number">.5</span><span class="number">.1</span></span><br><span class="line">Go OS<span class="regexp">/Arch: darwin/</span>amd64</span><br></pre></td></tr></table></figure>
+
+<p>OK，看到上面的信息，就说明你已经安装成功了。从上面的信息可以看到安装的etcd版本是2.2.1，go的版本是1.5.1。</p>
+<h1 id="启动etcd并测试服务"><a href="#启动etcd并测试服务" class="headerlink" title="启动etcd并测试服务"></a>启动etcd并测试服务</h1><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">➜  ~  http GET <span class="string">http:</span><span class="comment">//127.0.0.1:2379/version</span></span><br><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</span><br><span class="line">Content-<span class="string">Length:</span> <span class="number">44</span></span><br><span class="line">Content-<span class="string">Type:</span> application/json</span><br><span class="line"><span class="string">Date:</span> Wed, <span class="number">25</span> Nov <span class="number">2015</span> <span class="number">06</span>:<span class="number">07</span>:<span class="number">14</span> GMT</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"etcdcluster"</span>: <span class="string">"2.2.0"</span>,</span><br><span class="line">    <span class="string">"etcdserver"</span>: <span class="string">"2.2.1"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>关于etcd启动参数及更多选项可以参考<a href="https://github.com/coreos/etcd/blob/master/Documentation/configuration.md" target="_blank" rel="noopener">Etcd Configuration Flags</a></p>
+<h2 id="比较重要的配置"><a href="#比较重要的配置" class="headerlink" title="比较重要的配置"></a>比较重要的配置</h2><p><code>-name</code> 节点名称，默认是UUID<br><code>-data-dir</code> 保存日志和快照的目录，默认为当前工作目录<br><code>-addr</code> 公布的ip地址和端口。 默认为127.0.0.1:2379<br><code>-bind-addr</code> 用于客户端连接的监听地址，默认为-addr配置<br><code>-peers</code> 集群成员逗号分隔的列表，例如 127.0.0.1:2380,127.0.0.1:2381<br><code>-peer-addr</code> 集群服务通讯的公布的IP地址，默认为 127.0.0.1:2380.<br><code>-peer-bind-addr</code> 集群服务通讯的监听地址，默认为-peer-addr配置</p>
+<p>上述配置也可以设置配置文件，默认为<code>/etc/etcd/etcd.conf</code>。</p>
+<h1 id="试用etcd"><a href="#试用etcd" class="headerlink" title="试用etcd"></a>试用etcd</h1><h2 id="ectdctl介绍"><a href="#ectdctl介绍" class="headerlink" title="ectdctl介绍"></a>ectdctl介绍</h2><p>我们可以使用<a href="https://github.com/coreos/etcd/tree/master/etcdctl" target="_blank" rel="noopener">etcdctl</a>这个官方提供的客户端来对etcd进行操作，可以从<a href="https://github.com/coreos/etcd/releases" target="_blank" rel="noopener">github.com/coreos/etcd/releases</a>下载。</p>
+<p>etcdctl是一个命令行的客户端，它提供了一下简洁的命令，可以方便我们在对服务进行测试或者手动修改数据库内容。建议刚刚接触etcd的同学可以先通过cetdctl来熟悉相关操作。这些操作跟<a href="https://github.com/coreos/etcd/blob/master/Documentation/api.md" target="_blank" rel="noopener">HTTP API</a>基本上是对应的。</p>
+<p>etcdctl支持下面列出来的命令，基本上可以分为数据库操作和非数据库操作，可以查看<a href="https://github.com/coreos/etcd/blob/master/etcdctl/README.md" target="_blank" rel="noopener">etcdctl README.md</a>来了解更多</p>
+<figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl -h</span><br><span class="line">NAME:</span><br><span class="line">   etcdctl - A simple <span class="keyword">command</span> <span class="title">line</span> <span class="title">client</span> <span class="title">for</span> <span class="title">etcd</span>.</span><br><span class="line"></span><br><span class="line">USAGE:</span><br><span class="line">   etcdctl [<span class="built_in">global</span> options] <span class="keyword">command</span> [<span class="title">command</span> <span class="title">options</span>] [<span class="title">arguments</span>...]</span><br><span class="line"></span><br><span class="line">VERSION:</span><br><span class="line">   <span class="number">2.2</span><span class="number">.1</span></span><br><span class="line"></span><br><span class="line">COMMANDS:</span><br><span class="line">   backup		backup <span class="keyword">an</span> etcd <span class="built_in">directory</span></span><br><span class="line">   cluster-health	check <span class="keyword">the</span> health <span class="keyword">of</span> <span class="keyword">the</span> etcd cluster</span><br><span class="line">   mk			make <span class="keyword">a</span> <span class="built_in">new</span> key <span class="keyword">with</span> <span class="keyword">a</span> given <span class="built_in">value</span></span><br><span class="line">   mkdir		make <span class="keyword">a</span> <span class="built_in">new</span> <span class="built_in">directory</span></span><br><span class="line">   rm			remove <span class="keyword">a</span> key <span class="keyword">or</span> <span class="keyword">a</span> <span class="built_in">directory</span></span><br><span class="line">   rmdir		removes <span class="keyword">the</span> key <span class="keyword">if</span> <span class="keyword">it</span> is <span class="keyword">an</span> <span class="literal">empty</span> <span class="built_in">directory</span> <span class="keyword">or</span> <span class="keyword">a</span> key-<span class="built_in">value</span> pair</span><br><span class="line">   <span class="built_in">get</span>			retrieve <span class="keyword">the</span> <span class="built_in">value</span> <span class="keyword">of</span> <span class="keyword">a</span> key</span><br><span class="line">   ls			retrieve <span class="keyword">a</span> <span class="built_in">directory</span></span><br><span class="line">   <span class="built_in">set</span>			<span class="built_in">set</span> <span class="keyword">the</span> <span class="built_in">value</span> <span class="keyword">of</span> <span class="keyword">a</span> key</span><br><span class="line">   setdir		<span class="built_in">create</span> <span class="keyword">a</span> <span class="built_in">new</span> <span class="keyword">or</span> existing <span class="built_in">directory</span></span><br><span class="line">   update		update <span class="keyword">an</span> existing key <span class="keyword">with</span> <span class="keyword">a</span> given <span class="built_in">value</span></span><br><span class="line">   updatedir		update <span class="keyword">an</span> existing <span class="built_in">directory</span></span><br><span class="line">   watch		watch <span class="keyword">a</span> key <span class="keyword">for</span> changes</span><br><span class="line">   exec-watch		watch <span class="keyword">a</span> key <span class="keyword">for</span> changes <span class="keyword">and</span> exec <span class="keyword">an</span> executable</span><br><span class="line">   member		member <span class="built_in">add</span>, remove <span class="keyword">and</span> list subcommands</span><br><span class="line">   import		import <span class="keyword">a</span> snapshot <span class="built_in">to</span> <span class="keyword">a</span> cluster</span><br><span class="line">   user			user <span class="built_in">add</span>, grant <span class="keyword">and</span> revoke subcommands</span><br><span class="line">   role			role <span class="built_in">add</span>, grant <span class="keyword">and</span> revoke subcommands</span><br><span class="line">   auth			overall auth controls</span><br><span class="line">   help, h		Shows <span class="keyword">a</span> list <span class="keyword">of</span> commands <span class="keyword">or</span> help <span class="keyword">for</span> <span class="literal">one</span> <span class="keyword">command</span></span><br><span class="line"></span><br><span class="line">GLOBAL OPTIONS:</span><br><span class="line">   <span class="comment">--debug			output cURL commands which can be used to reproduce the request</span></span><br><span class="line">   <span class="comment">--no-sync			don't synchronize cluster information before sending request</span></span><br><span class="line">   <span class="comment">--output, -o 'simple'	output response in the given format (`simple`, `extended` or `json`)</span></span><br><span class="line">   <span class="comment">--discovery-srv, -D 		domain name to query for SRV records describing cluster endpoints</span></span><br><span class="line">   <span class="comment">--peers, -C 			a comma-delimited list of machine addresses in the cluster (default: "http://127.0.0.1:4001,http://127.0.0.1:2379")</span></span><br><span class="line">   <span class="comment">--endpoint 			a comma-delimited list of machine addresses in the cluster (default: "http://127.0.0.1:4001,http://127.0.0.1:2379")</span></span><br><span class="line">   <span class="comment">--cert-file 			identify HTTPS client using this SSL certificate file</span></span><br><span class="line">   <span class="comment">--key-file 			identify HTTPS client using this SSL key file</span></span><br><span class="line">   <span class="comment">--ca-file 			verify certificates of HTTPS-enabled servers using this CA bundle</span></span><br><span class="line">   <span class="comment">--username, -u 		provide username[:password] and prompt if password is not supplied.</span></span><br><span class="line">   <span class="comment">--timeout '1s'		connection timeout per request</span></span><br><span class="line">   <span class="comment">--total-timeout '5s'		timeout for the command execution (except watch)</span></span><br><span class="line">   <span class="comment">--help, -h			show help</span></span><br><span class="line">   <span class="comment">--version, -v		print the version</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><p>数据库操作围绕对键值和目录的 <code>CRUD</code> （符合 REST 风格的一套操作：<code>Create</code>）完整生命周期的管理。</p>
+<p>etcd 在键的组织上采用了层次化的空间结构（类似于文件系统中目录的概念），用户指定的键可以为单独的名字，如 <code>testkey</code>，此时实际上放在根目录 <code>/</code> 下面，也可以为指定目录结构，如 <code>cluster1/node2/testkey</code>，则将创建相应的目录结构。</p>
+<blockquote>
+<p>注：CRUD 即 Create, Read, Update, Delete，是符合 REST 风格的一套 API 操作。</p>
+</blockquote>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p>指定某个键的值。例如</p>
+<figure class="highlight gams"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl <span class="keyword">set</span> /testdir/testkey <span class="comment">"Hello world"</span></span><br><span class="line">Hello <span class="comment">world</span></span><br></pre></td></tr></table></figure>
+
+<p>支持的选项包括：</p>
+<figure class="highlight ceylon"><table><tr><td class="code"><pre><span class="line">--ttl <span class="string">'0'</span>            该键值的超时时间（单位为秒），不配置（默认为 <span class="number">0</span>）则永不超时</span><br><span class="line">--swap-with-<span class="keyword">value</span> <span class="keyword">value</span> 若该键现在的值是 <span class="keyword">value</span>，则进行设置操作</span><br><span class="line">--swap-with-index <span class="string">'0'</span>    若该键现在的索引值是指定索引，则进行设置操作</span><br></pre></td></tr></table></figure>
+
+<h3 id="get"><a href="#get" class="headerlink" title="get"></a>get</h3><p>获取指定键的值。例如</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl <span class="builtin-name">get</span> /testdir/testkey</span><br><span class="line">Hello world</span><br></pre></td></tr></table></figure>
+
+<p>当键不存在时，则会报错。例如</p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl get /testdir/testkey2</span><br><span class="line"><span class="keyword">Error:  </span>100: Key not found (/testdir/testkey2) [18]</span><br></pre></td></tr></table></figure>
+
+<p>支持的选项为</p>
+<figure class="highlight ada"><table><tr><td class="code"><pre><span class="line"><span class="comment">--sort    对结果进行排序</span></span><br><span class="line"><span class="comment">--consistent 将请求发给主节点，保证获取内容的一致性</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="update"><a href="#update" class="headerlink" title="update"></a>update</h3><p>当键存在时，更新值内容。例如</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl update <span class="regexp">/testdir/</span>testkey <span class="string">"Hello"</span></span><br><span class="line">Hello</span><br></pre></td></tr></table></figure>
+
+<p>当键不存在时，则会报错。例如</p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl update /testdir/testkey2 "Hello"</span><br><span class="line"><span class="keyword">Error:  </span>100: Key not found (/testdir/testkey2) [19]</span><br></pre></td></tr></table></figure>
+
+<p>支持的选项为</p>
+<figure class="highlight dsconfig"><table><tr><td class="code"><pre><span class="line"><span class="built_in">--ttl</span> <span class="string">'0'</span>    超时时间（单位为秒），不配置（默认为 0）则永不超时</span><br></pre></td></tr></table></figure>
+
+<h3 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h3><p>删除某个键值。例如</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl rm <span class="regexp">/testdir/</span>testkey</span><br><span class="line">PrevNode.<span class="string">Value:</span> Hello</span><br></pre></td></tr></table></figure>
+
+<p>当键不存在时，则会报错。例如</p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl rm /testdir/testkey</span><br><span class="line"><span class="keyword">Error:  </span>100: Key not found (/testdir/testkey) [20]</span><br></pre></td></tr></table></figure>
+
+<p>支持的选项为</p>
+<figure class="highlight delphi"><table><tr><td class="code"><pre><span class="line">--dir        如果键是个空目录或者键值对则删除</span><br><span class="line">--recursive        删除目录和所有子键</span><br><span class="line">--<span class="keyword">with</span>-value     检查现有的值是否匹配</span><br><span class="line">--<span class="keyword">with</span>-<span class="keyword">index</span> <span class="string">'0'</span>    检查现有的 <span class="keyword">index</span> 是否匹配</span><br></pre></td></tr></table></figure>
+
+<h3 id="mk"><a href="#mk" class="headerlink" title="mk"></a>mk</h3><p>如果给定的键不存在，则创建一个新的键值。例如</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl mk <span class="regexp">/testdir/</span>testkey <span class="string">"Hello world"</span></span><br><span class="line">Hello world</span><br></pre></td></tr></table></figure>
+
+<p>当键存在的时候，执行该命令会报错，例如</p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl mk /testdir/testkey "Hello world"</span><br><span class="line"><span class="keyword">Error:  </span>105: Key already exists (/testdir/testkey) [21]</span><br></pre></td></tr></table></figure>
+
+<p>支持的选项为</p>
+<figure class="highlight dsconfig"><table><tr><td class="code"><pre><span class="line"><span class="built_in">--ttl</span> <span class="string">'0'</span>    超时时间（单位为秒），不配置（默认为 0）则永不超时</span><br></pre></td></tr></table></figure>
+
+<h3 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h3><p>如果给定的键目录不存在，则创建一个新的键目录。例如</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl <span class="built_in">mkdir</span> testdir2</span><br></pre></td></tr></table></figure>
+
+<p>当键目录存在的时候，执行该命令会报错，例如</p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl mkdir testdir2</span><br><span class="line"><span class="keyword">Error:  </span>105: Key already exists (/testdir2) [22]</span><br></pre></td></tr></table></figure>
+
+<p>支持的选项为</p>
+<figure class="highlight dsconfig"><table><tr><td class="code"><pre><span class="line"><span class="built_in">--ttl</span> <span class="string">'0'</span>    超时时间（单位为秒），不配置（默认为 0）则永不超时</span><br></pre></td></tr></table></figure>
+
+<h3 id="setdir"><a href="#setdir" class="headerlink" title="setdir"></a>setdir</h3><p>创建一个键目录，无论存在与否。</p>
+<p>支持的选项为</p>
+<figure class="highlight dsconfig"><table><tr><td class="code"><pre><span class="line"><span class="built_in">--ttl</span> <span class="string">'0'</span>    超时时间（单位为秒），不配置（默认为 0）则永不超时</span><br></pre></td></tr></table></figure>
+
+<h3 id="updatedir"><a href="#updatedir" class="headerlink" title="updatedir"></a>updatedir</h3><p>更新一个已经存在的目录。 支持的选项为</p>
+<figure class="highlight dsconfig"><table><tr><td class="code"><pre><span class="line"><span class="built_in">--ttl</span> <span class="string">'0'</span>    超时时间（单位为秒），不配置（默认为 0）则永不超时</span><br></pre></td></tr></table></figure>
+
+<h3 id="rmdir"><a href="#rmdir" class="headerlink" title="rmdir"></a>rmdir</h3><p>删除一个空目录，或者键值对。</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl setdir dir1</span><br><span class="line">➜  ~  etcdctl <span class="built_in">rmdir</span> dir1</span><br></pre></td></tr></table></figure>
+
+<p>若目录不空，会报错</p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl set /dir/testkey hi</span><br><span class="line">hi</span><br><span class="line">➜  ~  etcdctl rmdir /dir</span><br><span class="line"><span class="keyword">Error:  </span>108: Directory not empty (/dir) [29]</span><br></pre></td></tr></table></figure>
+
+<h3 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h3><p>列出目录（默认为根目录）下的键或者子目录，默认不显示子目录中内容。</p>
+<p>例如</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl <span class="keyword">ls</span></span><br><span class="line"><span class="string">/testdir</span></span><br><span class="line"><span class="string">/testdir2</span></span><br><span class="line"><span class="string">/dir</span></span><br><span class="line">➜  ~  etcdctl <span class="keyword">ls</span> dir</span><br><span class="line"><span class="string">/dir/testkey</span></span><br></pre></td></tr></table></figure>
+
+<p>支持的选项包括</p>
+<figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">-<span class="ruby">-sort    将输出结果排序</span></span><br><span class="line"><span class="ruby">--recursive    如果目录下有子目录，则递归输出其中的内容</span></span><br><span class="line"><span class="ruby">-p        对于输出为目录，在最后添加 <span class="string">`/`</span> 进行区分</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="非数据库操作"><a href="#非数据库操作" class="headerlink" title="非数据库操作"></a>非数据库操作</h2><h3 id="backup"><a href="#backup" class="headerlink" title="backup"></a>backup</h3><p>备份 etcd 的数据。</p>
+<p>支持的选项包括</p>
+<figure class="highlight ada"><table><tr><td class="code"><pre><span class="line"><span class="comment">--data-dir         etcd 的数据目录</span></span><br><span class="line"><span class="comment">--backup-dir     备份到指定路径</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h3><p>监测一个键值的变化，一旦键值发生更新，就会输出最新的值并退出。</p>
+<p>例如，用户更新 testkey 键值为 Hello watch。</p>
+<figure class="highlight gams"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl get /testdir/testkey</span><br><span class="line">Hello world</span><br><span class="line">➜  ~  etcdctl <span class="keyword">set</span> /testdir/testkey <span class="comment">"Hello watch"</span></span><br><span class="line">Hello <span class="comment">watch</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl watch testdir/testkey</span><br><span class="line">Hello watch</span><br></pre></td></tr></table></figure>
+
+<p>支持的选项包括</p>
+<figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">-<span class="ruby">-forever        一直监测，直到用户按 <span class="string">`CTRL+C`</span> 退出</span></span><br><span class="line"><span class="ruby">--after-index <span class="string">'0'</span>    在指定 index 之前一直监测</span></span><br><span class="line"><span class="ruby">--recursive        返回所有的键值和子键值</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="exec-watch"><a href="#exec-watch" class="headerlink" title="exec-watch"></a>exec-watch</h3><p>监测一个键值的变化，一旦键值发生更新，就执行给定命令。</p>
+<p>例如，用户更新 testkey 键值。</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">➜  ~  etcdctl exec-watch testkey -- sh -c <span class="string">'ls'</span></span><br><span class="line">default.etcd</span><br><span class="line">Documentation</span><br><span class="line">etcd</span><br><span class="line">etcdctl</span><br><span class="line">etcd-migrate</span><br><span class="line">README-etcdctl.md</span><br><span class="line">README.md</span><br></pre></td></tr></table></figure>
+
+<p>支持的选项包括</p>
+<figure class="highlight axapta"><table><tr><td class="code"><pre><span class="line">--after-<span class="keyword">index</span> <span class="string">'0'</span>    在指定 <span class="keyword">index</span> 之前一直监测</span><br><span class="line">--recursive        返回所有的键值和子键值</span><br></pre></td></tr></table></figure>
+
+<h3 id="member"><a href="#member" class="headerlink" title="member"></a>member</h3><p>通过 list、add、remove 命令列出、添加、删除 etcd 实例到 etcd 集群中。</p>
+<p>例如本地启动一个 etcd 服务实例后，可以用如下命令进行查看。</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">$ etcdctl member list</span><br><span class="line">ce2a822cea30bfca: <span class="attribute">name</span>=default <span class="attribute">peerURLs</span>=http://localhost:2380,http://localhost:7001 <span class="attribute">clientURLs</span>=http://localhost:2379,http://localhost:4001</span><br></pre></td></tr></table></figure>
+
+<p>命令选项</p>
+<figure class="highlight dsconfig"><table><tr><td class="code"><pre><span class="line"><span class="built_in">--debug</span> 输出 <span class="string">cURL </span>命令，显示执行命令的时候发起的请求</span><br><span class="line"><span class="built_in">--no-sync</span> 发出请求之前不同步集群信息</span><br><span class="line"><span class="built_in">--output,</span> -o <span class="string">'simple'</span> 输出内容的格式 (<span class="string">simple </span>为原始信息，<span class="string">json </span>为进行<span class="string">json格</span>式解码，易读性好一些)</span><br><span class="line"><span class="built_in">--peers,</span> -C 指定集群中的同伴信息，用逗号隔开 (默认为: <span class="string">"127.0.0.1:4001"</span>)</span><br><span class="line"><span class="built_in">--cert-file</span> <span class="string">HTTPS </span>下客户端使用的 <span class="string">SSL </span>证书文件</span><br><span class="line"><span class="built_in">--key-file</span> <span class="string">HTTPS </span>下客户端使用的 <span class="string">SSL </span>密钥文件</span><br><span class="line"><span class="built_in">--ca-file</span> 服务端使用 <span class="string">HTTPS </span>时，使用 <span class="string">CA </span>文件进行验证</span><br><span class="line"><span class="built_in">--help,</span> -h 显示帮助命令信息</span><br><span class="line"><span class="built_in">--version,</span> -v 打印版本信息</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/etcd/" rel="tag"># etcd</a>
+          
+            <a href="/tags/restful/" rel="tag"># restful</a>
+          
+            <a href="/tags/api/" rel="tag"># api</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/19/install-leiningen/" rel="next" title="安装Leiningen">
+                <i class="fa fa-chevron-left"></i> 安装Leiningen
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/27/batch-conversion-file-encoding/" rel="prev" title="批量转换文件编码">
+                批量转换文件编码 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <p class="site-author-name" itemprop="name">Tony Deng</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tonydeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wolfdeng" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/tonydeng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-global"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装etcd"><span class="nav-number">1.</span> <span class="nav-text">安装etcd</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#启动etcd并测试服务"><span class="nav-number">2.</span> <span class="nav-text">启动etcd并测试服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#比较重要的配置"><span class="nav-number">2.1.</span> <span class="nav-text">比较重要的配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#试用etcd"><span class="nav-number">3.</span> <span class="nav-text">试用etcd</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ectdctl介绍"><span class="nav-number">3.1.</span> <span class="nav-text">ectdctl介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库操作"><span class="nav-number">3.2.</span> <span class="nav-text">数据库操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-number">3.2.1.</span> <span class="nav-text">set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#get"><span class="nav-number">3.2.2.</span> <span class="nav-text">get</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#update"><span class="nav-number">3.2.3.</span> <span class="nav-text">update</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rm"><span class="nav-number">3.2.4.</span> <span class="nav-text">rm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mk"><span class="nav-number">3.2.5.</span> <span class="nav-text">mk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mkdir"><span class="nav-number">3.2.6.</span> <span class="nav-text">mkdir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setdir"><span class="nav-number">3.2.7.</span> <span class="nav-text">setdir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#updatedir"><span class="nav-number">3.2.8.</span> <span class="nav-text">updatedir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rmdir"><span class="nav-number">3.2.9.</span> <span class="nav-text">rmdir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ls"><span class="nav-number">3.2.10.</span> <span class="nav-text">ls</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非数据库操作"><span class="nav-number">3.3.</span> <span class="nav-text">非数据库操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#backup"><span class="nav-number">3.3.1.</span> <span class="nav-text">backup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#watch"><span class="nav-number">3.3.2.</span> <span class="nav-text">watch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exec-watch"><span class="nav-number">3.3.3.</span> <span class="nav-text">exec-watch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#member"><span class="nav-number">3.3.4.</span> <span class="nav-text">member</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2005 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Deng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1021 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="hexo plantuml plugin hexo-tag-plantuml">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="PlantUML 简介PlantUML是一个画图脚本语言，官方介绍如下：  Generate UML diagram from textual description">
+<meta name="keywords" content="hexo plantuml plugin hexo-tag-plantuml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Plantuml介绍以及在Hexo中的相关插件">
+<meta property="og:url" content="http://tonydeng.github.io/2017/04/14/hexo-plantuml-diagram-plugin/index.html">
+<meta property="og:site_name" content="TonyDeng&#39;s Blog">
+<meta property="og:description" content="PlantUML 简介PlantUML是一个画图脚本语言，官方介绍如下：  Generate UML diagram from textual description">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="data:image/png;base64,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">
+<meta property="og:image" content="http://www.plantuml.com/plantuml/png/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000">
+<meta property="og:image" content="https://www.planttext.com/plantuml/img/RLVRSjis47tNLs2ObtGcml0caNfgV4aQtnBNafjftrOIBAAY01KauoXVtxEWRCcayg8Cl0livUmvouzLJQvkDkNWfy9_Ye4OHpBAn30QXJ8CHN1c5eLrj5A1EFnx9yvAgjRqGJnEpmOYoTbKY3YHMGANkb2cEhRtBdyufHOArebC-IHD-JSufrMnf6NGiRvozDz0HFv64OMX78LiQrPhk-xQpWhI9Pabxfx8IGpxQ2nJH7AkzB_QhBhs5uKsD12ZM8vmEJ-IncpiIctwOIkt8RF3tR5aw-4ubPdmvfjcITsxzyS3aS8SziCiac4ESrlLjd_x7LKLBOgcKdLTjUL4wMNE3wMPdF13ZYfTwhSluI57ltGvW9cC-GHUIMlzwnVzq6Lvr36aRCtA3eP9AiS8VZZAstesojXAd6cd3lr2SzrAcThNA47q8npYDnw9u8AqivqauF1fjTlM0n6Ze7oGvpwK2oeNJLrt0xyoIqq89P4JN_rSfXaRRvMOsMVp5cTJszI5E7joUa4UEcC-7sRy2v-AvcZyulW9rDGwkrXOyVw1vbJ__Xjw4ScSUv5dCkCi2josiZt8bUY_rTKBgcEPeG_3oLZcgDKbbS1yhu4pzPDUFE9SZZcbB9CnFBwgPt6foaA_JQdDdw6AM8PHEF9pTgdC3-Lwrr_O4jEtj2yleDdymcWaOu3gifcJxhVZyUoJU7ysRyHbGNED0WpZJ4Q27vlucVj4LQsSkAfuQe9NlpV7m276cXkKvUmSVCOiTT-24n_xGUNMHnXgr2puew7D2Li-1iE4Ck8auZRpBwgij5dhe7klQMSQg6A0Hr7gm_W298iR-tQgtudNOpX4CecPmJBkEZlOiYcRplrVw9cqtjTrj7yZJ3rohzowgQiUp-oFFuY7fgguXy0LLqZ44_uDha2cPjwKdPTcZLkh7JfYrkI8yJWS-mf4uTZZyPhmXxf79G2ADSe_XF7B-J0PSPp1jN9DHQNQT91LELAW14ovdyFnn5lVK3ScRttsj2h8Q8uPDSkOr32wBOlSK5s0zPRDsmU-gYtXVaY3P_0av7U26wr-d6ZsuzgHDY1yaUopZMI6VjyqL9AuRJRRnXsHpXrETpvP0VBsyIUU6MungjsvurZqIZacaYYMKSYSa35L1RTwGoUYkKV947d4l0VZa4KkkBLSujxGFHfTgwMuWNGiBG2RXYmGy88QGIZkQEdqikSrtI9TJ4BgEIgAFJPWRA1DVTeebBWlmD9wYnfL7hHjpXC_G7TgiUYbWJUeMMhmCyOQXOhyD8EX9duoxjHF3TgxqFNkcFhRum6FMyxMUUXHSQTfSu8xFeDlzF95sT4AdtWKjb5Pu-oFdXJTwhblXKX7FebXvjc0pMkdg3iFVpPghXOVn0KPOgK4cMLUOpAFZpjRBUnphs8lCpUCcFfWFVRJ_PKLQQwxitEZp8wldkn59lI3zgqgU-h5KBBkcQ3mQIvpFmLUkeDxSle4y3uxA8w2WCKjFK9uMQO1iBeuCMLDLJig3zK1NhrC1lVMrSVyktVuvjJAcdtzXs5RVr0mk_pPwFgK_2uQI8G3iu8Y-Gc0QG9uFwZT-b_i0kiEJInKI_089CzvqKYycZneAvPAN9DH1vK_B1eiebnup1ll3WzseqxKyggc4gMCMcRq3ET9cvSkSQTDSS3dE_6NLhMXZNZ_XI2yp8n9rgeYGWC715CoRRqrC74GAcmM-iawerznYZvp9dagmwnrkxQLwfJs0ZiOYGU_IaHv2zNnsC-EzsZ8T3pk6tJLielr6qkBxj3d19TQTzS8lroMJ7hHNb4IZuufk8IsrdNMwDTZlo_oQiPBT8BoJksJFa40vqsv8ZzhW7QotvzulvpMTh4kRDcHXEcpMYhJRbky68_yTXzCTqkZThqPEu1r6FaLQnYb4u-y6HMwxj85QCmVevhZLf_0a25RwysyMTTToGN5Q_7-d3QqjhxP8vzorAv2mSokToVGVKrRLYY05Eo0wa_yjZx3acUwmu3fCVYUqVP0BfZI2Vy92mgptipfhIrxT046OxfeDswFMcxQ8yP4d5DjZ_SotY-nIxSJ3O7bJGCzWmG5Vm6ejkciSUYPl927W40oiKV6M2Re14R0cBu--4vuvSzzI5xT4D9tgl3nidhxAV6gMDEQQeZ9C6qvCifINc63xuetsvuJxwV_W9xzbZMEMtAAsWteRxZOvxNHJsy-8xxAsL4gax3zxXFjfo9e5BlwlJt-ycZPTNyy67Oysks-vt4u7dnKM48svVy0">
+<meta property="og:image" content="http://www.plantuml.com/plantuml/svg/ItZSq9W00000">
+<meta property="og:image" content="http://www.plantuml.com/plantuml/svg/TLLTJnj757tVNp6Fk0Z5IPjMGYXIIbIfYYfLCdzWlJk4RPOTj1wIqZRIEWto6Z1E2KqeWJGEE7RRu1XHkSOB-CTaPtRzn5_edPtr1pP-GSkvvvvxxvaxOsfG4oEsNGlALRxNufiLvZQ2wZfh5HKbewaGl7axcKIF3PqkABDaSObOsA9evfUfANGVhwI9Qkje6WLUXUVRRFKaEF66QIdDnjWQHcSXyPvjFCBsQ2Ipa3897SQ_jmsB0hrNDaBlQjGWLXSR2iuPsaDCxnkMFePm3sUeOQbN99IhacXcQkgpM2b5J3srag5uCPhv6NlknZEFLhe-JxccuXYcz6rCi6_VM89qSKmuDdDCLCayDAmbrLONaMQgcSnTIcqZlKpnjngnKiPF62KLnI8K8qgM49b7_QEQHdpjF3mkTNwj-buZEFOkppPutk5x-HuIx3uBNF4X9KmyJuN6m3frO25VxqWXmOkQ62Zoiu8c3SkW4udfHyJG5OGcTPB2vlmSkDi5dyHfFLsHzG3cn2RMA1O71LIm0PWnDRPS43CBvF4S_d54RS3uM6_MndhKIWfCiXv4pU2qGRzHRGoeJfRJ9WOKJU8VeF1tGc5KDJwjhYRytrViihg79aXBubiUt80BKOMhQ3TvQAlZGXBj-I2fronpJEz7HhkxRhFZj87GBD7nQEx8zHA9uB4nlzApDqs8YLLBZ0aFaxPigXHVzVX9l9Hgj2kBi2dAZ4PCOa_RP4KrlpQNyPs9cmaKlAx13hAzkjopOBlAzylXnGksMWvB6_3yzGZmr_SEWhVPopFNlrXdxv_2EjzA9iDIDJXiSSSB_ldZyYp_oNawSoEgT4UPk9L0_kaEgxrZnO--L-uuks4x5vw_XoTMrkiuURx-bqI2IY6w8ouh_2uAbwkVd2mxtEKVIkp22TlRWB2j3TQgiEPHbopgAHEV9yIp6tX7DrZn9M-uKjnlhedM8uHlv3jRDHZFRsrA9Fpt20IX7wW5ayXyIMEhsR3Mb9s7xJU00za_hKCpxEnjr1WK_IA1-Cu5pCwEY_93Ncvnfq-ymFjJs9XhGSl2LVS_NdmE7BzTujcFaS1j42XkiKA95G_uPfaLNqKN0Xm8DkkTt6yGWG55RwKFh9a5bj1gDU6RLyvbXcH6Sb-2NFu5AzJXrqiEAXkGxaQKhmIb_m2n_HmS3Akz0PKmzpS_SDXfWsVViSC2S-lCtMULzM2jmPsioCQMZiHE_Gy0">
+<meta property="og:updated_time" content="2019-06-20T12:10:27.478Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Plantuml介绍以及在Hexo中的相关插件">
+<meta name="twitter:description" content="PlantUML 简介PlantUML是一个画图脚本语言，官方介绍如下：  Generate UML diagram from textual description">
+<meta name="twitter:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAa4AAAB1CAMAAAAhpfXwAAACkVBMVEX////m5ubp6enZ2dns7Oz39/cAdL2GESz7+/vh4eHKytScnJyxsbnc3NzBwcPk5OTx8fHU1NSzs7PqvQDGxsa6urrNzdHFxcu+vsXn7O5HFGP6vYzKysqsrKyUlJQ8h+QAb742fd33snry7Ofty7MxdtgogeQtcdX/ewCLi4vxgwAWV8XruJ6AABcgXccoatDzwwDk29ZTec3nwKveWwDAmgDlxrZiAFAuAFLe5+zj083sv6Twso35pUZGCmTo2tJ7AAD5oj7/egDzvpb4q1zbdET85+fwpncAS4f5sm7csQDxgQCIACR+ABDx03br0sTZfVT34Mz57Mh2dnbzmJjk0dUAU4b3mlz74eH0pqZRWmMoXaXeqZUAICEuaLgADCkAAAA9QxJ1pbjbhmXcl30APXOqeWY2IQA3UXtvlbdRWnvhbSCAbRA7MQ3bbC/hVQD8nlETPVzniE92UguofzvnbQpdQhmSbTOHf4jxqHw4Y57viEA1SVwAOWVlBiAyDEEaI4MJJ2FaLFG7I5fdALLuZLJnBjtNMjlkVFdtOCdZLTDzkxOmGonvALuyz7dKR1dRR5MXH0gsSUu7GE6QLSB/JjAzQTDBLI6+2KJ0Zr47a46JADpiBBmkLn24lYKLeDOdebEqGjR0Xy55PUY+LVX446O7jZVWRWfYZJAARsG+ORW9f1ZwIAgmBB/ckVFwMQCPSACZSBhhP3c5LTvzzle1U2CUUG+DXH9falOSYFP23I3BTQC8cB/EoIDqMjPwgIDrQ0T3wcHnAACiklxXICtgTE9blGsRPiWCy5e1qjWihhhYUQp3CWBPG0VDVDS0Vpqvv1/dY3Wvd4DNmi3Jpquqm7QPZjhWL2/FbBxZJj/Ss3OvCR/gAAAWtklEQVR4nO2dj5/b5H3H9cNOLC6yJJ8N6CJfkovD/UD5IXxR7mxziu9yMYmvKNwlc0g81u0OujbsLiRL12sobNAFiunCfoR1BUr52bF2pCOBUChQKG02NlgHdKz7a/Y8jyRbsn5YtnWO93r5wwvHvtM9+uj7fh49P/SVjGE9/f9WxE3X2lhP9YqEaE6Iu4gjesS6SREmHicJ1k2JGNPj1T1ihXg4whJuCiW4GNXj1S1io1SEwN1FJLger65RRKDCHrA0XJ3itb8TO2lZ3eCOiUc8aQFcZMd4vd+BfbSuLnAXibOhRrhorlO8Dq/9LtpQF7hjow0aF8RFdojX0S4IiLv2v3etHWAYLnj0XIyEcFEd4hV+F8O2ru0u2lDk3S7ovSiO9WhYSzzExdAd4RX+YP/RO9dyB20p8i5wd83HxzTt0XXxJxEunOoIrw/2v9/FJ8N3j77fBSdD0hNXnoK4CKYTvA4fxt5ds8Lb1p3vdYU7T1yZPOq7QngneL139Ogv1qrs9nX4/f3djovP7QMnQzzBhogqsBizVk5Av/XB0bUqvG1Bd10w7yJJV1xEZmwG9V2cABSPR6MJoFh4rawcxg53Qe/gpsPYnb+41h68cBH42VvRG4pEopFC0dCaeTm6v4uHGtjRcBdUJldcBLWcV3nbj8NriAvr3nMh1NFrPox3x8VnTuTRqZDHpY7h6qmRXHDx8pn8xkkAK7NUZiiT2ATRNVkBrukK19wZ1Jq4c8bFLxXzM5MELy8fAoOLpEmJ0RgYc0DFBTroUUcTBxIJUeZ0hahZcQFfC2DNlBnGLckUVntk63FzxMUvVvIpnpdm3/4Bh7NhJHtSAJkUguUVW4j63DKCo3QFF2PheIwOnldiIeF3U5ZLcIybO5ZIRtlWTTjh4mfzYJTBy2//GMfAnMstKYATEoHy6hvtGx30tWVYiLMRFl0Cd3QW5WJk0LySwN2ory0jeIKOhEOu9qhEvGVeDrhA26qoPCG//Q7msfyLE4LABclrdLAPaMHHgYTjZMTrIh1KVwiY16Dmzs84i0qEveKGkwku2iovkqs/cEIdg2NC5sQ7mFcKB8IVIK++JIwHeG24ZYTjvK/RaekKgfKK9WnufLSvUMKzLiFcXDTRGi87Lj6Xr4BDTv+8wV4RruB4Jb+5AKtvonEHQSQwT2NGukKQvGLrkLtYY3eReMizbQFcUbJlXqTtehe/sQKXCt+RvTNuAC6ODJBXcvO6Y7EFDos12jAi4A3ioV//DpJXDLkTGrvDQg0vzyNcLfKyty48BXEx72xtlMMhcHSAvACudfeDrqFhQMIJP+kKAfMCuNbdR/lwh5F0g8qEk3EUt3grvOytC+dPjuE4nfQKimTgCo4XxPV7mI+AhOKo2bumserpCsHyivl1F4mznj0+wkWRrfJywIUrY2WejHng4nMIF0kFyMs3LlyAjqnr3UTq6QqB8vKPK9qgD0G46FZ5OeHisyMMmfDYLT8jExAXEyAv37gY5Jjc4KYbCD1dIUhevnE1PlXjpMC0zMsJFxhtnKK9cWV5gIvGqeB4NYmL4txEVtMVAuQFcd3mx50vXNW4Nc3LERfOr5Y9cZ1MIVwgKk3yqs6qbBOYJnF5qZqu0CyvZNVd/d8Ei4uAvFoab9D1B0/wsKvkyzF3XESmosC+izIlBfjjtXBhAf0befPgQt2vAsVlSVfwvX5ouMMWDr5Z96tAcXHInVbR49GmzktWXDyvlMsyKtMDF38KTswIIY5yAvSkgCTecF+RX62fWw8jwj+/q7+/ykvzGyguzuLMZwV+VHcXfr6/v7/KS3MXJC46YXHH+XOnyYyLl5ZOLKqodXnh4pcqKW2/JuEk2WhXocfm1q9fP7eATT4LaFV5LZxH4QwQF86YnYWExhUJiH3E6k7nNXopZLgLCpclbhQRb6ZzNeHiyyvFEmhgSO5DDUBraNL2U5ZuVEvID2E8YER+ieKh8QqfHxi4xGLB4rIo7AsXZbh71Owu8ihwF8ICxmUWwUZbxIWrQ5WRlfHxWaDlt+9x3i3BL1b2wTfgvGn+eagRrvjTWjyAntcDcnAUo1+cGtB49V1TXMIDNneAF3MJunsu1E24TGtN/CSuqKlUKptKyUnH1sVLy/l96N+lJUsORyNcyafXV/VUldfCj2A8EC//uITgccVqdanmrt9w9xzRCi7S7dZ87f78AHBBDhkGngsJ576LV89AWry0eKIuS6oBrtHtRjQuzJl56QEZuBT2fzJEuGjSh/ziGnRxd15391yo+aEGFQttDZmucFvFxqggcPGLJ7S+yxEXnz6TH+IJfunMRr5uZay+71Isn5IvGLV37vNPQWye0rrz+ZcOvmjwGnXFZS1Kw0Vc77qqUdONjri22gaKiZq7l1/eXuVV784Zl2KNdg1Xkh2+8sYLL7xw7ArQwpv3/Oxnr79+i67hcDIQXMzIyPihpaVyufwDOy6+jBJumOWxlG2sUY+rIps/bbj/gh6P9XuPoBqMeF2evx1GZAoG5Z/XuQVk46uWj1rrIl3XDE3ScMWtuO6o1M90EmZ3r1fb1+X5t3y4m7G6CxtDNCoZfuXc9r0/uXhuz549//H4d37603/5p3+8Wdcr4SSt4wq1dTLEZ0rFkenp6TM/tnWZhFxEyWzLlZQ9XZQlrbhuLZp5JTffj+Kx/QiIyX546gG85g/2vzR/+eCDU9e9hsYbbq1rplgwf9T7LtcVecvivBOu4tk6XjGTu+3757T+a/5y/0svwdp0o+HOGVe2aOFlxjVwYe/FiwjXM49/9NHPP1v+9Ikdml6JBIULnAhxRVEy9qEGfyJ/Kw/H8Qfs43gHXGZeoGO6T+sbjuyde+NzxOve+XkQjvlduye+YCcGBqZARFzqb9HCq+mhRj2usXpeCcPdeuDu9SNabYLuLs/3H3xwgJ3ycpcqWniZcZ27+JOLF0//DjSuZx765KPdnw1d+K/gcWUYWDHtfReRqaBmVXRqXDquSMrQrcUxEy907RGdbj79fO/eI1+Cb8/dO395fr6/H/C6ct3E1JXXBs5/3xwQ1ShqaGzMzKtFXHcYxc1UxsbyFl6JmrsjwB0adzxlckdNTL12ZeCSq7sxEy8zrr2nv376NML1+JNXP9l1+X//572dGq6bW8Yl1I0Ml1bSGYrgaftQQ6nApULwOuOKKzy0EWjowL5bbwVHUUyZca27BE8zX/r880/3I1xzv9s933876CN2/XLit7+9Qnwx9cWXzQHZWC0KxHdsqF1cWVTegX37UHEWXhCXxgu4e2Or5u4Nw92z0F3oi6kBi7sZi7saLzOuD09fPf31q89BXI8/+d+/eeujz97bESguAudz09PjYK7sME3m8xAXU8kXHYJSh2sfxDU2ZvBCuNZdQhF5+YjWrX/Yd/AyisdHgwMTJGhfUz9ibLhQRGBAarxaxJWqFpcvQl6m8WHC4g4NO+Ye6Nt9+S3krm9g4joSuHuRtuGquXvViLkZ1xP/fumxq1cfQrge/vW//vrfLr+8YydSALgInpfkDM4rq2enR0am7UMNfmYsDXierFSW3IYaGq6NB4yjMAZhGi4tInPbNVr05O5+VHsnOTD8mhiY0tYOHXDlYVFFYzzfPi5Uk7L1uCzuHuBYzd29k9QEHBxOaWuHDrgQ/aLqgOvmTz7ec/XjPRquH/7nwm/eumVnULj4zNJyWYUrFWCwoahOqxr8ybNgqJEayxdlWz6CBZdR6SpGFqWOa90jxnR07rEQRqOAPM9iAhx6TT2qbeoUEBjeakfYLi6t4c+YYqDj0nhpdYnBeOhu1/M8Rk5Ad+cjXu5qp30zrh13fbwH0Xrm8Ycffvi7g9/76o72cWmRJxZXSnA1Qz9G51UNaSwNeA1VKmdtzUvHdWAICp7S8yZaVVwGr7lfgWYHcaELSxDXlHE9pda6qkWB+JqGLRouim4syowrWyuuMlbMmWOQqHf3CGjnCNebIJQQ19Qxb3dVWmZckR3DTwBYA3/9N+cBrm9/96827BjWtaNNXIQ8PTI9C1oXb6zIO65qKGco1IeNueDCtupi9wFctQzlKq51j6F4oJZE7951EF1UFqamJqpXl6sBqRY1k6+YJwVNr2pouMJGeal83kqrhkvjpbnjgTtUhUC/NVG9NmdztxW6S9fKsuIa/s6ecw88+Od/8RDA9ZepW4aruDADV6hJXHGdhJornZ1eWVkZPzF76NChxcV7HNcMlVOgeWXHDrjhqmpfvkLUPsWOr6vympub046ePrhbywUQpiaStU1tFkFAzFNurXVxN/iQGVdVd+QrVlpYvObuEXTJC4rfrdUlgGuilgjuMO/KV0y0LLh2Dg9//9xTTz29/sMnn/n2nUM/rNIa3hlpExccafA8o6jZbG4Vqn4RSksKIDJpgk8VtWsnBMHwBjeWq8dFmD8ubK7xuqAfPfXsBu2N8KLpRiEHXNYFrbZXNSozWJ1GTbwu6DfB8IY78kWTJQdcFlpWXNu2bTv+d6cv/O2HT/79927/h+FtVQFcVIu4GBMTJl2WMxJck5+0nAwByHQ5jZJBGZwvaavxhLy0uLLIOON6te7hTseqvG4zWhJlQBIE04YOuCy02l/VqGtbULXadNy4ZSlkpMNz5pvOHNxZaNlwbdvy+39475987Y++unPbNkdcRBu4AA25vLS4eGh21nQyJIjy7HIa14chhKrwBBqVgFeleIJwxGXzcL8RkeNC/a8ssgekrqh2cTlGp1qbNsfbc2fGNbwF6viX/+CubVu2bTFruGVcUcp6dARRP9QgMuMjYxm+KoLKAKaHRMiZ3ziiDerrcdkP677NFlxh1mYzzDoGpE7t4nLW/QauhLu7iK/rXfW4vvm1uzZt2rJljXDpMg/kmZmTY+Mr48swKWB8fHxl5cyp1TSDToj8zEiW94ULY7+l49Lqb2LUlouTHA2Zcv3c1Cwu1heu8H0WXPFR2+HERnEf7sy4UIu66/SffuOmLYHhStANccGJs6Roi5qqqmzlaxM0/uyIlgPQGBdG3W0+3UQH7bgGrx0ubOu3zLiEQTuuwaZxbdq06aZjX/+zb9y0qaot6P9t7eAi9BxKs4S6VQ0e106H+keDVnlaX+/1gQvj7g4EV3xNcGHS3UHjQpT++CtfWbepXjeFW8dFx2F6YtSqWJ8FFyGvKLXei5dkPdfXoOULF5a4LThcjA81hQuLI3da79QGLtaKa5MdlgUX3hyuWHLDdQ660YqLL4yMzy6irIClxVnQkZ1Qwazr0CnFbd7lrL7jVVxG38VSDKU/dc9n3xVvblXDNy4sdlsVl9F3mdz57btquLbd5KbhVnFRoy7HOlh3MkwNnYVJAUAjxZOrWYUA0y6ptrjhDxeckOqnGxbXVuuF0cHBUe1tCD69xGfruv5GH2oSFzZ43MBluOOgO7YJdyZcHs9NiWCx1nCFtBvubQIhrOsD0KIHEGP0YYR5JconLjAh3Wy9HduEC8nvydD3qkYTuKA761Ad4TI9ncE/LiaedFMUdD0C0xIuLOx8pGSs/s4UKcPrASB4h+tdPnFhx4573z0f/FAj6h8Xduwu75mVf1y45VFahph6d83ichGbsAaFUFcWteUpXJLLZbweWMgvLuyY95OEri0u7FhguPxpTXCBZqWMTI/DrAD4//T0SrnuAqV/XCw4v3io4ZMr1hZX2Nudj1WNJnExQeMCfZYsg5mWWBqZHgGaLpZmlLoJGB4SmrpPqQ0x8QZPkGgLV7tqGhcVEC4jKYApLy/KelIAo6iqgptmyxmV6Hpcic7ias4dQQeKi0+vTIdqSQF47Q1cCpZOVXHFuxVXqLtxkQHh0jjwoKMaX5IzBG8Vk5HLi8tg5sVn0HZUtGO4oo2eM2IVFessrubc4VxAuIzysoWTIyswK2D5kKbZWbgqf2JRhKuI8qy2xEt3EFdz8SA73Lqac0cFjUtbJFRTWTGXy62ugpdsSkWr8lJ6ceUQo9UmsnMnQ4jL/yIU02FcMcY2t/ISHRQu814JtSyrkp4mhUsZOQ3OhCvjh0RGH3QwZLzhreQBiUHOfC9CUWSCaFxoYArH7FNhL5FcU7eSu4lNWHZLEJk0zAqYRVpcXBLTqmmEiNNklApgr37EJCjNkb81KJJu8UmPralJXDQZzIiajdF1u60bbBDmLpUCQenU8+V1XL7jQSfW7GtAHBS2xc1LDEkHU83tuNxFUBxJdiwojMv1b0dn8EKr0MnHygNc/msTwwXV9n3jAq2MA7Q6NtLwj4sgGAHGo5MjDYCL9ImLIEiBDKjrArhIRksKaHB3PRdNAFpkrGMdBFNNV2hgTEhEkb+OfmcDxAX7icZxiycEcKaOBTMOArgowSEpwKY4gMWRsU4NNBAux3QFm2DdJblYZ7+zBeLi/MctygVTmdhYbMONTlkBjgr+KfvuYmLJDTf4NXZDR5c0MDhNTjQRtw1BPSc83OdjHmqoQ18xr4kY9G8smSA6/PU1kVgTgUu28W0odbuNOicF2JRMJshOTmxAu/ftLE51cgyviXPJprDbS3D2VOGWFXb98hOrQgHuM1BnITZ8Lb4YKsL6jVvnq1JPPfXUU0899dRTTz311DWK+MwO8TtxiISbUuPZUqAFBu6uyRLbnRzigs9LAIKv7z8Ic0KDxek6CZx3PQi0wMDdRXCBa6pATmhroSwsECEeTrsJ/cW8iBCC6YUh/achwc/3enIkC/8Eiof/wRf43vihXaRnRMIcFzKK015sxWs/430UWCusqpqvWmn+3UVCcaK+QKsZm4h4qA1eLIerM7yiqpKES6rEMOCNQlHgRVEYFWdKq6osSYzKMDjXGFeE5ahULi1KCq5IOSXLZ0v8WUnGcVHM8SojqbwiSeDfLCgcflAkRqI8A8JyxuVJUVWYVJZXc1kR/WlWBcWvSiUmC9PtZJE3nsZNudarWmGGlFVRKy0tg9JySkHKWjdwLwwqjAtGQQo8LoXhtWNWVBxnFDGlKDwMKDhOVdKfxN/Wt3KD+Mq5SVUVC1k1nS1NSqVMTpRVMafmpEJBpXKiKpdK2VWKovzhotO5bFYuKas5URInRbFQkGSGESflbGE1p4qlkiiLOTFbKOTAv1IuK9GNcOk334iSXFDTjAr+WC1lCjkxA4rPrhYocZLJZeC7tLYl7Wq0WlhVmdWZrFpQC7msCkvLFYBnywbuhUGFcU7bbBL4gcelToJicoWcCuo3OMBsqqSmV3OZbEkFh6/dVMS1hQs+rCyTSRcKdJEqlWgym8vlMrmCSK+CwEi0mJblQjpTyNC0j6X4CEvSIj0JGKlpUQQNIStmxUxOpnLpgpqTwefVNDye1TQ4FkpclTMFyrtclia1B6qpWVkEligZRGQV/LWYTovpnJjOkgWZEmnQfMWM/uw11wKrhVWVkYEbcDpIp7OoNHCkaesWnu7CuFagJAFcNChJpVaz4MjBoYNjzoLKWlLFVXGyVJIzoqgX2BYuBt6mLSoUvBkbvkg4Q+ESg95J+k3aFPwpzvjBZb4ZDZzpGHi3LziZUgooDzQQ/a41eA5ESsvgJ564TMXBP9T/XiteqRavfTY2dcXldM+cVnDNrFL3a29cxlY5+CIXJKp6zFq5FJPL1RXYzlgjQsC+kmXd+8ZqH+lnKB+Gj6lqRnzIe4oQJpos0MtooIWh6LFM9Thqr7ZDtMhHrffaY9incX9XuiI+L5zV1KBcv1eUTONZj5u6gyxMi17TBV6T63I99dRTTz311FNPPfXUU0899dRTTz311FNPPfXUU0899dRTT076Py+r3xYiltaGAAAAAElFTkSuQmCC">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tonydeng.github.io/2017/04/14/hexo-plantuml-diagram-plugin/">
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+
+
+  <title> Plantuml介绍以及在Hexo中的相关插件 | TonyDeng's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80673215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43d979b191269e68beffa09e2d17a081";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TonyDeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">“In me the tiger sniffes the rose.” -- Siegfried Sasson</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ppts">
+          <a href="/ppts" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            PPT
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gitbook">
+          <a href="/gitbook-zh" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            GitBook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2017/04/14/hexo-plantuml-diagram-plugin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Plantuml介绍以及在Hexo中的相关插件
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-14T16:31:48+08:00">
+                2017-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/效率/" itemprop="url" rel="index">
+                    <span itemprop="name">效率</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="data:image/png;base64,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" alt="plantuml logo"></p>
+<h2 id="PlantUML-简介"><a href="#PlantUML-简介" class="headerlink" title="PlantUML 简介"></a>PlantUML 简介</h2><p><a href="http://plantuml.com/" target="_blank" rel="noopener">PlantUML</a>是一个画图脚本语言，官方介绍如下：</p>
+<blockquote>
+<p>Generate UML diagram from textual description</p>
+</blockquote>
+<a id="more"></a>
+<p>用它可以快速地画出：</p>
+<ol>
+<li><a href="http://plantuml.com/sequence-diagram" target="_blank" rel="noopener">Sequence diagram</a></li>
+<li><a href="http://plantuml.com/use-case-diagram" target="_blank" rel="noopener">Use case diagram</a></li>
+<li><a href="http://plantuml.com/class-diagram" target="_blank" rel="noopener">Class diagram</a></li>
+<li><a href="http://plantuml.com/activity-diagram-beta" target="_blank" rel="noopener">Activity diagram</a></li>
+<li><a href="http://plantuml.com/component-diagram" target="_blank" rel="noopener">Component diagram</a></li>
+<li><a href="http://plantuml.com/state-diagram" target="_blank" rel="noopener">State diagram</a></li>
+<li><a href="http://plantuml.com/object-diagram" target="_blank" rel="noopener">Object diagram</a></li>
+<li><a href="http://plantuml.com/deployment-diagram" target="_blank" rel="noopener">Deployment diagram</a></li>
+<li><a href="http://plantuml.com/timing-diagram" target="_blank" rel="noopener">Timing diagram</a></li>
+</ol>
+<p>对于工程师们来说，用代码的方式来画图，简直是为其量身定做的。PlantUML语法也非常简单，参见<a href="http://plantuml.com/PlantUML_Language_Reference_Guide.pdf" target="_blank" rel="noopener">PlantUML Language Reference Guide</a>，它支持很多<a href="http://plantuml.com/running.html" target="_blank" rel="noopener">工具</a>，可以生成PNG、SVG、LaTeX和二进制图片。</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>有非常多的工具来协助工程师们使用PlantUML的语法来进行画图，比如ATOM有<a href="https://atom.io/packages/language-plantuml" target="_blank" rel="noopener">language-plantuml</a>、<a href="https://atom.io/packages/plantuml-viewer" target="_blank" rel="noopener">plantuml-viewer</a>、<a href="https://atom.io/packages/markdown-preview-enhanced" target="_blank" rel="noopener">markdown-preview-enhanced</a>等各种Packages。当然其他的编辑器也有同样的类似的插件。</p>
+<p>另外，我也写了一个<a href="https://github.com/tonydeng/plantuml-tour" target="_blank" rel="noopener">plantuml-tour</a>的项目，其中有哦PlantUML的一些例子，执行脚本，以及安装说明等。大家有兴趣，也可以去看看这个项目。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>下面的例子是通过<a href="http://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000" target="_blank" rel="noopener">在线示例工具</a>生成的。</p>
+<h3 id="比如这样简单的三行文本，就能生成一个基本的时序图。"><a href="#比如这样简单的三行文本，就能生成一个基本的时序图。" class="headerlink" title="比如这样简单的三行文本，就能生成一个基本的时序图。"></a>比如这样简单的三行文本，就能生成一个基本的时序图。</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@startuml</span><br><span class="line">Bob -&gt; Alice : hello</span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://www.plantuml.com/plantuml/png/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000" alt="plantuml online sequence diagram"></p>
+<p><a href="http://www.planttext.com/planttext" target="_blank" rel="noopener">http://www.planttext.com/planttext</a>也是一个类似的导出工具，并且可以在这个网站上直接查看和测试<code>Plantuml</code>不同图形的语法。</p>
+<h3 id="除了之前说过的可以生成的图形，还能生成其他图形，比如生成🌍图形。"><a href="#除了之前说过的可以生成的图形，还能生成其他图形，比如生成🌍图形。" class="headerlink" title="除了之前说过的可以生成的图形，还能生成其他图形，比如生成🌍图形。"></a>除了之前说过的可以生成的图形，还能生成其他图形，比如生成🌍图形。</h3><p><img src="https://www.planttext.com/plantuml/img/RLVRSjis47tNLs2ObtGcml0caNfgV4aQtnBNafjftrOIBAAY01KauoXVtxEWRCcayg8Cl0livUmvouzLJQvkDkNWfy9_Ye4OHpBAn30QXJ8CHN1c5eLrj5A1EFnx9yvAgjRqGJnEpmOYoTbKY3YHMGANkb2cEhRtBdyufHOArebC-IHD-JSufrMnf6NGiRvozDz0HFv64OMX78LiQrPhk-xQpWhI9Pabxfx8IGpxQ2nJH7AkzB_QhBhs5uKsD12ZM8vmEJ-IncpiIctwOIkt8RF3tR5aw-4ubPdmvfjcITsxzyS3aS8SziCiac4ESrlLjd_x7LKLBOgcKdLTjUL4wMNE3wMPdF13ZYfTwhSluI57ltGvW9cC-GHUIMlzwnVzq6Lvr36aRCtA3eP9AiS8VZZAstesojXAd6cd3lr2SzrAcThNA47q8npYDnw9u8AqivqauF1fjTlM0n6Ze7oGvpwK2oeNJLrt0xyoIqq89P4JN_rSfXaRRvMOsMVp5cTJszI5E7joUa4UEcC-7sRy2v-AvcZyulW9rDGwkrXOyVw1vbJ__Xjw4ScSUv5dCkCi2josiZt8bUY_rTKBgcEPeG_3oLZcgDKbbS1yhu4pzPDUFE9SZZcbB9CnFBwgPt6foaA_JQdDdw6AM8PHEF9pTgdC3-Lwrr_O4jEtj2yleDdymcWaOu3gifcJxhVZyUoJU7ysRyHbGNED0WpZJ4Q27vlucVj4LQsSkAfuQe9NlpV7m276cXkKvUmSVCOiTT-24n_xGUNMHnXgr2puew7D2Li-1iE4Ck8auZRpBwgij5dhe7klQMSQg6A0Hr7gm_W298iR-tQgtudNOpX4CecPmJBkEZlOiYcRplrVw9cqtjTrj7yZJ3rohzowgQiUp-oFFuY7fgguXy0LLqZ44_uDha2cPjwKdPTcZLkh7JfYrkI8yJWS-mf4uTZZyPhmXxf79G2ADSe_XF7B-J0PSPp1jN9DHQNQT91LELAW14ovdyFnn5lVK3ScRttsj2h8Q8uPDSkOr32wBOlSK5s0zPRDsmU-gYtXVaY3P_0av7U26wr-d6ZsuzgHDY1yaUopZMI6VjyqL9AuRJRRnXsHpXrETpvP0VBsyIUU6MungjsvurZqIZacaYYMKSYSa35L1RTwGoUYkKV947d4l0VZa4KkkBLSujxGFHfTgwMuWNGiBG2RXYmGy88QGIZkQEdqikSrtI9TJ4BgEIgAFJPWRA1DVTeebBWlmD9wYnfL7hHjpXC_G7TgiUYbWJUeMMhmCyOQXOhyD8EX9duoxjHF3TgxqFNkcFhRum6FMyxMUUXHSQTfSu8xFeDlzF95sT4AdtWKjb5Pu-oFdXJTwhblXKX7FebXvjc0pMkdg3iFVpPghXOVn0KPOgK4cMLUOpAFZpjRBUnphs8lCpUCcFfWFVRJ_PKLQQwxitEZp8wldkn59lI3zgqgU-h5KBBkcQ3mQIvpFmLUkeDxSle4y3uxA8w2WCKjFK9uMQO1iBeuCMLDLJig3zK1NhrC1lVMrSVyktVuvjJAcdtzXs5RVr0mk_pPwFgK_2uQI8G3iu8Y-Gc0QG9uFwZT-b_i0kiEJInKI_089CzvqKYycZneAvPAN9DH1vK_B1eiebnup1ll3WzseqxKyggc4gMCMcRq3ET9cvSkSQTDSS3dE_6NLhMXZNZ_XI2yp8n9rgeYGWC715CoRRqrC74GAcmM-iawerznYZvp9dagmwnrkxQLwfJs0ZiOYGU_IaHv2zNnsC-EzsZ8T3pk6tJLielr6qkBxj3d19TQTzS8lroMJ7hHNb4IZuufk8IsrdNMwDTZlo_oQiPBT8BoJksJFa40vqsv8ZzhW7QotvzulvpMTh4kRDcHXEcpMYhJRbky68_yTXzCTqkZThqPEu1r6FaLQnYb4u-y6HMwxj85QCmVevhZLf_0a25RwysyMTTToGN5Q_7-d3QqjhxP8vzorAv2mSokToVGVKrRLYY05Eo0wa_yjZx3acUwmu3fCVYUqVP0BfZI2Vy92mgptipfhIrxT046OxfeDswFMcxQ8yP4d5DjZ_SotY-nIxSJ3O7bJGCzWmG5Vm6ejkciSUYPl927W40oiKV6M2Re14R0cBu--4vuvSzzI5xT4D9tgl3nidhxAV6gMDEQQeZ9C6qvCifINc63xuetsvuJxwV_W9xzbZMEMtAAsWteRxZOvxNHJsy-8xxAsL4gax3zxXFjfo9e5BlwlJt-ycZPTNyy67Oysks-vt4u7dnKM48svVy0" alt="xearth diagram"></p>
+<p>下面是生成上面地图的plantuml描述</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@startuml</span><br><span class="line">xearth</span><br><span class="line"> 61.17 -150.00 &quot;Anchorage&quot;           # Alaska, USA</span><br><span class="line"> 38.00   23.73 &quot;Athens&quot;              # Greece</span><br><span class="line"> 33.4    44.4  &quot;Baghdad&quot;             # Iraq</span><br><span class="line"> 13.73  100.50 &quot;Bangkok&quot;             # Thailand</span><br><span class="line"> 39.92  116.43 &quot;Beijing&quot;             # China</span><br><span class="line"> 52.53   13.42 &quot;Berlin&quot;              # Germany</span><br><span class="line"> 32.3   -64.7  &quot;Bermuda&quot;             # Bermuda</span><br><span class="line"> 42.33  -71.08 &quot;Boston&quot;              # Massachusetts, USA</span><br><span class="line">-15.8   -47.9  &quot;Brasilia&quot;            # Brazil</span><br><span class="line"> -4.2    15.3  &quot;Brazzaville&quot;         # Congo</span><br><span class="line">-34.67  -58.50 &quot;Buenos Aires&quot;        # Argentina</span><br><span class="line"> 31.05   31.25 &quot;Cairo&quot;               # Egypt</span><br><span class="line"> 22.5    88.3  &quot;Calcutta&quot;            # India</span><br><span class="line">-33.93   18.47 &quot;Cape Town&quot;           # South Africa</span><br><span class="line"> 33.6    -7.6  &quot;Casablanca&quot;          # Morocco (Rabat?)</span><br><span class="line"> 41.83  -87.75 &quot;Chicago&quot;             # Illinois, USA</span><br><span class="line"> 32.78  -96.80 &quot;Dallas&quot;              # Texas, USA</span><br><span class="line"> 28.63   77.20 &quot;New Delhi&quot;           # India</span><br><span class="line"> 39.75 -105.00 &quot;Denver&quot;              # Colorado, USA</span><br><span class="line"> 24.23   55.28 &quot;Dubai&quot;               # UAE (Abu Dhabi?)</span><br><span class="line">-27.1  -109.4  &quot;Easter Island&quot;       # Easter Island</span><br><span class="line">-18.0   178.1  &quot;Fiji&quot;                # Fiji</span><br><span class="line"> 13.5   144.8  &quot;Guam&quot;                # Guam</span><br><span class="line"> 60.13   25.00 &quot;Helsinki&quot;            # Finland</span><br><span class="line"> 22.2   114.1  &quot;Hong Kong&quot;           # Hong Kong</span><br><span class="line"> 21.32 -157.83 &quot;Honolulu&quot;            # Hawaii, USA</span><br><span class="line"> 52.2   104.3  &quot;Irkutsk&quot;             # Irkutsk, Russia</span><br><span class="line"> 41.0    29.0  &quot;Istanbul&quot;            # Turkey (Ankara?)</span><br><span class="line"> -6.13  106.75 &quot;Jakarta&quot;             # Indonesia</span><br><span class="line"> 31.8    35.2  &quot;Jerusalem&quot;           # Israel</span><br><span class="line"> 34.5    69.2  &quot;Kabul&quot;               # Afghanistan</span><br><span class="line"> 27.7    85.3  &quot;Kathmandu&quot;           # Nepal</span><br><span class="line"> 50.4    30.5  &quot;Kiev&quot;                # Ukraine</span><br><span class="line">  3.13  101.70 &quot;Kuala Lumpur&quot;        # Malaysia</span><br><span class="line">  6.45    3.47 &quot;Lagos&quot;               # Nigeria</span><br><span class="line">-12.10  -77.05 &quot;Lima&quot;                # Peru</span><br><span class="line"> 51.50   -0.17 &quot;London&quot;              # United Kingdom</span><br><span class="line"> 40.42   -3.72 &quot;Madrid&quot;              # Spain</span><br><span class="line"> 14.6   121.0  &quot;Manila&quot;              # The Phillipines</span><br><span class="line"> 21.5    39.8  &quot;Mecca&quot;               # Saudi Arabia</span><br><span class="line"> 19.4   -99.1  &quot;Mexico City&quot;         # Mexico</span><br><span class="line"> 25.8   -80.2  &quot;Miami&quot;               # Florida, USA</span><br><span class="line">  6.2   -10.8  &quot;Monrovia&quot;            # Liberia</span><br><span class="line"> 45.5   -73.5  &quot;Montreal&quot;            # Quebec, Canada</span><br><span class="line"> 55.75   37.70 &quot;Moscow&quot;              # Russia</span><br><span class="line"> -1.28   36.83 &quot;Nairobi&quot;             # Kenya</span><br><span class="line"> 59.93   10.75 &quot;Oslo&quot;                # Norway</span><br><span class="line"> 48.87    2.33 &quot;Paris&quot;               # France</span><br><span class="line">-32.0   115.9  &quot;Perth&quot;               # Australia</span><br><span class="line"> 45.5  -122.5  &quot;Portland&quot;            # Oregon, USA</span><br><span class="line"> -0.2   -78.5  &quot;Quito&quot;               # Ecuador</span><br><span class="line"> 64.15  -21.97 &quot;Reykjavik&quot;           # Iceland</span><br><span class="line">-22.88  -43.28 &quot;Rio de Janeiro&quot;      # Brazil</span><br><span class="line"> 41.88   12.50 &quot;Rome&quot;                # Italy</span><br><span class="line"> 11.0   106.7  &quot;Ho Chi Minh City&quot;    # Vietnam (Hanoi?)</span><br><span class="line"> 37.75 -122.45 &quot;San Francisco&quot;       # California, USA</span><br><span class="line">  9.98  -84.07 &quot;San Jose&quot;            # Costa Rica</span><br><span class="line"> 18.5   -66.1  &quot;San Juan&quot;            # Puerto Rico</span><br><span class="line">-33.5   -70.7  &quot;Santiago&quot;            # Chile</span><br><span class="line">  1.2   103.9  &quot;Singapore&quot;           # Singapore</span><br><span class="line"> 42.67   23.30 &quot;Sofia&quot;               # Bulgaria</span><br><span class="line"> 59.33   18.08 &quot;Stockholm&quot;           # Sweden</span><br><span class="line">-33.92  151.17 &quot;Sydney&quot;              # Australia</span><br><span class="line">-17.6  -149.5  &quot;Tahiti&quot;              # Tahiti</span><br><span class="line"> 16.8    -3.0  &quot;Timbuktu&quot;            # Mali (Bamako?)</span><br><span class="line"> 35.67  139.75 &quot;Tokyo&quot;               # Japan</span><br><span class="line"> 43.70  -79.42 &quot;Toronto&quot;             # Ontario, Canada</span><br><span class="line"> 32.9    13.2  &quot;Tripoli&quot;             # Libya</span><br><span class="line"> 47.9   106.9  &quot;Ulan Bator&quot;          # Mongolia</span><br><span class="line"> 49.22 -123.10 &quot;Vancouver&quot;           # B.C., Canada</span><br><span class="line"> 48.22   16.37 &quot;Vienna&quot;              # Austria</span><br><span class="line"> 38.9   -77.0  &quot;Washington&quot;          # United States</span><br><span class="line">-41.28  174.78 &quot;Wellington&quot;          # New Zealand</span><br><span class="line"> 62.5  -114.3  &quot;Yellowknife&quot;         # N.T., Canada</span><br><span class="line"> 90.00    0.00 &quot;North Pole&quot;          # North Pole</span><br><span class="line">-90.00    0.00 &quot;South Pole&quot;          # South Pole</span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
+
+<h2 id="PlantUML和Hexo整合"><a href="#PlantUML和Hexo整合" class="headerlink" title="PlantUML和Hexo整合"></a>PlantUML和Hexo整合</h2><p>无意中，发现一个Hexo的插件，就是<a href="https://github.com/oohcoder/hexo-tag-plantuml" target="_blank" rel="noopener">hexo-tag-plantuml</a>，这个插件能够让Hexo生成的网站可以方便的集成PlantUML来生成相关的图。</p>
+<p>使用起来也非常简单，只需要将原来的plantuml文件中的<code>@startuml</code>、<code>@enduml</code>分别改成<code><img src="http://www.plantuml.com/plantuml/svg/ItZSq9W00000"></code>，既可以将原来一个个的plantuml文件中的图形，展示在网站上。</p>
+<h3 id="安装hexo-tag-plantuml"><a href="#安装hexo-tag-plantuml" class="headerlink" title="安装hexo-tag-plantuml"></a>安装hexo-tag-plantuml</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-tag-plantuml <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="比如我们通过hexo-tag-plantuml插件，在网站上展示相对复杂的类图"><a href="#比如我们通过hexo-tag-plantuml插件，在网站上展示相对复杂的类图" class="headerlink" title="比如我们通过hexo-tag-plantuml插件，在网站上展示相对复杂的类图"></a>比如我们通过hexo-tag-plantuml插件，在网站上展示相对复杂的类图</h3><img src="http://www.plantuml.com/plantuml/svg/TLLTJnj757tVNp6Fk0Z5IPjMGYXIIbIfYYfLCdzWlJk4RPOTj1wIqZRIEWto6Z1E2KqeWJGEE7RRu1XHkSOB-CTaPtRzn5_edPtr1pP-GSkvvvvxxvaxOsfG4oEsNGlALRxNufiLvZQ2wZfh5HKbewaGl7axcKIF3PqkABDaSObOsA9evfUfANGVhwI9Qkje6WLUXUVRRFKaEF66QIdDnjWQHcSXyPvjFCBsQ2Ipa3897SQ_jmsB0hrNDaBlQjGWLXSR2iuPsaDCxnkMFePm3sUeOQbN99IhacXcQkgpM2b5J3srag5uCPhv6NlknZEFLhe-JxccuXYcz6rCi6_VM89qSKmuDdDCLCayDAmbrLONaMQgcSnTIcqZlKpnjngnKiPF62KLnI8K8qgM49b7_QEQHdpjF3mkTNwj-buZEFOkppPutk5x-HuIx3uBNF4X9KmyJuN6m3frO25VxqWXmOkQ62Zoiu8c3SkW4udfHyJG5OGcTPB2vlmSkDi5dyHfFLsHzG3cn2RMA1O71LIm0PWnDRPS43CBvF4S_d54RS3uM6_MndhKIWfCiXv4pU2qGRzHRGoeJfRJ9WOKJU8VeF1tGc5KDJwjhYRytrViihg79aXBubiUt80BKOMhQ3TvQAlZGXBj-I2fronpJEz7HhkxRhFZj87GBD7nQEx8zHA9uB4nlzApDqs8YLLBZ0aFaxPigXHVzVX9l9Hgj2kBi2dAZ4PCOa_RP4KrlpQNyPs9cmaKlAx13hAzkjopOBlAzylXnGksMWvB6_3yzGZmr_SEWhVPopFNlrXdxv_2EjzA9iDIDJXiSSSB_ldZyYp_oNawSoEgT4UPk9L0_kaEgxrZnO--L-uuks4x5vw_XoTMrkiuURx-bqI2IY6w8ouh_2uAbwkVd2mxtEKVIkp22TlRWB2j3TQgiEPHbopgAHEV9yIp6tX7DrZn9M-uKjnlhedM8uHlv3jRDHZFRsrA9Fpt20IX7wW5ayXyIMEhsR3Mb9s7xJU00za_hKCpxEnjr1WK_IA1-Cu5pCwEY_93Ncvnfq-ymFjJs9XhGSl2LVS_NdmE7BzTujcFaS1j42XkiKA95G_uPfaLNqKN0Xm8DkkTt6yGWG55RwKFh9a5bj1gDU6RLyvbXcH6Sb-2NFu5AzJXrqiEAXkGxaQKhmIb_m2n_HmS3Akz0PKmzpS_SDXfWsVViSC2S-lCtMULzM2jmPsioCQMZiHE_Gy0">
+
+
+
+
+<p>最后，再安利一句，<strong>plantuml</strong>和<strong>hexo-tag-plantuml</strong>，你值得拥有。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/plantuml/" rel="tag"># plantuml</a>
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/03/common-algorithms-for-machine-learning/" rel="next" title="机器学习常见算法分类汇总">
+                <i class="fa fa-chevron-left"></i> 机器学习常见算法分类汇总
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/07/six-key-ability-of-managers/" rel="prev" title="管理者的六项关键能力">
+                管理者的六项关键能力 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <p class="site-author-name" itemprop="name">Tony Deng</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tonydeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wolfdeng" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/tonydeng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-global"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PlantUML-简介"><span class="nav-number">1.</span> <span class="nav-text">PlantUML 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具"><span class="nav-number">2.</span> <span class="nav-text">工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">3.</span> <span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#比如这样简单的三行文本，就能生成一个基本的时序图。"><span class="nav-number">3.1.</span> <span class="nav-text">比如这样简单的三行文本，就能生成一个基本的时序图。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#除了之前说过的可以生成的图形，还能生成其他图形，比如生成🌍图形。"><span class="nav-number">3.2.</span> <span class="nav-text">除了之前说过的可以生成的图形，还能生成其他图形，比如生成🌍图形。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PlantUML和Hexo整合"><span class="nav-number">4.</span> <span class="nav-text">PlantUML和Hexo整合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装hexo-tag-plantuml"><span class="nav-number">4.1.</span> <span class="nav-text">安装hexo-tag-plantuml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比如我们通过hexo-tag-plantuml插件，在网站上展示相对复杂的类图"><span class="nav-number">4.2.</span> <span class="nav-text">比如我们通过hexo-tag-plantuml插件，在网站上展示相对复杂的类图</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2005 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Deng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

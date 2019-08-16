@@ -1,0 +1,1087 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JUnit5教程 简介">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="这个JUnit5教程将讲述如何使用Java8风格的编码以及其他功能，同时也了解JUnit5与之前的版本的区别。 Junit5简介JUnit是Java中使用最广泛的测试框架，之前Java8发布了最引人注目的lambda表达式，整个Java的编码风格发生巨大的变化，JUnit5主要在希望能够适应Java8风格的编码以及相关工，这就是为什么建议在Java8之后的项目中使用JUnit5来创建和执行测试。">
+<meta name="keywords" content="JUnit5教程 简介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JUnit5教程-简介">
+<meta property="og:url" content="http://tonydeng.github.io/2017/10/09/junit-5-tutorial-introduction/index.html">
+<meta property="og:site_name" content="TonyDeng&#39;s Blog">
+<meta property="og:description" content="这个JUnit5教程将讲述如何使用Java8风格的编码以及其他功能，同时也了解JUnit5与之前的版本的区别。 Junit5简介JUnit是Java中使用最广泛的测试框架，之前Java8发布了最引人注目的lambda表达式，整个Java的编码风格发生巨大的变化，JUnit5主要在希望能够适应Java8风格的编码以及相关工，这就是为什么建议在Java8之后的项目中使用JUnit5来创建和执行测试。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://junit.org/junit4/images/junit5-banner.png">
+<meta property="og:image" content="https://www.ibm.com/developerworks/library/j-introducing-junit5-part1-jupiter-api/Figure-1.png">
+<meta property="og:image" content="http://junit.org/junit5/docs/current/user-guide/images/component-diagram.svg">
+<meta property="og:updated_time" content="2019-06-20T12:10:27.480Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JUnit5教程-简介">
+<meta name="twitter:description" content="这个JUnit5教程将讲述如何使用Java8风格的编码以及其他功能，同时也了解JUnit5与之前的版本的区别。 Junit5简介JUnit是Java中使用最广泛的测试框架，之前Java8发布了最引人注目的lambda表达式，整个Java的编码风格发生巨大的变化，JUnit5主要在希望能够适应Java8风格的编码以及相关工，这就是为什么建议在Java8之后的项目中使用JUnit5来创建和执行测试。">
+<meta name="twitter:image" content="http://junit.org/junit4/images/junit5-banner.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tonydeng.github.io/2017/10/09/junit-5-tutorial-introduction/">
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+
+
+  <title> JUnit5教程-简介 | TonyDeng's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80673215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43d979b191269e68beffa09e2d17a081";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TonyDeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">“In me the tiger sniffes the rose.” -- Siegfried Sasson</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ppts">
+          <a href="/ppts" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            PPT
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gitbook">
+          <a href="/gitbook-zh" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            GitBook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2017/10/09/junit-5-tutorial-introduction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JUnit5教程-简介
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T11:09:07+08:00">
+                2017-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JUnit5-Tutorial/" itemprop="url" rel="index">
+                    <span itemprop="name">JUnit5 Tutorial</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://junit.org/junit4/images/junit5-banner.png" alt="junit5 logo"></p>
+<p>这个<a href="/categories/JUnit5-Tutorial/">JUnit5教程</a>将讲述如何使用Java8风格的编码以及其他功能，同时也了解<a href="http://junit.org/junit5/" target="_blank" rel="noopener">JUnit5</a>与之前的版本的区别。</p>
+<h2 id="Junit5简介"><a href="#Junit5简介" class="headerlink" title="Junit5简介"></a>Junit5简介</h2><p>JUnit是Java中使用最广泛的测试框架，之前Java8发布了最引人注目的lambda表达式，整个Java的编码风格发生巨大的变化，JUnit5主要在希望能够适应Java8风格的编码以及相关工，这就是为什么建议在Java8之后的项目中使用JUnit5来创建和执行测试。</p>
+<p>JUnit官方说明：</p>
+<blockquote>
+<p>JUnit 5 is the next generation of JUnit. The goal is to create an up-to-date foundation for developer-side testing on the JVM. This includes focusing on Java 8 and above, as well as enabling many different styles of testing.</p>
+</blockquote>
+<p>JUnit5的第一个可用性版本是在2017年9月10日发布的。</p>
+<a id="more"></a>
+
+<h2 id="JUnit5架构"><a href="#JUnit5架构" class="headerlink" title="JUnit5架构"></a>JUnit5架构</h2><p>相比JUnit4，JUnit5由三个不同的子项目及不同的模块组成。</p>
+<blockquote>
+<p>JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage</p>
+</blockquote>
+<p>下图是JUnit的架构图</p>
+<p><img src="https://www.ibm.com/developerworks/library/j-introducing-junit5-part1-jupiter-api/Figure-1.png" alt="junit 5 architecture "></p>
+<h3 id="1-JUnit-Platform"><a href="#1-JUnit-Platform" class="headerlink" title="1. JUnit Platform"></a>1. JUnit Platform</h3><p>启动Junit测试、IDE、构建工具或插件都需要包含和扩展Platform API，它定义了<code>TestEngine</code>在平台运行的新测试框架的API。</p>
+<p>它还提供了一个控制台启动器，可以从命令行启动Platform，为Gradle和Maven插件提供支持。</p>
+<h3 id="2-JUnit-Jupiter"><a href="#2-JUnit-Jupiter" class="headerlink" title="2. JUnit Jupiter"></a>2. JUnit Jupiter</h3><p>它用于编写测试代码的新的编程和扩展模型。它具有所有新的Junit注释和<code>TestEngine</code>实现来运行这些注释编写的测试。</p>
+<h3 id="3-JUnit-Vintage"><a href="#3-JUnit-Vintage" class="headerlink" title="3. JUnit Vintage"></a>3. JUnit Vintage</h3><p>它主要的目的是支持在JUnit5的测试代码中运行JUnit3和4方式写的测试，它能够向前兼容之前的测试代码。</p>
+<p>下图是JUnit5的依赖关系图</p>
+<p><img src="http://junit.org/junit5/docs/current/user-guide/images/component-diagram.svg" alt="junit 5 dependence"></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>你可以在Maven或Gradle项目中使用JUnit5，包含最小的两个依赖关系，即<code>junit-jupiter-engince</code>和<code>junit-platform-runner</code>。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.jupiter<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-jupiter-engine<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;junit.jupiter.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.platform<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-platform-runner<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;junit.platform.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">testRuntime(<span class="string">"org.junit.jupiter:junit-jupiter-engine:5.0.0-M4"</span>)</span><br><span class="line">testRuntime(<span class="string">"org.junit.platform:junit-platform-runner:1.0.0-M4"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果你想了解更多的话，可以查看官方的<a href="https://github.com/junit-team/junit5-samples/blob/master/junit5-gradle-consumer/build.gradle" target="_blank" rel="noopener">build.gradle</a>和<a href="https://github.com/junit-team/junit5-samples/blob/master/junit5-maven-consumer/pom.xml" target="_blank" rel="noopener">pom.xml</a>。</p>
+<h2 id="JUnit5-Annotations"><a href="#JUnit5-Annotations" class="headerlink" title="JUnit5 Annotations"></a>JUnit5 Annotations</h2><p>JUnit5提供了以下的注解来编写测试代码。</p>
+<table>
+<thead>
+<tr>
+<th>Annotations</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@BeforeEach</code></td>
+<td>在方法上注解，在每个测试方法运行之前执行。</td>
+</tr>
+<tr>
+<td><code>@AfterEach</code></td>
+<td>在方法上注解，在每个测试方法运行之后执行</td>
+</tr>
+<tr>
+<td><code>@BeforeAll</code></td>
+<td>该注解方法会在所有测试方法之前运行，该方法必须是静态的。</td>
+</tr>
+<tr>
+<td><code>@AfterAll</code></td>
+<td>该注解方法会在所有测试方法之后运行，该方法必须是静态的。</td>
+</tr>
+<tr>
+<td><code>@Test</code></td>
+<td>用于将方法标记为测试方法</td>
+</tr>
+<tr>
+<td><code>@DisplayName</code></td>
+<td>用于为测试类或测试方法提供任何自定义显示名称</td>
+</tr>
+<tr>
+<td><code>@Disable</code></td>
+<td>用于禁用或忽略测试类或方法</td>
+</tr>
+<tr>
+<td><code>@Nested</code></td>
+<td>用于创建嵌套测试类</td>
+</tr>
+<tr>
+<td><code>@Tag</code></td>
+<td>用于测试发现或过滤的标签来标记测试方法或类</td>
+</tr>
+<tr>
+<td><code>@TestFactory</code></td>
+<td>标记一种方法是动态测试的测试工场</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>可以查看详细的<a href="/2017/10/10/junit-5-annotations/">JUnit5注解</a>说明</p>
+</blockquote>
+<h2 id="使用JUnit5编写测试"><a href="#使用JUnit5编写测试" class="headerlink" title="使用JUnit5编写测试"></a>使用JUnit5编写测试</h2><p>JUnit4和JUnit5在测试编码风格上没有太大变化。这是其<a href="/2017/10/09/junit-5-test-lifecycle/">生命周期</a>方法的样本测试。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.AfterAll;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.AfterEach;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Assertions;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.BeforeAll;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.BeforeEach;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Disabled;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Tag;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.github.tonydeng.junit5.examples.Calculator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@BeforeAll</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"@BeforeAll executed"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@BeforeEach</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setupThis</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"@BeforeEach executed"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Tag</span>(<span class="string">"DEV"</span>)</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testCalcOne</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"======TEST ONE EXECUTED======="</span>);</span><br><span class="line">        Assertions.assertEquals( <span class="number">4</span> , Calculator.add(<span class="number">2</span>, <span class="number">2</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Tag</span>(<span class="string">"PROD"</span>)</span><br><span class="line">    <span class="meta">@Disabled</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testCalcTwo</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"======TEST TWO EXECUTED======="</span>);</span><br><span class="line">        Assertions.assertEquals( <span class="number">6</span> , Calculator.add(<span class="number">2</span>, <span class="number">4</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterEach</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">tearThis</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"@AfterEach executed"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterAll</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tear</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"@AfterAll executed"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试套件"><a href="#测试套件" class="headerlink" title="测试套件"></a>测试套件</h2><p>使用JUnit5的测试套件，可以将测试扩展到多个测试类和不同的软件包。JUnit5提供了两个注解： <a href="http://junit.org/junit5/docs/current/api/index.html?org/junit/platform/runner/SelectPackages.html" target="_blank" rel="noopener">@SelectPackages</a> 和 <a href="http://junit.org/junit5/docs/current/api/index.html?org/junit/platform/runner/SelectClasses.html" target="_blank" rel="noopener">@SelectClasses</a> 来创建测试套件。</p>
+<p>要执行测试套件，可以是使用 <code>@RunWith(JUnitPlatform.class)</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(JUnitPlatform.class)</span><br><span class="line"><span class="meta">@SelectPackages</span>(<span class="string">"com.github.tonydeng.junit5.examples"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JUnit5TestSuiteExample</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>另外，你也可以使用以下注解来过滤测试包、类甚至测试方法。</p>
+<ol>
+<li><code>@IncludePackages</code>和<code>@ExcludePackages</code>来过滤包</li>
+<li><code>@IncludeClassNamePatterns</code>和<code>@ExcludeClassNamePatterns</code>过滤测试类</li>
+<li><code>@IncludeTags</code>和<code>@ExcludeTags</code>过滤测试方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(JUnitPlatform.class)</span><br><span class="line"><span class="meta">@SelectPackages</span>(<span class="string">"com.github.tonydeng.junit5.examples"</span>)</span><br><span class="line"><span class="meta">@IncludePackages</span>(<span class="string">"com.github.tonydeng.junit5.examples.packageC"</span>)</span><br><span class="line"><span class="meta">@ExcludeTags</span>(<span class="string">"PROD"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JUnit5TestSuiteExample</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><p>断言有助于使用测试用例的实际输出验证预期输出。为了保持简单，所有JUnit Jupiter断言是<a href="http://junit.org/junit5/docs/current/api/org/junit/jupiter/api/Assertions.html" target="_blank" rel="noopener">org.junit.jupiter.Assertions</a>类中的静态方法，例如<code>assertEquals()</code>，<code>assertNotEquals()</code>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">testCase</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//Test will pass</span></span><br><span class="line">    Assertions.assertNotEquals(<span class="number">3</span>, Calculator.add(<span class="number">2</span>, <span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Test will fail</span></span><br><span class="line">    Assertions.assertNotEquals(<span class="number">4</span>, Calculator.add(<span class="number">2</span>, <span class="number">2</span>), <span class="string">"Calculator.add(2, 2) test failed"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Test will fail</span></span><br><span class="line">    Supplier&lt;String&gt; messageSupplier  = ()-&gt; <span class="string">"Calculator.add(2, 2) test failed"</span>;</span><br><span class="line">    Assertions.assertNotEquals(<span class="number">4</span>, Calculator.add(<span class="number">2</span>, <span class="number">2</span>), messageSupplier);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="假设"><a href="#假设" class="headerlink" title="假设"></a>假设</h2><p><a href="http://junit.org/junit5/docs/current/api/org/junit/jupiter/api/Assumptions.html" target="_blank" rel="noopener">Assumptions</a>类提供了静态方法来支持基于假设的条件测试执行。失败的假设导致测试被中止。无论何时继续执行给定的测试方法没有意义，通常使用假设。在测试报告中，这些测试将被标记为已通过。</p>
+<p>JUnit的Jupiter假设类有两个这样的方法：<code>assumeFalse()</code>，<code>assumeTrue()</code>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AppTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testOnDev</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.setProperty(<span class="string">"ENV"</span>, <span class="string">"DEV"</span>);</span><br><span class="line">        Assumptions.assumeTrue(<span class="string">"DEV"</span>.equals(System.getProperty(<span class="string">"ENV"</span>)), AppTest::message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">testOnProd</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.setProperty(<span class="string">"ENV"</span>, <span class="string">"PROD"</span>);</span><br><span class="line">        Assumptions.assumeFalse(<span class="string">"DEV"</span>.equals(System.getProperty(<span class="string">"ENV"</span>)));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">message</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"TEST Execution Failed :: "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="JUnit3或4的兼容性"><a href="#JUnit3或4的兼容性" class="headerlink" title="JUnit3或4的兼容性"></a>JUnit3或4的兼容性</h2><p>JUnit4已经存在了很长时间，并且有许多以JUnit4编写的测试.JUnit Jupiter还需要支持这些测试。为此，开发了JUnit Vintage子项目。</p>
+<p>JUnit Vintage提供了TestEngine在JUnit 5平台上运行基于JUnit 3和JUnit 4的测试的实现。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/junit5/" rel="tag"># junit5</a>
+          
+            <a href="/tags/junit/" rel="tag"># junit</a>
+          
+            <a href="/tags/tutorial/" rel="tag"># tutorial</a>
+          
+            <a href="/tags/unit-testing/" rel="tag"># unit testing</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/26/RUN-vs-CMD-vs-ENTRYPOINT-in-Dockerfile/" rel="next" title="RUN vs CMD vs ENTRYPOINT in Dockerfile">
+                <i class="fa fa-chevron-left"></i> RUN vs CMD vs ENTRYPOINT in Dockerfile
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/09/junit-5-test-lifecycle/" rel="prev" title="JUnit5教程-测试生命周期">
+                JUnit5教程-测试生命周期 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <p class="site-author-name" itemprop="name">Tony Deng</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tonydeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wolfdeng" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/tonydeng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-global"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Junit5简介"><span class="nav-number">1.</span> <span class="nav-text">Junit5简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JUnit5架构"><span class="nav-number">2.</span> <span class="nav-text">JUnit5架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-JUnit-Platform"><span class="nav-number">2.1.</span> <span class="nav-text">1. JUnit Platform</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-JUnit-Jupiter"><span class="nav-number">2.2.</span> <span class="nav-text">2. JUnit Jupiter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-JUnit-Vintage"><span class="nav-number">2.3.</span> <span class="nav-text">3. JUnit Vintage</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">3.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JUnit5-Annotations"><span class="nav-number">4.</span> <span class="nav-text">JUnit5 Annotations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用JUnit5编写测试"><span class="nav-number">5.</span> <span class="nav-text">使用JUnit5编写测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试套件"><span class="nav-number">6.</span> <span class="nav-text">测试套件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#断言"><span class="nav-number">7.</span> <span class="nav-text">断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#假设"><span class="nav-number">8.</span> <span class="nav-text">假设</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JUnit3或4的兼容性"><span class="nav-number">9.</span> <span class="nav-text">JUnit3或4的兼容性</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2005 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Deng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

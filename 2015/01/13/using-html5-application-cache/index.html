@@ -1,0 +1,1108 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="html5, manifest">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="简介 HTML5 提供一种 应用缓存 机制，使得基于web的应用程序可以离线运行。开发者可以使用 Application Cache (AppCache) 接口设定浏览器缓存的数据并使得数据离线有效。 在处于离线状态时，即使用户点击刷新按钮，应用也能正常加载与工作。 使用应用缓存可以得到以下益处：  离线浏览: 用户可以在离线状态下浏览网站内容。 更快的速度: 因为数据被存储在本地，所以速度会更">
+<meta name="keywords" content="html5, manifest">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用HTML5的应用缓存">
+<meta property="og:url" content="http://tonydeng.github.io/2015/01/13/using-html5-application-cache/index.html">
+<meta property="og:site_name" content="TonyDeng&#39;s Blog">
+<meta property="og:description" content="简介 HTML5 提供一种 应用缓存 机制，使得基于web的应用程序可以离线运行。开发者可以使用 Application Cache (AppCache) 接口设定浏览器缓存的数据并使得数据离线有效。 在处于离线状态时，即使用户点击刷新按钮，应用也能正常加载与工作。 使用应用缓存可以得到以下益处：  离线浏览: 用户可以在离线状态下浏览网站内容。 更快的速度: 因为数据被存储在本地，所以速度会更">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/manifest.png">
+<meta property="og:updated_time" content="2019-06-20T12:10:27.464Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用HTML5的应用缓存">
+<meta name="twitter:description" content="简介 HTML5 提供一种 应用缓存 机制，使得基于web的应用程序可以离线运行。开发者可以使用 Application Cache (AppCache) 接口设定浏览器缓存的数据并使得数据离线有效。 在处于离线状态时，即使用户点击刷新按钮，应用也能正常加载与工作。 使用应用缓存可以得到以下益处：  离线浏览: 用户可以在离线状态下浏览网站内容。 更快的速度: 因为数据被存储在本地，所以速度会更">
+<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/manifest.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tonydeng.github.io/2015/01/13/using-html5-application-cache/">
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+
+
+  <title> 使用HTML5的应用缓存 | TonyDeng's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80673215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43d979b191269e68beffa09e2d17a081";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TonyDeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">“In me the tiger sniffes the rose.” -- Siegfried Sasson</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ppts">
+          <a href="/ppts" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            PPT
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gitbook">
+          <a href="/gitbook-zh" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            GitBook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2015/01/13/using-html5-application-cache/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用HTML5的应用缓存
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-13T21:56:27+08:00">
+                2015-01-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/性能/" itemprop="url" rel="index">
+                    <span itemprop="name">性能</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/blog/manifest.png" alt="manifest"></p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p> <a href="https://html5.org/" target="_blank" rel="noopener">HTML5</a> 提供一种 <strong>应用缓存</strong> 机制，使得基于web的应用程序可以离线运行。开发者可以使用 Application Cache (AppCache) 接口设定浏览器缓存的数据并使得数据离线有效。 在处于离线状态时，即使用户点击刷新按钮，应用也能正常加载与工作。</p>
+<p>使用应用缓存可以得到以下益处：</p>
+<ul>
+<li>离线浏览: 用户可以在离线状态下浏览网站内容。</li>
+<li>更快的速度: 因为数据被存储在本地，所以速度会更快.</li>
+<li>减轻服务器的负载: 浏览器只会下载在服务器上发生改变的资源。</li>
+</ul>
+<a id="more"></a>
+
+<h1 id="应用缓存如何工作"><a href="#应用缓存如何工作" class="headerlink" title="应用缓存如何工作"></a>应用缓存如何工作</h1><h2 id="开启应用缓存"><a href="#开启应用缓存" class="headerlink" title="开启应用缓存"></a>开启应用缓存</h2><p>若想为应用开启应用缓存，你需要在应用页面中的 <html> 元素上增加 manifest 特性，请看下面的例子：</html></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">"example.appcache"</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>manifest 特性与 <strong>缓存清单(cache manifest)</strong> 文件关联，这个文件包含了浏览器<strong>需要为你的应用缓存的资源(文件)列表</strong>。</p>
+<p>你应当在每一个意图缓存的页面上添加 <strong>manifest</strong> 特性。浏览器不会缓存不带有<strong>manifest</strong> 特性的页面，除非这个页面已经被写在清单文件内的列表里了。你没有必要添加所有你意图缓存的页面的清单文件，浏览器会将用户访问过的并带有 manifest 特性的所有页面添加进应用缓存中。</p>
+<h2 id="加载文档"><a href="#加载文档" class="headerlink" title="加载文档"></a>加载文档</h2><p>使用了应用缓存机制以后加载文档的顺序是这样的：</p>
+<ul>
+<li>如果应用缓存存在，浏览器直接从缓存中加载文档与相关资源，不会访问网络。这会提升文档加载速度。</li>
+<li>浏览器检查清单文件列出的资源是否在服务器上被修改。</li>
+<li>如果清单文件被更新了, 浏览器会下载新的清单文件和相关的资源。 这都是在后台执行的，基本不会影响到webapp的性能。</li>
+</ul>
+<p>下面详细描述了加载文档与更新应用缓存的流程：</p>
+<ol>
+<li>当浏览器访问一个包含 manifest 特性的文档时，如果应用缓存不存在，浏览器会加载文档，然后获取所有在清单文件中列出的文件，生成应用缓存的第一个版本。</li>
+<li>对该文档的后续访问会使浏览器直接从应用缓存(而不是服务器)中加载文档与其他在清单文件中列出的资源。此外，浏览器还会向 window.applicationCache 对象发送一个 checking 事件，在遵循合适的 HTTP 缓存规则前提下，获取清单文件。</li>
+<li>如果当前缓存的清单副本是最新的，浏览器将向 applicationCache 对象发送一个 noupdate 事件，到此，更新过程结束。注意，如果你在服务器修改了任何缓存资源，同时也应该修改清单文件，这样浏览器才能知道它需要重新获取资源。</li>
+<li>如果清单文件已经改变，文件中列出的所有文件—也包括通过调用 applicationCache.add() 方法添加到缓存中的那些文件—会被获取并放到一个临时缓存中，遵循适当的 HTTP 缓存规则。对于每个加入到临时缓存中的文件，浏览器会向 applicationCache 对象发送一个 progress 事件。如果出现任何错误，浏览器会发送一个 error 事件，并暂停更新。</li>
+<li>一旦所有文件都获取成功，它们会自动移送到真正的离线缓存中，并向  applicationCache 对象发送一个 cached 事件。鉴于文档早已经被从缓存加载到浏览器中，所以更新后的文档不会重新渲染，直到页面重新加载(可以手动或通过程序).</li>
+</ol>
+<h1 id="存储位置与清除离线缓存"><a href="#存储位置与清除离线缓存" class="headerlink" title="存储位置与清除离线缓存"></a>存储位置与清除离线缓存</h1><p>在 Chrome 中，你可以在设置中选择 「清除浏览器数据…」 或访问 <a href="chrome://appcache-internals" target="_blank" rel="noopener">chrome://appcache-internals</a> 来清除缓存。</p>
+<p>Safari 在设置中有一个类似的”清空缓存” 选项，但是需要重启浏览器后才能生效。</p>
+<p>在 Firefox 中，离线缓存数据与 Firefox 配置文件是分开存储的—紧挨着硬盘缓存：</p>
+<ul>
+<li>Windows Vista/7: C:\Users&lt;username&gt;\AppData\Local\Mozilla\Firefox\Profiles&lt;salt&gt;.<profile name>\OfflineCache</profile></li>
+<li>Mac/Linux: /Users/<username>/Library/Caches/Firefox/Profiles/<salt>.<profile name>/OfflineCache</profile></salt></username></li>
+</ul>
+<p>应用缓存可以变成废弃的。如果从服务器上移除一个应用的清单文件，浏览器将会清除所有清单中列出的应用缓存，并向 applicationCache 对象发送一个「obsolete」事件。这将使得应用缓存的状态变为 OBSOLETE。</p>
+<h1 id="缓存清单文件"><a href="#缓存清单文件" class="headerlink" title="缓存清单文件"></a>缓存清单文件</h1><h2 id="引用一个缓存清单文件"><a href="#引用一个缓存清单文件" class="headerlink" title="引用一个缓存清单文件"></a>引用一个缓存清单文件</h2><p>web 应用中的 manifest 特性可以指定为缓存清单文件的相对路径或一个绝对 URL(绝对 URL 必须与应用同源)。缓存清单文件可以使用任意扩展名，但传输它的 MIME 类型必须为 text/cache-manifest。</p>
+<p>Apache配置对manifest支持，在根目录或应用的同级目录下的<strong>.htaccess</strong>中加入下面的配置</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">AddType <span class="built_in">text</span>/cache-manifest .appcache</span><br></pre></td></tr></table></figure>
+
+<p>Nginx配置对manifest支持，在<strong>conf/mime.types</strong>中加入下面的配置</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">text/<span class="keyword">cache</span>-manifest                  appcache manifest;</span><br></pre></td></tr></table></figure>
+
+<h2 id="缓存清单文件中的记录"><a href="#缓存清单文件中的记录" class="headerlink" title="缓存清单文件中的记录"></a>缓存清单文件中的记录</h2><p>缓存清单文件是一个纯文本文件，它列出了所有浏览器应该缓存起来的资源，以便能够离线访问。资源使用 URI 来标识。在缓存清单文件中列出的所有记录必须拥有相同的协议、主机名与端口号。</p>
+<h1 id="示例-1：一个简单的缓存清单文件"><a href="#示例-1：一个简单的缓存清单文件" class="headerlink" title="示例 1：一个简单的缓存清单文件"></a>示例 1：一个简单的缓存清单文件</h1><p>下面是一个简单的缓存清单文件，example.appcache，适用于一个虚拟的网站 <a href="http://www.example.com。" target="_blank" rel="noopener">www.example.com。</a></p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line"><span class="meta"># v1 - 2011-08-13</span></span><br><span class="line"><span class="meta"># This is a comment.</span></span><br><span class="line"><span class="symbol">http:</span><span class="comment">//www.example.com/index.html</span></span><br><span class="line"><span class="symbol">http:</span><span class="comment">//www.example.com/header.png</span></span><br><span class="line"><span class="symbol">http:</span><span class="comment">//www.example.com/blah/blah</span></span><br></pre></td></tr></table></figure>
+
+<p>一个缓存清单文件可以包含三段内容 (CACHE， NETWORK， 和 FALLBACK， 下面详细讨论)。 在上面的例子中，没有段落标题，因此所有数据行都认为是属于显式 (CACHE) 段落，这意味着浏览器应该在应用缓存中缓存所有列出的资源。资源可以使用绝对或者相对 URL 来指定(例如 index.html)。</p>
+<p>上面例子中的注释 「v1」很有必要存在。只有当清单文件发生变化时，浏览器才会去更新应用缓存。如果你要更改缓存资源(比如说，你使用了一张新的 header.png 图片)，你必须同时修改清单文件中的内容，以便让浏览器知道它们需要更新缓存。你可以对清单文件做任何改动，但大家都认同的最佳实践则是修正版本号。</p>
+<blockquote>
+<p>重要：不要在清单文件中指定清单文件本身，否则将无法让浏览器得知清单文件有新版本出现。</p>
+</blockquote>
+<h2 id="缓存清单文件中的段落：-CACHE，-NETWORK，与-FALLBACK"><a href="#缓存清单文件中的段落：-CACHE，-NETWORK，与-FALLBACK" class="headerlink" title="缓存清单文件中的段落： CACHE， NETWORK，与 FALLBACK"></a>缓存清单文件中的段落： CACHE， NETWORK，与 FALLBACK</h2><p>清单文件可以分为三段： CACHE， NETWORK，与 FALLBACK.</p>
+<p><strong>CACHE:</strong><br>    这是缓存文件中记录所属的默认段落。在 CACHE: 段落标题后(或直接跟在 CACHE MANIFEST 行后)列出的文件会在它们第一次下载完毕后缓存起来。</p>
+<p><strong>NETWORK:</strong><br>    在 NETWORK: 段落标题下列出的文件是需要与服务器连接的白名单资源。所有类似资源的请求都会绕过缓存，即使用户处于离线状态。可以使用通配符。</p>
+<p><strong>FALLBACK:</strong><br>    FALLBACK: 段指定了一个后备页面，当资源无法访问时，浏览器会使用该页面。该段落的每条记录都列出两个 URI—第一个表示资源，第二个表示后备页面。两个 URI 都必须使用相对路径并且与清单文件同源。可以使用通配符。</p>
+<p>CACHE， NETWORK， 和 FALLBACK 段落可以以任意顺序出现在缓存清单文件中，并且每个段落可以在同一清单文件中出现多次。</p>
+<h1 id="示例-2：-一个复杂且完整的缓存清单文件"><a href="#示例-2：-一个复杂且完整的缓存清单文件" class="headerlink" title="示例 2： 一个复杂且完整的缓存清单文件"></a>示例 2： 一个复杂且完整的缓存清单文件</h1><p>下面是一个更加完整的缓存清单文件，适用于一个虚拟的网站 <a href="http://www.example.com：" target="_blank" rel="noopener">www.example.com：</a></p>
+<figure class="highlight vala"><table><tr><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line"><span class="meta"># v1 2011-08-14</span></span><br><span class="line"><span class="meta"># This is another comment</span></span><br><span class="line">index.html</span><br><span class="line">cache.html</span><br><span class="line">style.css</span><br><span class="line">image1.png</span><br><span class="line"></span><br><span class="line"><span class="meta"># Use from network if available</span></span><br><span class="line">NETWORK:</span><br><span class="line">network.html</span><br><span class="line"></span><br><span class="line"><span class="meta"># Fallback content</span></span><br><span class="line">FALLBACK:</span><br><span class="line">/ fallback.html</span><br></pre></td></tr></table></figure>
+
+<p>该例子使用了 NETWORK 与 FALLBACK 段落，指明了 network.html 页面必须始终从网络获取，fallback.html 页面应该作为后备资源来提供(例如，当无法与服务器建立连接时)。</p>
+<h2 id="缓存清单文件的结构"><a href="#缓存清单文件的结构" class="headerlink" title="缓存清单文件的结构"></a>缓存清单文件的结构</h2><p>缓存清单文件必须以 <strong>text/cache-manifest</strong> MIME 类型来传输。所有通过 MIME 类型传输的文件必须符合本节中定义的适用于应用缓存清单的语法。</p>
+<p>缓存清单是 UTF-8 格式的文本文件，有可能包含一个 BOM 字符。新行可能使用换行符(U+000A)，回车(U+000D)，或回车加换行符来表示。</p>
+<p>缓存清单文件的第一行必须包含字符串 CACHE MANIFEST (两个单词间使用一个 U+0020 空白)，紧接着是零或多个空白或制表符。本行的其他文本会被忽略。</p>
+<p>缓存清单文件的余下内容必须包含零或多个下面的行：</p>
+<p><strong>空行</strong><br>    你可以使用包含零或多个空白与制表符的空行。</p>
+<p><strong>注释</strong><br>    注释包括零或多个制表符或空白字符，紧接着是一个 # 字符，再然后是零或多个注释文本字符。注释只能在所在行起作用，不能追加到其他行上。这意味着你无法使用片段标识符。</p>
+<p><strong>段落标题</strong><br>    段落标题指定了缓存文件即将操作的段落。有三个可选的标题：</p>
+<pre><code>CACHE:         切换到缓存清单的显式段落(默认段落)。
+NETWORK:     切换到缓存清单的在线白名单段落。
+FALLBACK:     切换到缓存清单的后备资源段落。</code></pre><p>缓存清单可以在段落内任意切换(每个段落标题可以使用多次)，而且段落允许为空。</p>
+<h1 id="一个应用缓存中的资源"><a href="#一个应用缓存中的资源" class="headerlink" title="一个应用缓存中的资源"></a>一个应用缓存中的资源</h1><p>一个应用缓存至少会包含一个资源，由 URI 指定。所有资源都属于下列类别之一：</p>
+<p><strong>主记录</strong><br>    这些资源被加入缓存的原因是：用户浏览的一个上下文中包含一个文档，该文档用 manifest 特性明确指明了它属于该缓存。</p>
+<p><strong>显式记录</strong><br>    这些是在应用缓存清单文件中显式列出的资源。</p>
+<p><strong>网络记录</strong><br>    这些是在应用缓存清单文件中作为网络记录列出的资源。</p>
+<p><strong>后备记录</strong><br>    这些是在应用缓存清单文件中作为后备记录列出的资源。</p>
+<h2 id="主记录"><a href="#主记录" class="headerlink" title="主记录"></a>主记录</h2><p>任意在 <html> 元素上包含一个 manifest 特性的 HTML 文件都可以是主记录。例如，我们拥有 HTML 文件 <a href="http://www.example.com/entry.html" target="_blank" rel="noopener">http://www.example.com/entry.html</a> ，它看起来是这样的：</html></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">"example.appcache"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Application Cache Example<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果 entry.html 没有在 example.appcache 缓存清单文件中列出来，那么访问 entry.html 页面会使得 entry.html 作为一条主记录加入到应用缓存中。</p>
+<h2 id="显式记录"><a href="#显式记录" class="headerlink" title="显式记录"></a>显式记录</h2><p>显式记录就是在缓存清单文件的 CACHE 段落显式列出的资源。</p>
+<h2 id="网络记录"><a href="#网络记录" class="headerlink" title="网络记录"></a>网络记录</h2><p>缓存清单文件的 NETWORK 段落指定了 web 应用需要在线访问的资源。一个应用缓存中的网络记录本质上来说是一个「在线白名单」—在 NETWORK 段落指定的 URI 会从服务器而不是缓存加载。这使得浏览器的安全模型通过限制用户让其只访问经过验证的资源来避免潜在的安全漏洞。</p>
+<p>举例来说，你可以使用网络记录来从服务器而不是缓存中加载并执行脚本或其他代码：</p>
+<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line"><span class="symbol">NETWORK:</span></span><br><span class="line">/api</span><br></pre></td></tr></table></figure>
+
+<p>上面列出的缓存清单段落能够保证对 <a href="http://www.example.com/api/" target="_blank" rel="noopener">http://www.example.com/api/</a> 子目录中资源的请求始终通过网络加载，而不会去访问缓存。</p>
+<blockquote>
+<p>注意： 简单的从清单文件中过滤主记录(在 html 元素中拥有 manifest 特性的文件)并不会产生同样的结果，因为主记录会被添加到—后续访问的获取也会从—应用缓存中。</p>
+</blockquote>
+<h2 id="后备记录"><a href="#后备记录" class="headerlink" title="后备记录"></a>后备记录</h2><p>当尝试请求资源失败时会使用后备记录。例如，缓存清单文件 <a href="http://www.example.com/example.appcache" target="_blank" rel="noopener">http://www.example.com/example.appcache</a> 包含如下内容：</p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line"><span class="symbol">FALLBACK:</span></span><br><span class="line">example<span class="meta-keyword">/bar/</span> example.html</span><br></pre></td></tr></table></figure>
+
+<p>任何访问 <a href="http://www.example.com/example/bar/" target="_blank" rel="noopener">http://www.example.com/example/bar/</a> 或它的任意子目录及内容都会使浏览器发出请求，去尝试加载请求的资源。如果尝试失败(可能是由于网络连接失败或服务器问题)，浏览器将会加载 example.html。</p>
+<h1 id="缓存状态"><a href="#缓存状态" class="headerlink" title="缓存状态"></a>缓存状态</h1><p>每个应用缓存都有一个状态，标示着缓存的当前状况。共享同一清单 URI 的缓存拥有相同的缓存状态，可能是其中之一：</p>
+<p><strong>UNCACHED(未缓存)</strong><br>    一个特殊的值，用于表明一个应用缓存对象还没有完全初始化。</p>
+<p><strong>IDLE(空闲)</strong><br>    应用缓存此时未处于更新过程中。</p>
+<p><strong>CHECKING(检查)</strong><br>    清单已经获取完毕并检查更新。</p>
+<p><strong>DOWNLOADING(下载中)</strong><br>    下载资源并准备加入到缓存中，这是由于清单变化引起的。</p>
+<p><strong>UPDATEREADY(更新就绪)</strong><br>    一个新版本的应用缓存可以使用。有一个对应的事件 updateready，当下载完毕一个更新，并且还未使用 swapCache() 方法激活更新时，该事件触发，而不会是 cached 事件。</p>
+<p><strong>OBSOLETE(废弃)</strong><br>    应用缓存现在被废弃。</p>
+<h1 id="测试缓存清单的更新"><a href="#测试缓存清单的更新" class="headerlink" title="测试缓存清单的更新"></a>测试缓存清单的更新</h1><p>你可以使用 JavaScript 来写程序检测应用是否拥有一个可以更新的缓存清单文件。因为缓存清单文件可能会在脚本添加事件前完成更新，所以脚本应该始终检测 <code>window.applicationCache.status</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onUpdateReady</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">'found new version!'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.applicationCache.addEventListener(<span class="string">'updateready'</span>, onUpdateReady);</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.applicationCache.status === <span class="built_in">window</span>.applicationCache.UPDATEREADY) &#123;</span><br><span class="line">  onUpdateReady();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 若要手动测试一个新的清单文件，你可以使用 <code>window.applicationCache.update()</code> 。</p>
+<h1 id="陷阱"><a href="#陷阱" class="headerlink" title="陷阱"></a>陷阱</h1><ul>
+<li><p>永远不要使用传统 GET 参数(例如 <code>other-cached-page.html?parameterName=value</code>) 来访问缓存文件。这会使浏览器绕过缓存，直接从网络获取。若想链接一个参数需要在 JavaScript 中解析的资源，你可以将参数放到链接的 hash 部分，例如 <code>other-cached-page.html#whatever?parameterName=value</code> 。</p>
+</li>
+<li><p>当应用被缓存后，仅仅更新在 web 页面中使用的资源(文件)还不足以更新被缓存的文件。你需要在浏览器获取和使用更新的文件前，去更新缓存清单文件本身。你可以使用 <code>window.applicationCache.swapCache()</code> 以编程的方式完成上述目的，虽然这无法影响到已经加载完毕的资源。为了保证资源从应用缓存的最新版本中加载，最理想的办法就是刷新页面。</p>
+</li>
+<li><p>通过在 web 服务器上设置 <code>expires header</code> 来使 <code>*.appcache</code> 文件立即过期是个好主意。这避免了将清单文件缓存的风险。例如，在 Apache 中，你可以指定下面的配置项：</p>
+</li>
+</ul>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">ExpiresByType <span class="built_in">text</span>/cache-manifest <span class="string">"access plus 0 seconds"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="另见"><a href="#另见" class="headerlink" title="另见"></a>另见</h2><ul>
+<li><a href="http://www.html5rocks.com/en/tutorials/appcache/beginner/" target="_blank" rel="noopener">HTML5Rocks - A Beginner’s Guide to Using the Application Cache</a></li>
+<li><a href="http://appcachefacts.info/" target="_blank" rel="noopener">appcachefacts.info</a> - detailed information on AppCache idiosyncrasies</li>
+<li><a href="http://hacks.mozilla.org/2010/01/offline-web-applications/" target="_blank" rel="noopener">offline web applications</a> at hacks.mozilla.org - showcases an offline app demo and explains how it works.</li>
+<li><a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#offline" target="_blank" rel="noopener">HTML 5 working draft: Offline web applications</a></li>
+<li><a href="http://developer.teradata.com/blog/js186040/2011/11/html5-cache-manifest-an-off-label-usage" target="_blank" rel="noopener">HTML5 Cache Manifest: An Off-label Usage</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/XPCOM_Interface_Reference/nsIApplicationCache" target="_blank" rel="noopener">nsIApplicationCache</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/XPCOM_Interface_Reference/nsIApplicationCacheNamespace" target="_blank" rel="noopener">nsIApplicationCacheNamespace</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/XPCOM_Interface_Reference/nsIApplicationCacheContainer" target="_blank" rel="noopener">nsIApplicationCacheContainer</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/XPCOM_Interface_Reference/nsIApplicationCacheChannel" target="_blank" rel="noopener">nsIApplicationCacheChannel</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/XPCOM_Interface_Reference/nsIApplicationCacheService" target="_blank" rel="noopener">nsIApplicationCacheService</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/XPCOM_Interface_Reference/nsIDOMOfflineResourceList" target="_blank" rel="noopener">nsIDOMOfflineResourceList</a></li>
+<li><a href="http://www.ibm.com/developerworks/web/library/wa-ffox3/" target="_blank" rel="noopener">Get ready for Firefox 3.0 - A Web developer’s guide to the many new features in this popular browser, especially the offline application features</a> (IBM developerWorks)</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/front-end/" rel="tag"># front-end</a>
+          
+            <a href="/tags/html5/" rel="tag"># html5</a>
+          
+            <a href="/tags/performance/" rel="tag"># performance</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/01/13/are-you-a-salted-fish/" rel="next" title="你是咸鱼吗？">
+                <i class="fa fa-chevron-left"></i> 你是咸鱼吗？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/01/19/about-the-stability/" rel="prev" title="关于稳定">
+                关于稳定 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <p class="site-author-name" itemprop="name">Tony Deng</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tonydeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wolfdeng" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/tonydeng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-global"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用缓存如何工作"><span class="nav-number">2.</span> <span class="nav-text">应用缓存如何工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#开启应用缓存"><span class="nav-number">2.1.</span> <span class="nav-text">开启应用缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加载文档"><span class="nav-number">2.2.</span> <span class="nav-text">加载文档</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储位置与清除离线缓存"><span class="nav-number">3.</span> <span class="nav-text">存储位置与清除离线缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缓存清单文件"><span class="nav-number">4.</span> <span class="nav-text">缓存清单文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引用一个缓存清单文件"><span class="nav-number">4.1.</span> <span class="nav-text">引用一个缓存清单文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存清单文件中的记录"><span class="nav-number">4.2.</span> <span class="nav-text">缓存清单文件中的记录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例-1：一个简单的缓存清单文件"><span class="nav-number">5.</span> <span class="nav-text">示例 1：一个简单的缓存清单文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存清单文件中的段落：-CACHE，-NETWORK，与-FALLBACK"><span class="nav-number">5.1.</span> <span class="nav-text">缓存清单文件中的段落： CACHE， NETWORK，与 FALLBACK</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例-2：-一个复杂且完整的缓存清单文件"><span class="nav-number">6.</span> <span class="nav-text">示例 2： 一个复杂且完整的缓存清单文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存清单文件的结构"><span class="nav-number">6.1.</span> <span class="nav-text">缓存清单文件的结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一个应用缓存中的资源"><span class="nav-number">7.</span> <span class="nav-text">一个应用缓存中的资源</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主记录"><span class="nav-number">7.1.</span> <span class="nav-text">主记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显式记录"><span class="nav-number">7.2.</span> <span class="nav-text">显式记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络记录"><span class="nav-number">7.3.</span> <span class="nav-text">网络记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后备记录"><span class="nav-number">7.4.</span> <span class="nav-text">后备记录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#缓存状态"><span class="nav-number">8.</span> <span class="nav-text">缓存状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#测试缓存清单的更新"><span class="nav-number">9.</span> <span class="nav-text">测试缓存清单的更新</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#陷阱"><span class="nav-number">10.</span> <span class="nav-text">陷阱</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#另见"><span class="nav-number">10.1.</span> <span class="nav-text">另见</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2005 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Deng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

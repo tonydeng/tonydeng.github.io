@@ -1,0 +1,1050 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="ssh, pssh, brew, linux, 远程服务器控制">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="pssh是一个用python编写的可以在多台服务器上执行命令的工具，同时支持拷贝文件等功能，在同类工具中还是很方便使用的。项目地址：parallel-ssh">
+<meta name="keywords" content="ssh, pssh, brew, linux, 远程服务器控制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PSSH基本使用介绍">
+<meta property="og:url" content="http://tonydeng.github.io/2014/12/08/pssh/index.html">
+<meta property="og:site_name" content="TonyDeng&#39;s Blog">
+<meta property="og:description" content="pssh是一个用python编写的可以在多台服务器上执行命令的工具，同时支持拷贝文件等功能，在同类工具中还是很方便使用的。项目地址：parallel-ssh">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/pssh.png">
+<meta property="og:updated_time" content="2019-06-20T12:10:27.462Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PSSH基本使用介绍">
+<meta name="twitter:description" content="pssh是一个用python编写的可以在多台服务器上执行命令的工具，同时支持拷贝文件等功能，在同类工具中还是很方便使用的。项目地址：parallel-ssh">
+<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/pssh.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tonydeng.github.io/2014/12/08/pssh/">
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+
+
+  <title> PSSH基本使用介绍 | TonyDeng's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80673215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43d979b191269e68beffa09e2d17a081";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TonyDeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">“In me the tiger sniffes the rose.” -- Siegfried Sasson</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ppts">
+          <a href="/ppts" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            PPT
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gitbook">
+          <a href="/gitbook-zh" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            GitBook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2014/12/08/pssh/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                PSSH基本使用介绍
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-12-08T15:33:36+08:00">
+                2014-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/效率/" itemprop="url" rel="index">
+                    <span itemprop="name">效率</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/blog/pssh.png" alt="PSSH"></p>
+<p>pssh是一个用python编写的可以在多台服务器上执行命令的工具，同时支持拷贝文件等功能，在同类工具中还是很方便使用的。项目地址：<a href="https://code.google.com/p/parallel-ssh/" target="_blank" rel="noopener">parallel-ssh</a></p>
+<a id="more"></a>
+
+<h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><p>Mac下可以直接使用brew来安装。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew  install pssh</span><br><span class="line">==&gt; Downloading https://parallel-ssh.googlecode.com/files/pssh-2.3.1.tar.gz</span><br><span class="line"><span class="comment">######################################################################## 100.0%</span></span><br><span class="line">==&gt; python setup.py install --prefix=/usr/<span class="built_in">local</span>/Cellar/pssh/2.3.1 --install-data=/usr/<span class="built_in">local</span>/Cellar/pssh/2.3.1/share</span><br><span class="line">==&gt; Caveats</span><br><span class="line">Python modules have been installed and Homebrew<span class="string">'s site-packages is not</span></span><br><span class="line"><span class="string">in your Python sys.path, so you will not be able to import the modules</span></span><br><span class="line"><span class="string">this formula installed. If you plan to develop with these modules,</span></span><br><span class="line"><span class="string">please run:</span></span><br><span class="line"><span class="string">  mkdir -p /Users/tonydeng/Library/Python/2.7/lib/python/site-packages</span></span><br><span class="line"><span class="string">  echo '</span>import site; site.addsitedir(<span class="string">"/usr/local/lib/python2.7/site-packages"</span>)<span class="string">' &gt;&gt; /Users/tonydeng/Library/Python/2.7/lib/python/site-packages/homebrew.pth</span></span><br><span class="line"><span class="string">==&gt; Summary</span></span><br><span class="line"><span class="string">🍺  /usr/local/Cellar/pssh/2.3.1: 40 files, 228K, built in 9 seconds</span></span><br></pre></td></tr></table></figure>
+
+<p>其他平台安装方法类似</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://parallel-ssh.googlecode.com/files/pssh-2.3.1.tar.gz</span><br><span class="line">tar zxvf pssh-2.3.1.tar.gz</span><br><span class="line"><span class="built_in">cd</span> pssh-2.3.1</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p>pssh安装包给我们提供了多个非常实用的工具，我们可以查看一下。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  pssh  ll /usr/<span class="built_in">local</span>/Cellar/pssh/2.3.1/bin</span><br><span class="line">total 48</span><br><span class="line">-r-xr-xr-x  1 tonydeng  admin   141B 12  8 15:32 pnuke</span><br><span class="line">-r-xr-xr-x  1 tonydeng  admin   142B 12  8 15:32 prsync</span><br><span class="line">-r-xr-xr-x  1 tonydeng  admin   140B 12  8 15:32 pscp</span><br><span class="line">-r-xr-xr-x  1 tonydeng  admin   142B 12  8 15:32 pslurp</span><br><span class="line">-r-xr-xr-x  1 tonydeng  admin   140B 12  8 15:32 pssh</span><br><span class="line">-r-xr-xr-x  1 tonydeng  admin   148B 12  8 15:32 pssh-askpass</span><br></pre></td></tr></table></figure>
+
+<p>提供的工具作用如下：</p>
+<ol>
+<li>parallel-ssh （pssh） 在多个主机上并行地运行命令。</li>
+<li>parallel-scp （pscp）把文件并行地复制到多个主机上。</li>
+<li>parallel-rsync （psync）通过 rsync 协议把文件高效地并行复制到多个主机上。</li>
+<li>parallel-slurp （pslurp）把文件并行地从多个远程主机复制到中心主机上。</li>
+<li>parallel-nuke （pnuke）并行地在多个远程主机上杀死进程。</li>
+</ol>
+<h2 id="pssh基本使用方法"><a href="#pssh基本使用方法" class="headerlink" title="pssh基本使用方法"></a>pssh基本使用方法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pssh -h host.txt -P <span class="string">"command"</span></span><br></pre></td></tr></table></figure>
+
+<p>如果对pssh的参数不太明白的话，可使用–help来获得帮助。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  pssh  pssh --<span class="built_in">help</span></span><br><span class="line">Usage: pssh [OPTIONS] <span class="built_in">command</span> [...]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  --version             show program<span class="string">'s version number and exit</span></span><br><span class="line"><span class="string">  --help                show this help message and exit</span></span><br><span class="line"><span class="string">  -h HOST_FILE, --hosts=HOST_FILE</span></span><br><span class="line"><span class="string">                        hosts file (each line "[user@]host[:port]")</span></span><br><span class="line"><span class="string">  -H HOST_STRING, --host=HOST_STRING</span></span><br><span class="line"><span class="string">                        additional host entries ("[user@]host[:port]")</span></span><br><span class="line"><span class="string">  -l USER, --user=USER  username (OPTIONAL)</span></span><br><span class="line"><span class="string">  -p PAR, --par=PAR     max number of parallel threads (OPTIONAL)</span></span><br><span class="line"><span class="string">  -o OUTDIR, --outdir=OUTDIR</span></span><br><span class="line"><span class="string">                        output directory for stdout files (OPTIONAL)</span></span><br><span class="line"><span class="string">  -e ERRDIR, --errdir=ERRDIR</span></span><br><span class="line"><span class="string">                        output directory for stderr files (OPTIONAL)</span></span><br><span class="line"><span class="string">  -t TIMEOUT, --timeout=TIMEOUT</span></span><br><span class="line"><span class="string">                        timeout (secs) (0 = no timeout) per host (OPTIONAL)</span></span><br><span class="line"><span class="string">  -O OPTION, --option=OPTION</span></span><br><span class="line"><span class="string">                        SSH option (OPTIONAL)</span></span><br><span class="line"><span class="string">  -v, --verbose         turn on warning and diagnostic messages (OPTIONAL)</span></span><br><span class="line"><span class="string">  -A, --askpass         Ask for a password (OPTIONAL)</span></span><br><span class="line"><span class="string">  -x ARGS, --extra-args=ARGS</span></span><br><span class="line"><span class="string">                        Extra command-line arguments, with processing for</span></span><br><span class="line"><span class="string">                        spaces, quotes, and backslashes</span></span><br><span class="line"><span class="string">  -X ARG, --extra-arg=ARG</span></span><br><span class="line"><span class="string">                        Extra command-line argument</span></span><br><span class="line"><span class="string">  -i, --inline          inline aggregated output and error for each server</span></span><br><span class="line"><span class="string">  --inline-stdout       inline standard output for each server</span></span><br><span class="line"><span class="string">  -I, --send-input      read from standard input and send as input to ssh</span></span><br><span class="line"><span class="string">  -P, --print           print output as we get it</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Example: pssh -h hosts.txt -l irb2 -o /tmp/foo uptime</span></span><br></pre></td></tr></table></figure>
+
+<p>简单解释一下pssh help提供的例子。在hosts.txt中列出来的服务器上远程执行uptime命令，并将执行结果输出到/tmp/uptime目录下相应地服务器的文件中。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pssh -h hosts.txt -l root -o /tmp/uptime uptime</span><br></pre></td></tr></table></figure>
+
+<p>其中相关参数说明：</p>
+<blockquote>
+<p>-h hosts.txt 指定服务器列表的文件为hosts.txt</p>
+<p>-l root 指定远程用户为root</p>
+<p>-o /tmp/uptime 指定远程命令执行返回结果输出目录为/tmp/uptime</p>
+<p>uptime 指定远程服务器上执行的命令为uptime</p>
+</blockquote>
+<p>我们执行一下看看，执行结果说明在172.18.10.25和172.18.10.24两台服务器上执行成功。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[1] 09:51:28 [SUCCESS] 172.18.10.25</span><br><span class="line">[2] 09:51:28 [SUCCESS] 172.18.10.24</span><br></pre></td></tr></table></figure>
+
+<p>查看执行结果输出</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ls -l /tmp/uptime</span><br><span class="line">-rw-r--r--  1 tonydeng  wheel    71B 12  9 09:51 172.18.10.24</span><br><span class="line">-rw-r--r--  1 tonydeng  wheel    71B 12  9 09:51 172.18.10.25</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">cat</span> /<span class="selector-tag">tmp</span>/<span class="selector-tag">uptime</span>/<span class="selector-tag">172</span><span class="selector-class">.18</span><span class="selector-class">.10</span><span class="selector-class">.24</span></span><br><span class="line"><span class="selector-tag">09</span><span class="selector-pseudo">:51</span><span class="selector-pseudo">:26</span> <span class="selector-tag">up</span> <span class="selector-tag">59</span> <span class="selector-tag">days</span>, <span class="selector-tag">13</span><span class="selector-pseudo">:48</span>,  <span class="selector-tag">0</span> <span class="selector-tag">users</span>,  <span class="selector-tag">load</span> <span class="selector-tag">average</span>: <span class="selector-tag">0</span><span class="selector-class">.00</span>, <span class="selector-tag">0</span><span class="selector-class">.00</span>, <span class="selector-tag">0</span><span class="selector-class">.00</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">cat</span> /<span class="selector-tag">tmp</span>/<span class="selector-tag">uptime</span>/<span class="selector-tag">172</span><span class="selector-class">.18</span><span class="selector-class">.10</span><span class="selector-class">.25</span></span><br><span class="line"><span class="selector-tag">09</span><span class="selector-pseudo">:51</span><span class="selector-pseudo">:26</span> <span class="selector-tag">up</span> <span class="selector-tag">59</span> <span class="selector-tag">days</span>, <span class="selector-tag">13</span><span class="selector-pseudo">:47</span>,  <span class="selector-tag">0</span> <span class="selector-tag">users</span>,  <span class="selector-tag">load</span> <span class="selector-tag">average</span>: <span class="selector-tag">0</span><span class="selector-class">.00</span>, <span class="selector-tag">0</span><span class="selector-class">.00</span>, <span class="selector-tag">0</span><span class="selector-class">.00</span></span><br></pre></td></tr></table></figure>
+
+<p>通过这个例子大家应该能够明白pssh的使用方法了吧。</p>
+<h2 id="pscp基本用法"><a href="#pscp基本用法" class="headerlink" title="pscp基本用法"></a>pscp基本用法</h2><p><code>pscp</code>用来将文件并行的复制到多个主机上。</p>
+<p><code>pscp</code>和<code>pssh</code>的很多参数都是一样的，就不在多说了，举一个简单的例子来说明一下<code>pscp</code>的简单实用。</p>
+<p>基本使用方法:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pscp -h ip文件 本地文件 远程目录</span><br></pre></td></tr></table></figure>
+
+<p>例子:将本机的<code>/tmp/i.txt</code>文件复制到<code>host.txt</code>列出的主机上的<code>/tmp</code>目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pscp -h hosts.txt -l root /tmp/i.txt /tmp</span><br><span class="line">[1] 09:52:28 [SUCCESS] 172.18.10.25</span><br><span class="line">[2] 09:52:28 [SUCCESS] 172.18.10.24</span><br></pre></td></tr></table></figure>
+
+<p><strong>特别参数说明：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-r 用于递归的复制目录</span><br></pre></td></tr></table></figure>
+
+<h2 id="pslurp基本用法"><a href="#pslurp基本用法" class="headerlink" title="pslurp基本用法"></a>pslurp基本用法</h2><p><code>pslurp</code>把文件并行地从多个远程主机复制到中心主机上</p>
+<p>基本用法:</p>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">plurp</span> -h <span class="built_in">ip</span>文件  -L 本地目录  远程文件 本地文件名称</span><br></pre></td></tr></table></figure>
+
+<p>例子： 将<code>host.txt</code>列出的主机上的<code>/tmp/i.txt</code>文件复制到本机的<code>/tmp/i.txt</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pslurp -h host.txt -l root -L /tmp /tmp/i.txt i.txt</span><br><span class="line">[1] 09:53:28 [SUCCESS] 172.18.10.25</span><br><span class="line">[2] 09:53:28 [SUCCESS] 172.18.10.24</span><br></pre></td></tr></table></figure>
+
+<p>特别参数说明：</p>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="deletion">-L 指定本地存放文件的目录</span></span><br></pre></td></tr></table></figure>
+
+<p>虽然帮助文档中说 <code>-L</code> 参数是可选的，但是经过我试验 <code>-L</code> 参数是必须的，要不然会报错。</p>
+<p>增加 <code>-L</code> 参数后，会在 <code>-L</code> 指定的本地目录下创建<code>[用户@]主机IP[:端口]</code>目录，对应的目录下用于存放从改主机复制过来的文件。</p>
+<h2 id="pnuke基本使用"><a href="#pnuke基本使用" class="headerlink" title="pnuke基本使用"></a>pnuke基本使用</h2><p><code>pnuke</code>并行地在多个远程主机上杀死进程。</p>
+<p><code>pnuke</code> 的参数与<code>pssh</code>一样,只是最后的字符串为要结束的进程名称</p>
+<p>例子： 将<code>host.txt</code>列出的主机上的<code>httpd</code>进程杀死</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pnuke -h host.txt -l root httpd</span><br><span class="line">[1] 09:55:28 [SUCCESS] 172.18.10.25</span><br><span class="line">[2] 09:55:28 [SUCCESS] 172.18.10.24</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/pssh/" rel="tag"># pssh</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/12/08/auto-delete-feature-branchs/" rel="next" title="效率脚本:删除指定项目的所有feature分支">
+                <i class="fa fa-chevron-left"></i> 效率脚本:删除指定项目的所有feature分支
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/12/09/zsh-scp-wildcard/" rel="prev" title="zsh在scp时不能使用通配符的原因和解决方案">
+                zsh在scp时不能使用通配符的原因和解决方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <p class="site-author-name" itemprop="name">Tony Deng</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tonydeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wolfdeng" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/tonydeng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-global"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装方法"><span class="nav-number">1.</span> <span class="nav-text">安装方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pssh基本使用方法"><span class="nav-number">2.</span> <span class="nav-text">pssh基本使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pscp基本用法"><span class="nav-number">3.</span> <span class="nav-text">pscp基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pslurp基本用法"><span class="nav-number">4.</span> <span class="nav-text">pslurp基本用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pnuke基本使用"><span class="nav-number">5.</span> <span class="nav-text">pnuke基本使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2005 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Deng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

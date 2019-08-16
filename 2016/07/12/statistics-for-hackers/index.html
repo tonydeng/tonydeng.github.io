@@ -1,0 +1,1098 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="黑客 统计学 hacker statistics 黑客统计学">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="最近看到一个题为《Statistics for Hackers》(黑客的统计学)的PPT，非常有意思，和大家分享一下。">
+<meta name="keywords" content="黑客 统计学 hacker statistics 黑客统计学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="黑客的统计学">
+<meta property="og:url" content="http://tonydeng.github.io/2016/07/12/statistics-for-hackers/index.html">
+<meta property="og:site_name" content="TonyDeng&#39;s Blog">
+<meta property="og:description" content="最近看到一个题为《Statistics for Hackers》(黑客的统计学)的PPT，非常有意思，和大家分享一下。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/statistics-for-hackers.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/hackers.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/coin-problem.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/coin-dispute.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/coin-solution.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/coin-expressions.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/coin-ultimateness.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/welch-ultimateness-1.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/welch-ultimateness-2.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/welch-ultimateness-3.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/welch-ultimateness-4.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/welch-ultimateness-5.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/welch-ultimateness-result.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/welch-ultimateness-result.gif">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/welch-ultimateness.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/the-tortoise-tower-of-atlantis.jpg">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/tortoise-tower-ultimateness.jpg">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/bootstrap-resampling.gif">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/sfh/tortoise-tower-result.jpg">
+<meta property="og:updated_time" content="2019-06-20T12:10:27.474Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="黑客的统计学">
+<meta name="twitter:description" content="最近看到一个题为《Statistics for Hackers》(黑客的统计学)的PPT，非常有意思，和大家分享一下。">
+<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/sfh/statistics-for-hackers.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tonydeng.github.io/2016/07/12/statistics-for-hackers/">
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+
+
+  <title> 黑客的统计学 | TonyDeng's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80673215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43d979b191269e68beffa09e2d17a081";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TonyDeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">“In me the tiger sniffes the rose.” -- Siegfried Sasson</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ppts">
+          <a href="/ppts" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            PPT
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gitbook">
+          <a href="/gitbook-zh" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            GitBook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2016/07/12/statistics-for-hackers/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                黑客的统计学
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-12T16:45:38+08:00">
+                2016-07-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工程师文化/" itemprop="url" rel="index">
+                    <span itemprop="name">工程师文化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/blog/sfh/statistics-for-hackers.png" alt="statistics for hackers"></p>
+<p>最近看到一个题为<a href="https://speakerdeck.com/jakevdp/statistics-for-hackers" target="_blank" rel="noopener">《Statistics for Hackers》</a>(黑客的统计学)的PPT，非常有意思，和大家分享一下。</p>
+<a id="more"></a>
+
+<p><img src="/images/blog/sfh/hackers.png" alt="黑客不是窃贼"></p>
+<blockquote>
+<p>这儿的Hacker（黑客）并不是是指那些尝试窃取你银行密码的人，而是那些善用编程来解决问题的人。</p>
+</blockquote>
+<p>作者<a href="https://twitter.com/jakevdp" target="_blank" rel="noopener">Jake VanderPlas</a>是华盛顿大学的资深数学科学研究员，他在PPT中表示统计学很难，但是使用编程技能后，它也可以很简单，他深圳宣称： 只要你会写 <code>for</code> 循环，你就能做统计。</p>
+<p>最重要的是： <strong>问正确的问题</strong></p>
+<h2 id="1-热身：-抛硬币问题（直接模拟）"><a href="#1-热身：-抛硬币问题（直接模拟）" class="headerlink" title="1. 热身： 抛硬币问题（直接模拟）"></a>1. 热身： 抛硬币问题（直接模拟）</h2><p><img src="/images/blog/sfh/coin-problem.png" alt="硬币问题"></p>
+<blockquote>
+<p>问题： 你抛一个硬币30次，其中22次正面朝上。问这个硬币是均匀的吗？</p>
+</blockquote>
+<p><img src="/images/blog/sfh/coin-dispute.png" alt="硬币问题争执"></p>
+<p>这是一个经典的问题。有人认为均匀的硬币抛 30 次应该有 15 次朝上，所以这个硬币不均匀，也有人认为即使是均匀的硬币也有可能因为偶然而抛出 22 次朝上。</p>
+<p><img src="/images/blog/sfh/coin-solution.png" alt="硬币问题解法"></p>
+<p>经典的解法如下：</p>
+<blockquote>
+<p>假设硬币是均匀的，然后验证这个原假设，计算一个均匀的硬币抛出 22 次正面的概率是多少?</p>
+</blockquote>
+<p>开始计算，如下图所示：</p>
+<p><img src="/images/blog/sfh/coin-expressions.png" alt="硬币问题解法公式"></p>
+<p>列出公式后，计算得知如果硬币是均匀的，那么抛 30 次并且有 22 次正面朝上的概率是 0.008，或者说如果抛 30 次并且观察到 22 次正面朝上，则这枚硬币是均匀的概率为 0.008。这个 0.008 一般称为 p 值，习惯上，当 p 值小于 0.05（有些时候取 0.01）时，我们认为这件事是不太可能发生的，因此拒绝原假设，即得到结论：硬币不是均匀的。</p>
+<p>那么，是否有什么简单的方法呢？</p>
+<p>这时，编程方法就可以派上用场了，我们只需要模拟一下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"></span><br><span class="line">N = <span class="number">1000000</span>;</span><br><span class="line">M = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(N):</span><br><span class="line">	trials = (randint(<span class="number">0</span>, <span class="number">1</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">30</span>)) </span><br><span class="line">	<span class="keyword">if</span> sum(trials) &gt;= <span class="number">22</span>:</span><br><span class="line">		M += <span class="number">1</span></span><br><span class="line">p = M / N <span class="comment">#0.00819</span></span><br></pre></td></tr></table></figure>
+
+<p>结论： 由于 p = 0.008，拒绝原假设，硬币不是均匀的。</p>
+<p>简单来说，计算样板分别比较困难，但模拟样本分布很简单。</p>
+<p><img src="/images/blog/sfh/coin-ultimateness.png" alt="硬币问题解法公式"></p>
+<h2 id="2-随机打乱"><a href="#2-随机打乱" class="headerlink" title="2. 随机打乱"></a>2. 随机打乱</h2><p>观察两组数据：</p>
+<table border="1"><thead><tr><th colspan="2">★</th><th colspan="2">✖︎</th></tr></thead><tbody><tr><td>84</td><td>72</td><td>81</td><td>69</td></tr><tr><td>57</td><td>46</td><td>74</td><td>61</td></tr><tr><td>63</td><td>76</td><td>56</td><td>87</td></tr><tr><td>99</td><td>91</td><td>69</td><td>65</td></tr><tr><td>  </td><td>  </td><td>66</td><td>44</td></tr><tr><td>  </td><td>  </td><td>62</td><td>69</td></tr></tbody></table>
+
+<p>★ 均值：73.5<br>✖︎ 均值：66.9<br>差异：6.6</p>
+<p>问题来了：两组数据的差异 6.6 是统计显著的吗？</p>
+<p>经典解法如下：</p>
+<p><img src="/images/blog/sfh/welch-ultimateness-1.png" alt="welch-ultimateness-1"></p>
+<p><img src="/images/blog/sfh/welch-ultimateness-2.png" alt="welch-ultimateness-2"></p>
+<p><img src="/images/blog/sfh/welch-ultimateness-3.png" alt="welch-ultimateness-3"></p>
+<p><img src="/images/blog/sfh/welch-ultimateness-4.png" alt="welch-ultimateness-4"></p>
+<p><img src="/images/blog/sfh/welch-ultimateness-5.png" alt="welch-ultimateness-5"></p>
+<p>然后查表，可得：</p>
+<p><img src="/images/blog/sfh/welch-ultimateness-result.png" alt="welch-ultimateness-result"></p>
+<p>由于 t = 0.932 &gt; tcrit = 1.796，所以我们得到结论：在 p = 0.05 的水平上差异 6.6 不是显著的。</p>
+<p>所以……，我们刚刚究竟都做了些什么？最大的问题，是我们在解题过程中已经忘了我们最初要回答的问题。</p>
+<p>为什么不直接使用流行的编程方法来处理呢？比如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> statsmodels.stats.weightstats <span class="keyword">import</span> ttest_indt, p, dof = ttest_ind(group1, group2,</span><br><span class="line">				alternative=<span class="string">'larger'</span>,</span><br><span class="line">				usevar=<span class="string">'unequal'</span>)</span><br><span class="line">print(p)  <span class="comment"># 0.186</span></span><br></pre></td></tr></table></figure>
+
+<p>这当然可以，但是……，我们正尝试回答的是什么问题呢？</p>
+<p>让我们回到问题本身，上面的样本分布和抛硬币的原理其实是一样的，让我们用一个抽样方法来处理。和抛硬币不同，这儿我们没有生成器（模拟抛硬币的结果），但这不是问题，我们可以引入一个新的解决方案：随机打乱（Shuffling）。</p>
+<p>过程如下图所示：</p>
+<p><img src="/images/blog/sfh/welch-ultimateness-result.gif" alt="welch-ultimateness-result"></p>
+<p>执行数千次，最后得到结论：</p>
+<p><img src="/images/blog/sfh/welch-ultimateness.png" alt="welch-ultimateness"></p>
+<p>在 p = 0.05 的水平上，差异 6.6 不是显著的。</p>
+<h3 id="关于随机打乱需要注意的事："><a href="#关于随机打乱需要注意的事：" class="headerlink" title="关于随机打乱需要注意的事："></a>关于随机打乱需要注意的事：</h3><p>– 只能在原假设认为两组相同时使用<br>– 和所有其他方法一样，只能在样本有代表性时使用，千万要注意选择偏差<br>– 要注意相关实验。这点在《Simon’s Resampling: The New Statistics》一书中有很好的讨论 </p>
+<h2 id="3-亚特尔的乌龟塔"><a href="#3-亚特尔的乌龟塔" class="headerlink" title="3. 亚特尔的乌龟塔"></a>3. 亚特尔的乌龟塔</h2><p>亚特尔的乌龟塔是一则童话寓言，讲述的是一只叫亚特尔的乌龟命令其他乌龟叠在一起成为高塔的故事，知名中文博主<a href="http://www.ruanyifeng.com/blog/2005/08/post_142.html" target="_blank" rel="noopener">阮一峰曾经翻译过一个版本</a>。</p>
+<p><img src="/images/blog/sfh/the-tortoise-tower-of-atlantis.jpg" alt="The tortoise tower of Atlantis"></p>
+<p>假设我们观察到了 20 个亚特尔乌龟塔，高度分别为：</p>
+<table>
+<thead>
+<tr>
+<th>48</th>
+<th>24</th>
+<th>32</th>
+<th>61</th>
+<th>51</th>
+<th>12</th>
+<th>32</th>
+<th>18</th>
+<th>19</th>
+<th>24</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>21</td>
+<td>41</td>
+<td>29</td>
+<td>21</td>
+<td>25</td>
+<td>23</td>
+<td>42</td>
+<td>18</td>
+<td>23</td>
+<td>13</td>
+</tr>
+</tbody></table>
+<p>问题是：<br>– 亚特尔乌龟塔的平均高度是多少？<br>– 这个估值有多少偏差？</p>
+<p>需要注意的是，这儿问的是全体亚特尔乌龟塔的平均高度，即可能存在成千上万个乌龟塔，我们只观察了其中 20 个样本，并对整体均值进行估计，而不是简单地问这 20 个样本的均值，所以才有第二个问题：这个估值有多少偏差。</p>
+<p>经典解法如下：</p>
+<p><img src="/images/blog/sfh/tortoise-tower-ultimateness.jpg" alt="tortoise-tower-ultimateness"></p>
+<p>那么，我们是否可以使用抽样方法来处理这个问题呢？和之前一样，我们的问题是没有生成器，这次的解决方案是自助重抽样法（Bootstrap Resampling）。如下图所示：</p>
+<p><img src="/images/blog/sfh/bootstrap-resampling.gif" alt="Bootstrap Resampling"></p>
+<p>简单来说，就是从现有的 20 个样本中，随机抽取 20 个值（抽完后放回去，因此可能会抽到重复的值），然后计算新样本的均值。</p>
+<p>重复这个步骤成千上万次，最后，我们得到下面的结果：</p>
+<p><img src="/images/blog/sfh/tortoise-tower-result.jpg" alt="tortoise-tower-result"></p>
+<p>可以看到，与上面使用公式计算出的结果几乎一样。</p>
+<p>** 自助重抽样法（Bootstrap Sampling）** 甚至还可以用在更复杂的统计上，同样的，也有一些注意点：</p>
+<p>– 自助重抽样法（Bootstrap Sampling）被认真地研究过，有坚实的理论基础<br>– 自助重抽样法通常不太适用于基于排序的统计（如求最大值）<br>– 如果样本太小，效果会比较差（N &gt; 20 比较好）<br>– 注意选择偏差以及非独立数据 </p>
+<h2 id="4-交叉验证"><a href="#4-交叉验证" class="headerlink" title="4. 交叉验证"></a>4. 交叉验证</h2><p>最后，PPT 中还举了一个交叉验证的例子。大致思想是将样本随机分为两部分，各自算出需要的值，然后用另一份样本来校验当前样本的值。重复成千上万次，最后得到可信的结果。限于篇幅，这儿就不详细介绍了，有兴趣的同学可以直接看原 <a href="https://speakerdeck.com/jakevdp/statistics-for-hackers" target="_blank" rel="noopener">PPT</a>。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>相对抽象的统计学公式而言，抽样方法是一种更符合直觉的计算近似法。只要会写 <code>for</code> 循环，就可以做统计分析。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://speakerdeck.com/jakevdp/statistics-for-hackers" target="_blank" rel="noopener">《Statistics for Hackers》</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/statistics/" rel="tag"># statistics</a>
+          
+            <a href="/tags/hacker/" rel="tag"># hacker</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/07/use-lsof-to-replace-netstat/" rel="next" title="使用 lsof 代替 Mac OS X 中的 netstat 查看占用端口的程序">
+                <i class="fa fa-chevron-left"></i> 使用 lsof 代替 Mac OS X 中的 netstat 查看占用端口的程序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/14/product-seven-words/" rel="prev" title="靠谱的产品经理之七字真言">
+                靠谱的产品经理之七字真言 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <p class="site-author-name" itemprop="name">Tony Deng</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">130</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tonydeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wolfdeng" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/tonydeng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-global"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-热身：-抛硬币问题（直接模拟）"><span class="nav-number">1.</span> <span class="nav-text">1. 热身： 抛硬币问题（直接模拟）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-随机打乱"><span class="nav-number">2.</span> <span class="nav-text">2. 随机打乱</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于随机打乱需要注意的事："><span class="nav-number">2.1.</span> <span class="nav-text">关于随机打乱需要注意的事：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-亚特尔的乌龟塔"><span class="nav-number">3.</span> <span class="nav-text">3. 亚特尔的乌龟塔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-交叉验证"><span class="nav-number">4.</span> <span class="nav-text">4. 交叉验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2005 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Deng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
