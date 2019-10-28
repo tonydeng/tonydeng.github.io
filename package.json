@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.9.0"
+    "version": "4.0.0"
   },
   "dependencies": {
-    "hexo": "latest",
+    "hexo": "^4.0.0",
     "hexo-deployer-git": "latest",
     "hexo-generator-archive": "latest",
     "hexo-generator-baidu-sitemap": "latest",
