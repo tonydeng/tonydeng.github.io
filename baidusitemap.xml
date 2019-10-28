@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://tonydeng.github.io/2017/11/28/netconf-call-home/</loc>
-    <lastmod>2019-06-20</lastmod>
+    <loc>http://tonydeng.github.io/2019/10/28/rust-mod/</loc>
+    <lastmod>2019-10-28</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2018/02/13/the-two-laws-of-building-products/</loc>
+    <loc>http://tonydeng.github.io/2017/11/28/netconf-call-home/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
     <loc>http://tonydeng.github.io/2018/02/27/pyenv/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2017/10/09/junit-5-tutorial-introduction/</loc>
+    <loc>http://tonydeng.github.io/2018/02/13/the-two-laws-of-building-products/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
     <loc>http://tonydeng.github.io/2017/10/09/junit-5-test-lifecycle/</loc>
+    <lastmod>2019-06-20</lastmod>
+  </url>  <url>
+    <loc>http://tonydeng.github.io/2017/10/09/junit-5-tutorial-introduction/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
     <loc>http://tonydeng.github.io/2017/10/10/junit-5-annotations/</loc>
@@ -22,10 +25,10 @@
     <loc>http://tonydeng.github.io/2017/05/07/six-key-ability-of-managers/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2017/08/31/git-common-branch-management-practices/</loc>
+    <loc>http://tonydeng.github.io/2017/08/17/traditional-enterprises-transform-the-internet-pain/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2017/08/17/traditional-enterprises-transform-the-internet-pain/</loc>
+    <loc>http://tonydeng.github.io/2017/08/31/git-common-branch-management-practices/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
     <loc>http://tonydeng.github.io/2017/09/26/RUN-vs-CMD-vs-ENTRYPOINT-in-Dockerfile/</loc>
@@ -43,10 +46,10 @@
     <loc>http://tonydeng.github.io/2016/11/03/etcd4j-blocking-investigation-and-lifting-process/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2017/03/03/common-algorithms-for-machine-learning/</loc>
+    <loc>http://tonydeng.github.io/2017/01/01/implementation-and-algorithm-of-collaborative-filtering/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2017/01/01/implementation-and-algorithm-of-collaborative-filtering/</loc>
+    <loc>http://tonydeng.github.io/2017/03/03/common-algorithms-for-machine-learning/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
     <loc>http://tonydeng.github.io/2016/07/19/how-the-program-ape-is-coming-to-download-and-process-video/</loc>
@@ -70,13 +73,10 @@
     <loc>http://tonydeng.github.io/2016/07/12/statistics-for-hackers/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2016/05/11/junit-more-feature/</loc>
-    <lastmod>2019-06-20</lastmod>
-  </url>  <url>
     <loc>http://tonydeng.github.io/2016/04/25/java-stream/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2015/11/27/batch-conversion-file-encoding/</loc>
+    <loc>http://tonydeng.github.io/2016/05/11/junit-more-feature/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
     <loc>http://tonydeng.github.io/2015/11/19/install-leiningen/</loc>
@@ -85,10 +85,10 @@
     <loc>http://tonydeng.github.io/2015/11/24/etcd-the-first-using/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2016/04/01/gitignore/</loc>
+    <loc>http://tonydeng.github.io/2015/11/27/batch-conversion-file-encoding/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2015/11/17/using-maven-version/</loc>
+    <loc>http://tonydeng.github.io/2016/04/01/gitignore/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
     <loc>http://tonydeng.github.io/2015/10/30/java-mail-no-object-dch-for-mime-type-multipart-mixed/</loc>
@@ -97,13 +97,16 @@
     <loc>http://tonydeng.github.io/2015/11/19/engineering-fonts/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
+    <loc>http://tonydeng.github.io/2015/11/17/using-maven-version/</loc>
+    <lastmod>2019-06-20</lastmod>
+  </url>  <url>
+    <loc>http://tonydeng.github.io/2015/10/21/discussion-on-user-experience/</loc>
+    <lastmod>2019-06-20</lastmod>
+  </url>  <url>
     <loc>http://tonydeng.github.io/2015/10/21/maven-Javadoc-plugin-in-java8-exception-resolution/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
     <loc>http://tonydeng.github.io/2015/10/24/the-six-thinking-hats/</loc>
-    <lastmod>2019-06-20</lastmod>
-  </url>  <url>
-    <loc>http://tonydeng.github.io/2015/10/21/discussion-on-user-experience/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
     <loc>http://tonydeng.github.io/2015/10/19/etcd-application-scenarios/</loc>
@@ -124,10 +127,10 @@
     <loc>http://tonydeng.github.io/2015/08/20/nosql-vs-sql/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2015/07/08/how-to-undo-almost-anything-with-git/</loc>
+    <loc>http://tonydeng.github.io/2015/05/25/linux-tcpip-tuning/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2015/05/25/linux-tcpip-tuning/</loc>
+    <loc>http://tonydeng.github.io/2015/07/08/how-to-undo-almost-anything-with-git/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
     <loc>http://tonydeng.github.io/2015/07/10/httpie-howto/</loc>
@@ -157,10 +160,10 @@
     <loc>http://tonydeng.github.io/2015/01/13/using-html5-application-cache/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2014/12/31/brew-update-error/</loc>
+    <loc>http://tonydeng.github.io/2014/12/22/use-sublime-develop-golang/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2014/12/22/use-sublime-develop-golang/</loc>
+    <loc>http://tonydeng.github.io/2014/12/31/brew-update-error/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
     <loc>http://tonydeng.github.io/2014/12/31/project-life-cycle/</loc>
@@ -187,22 +190,22 @@
     <loc>http://tonydeng.github.io/2007/04/06/the-difference-between-setuid-setgid-and-sticky-bit-in-linux/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2009/10/19/are-you-a-professional-engineer/</loc>
-    <lastmod>2019-06-20</lastmod>
-  </url>  <url>
     <loc>http://tonydeng.github.io/2009/10/27/the-design-philosophy-to-UNIX/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2014/12/08/auto-delete-feature-branchs/</loc>
+    <loc>http://tonydeng.github.io/2009/10/19/are-you-a-professional-engineer/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
     <loc>http://tonydeng.github.io/2014/12/07/octopress-can-not-create-new-post-on-zsh/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
-    <loc>http://tonydeng.github.io/2006/03/28/A-Linux-command-a-human-civilization/</loc>
+    <loc>http://tonydeng.github.io/2014/12/08/auto-delete-feature-branchs/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>  <url>
     <loc>http://tonydeng.github.io/2005/03/17/the-xiantao-dishes-i-love/</loc>
+    <lastmod>2019-06-20</lastmod>
+  </url>  <url>
+    <loc>http://tonydeng.github.io/2006/03/28/A-Linux-command-a-human-civilization/</loc>
     <lastmod>2019-06-20</lastmod>
   </url>
 </urlset>
