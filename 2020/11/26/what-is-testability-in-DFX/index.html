@@ -109,7 +109,7 @@
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/stability-usecase.png">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/decomposability-usecase.png">
 <meta property="article:published_time" content="2020-11-26T03:38:58.000Z">
-<meta property="article:modified_time" content="2020-11-26T05:53:40.043Z">
+<meta property="article:modified_time" content="2020-11-26T05:59:47.337Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="DFX中的可测试性是什么？">
 <meta property="article:tag" content=" 架构设计">
@@ -503,19 +503,19 @@
 <p>对软件控制的越好，测试越能够被自动执行与优化</p>
 </blockquote>
 <p><img src="/images/blog/DFX/testability/can-be-controlled-usecase.png" alt="可控制用例"></p>
-<h4 id="可理解性"><a href="#可理解性" class="headerlink" title="可理解性"></a>可理解性</h4><blockquote>
+<h3 id="可理解性"><a href="#可理解性" class="headerlink" title="可理解性"></a>可理解性</h3><blockquote>
 <p>得到的信息越多，进行的测试越准确、精细</p>
 </blockquote>
 <p><img src="/images/blog/DFX/testability/can-understand-usecase.png" alt="可理解性用例"></p>
-<h4 id="简单性"><a href="#简单性" class="headerlink" title="简单性"></a>简单性</h4><blockquote>
+<h3 id="简单性"><a href="#简单性" class="headerlink" title="简单性"></a>简单性</h3><blockquote>
 <p>需要测试的内容越少，测试的速度越快</p>
 </blockquote>
 <p><img src="/images/blog/DFX/testability/simplicity-usecase.png" alt="简单性用例"></p>
-<h4 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h4><blockquote>
+<h3 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h3><blockquote>
 <p>改变越少，对测试的破坏越小</p>
 </blockquote>
 <p><img src="/images/blog/DFX/testability/stability-usecase.png" alt="稳定性用例"></p>
-<h4 id="可分解"><a href="#可分解" class="headerlink" title="可分解"></a>可分解</h4><blockquote>
+<h3 id="可分解"><a href="#可分解" class="headerlink" title="可分解"></a>可分解</h3><blockquote>
 <p>通过控制测试范围，能够更好分解问题，执行测试</p>
 </blockquote>
 <p><img src="/images/blog/DFX/testability/decomposability-usecase.png" alt="可分解性用例"></p>
@@ -738,7 +738,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么引入可测试性设计？"><span class="nav-number">1.</span> <span class="nav-text">为什么引入可测试性设计？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可测试性的定义"><span class="nav-number">2.</span> <span class="nav-text">可测试性的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可测试性的分析"><span class="nav-number">3.</span> <span class="nav-text">可测试性的分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#角色和职责"><span class="nav-number">3.1.</span> <span class="nav-text">角色和职责</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可测试性的各个视角"><span class="nav-number">3.2.</span> <span class="nav-text">可测试性的各个视角</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可观察"><span class="nav-number">3.3.</span> <span class="nav-text">可观察</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可操作"><span class="nav-number">3.4.</span> <span class="nav-text">可操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可控制"><span class="nav-number">3.5.</span> <span class="nav-text">可控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可理解性"><span class="nav-number">3.5.1.</span> <span class="nav-text">可理解性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单性"><span class="nav-number">3.5.2.</span> <span class="nav-text">简单性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#稳定性"><span class="nav-number">3.5.3.</span> <span class="nav-text">稳定性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可分解"><span class="nav-number">3.5.4.</span> <span class="nav-text">可分解</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么引入可测试性设计？"><span class="nav-number">1.</span> <span class="nav-text">为什么引入可测试性设计？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可测试性的定义"><span class="nav-number">2.</span> <span class="nav-text">可测试性的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可测试性的分析"><span class="nav-number">3.</span> <span class="nav-text">可测试性的分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#角色和职责"><span class="nav-number">3.1.</span> <span class="nav-text">角色和职责</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可测试性的各个视角"><span class="nav-number">3.2.</span> <span class="nav-text">可测试性的各个视角</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可观察"><span class="nav-number">3.3.</span> <span class="nav-text">可观察</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可操作"><span class="nav-number">3.4.</span> <span class="nav-text">可操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可控制"><span class="nav-number">3.5.</span> <span class="nav-text">可控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可理解性"><span class="nav-number">3.6.</span> <span class="nav-text">可理解性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单性"><span class="nav-number">3.7.</span> <span class="nav-text">简单性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#稳定性"><span class="nav-number">3.8.</span> <span class="nav-text">稳定性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可分解"><span class="nav-number">3.9.</span> <span class="nav-text">可分解</span></a></li></ol></li></ol></div>
             
 
           </div>
