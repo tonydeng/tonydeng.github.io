@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -66,23 +66,25 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="html5, manifest">
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+  <meta name="keywords" content="html5, manifest" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -90,18 +92,18 @@
 
 
 <meta name="description" content="简介 HTML5 提供一种 应用缓存 机制，使得基于web的应用程序可以离线运行。开发者可以使用 Application Cache (AppCache) 接口设定浏览器缓存的数据并使得数据离线有效。 在处于离线状态时，即使用户点击刷新按钮，应用也能正常加载与工作。 使用应用缓存可以得到以下益处：  离线浏览: 用户可以在离线状态下浏览网站内容。 更快的速度: 因为数据被存储在本地，所以速度会更">
-<meta name="keywords" content="html5, manifest">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用HTML5的应用缓存">
 <meta property="og:url" content="http://tonydeng.github.io/2015/01/13/using-html5-application-cache/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="简介 HTML5 提供一种 应用缓存 机制，使得基于web的应用程序可以离线运行。开发者可以使用 Application Cache (AppCache) 接口设定浏览器缓存的数据并使得数据离线有效。 在处于离线状态时，即使用户点击刷新按钮，应用也能正常加载与工作。 使用应用缓存可以得到以下益处：  离线浏览: 用户可以在离线状态下浏览网站内容。 更快的速度: 因为数据被存储在本地，所以速度会更">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/manifest.png">
-<meta property="og:updated_time" content="2019-06-20T12:10:27.464Z">
+<meta property="article:published_time" content="2015-01-13T13:56:27.000Z">
+<meta property="article:modified_time" content="2019-06-20T12:10:27.464Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="html5">
+<meta property="article:tag" content=" manifest">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用HTML5的应用缓存">
-<meta name="twitter:description" content="简介 HTML5 提供一种 应用缓存 机制，使得基于web的应用程序可以离线运行。开发者可以使用 Application Cache (AppCache) 接口设定浏览器缓存的数据并使得数据离线有效。 在处于离线状态时，即使用户点击刷新按钮，应用也能正常加载与工作。 使用应用缓存可以得到以下益处：  离线浏览: 用户可以在离线状态下浏览网站内容。 更快的速度: 因为数据被存储在本地，所以速度会更">
 <meta name="twitter:image" content="http://tonydeng.github.io/images/blog/manifest.png">
 
 
@@ -130,17 +132,17 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2015/01/13/using-html5-application-cache/">
+  <link rel="canonical" href="http://tonydeng.github.io/2015/01/13/using-html5-application-cache/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
 
 
   <title> 使用HTML5的应用缓存 | TonyDeng's Blog </title>
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -198,7 +200,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">TonyDeng's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -228,7 +230,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -238,7 +240,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -248,7 +250,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -258,7 +260,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -268,7 +270,7 @@
         <li class="menu-item menu-item-ppts">
           <a href="/ppts" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             PPT
           </a>
@@ -278,7 +280,7 @@
         <li class="menu-item menu-item-gitbook">
           <a href="/gitbook-zh" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             GitBook
           </a>
@@ -288,7 +290,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -301,7 +303,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -322,7 +324,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -359,7 +363,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
     </span>
 
@@ -402,7 +406,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -414,7 +418,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/性能/" itemprop="url" rel="index">
+                  <a href="/categories/%E6%80%A7%E8%83%BD/" itemprop="url" rel="index">
                     <span itemprop="name">性能</span>
                   </a>
                 </span>
@@ -459,7 +463,7 @@
 </ul>
 <a id="more"></a>
 
-<h1 id="应用缓存如何工作"><a href="#应用缓存如何工作" class="headerlink" title="应用缓存如何工作"></a>应用缓存如何工作</h1><h2 id="开启应用缓存"><a href="#开启应用缓存" class="headerlink" title="开启应用缓存"></a>开启应用缓存</h2><p>若想为应用开启应用缓存，你需要在应用页面中的 <html> 元素上增加 manifest 特性，请看下面的例子：</html></p>
+<h1 id="应用缓存如何工作"><a href="#应用缓存如何工作" class="headerlink" title="应用缓存如何工作"></a>应用缓存如何工作</h1><h2 id="开启应用缓存"><a href="#开启应用缓存" class="headerlink" title="开启应用缓存"></a>开启应用缓存</h2><p>若想为应用开启应用缓存，你需要在应用页面中的 <html> 元素上增加 manifest 特性，请看下面的例子：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">"example.appcache"</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>manifest 特性与 <strong>缓存清单(cache manifest)</strong> 文件关联，这个文件包含了浏览器<strong>需要为你的应用缓存的资源(文件)列表</strong>。</p>
@@ -478,23 +482,23 @@
 <li>如果清单文件已经改变，文件中列出的所有文件—也包括通过调用 applicationCache.add() 方法添加到缓存中的那些文件—会被获取并放到一个临时缓存中，遵循适当的 HTTP 缓存规则。对于每个加入到临时缓存中的文件，浏览器会向 applicationCache 对象发送一个 progress 事件。如果出现任何错误，浏览器会发送一个 error 事件，并暂停更新。</li>
 <li>一旦所有文件都获取成功，它们会自动移送到真正的离线缓存中，并向  applicationCache 对象发送一个 cached 事件。鉴于文档早已经被从缓存加载到浏览器中，所以更新后的文档不会重新渲染，直到页面重新加载(可以手动或通过程序).</li>
 </ol>
-<h1 id="存储位置与清除离线缓存"><a href="#存储位置与清除离线缓存" class="headerlink" title="存储位置与清除离线缓存"></a>存储位置与清除离线缓存</h1><p>在 Chrome 中，你可以在设置中选择 「清除浏览器数据…」 或访问 <a href="chrome://appcache-internals" target="_blank" rel="noopener">chrome://appcache-internals</a> 来清除缓存。</p>
+<h1 id="存储位置与清除离线缓存"><a href="#存储位置与清除离线缓存" class="headerlink" title="存储位置与清除离线缓存"></a>存储位置与清除离线缓存</h1><p>在 Chrome 中，你可以在设置中选择 「清除浏览器数据…」 或访问 <a href="chrome://appcache-internals">chrome://appcache-internals</a> 来清除缓存。</p>
 <p>Safari 在设置中有一个类似的”清空缓存” 选项，但是需要重启浏览器后才能生效。</p>
 <p>在 Firefox 中，离线缓存数据与 Firefox 配置文件是分开存储的—紧挨着硬盘缓存：</p>
 <ul>
-<li>Windows Vista/7: C:\Users&lt;username&gt;\AppData\Local\Mozilla\Firefox\Profiles&lt;salt&gt;.<profile name>\OfflineCache</profile></li>
-<li>Mac/Linux: /Users/<username>/Library/Caches/Firefox/Profiles/<salt>.<profile name>/OfflineCache</profile></salt></username></li>
+<li>Windows Vista/7: C:\Users&lt;username&gt;\AppData\Local\Mozilla\Firefox\Profiles&lt;salt&gt;.<profile name>\OfflineCache</li>
+<li>Mac/Linux: /Users/<username>/Library/Caches/Firefox/Profiles/<salt>.<profile name>/OfflineCache</li>
 </ul>
 <p>应用缓存可以变成废弃的。如果从服务器上移除一个应用的清单文件，浏览器将会清除所有清单中列出的应用缓存，并向 applicationCache 对象发送一个「obsolete」事件。这将使得应用缓存的状态变为 OBSOLETE。</p>
 <h1 id="缓存清单文件"><a href="#缓存清单文件" class="headerlink" title="缓存清单文件"></a>缓存清单文件</h1><h2 id="引用一个缓存清单文件"><a href="#引用一个缓存清单文件" class="headerlink" title="引用一个缓存清单文件"></a>引用一个缓存清单文件</h2><p>web 应用中的 manifest 特性可以指定为缓存清单文件的相对路径或一个绝对 URL(绝对 URL 必须与应用同源)。缓存清单文件可以使用任意扩展名，但传输它的 MIME 类型必须为 text/cache-manifest。</p>
-<p>Apache配置对manifest支持，在根目录或应用的同级目录下的<strong>.htaccess</strong>中加入下面的配置</p>
-<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">AddType <span class="built_in">text</span>/cache-manifest .appcache</span><br></pre></td></tr></table></figure>
+<p>Apache配置对manifest支持，在根目录或应用的同级目录下的**.htaccess**中加入下面的配置</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">AddType <span class="type">text</span>/<span class="keyword">cache</span>-manifest .appcache</span><br></pre></td></tr></table></figure>
 
 <p>Nginx配置对manifest支持，在<strong>conf/mime.types</strong>中加入下面的配置</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">text/<span class="keyword">cache</span>-manifest                  appcache manifest;</span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="type">text</span>/<span class="keyword">cache</span>-manifest                  appcache manifest;</span><br></pre></td></tr></table></figure>
 
 <h2 id="缓存清单文件中的记录"><a href="#缓存清单文件中的记录" class="headerlink" title="缓存清单文件中的记录"></a>缓存清单文件中的记录</h2><p>缓存清单文件是一个纯文本文件，它列出了所有浏览器应该缓存起来的资源，以便能够离线访问。资源使用 URI 来标识。在缓存清单文件中列出的所有记录必须拥有相同的协议、主机名与端口号。</p>
-<h1 id="示例-1：一个简单的缓存清单文件"><a href="#示例-1：一个简单的缓存清单文件" class="headerlink" title="示例 1：一个简单的缓存清单文件"></a>示例 1：一个简单的缓存清单文件</h1><p>下面是一个简单的缓存清单文件，example.appcache，适用于一个虚拟的网站 <a href="http://www.example.com。" target="_blank" rel="noopener">www.example.com。</a></p>
+<h1 id="示例-1：一个简单的缓存清单文件"><a href="#示例-1：一个简单的缓存清单文件" class="headerlink" title="示例 1：一个简单的缓存清单文件"></a>示例 1：一个简单的缓存清单文件</h1><p>下面是一个简单的缓存清单文件，example.appcache，适用于一个虚拟的网站 <a href="http://www.example.com./" target="_blank" rel="noopener">www.example.com。</a></p>
 <figure class="highlight dts"><table><tr><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line"><span class="meta"># v1 - 2011-08-13</span></span><br><span class="line"><span class="meta"># This is a comment.</span></span><br><span class="line"><span class="symbol">http:</span><span class="comment">//www.example.com/index.html</span></span><br><span class="line"><span class="symbol">http:</span><span class="comment">//www.example.com/header.png</span></span><br><span class="line"><span class="symbol">http:</span><span class="comment">//www.example.com/blah/blah</span></span><br></pre></td></tr></table></figure>
 
 <p>一个缓存清单文件可以包含三段内容 (CACHE， NETWORK， 和 FALLBACK， 下面详细讨论)。 在上面的例子中，没有段落标题，因此所有数据行都认为是属于显式 (CACHE) 段落，这意味着浏览器应该在应用缓存中缓存所有列出的资源。资源可以使用绝对或者相对 URL 来指定(例如 index.html)。</p>
@@ -507,7 +511,7 @@
 <p><strong>NETWORK:</strong><br>    在 NETWORK: 段落标题下列出的文件是需要与服务器连接的白名单资源。所有类似资源的请求都会绕过缓存，即使用户处于离线状态。可以使用通配符。</p>
 <p><strong>FALLBACK:</strong><br>    FALLBACK: 段指定了一个后备页面，当资源无法访问时，浏览器会使用该页面。该段落的每条记录都列出两个 URI—第一个表示资源，第二个表示后备页面。两个 URI 都必须使用相对路径并且与清单文件同源。可以使用通配符。</p>
 <p>CACHE， NETWORK， 和 FALLBACK 段落可以以任意顺序出现在缓存清单文件中，并且每个段落可以在同一清单文件中出现多次。</p>
-<h1 id="示例-2：-一个复杂且完整的缓存清单文件"><a href="#示例-2：-一个复杂且完整的缓存清单文件" class="headerlink" title="示例 2： 一个复杂且完整的缓存清单文件"></a>示例 2： 一个复杂且完整的缓存清单文件</h1><p>下面是一个更加完整的缓存清单文件，适用于一个虚拟的网站 <a href="http://www.example.com：" target="_blank" rel="noopener">www.example.com：</a></p>
+<h1 id="示例-2：-一个复杂且完整的缓存清单文件"><a href="#示例-2：-一个复杂且完整的缓存清单文件" class="headerlink" title="示例 2： 一个复杂且完整的缓存清单文件"></a>示例 2： 一个复杂且完整的缓存清单文件</h1><p>下面是一个更加完整的缓存清单文件，适用于一个虚拟的网站 <a href="http://www.example.com：">www.example.com：</a></p>
 <figure class="highlight vala"><table><tr><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line"><span class="meta"># v1 2011-08-14</span></span><br><span class="line"><span class="meta"># This is another comment</span></span><br><span class="line">index.html</span><br><span class="line">cache.html</span><br><span class="line">style.css</span><br><span class="line">image1.png</span><br><span class="line"></span><br><span class="line"><span class="meta"># Use from network if available</span></span><br><span class="line">NETWORK:</span><br><span class="line">network.html</span><br><span class="line"></span><br><span class="line"><span class="meta"># Fallback content</span></span><br><span class="line">FALLBACK:</span><br><span class="line">/ fallback.html</span><br></pre></td></tr></table></figure>
 
 <p>该例子使用了 NETWORK 与 FALLBACK 段落，指明了 network.html 页面必须始终从网络获取，fallback.html 页面应该作为后备资源来提供(例如，当无法与服务器建立连接时)。</p>
@@ -518,22 +522,23 @@
 <p><strong>空行</strong><br>    你可以使用包含零或多个空白与制表符的空行。</p>
 <p><strong>注释</strong><br>    注释包括零或多个制表符或空白字符，紧接着是一个 # 字符，再然后是零或多个注释文本字符。注释只能在所在行起作用，不能追加到其他行上。这意味着你无法使用片段标识符。</p>
 <p><strong>段落标题</strong><br>    段落标题指定了缓存文件即将操作的段落。有三个可选的标题：</p>
-<pre><code>CACHE:         切换到缓存清单的显式段落(默认段落)。
-NETWORK:     切换到缓存清单的在线白名单段落。
-FALLBACK:     切换到缓存清单的后备资源段落。</code></pre><p>缓存清单可以在段落内任意切换(每个段落标题可以使用多次)，而且段落允许为空。</p>
+<pre><code>    CACHE:         切换到缓存清单的显式段落(默认段落)。
+    NETWORK:     切换到缓存清单的在线白名单段落。
+    FALLBACK:     切换到缓存清单的后备资源段落。</code></pre>
+<p>缓存清单可以在段落内任意切换(每个段落标题可以使用多次)，而且段落允许为空。</p>
 <h1 id="一个应用缓存中的资源"><a href="#一个应用缓存中的资源" class="headerlink" title="一个应用缓存中的资源"></a>一个应用缓存中的资源</h1><p>一个应用缓存至少会包含一个资源，由 URI 指定。所有资源都属于下列类别之一：</p>
 <p><strong>主记录</strong><br>    这些资源被加入缓存的原因是：用户浏览的一个上下文中包含一个文档，该文档用 manifest 特性明确指明了它属于该缓存。</p>
 <p><strong>显式记录</strong><br>    这些是在应用缓存清单文件中显式列出的资源。</p>
 <p><strong>网络记录</strong><br>    这些是在应用缓存清单文件中作为网络记录列出的资源。</p>
 <p><strong>后备记录</strong><br>    这些是在应用缓存清单文件中作为后备记录列出的资源。</p>
-<h2 id="主记录"><a href="#主记录" class="headerlink" title="主记录"></a>主记录</h2><p>任意在 <html> 元素上包含一个 manifest 特性的 HTML 文件都可以是主记录。例如，我们拥有 HTML 文件 <a href="http://www.example.com/entry.html" target="_blank" rel="noopener">http://www.example.com/entry.html</a> ，它看起来是这样的：</html></p>
+<h2 id="主记录"><a href="#主记录" class="headerlink" title="主记录"></a>主记录</h2><p>任意在 <html> 元素上包含一个 manifest 特性的 HTML 文件都可以是主记录。例如，我们拥有 HTML 文件 <a href="http://www.example.com/entry.html" target="_blank" rel="noopener">http://www.example.com/entry.html</a> ，它看起来是这样的：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">"example.appcache"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Application Cache Example<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>如果 entry.html 没有在 example.appcache 缓存清单文件中列出来，那么访问 entry.html 页面会使得 entry.html 作为一条主记录加入到应用缓存中。</p>
 <h2 id="显式记录"><a href="#显式记录" class="headerlink" title="显式记录"></a>显式记录</h2><p>显式记录就是在缓存清单文件的 CACHE 段落显式列出的资源。</p>
 <h2 id="网络记录"><a href="#网络记录" class="headerlink" title="网络记录"></a>网络记录</h2><p>缓存清单文件的 NETWORK 段落指定了 web 应用需要在线访问的资源。一个应用缓存中的网络记录本质上来说是一个「在线白名单」—在 NETWORK 段落指定的 URI 会从服务器而不是缓存加载。这使得浏览器的安全模型通过限制用户让其只访问经过验证的资源来避免潜在的安全漏洞。</p>
 <p>举例来说，你可以使用网络记录来从服务器而不是缓存中加载并执行脚本或其他代码：</p>
-<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line"><span class="symbol">NETWORK:</span></span><br><span class="line">/api</span><br></pre></td></tr></table></figure>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">CACHE</span> <span class="string">MANIFEST</span></span><br><span class="line"><span class="attr">NETWORK</span>:<span class="string"></span></span><br><span class="line"><span class="attr">/api</span></span><br></pre></td></tr></table></figure>
 
 <p>上面列出的缓存清单段落能够保证对 <a href="http://www.example.com/api/" target="_blank" rel="noopener">http://www.example.com/api/</a> 子目录中资源的请求始终通过网络加载，而不会去访问缓存。</p>
 <blockquote>
@@ -562,7 +567,7 @@ FALLBACK:     切换到缓存清单的后备资源段落。</code></pre><p>缓�
 <li><p>通过在 web 服务器上设置 <code>expires header</code> 来使 <code>*.appcache</code> 文件立即过期是个好主意。这避免了将清单文件缓存的风险。例如，在 Apache 中，你可以指定下面的配置项：</p>
 </li>
 </ul>
-<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">ExpiresByType <span class="built_in">text</span>/cache-manifest <span class="string">"access plus 0 seconds"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">ExpiresByType <span class="type">text</span>/<span class="keyword">cache</span>-manifest "access plus <span class="number">0</span> seconds"</span><br></pre></td></tr></table></figure>
 
 <h2 id="另见"><a href="#另见" class="headerlink" title="另见"></a>另见</h2><ul>
 <li><a href="http://www.html5rocks.com/en/tutorials/appcache/beginner/" target="_blank" rel="noopener">HTML5Rocks - A Beginner’s Guide to Using the Application Cache</a></li>
@@ -684,7 +689,7 @@ FALLBACK:     切换到缓存清单的后备资源段落。</code></pre><p>缓�
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -695,7 +700,9 @@ FALLBACK:     切换到缓存清单的后备资源段落。</code></pre><p>缓�
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -706,7 +713,7 @@ FALLBACK:     切换到缓存清单的后备资源段落。</code></pre><p>缓�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -717,7 +724,7 @@ FALLBACK:     切换到缓存清单的后备资源段落。</code></pre><p>缓�
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -728,7 +735,7 @@ FALLBACK:     切换到缓存清单的后备资源段落。</code></pre><p>缓�
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">133</span>
+                <span class="site-state-item-count">136</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -819,10 +826,10 @@ FALLBACK:     切换到缓存清单的后备资源段落。</code></pre><p>缓�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -831,12 +838,12 @@ FALLBACK:     切换到缓存清单的后备资源段落。</code></pre><p>缓�
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>

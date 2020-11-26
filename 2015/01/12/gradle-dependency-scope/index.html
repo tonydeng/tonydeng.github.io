@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -66,23 +66,25 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="gradle dependency">
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+  <meta name="keywords" content="gradle dependency" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -90,19 +92,18 @@
 
 
 <meta name="description" content="自从Google推出Android的集成开发环境（IDE）– Android Studio，默认集成了Gradle来进行对Android项目生命周期的管理。那我们也需要从原来的Ant转成Gradle。 对于开发工程师来说，像Gradle这样的工具，第一体验是对依赖的管理。团队里面有不少原来是使用Maven的同学，会有这样的问题：“maven的依赖管理除了最基本的坐标体系（groupId、arti">
-<meta name="keywords" content="gradle dependency">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Gradle依赖范围介绍">
 <meta property="og:url" content="http://tonydeng.github.io/2015/01/12/gradle-dependency-scope/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="自从Google推出Android的集成开发环境（IDE）– Android Studio，默认集成了Gradle来进行对Android项目生命周期的管理。那我们也需要从原来的Ant转成Gradle。 对于开发工程师来说，像Gradle这样的工具，第一体验是对依赖的管理。团队里面有不少原来是使用Maven的同学，会有这样的问题：“maven的依赖管理除了最基本的坐标体系（groupId、arti">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/gradle.png">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/javaPluginConfigurations.png">
-<meta property="og:updated_time" content="2019-06-20T12:10:27.464Z">
+<meta property="article:published_time" content="2015-01-12T05:47:19.000Z">
+<meta property="article:modified_time" content="2019-06-20T12:10:27.464Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="gradle dependency">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gradle依赖范围介绍">
-<meta name="twitter:description" content="自从Google推出Android的集成开发环境（IDE）– Android Studio，默认集成了Gradle来进行对Android项目生命周期的管理。那我们也需要从原来的Ant转成Gradle。 对于开发工程师来说，像Gradle这样的工具，第一体验是对依赖的管理。团队里面有不少原来是使用Maven的同学，会有这样的问题：“maven的依赖管理除了最基本的坐标体系（groupId、arti">
 <meta name="twitter:image" content="http://tonydeng.github.io/images/blog/gradle.png">
 
 
@@ -131,17 +132,17 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2015/01/12/gradle-dependency-scope/">
+  <link rel="canonical" href="http://tonydeng.github.io/2015/01/12/gradle-dependency-scope/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
 
 
   <title> Gradle依赖范围介绍 | TonyDeng's Blog </title>
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -199,7 +200,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">TonyDeng's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -229,7 +230,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -239,7 +240,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -249,7 +250,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -259,7 +260,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -269,7 +270,7 @@
         <li class="menu-item menu-item-ppts">
           <a href="/ppts" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             PPT
           </a>
@@ -279,7 +280,7 @@
         <li class="menu-item menu-item-gitbook">
           <a href="/gitbook-zh" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             GitBook
           </a>
@@ -289,7 +290,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -302,7 +303,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -323,7 +324,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -360,7 +363,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
     </span>
 
@@ -403,7 +406,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -415,7 +418,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/效率/" itemprop="url" rel="index">
+                  <a href="/categories/%E6%95%88%E7%8E%87/" itemprop="url" rel="index">
                     <span itemprop="name">效率</span>
                   </a>
                 </span>
@@ -451,30 +454,38 @@
 
       
         <p><img src="/images/blog/gradle.png" alt="Gradle Logo"></p>
-<p>自从Google推出Android的集成开发环境（IDE）– <a href="http://developer.android.com/tools/studio/index.html" target="_blank" rel="noopener">Android Studio</a>，默认集成了<a href="http://www.gradle.org" target="_blank" rel="noopener">Gradle</a>来进行对Android项目生命周期的管理。那我们也需要从原来的Ant转成Gradle。</p>
-<p>对于开发工程师来说，像Gradle这样的工具，第一体验是对依赖的管理。团队里面有不少原来是使用<a href="http://maven.apache.org" target="_blank" rel="noopener">Maven</a>的同学，会有这样的问题：“maven的依赖管理除了最基本的坐标体系（groupId、artifactId、version、packaging）以外，还有一个scope的概念。那作为继承了maven的依赖体系的gradle，它的依赖范围又有哪些？”</p>
+<p>自从Google推出Android的集成开发环境（IDE）– <a href="http://developer.android.com/tools/studio/index.html" target="_blank" rel="noopener">Android Studio</a>，默认集成了<a href="http://www.gradle.org/" target="_blank" rel="noopener">Gradle</a>来进行对Android项目生命周期的管理。那我们也需要从原来的Ant转成Gradle。</p>
+<p>对于开发工程师来说，像Gradle这样的工具，第一体验是对依赖的管理。团队里面有不少原来是使用<a href="http://maven.apache.org/" target="_blank" rel="noopener">Maven</a>的同学，会有这样的问题：“maven的依赖管理除了最基本的坐标体系（groupId、artifactId、version、packaging）以外，还有一个scope的概念。那作为继承了maven的依赖体系的gradle，它的依赖范围又有哪些？”</p>
 <a id="more"></a>
 
 <h3 id="那我们来看看Gradle的依赖范围（dependent-scope到底有哪些）。"><a href="#那我们来看看Gradle的依赖范围（dependent-scope到底有哪些）。" class="headerlink" title="那我们来看看Gradle的依赖范围（dependent scope到底有哪些）。"></a>那我们来看看Gradle的依赖范围（dependent scope到底有哪些）。</h3><h4 id="war插件使用的依赖范围"><a href="#war插件使用的依赖范围" class="headerlink" title="war插件使用的依赖范围"></a>war插件使用的依赖范围</h4><ul>
 <li><p>providedCompile</p>
-<pre><code>war插件提供的范围类型:与compile作用类似,但不会被添加到最终的war包中这是由于编译、测试阶段代码需要依赖此类jar包，而运行阶段容器已经提供了相应的支持，所以无需将这些文件打入到war包中了;例如Servlet API就是一个很明显的例子.</code></pre></li>
+<pre><code>  war插件提供的范围类型:与compile作用类似,但不会被添加到最终的war包中这是由于编译、测试阶段代码需要依赖此类jar包，而运行阶段容器已经提供了相应的支持，所以无需将这些文件打入到war包中了;例如Servlet API就是一个很明显的例子.</code></pre>
+</li>
 <li><p>providedRuntime</p>
-<pre><code>同providedCompile类似，也是war插件提供的范围类型。它的范围和jar插件的runtime基本一样，。</code></pre></li>
+<pre><code>  同providedCompile类似，也是war插件提供的范围类型。它的范围和jar插件的runtime基本一样，。</code></pre>
+</li>
 </ul>
 <p>相关说明可以看看Gradle官方文档的<a href="http://www.gradle.org/docs/current/userguide/war_plugin.html#N131A1" target="_blank" rel="noopener">第26章第4节 The War Plugin</a></p>
 <h4 id="java插件使用的依赖范围"><a href="#java插件使用的依赖范围" class="headerlink" title="java插件使用的依赖范围"></a>java插件使用的依赖范围</h4><ul>
 <li><p>compile</p>
-<pre><code>编译范围依赖在所有的classpath中可用，同时它们也会被打包。</code></pre></li>
+<pre><code>  编译范围依赖在所有的classpath中可用，同时它们也会被打包。</code></pre>
+</li>
 <li><p>runtime</p>
-<pre><code>runtime依赖在运行和测试系统的时候需要，但在编译的时候不需要。比如，你可能在编译的时候只需要JDBC API JAR，而只有在运行的时候才需要JDBC驱动实现。</code></pre></li>
+<pre><code>  runtime依赖在运行和测试系统的时候需要，但在编译的时候不需要。比如，你可能在编译的时候只需要JDBC API JAR，而只有在运行的时候才需要JDBC驱动实现。</code></pre>
+</li>
 <li><p>testCompile</p>
-<pre><code>测试期编译需要的附加依赖</code></pre></li>
+<pre><code>  测试期编译需要的附加依赖</code></pre>
+</li>
 <li><p>testRuntime</p>
-<pre><code>测试期编译需要的附加依赖</code></pre></li>
+<pre><code>  测试期编译需要的附加依赖</code></pre>
+</li>
 <li><p>archives</p>
-<pre><code>项目构件时会使用的依赖范围</code></pre></li>
+<pre><code>  项目构件时会使用的依赖范围</code></pre>
+</li>
 <li><p>default</p>
-<pre><code>配置默认依赖范围，用在这个项目上一个项目依赖的默认配置。包含本项目在运行时所需的构件和依赖。</code></pre></li>
+<pre><code>  配置默认依赖范围，用在这个项目上一个项目依赖的默认配置。包含本项目在运行时所需的构件和依赖。</code></pre>
+</li>
 </ul>
 <p>相关说明可以查看Gradle官方文档的<a href="http://www.gradle.org/docs/current/userguide/java_plugin.html#sec:java_plugin_and_dependency_management" target="_blank" rel="noopener">第23章第5节 The Java Plugin</a></p>
 <p>其他插件的依赖范围基本上也就是这两个插件的子集了，了解了上述的依赖范围也就等于了解Gradle所有的依赖范围了。</p>
@@ -583,7 +594,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -594,7 +605,9 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -605,7 +618,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -616,7 +629,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -627,7 +640,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">133</span>
+                <span class="site-state-item-count">136</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -718,10 +731,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -730,12 +743,12 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>

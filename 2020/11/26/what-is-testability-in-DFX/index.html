@@ -1,0 +1,1047 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="DFX中的可测试性是什么？, 架构设计, DFX, 可测试性" />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="为什么引入可测试性设计？在讨论可测试性之前，我们不妨先来思考一个问题： 当我们来盖一栋楼，如果不能保证钢筋、水泥、砖土质量合格，却想要盖出合格的大楼来，这个可能吗？ 然而，很多团队的软件开发就是这么做的。很荒唐吧！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DFX中的可测试性是什么？">
+<meta property="og:url" content="http://tonydeng.github.io/2020/11/26/what-is-testability-in-DFX/index.html">
+<meta property="og:site_name" content="TonyDeng&#39;s Blog">
+<meta property="og:description" content="为什么引入可测试性设计？在讨论可测试性之前，我们不妨先来思考一个问题： 当我们来盖一栋楼，如果不能保证钢筋、水泥、砖土质量合格，却想要盖出合格的大楼来，这个可能吗？ 然而，很多团队的软件开发就是这么做的。很荒唐吧！">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/DFX.jpg">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/DFX-Type.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/actors.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/Usecase.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/can-be-viewed-usecase.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/operability-usecase.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/can-be-controlled-usecase.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/can-understand-usecase.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/simplicity-usecase.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/stability-usecase.png">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/decomposability-usecase.png">
+<meta property="article:published_time" content="2020-11-26T03:38:58.000Z">
+<meta property="article:modified_time" content="2020-11-26T05:53:40.043Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="DFX中的可测试性是什么？">
+<meta property="article:tag" content=" 架构设计">
+<meta property="article:tag" content=" DFX">
+<meta property="article:tag" content=" 可测试性">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/DFX/DFX.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tonydeng.github.io/2020/11/26/what-is-testability-in-DFX/"/>
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
+
+
+  <title> DFX中的可测试性是什么？ | TonyDeng's Blog </title>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80673215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43d979b191269e68beffa09e2d17a081";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TonyDeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">“In me the tiger sniffes the rose.” -- Siegfried Sasson</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ppts">
+          <a href="/ppts" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            PPT
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gitbook">
+          <a href="/gitbook-zh" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            GitBook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2020/11/26/what-is-testability-in-DFX/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                DFX中的可测试性是什么？
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-26T11:38:58+08:00">
+                2020-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index">
+                    <span itemprop="name">架构设计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/blog/DFX/DFX.jpg" alt="DFX"></p>
+<h2 id="为什么引入可测试性设计？"><a href="#为什么引入可测试性设计？" class="headerlink" title="为什么引入可测试性设计？"></a>为什么引入可测试性设计？</h2><p>在讨论可测试性之前，我们不妨先来思考一个问题：</p>
+<p>当我们来盖一栋楼，如果不能保证钢筋、水泥、砖土质量合格，却想要盖出合格的大楼来，这个可能吗？</p>
+<p>然而，很多团队的软件开发就是这么做的。很荒唐吧！</p>
+<a id="more"></a>
+
+<p><img src="/images/blog/DFX/DFX-Type.png" alt="DFX类型"></p>
+<p>在非功能性需求中，执行质量是很多程序员的心头所爱，一般也不会被忽略。但<strong>演化质量的地位却很低，常常为人忽略，尤其是其中的“可测试性”</strong>。</p>
+<p>可测试性为什么如此重要？因为我们做设计，其实就是把<strong>一个软件拆分成一个一个的小模块</strong>。</p>
+<p>如果不尽可能地保证每个小模块的正确性，而只是从最外围的系统角度去验证系统的正确性，这将会是一个非常困难的过程。</p>
+<h2 id="可测试性的定义"><a href="#可测试性的定义" class="headerlink" title="可测试性的定义"></a>可测试性的定义</h2><p>软件的可测试性是指在<strong>一定时间和成本前提下</strong>，进行<strong>测试设计、测试执行</strong>以此来<strong>发现软件的问题</strong>，以及<strong>发现故障并隔离、定位其故障</strong>的能力特点。</p>
+<p>采用<a href="https://en.wikipedia.org/wiki/James_Marcus_Bach" target="_blank" rel="noopener">James Bach</a>的定义，<strong>可测试性就是一个计算机程序能够被测试的容易程度</strong>。</p>
+<p> 我设计了一个公式来用于计算 *<em>软件可测试性 = (测试方法覆盖度 * 测试资源保障度) / 测试目标*</em></p>
+<blockquote>
+<p>维基百科中是这样定义<a href="https://zh.wikipedia.org/wiki/%E8%BB%9F%E9%AB%94%E5%8F%AF%E6%B8%AC%E8%A9%A6%E6%80%A7" target="_blank" rel="noopener">软件可测试性(Software testability)</a>：<strong>一个软件工件（软件系统、组件、需求文档或设计文档等）在一给定的测试环境下，可支持测试的程度</strong>。</p>
+</blockquote>
+<p>一般来说，可测试性好的软件必然是一个<strong>强内聚</strong>、<strong>弱耦合</strong>、<strong>接口明确</strong>、<strong>意图清晰</strong>的软件。</p>
+<h2 id="可测试性的分析"><a href="#可测试性的分析" class="headerlink" title="可测试性的分析"></a>可测试性的分析</h2><p>那可测试性到底包括什么呢？我们从不同的维度来看可测试性的特征。</p>
+<h3 id="角色和职责"><a href="#角色和职责" class="headerlink" title="角色和职责"></a>角色和职责</h3><blockquote>
+<p>不同的岗位在可测试性中的角色</p>
+</blockquote>
+<p><img src="/images/blog/DFX/testability/actors.png" alt="Actors"></p>
+<h3 id="可测试性的各个视角"><a href="#可测试性的各个视角" class="headerlink" title="可测试性的各个视角"></a>可测试性的各个视角</h3><blockquote>
+<p>从不同的视角来看可测试性包含哪些特征</p>
+</blockquote>
+<p><img src="/images/blog/DFX/testability/Usecase.png" alt="可测试性的各个视角"></p>
+<h3 id="可观察"><a href="#可观察" class="headerlink" title="可观察"></a>可观察</h3><blockquote>
+<p>你所看见的就是你所测试的</p>
+</blockquote>
+<p><img src="/images/blog/DFX/testability/can-be-viewed-usecase.png" alt="可观察用例"></p>
+<h3 id="可操作"><a href="#可操作" class="headerlink" title="可操作"></a>可操作</h3><blockquote>
+<p>运行的越好，被测试的效率越高</p>
+</blockquote>
+<p><img src="/images/blog/DFX/testability/operability-usecase.png" alt="可操作用例"></p>
+<h3 id="可控制"><a href="#可控制" class="headerlink" title="可控制"></a>可控制</h3><blockquote>
+<p>对软件控制的越好，测试越能够被自动执行与优化</p>
+</blockquote>
+<p><img src="/images/blog/DFX/testability/can-be-controlled-usecase.png" alt="可控制用例"></p>
+<h4 id="可理解性"><a href="#可理解性" class="headerlink" title="可理解性"></a>可理解性</h4><blockquote>
+<p>得到的信息越多，进行的测试越准确、精细</p>
+</blockquote>
+<p><img src="/images/blog/DFX/testability/can-understand-usecase.png" alt="可理解性用例"></p>
+<h4 id="简单性"><a href="#简单性" class="headerlink" title="简单性"></a>简单性</h4><blockquote>
+<p>需要测试的内容越少，测试的速度越快</p>
+</blockquote>
+<p><img src="/images/blog/DFX/testability/simplicity-usecase.png" alt="简单性用例"></p>
+<h4 id="稳定性"><a href="#稳定性" class="headerlink" title="稳定性"></a>稳定性</h4><blockquote>
+<p>改变越少，对测试的破坏越小</p>
+</blockquote>
+<p><img src="/images/blog/DFX/testability/stability-usecase.png" alt="稳定性用例"></p>
+<h4 id="可分解"><a href="#可分解" class="headerlink" title="可分解"></a>可分解</h4><blockquote>
+<p>通过控制测试范围，能够更好分解问题，执行测试</p>
+</blockquote>
+<p><img src="/images/blog/DFX/testability/decomposability-usecase.png" alt="可分解性用例"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" rel="tag"># 架构设计</a>
+          
+            <a href="/tags/DFX/" rel="tag"># DFX</a>
+          
+            <a href="/tags/%E5%8F%AF%E6%B5%8B%E8%AF%95%E6%80%A7/" rel="tag"># 可测试性</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/09/rust-closure-type/" rel="next" title="Rust的闭包类型(Fn, FnMut, FnOne的区别)">
+                <i class="fa fa-chevron-left"></i> Rust的闭包类型(Fn, FnMut, FnOne的区别)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
+          <p class="site-author-name" itemprop="name">Tony Deng</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">70</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">136</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tonydeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wolfdeng" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/tonydeng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-global"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么引入可测试性设计？"><span class="nav-number">1.</span> <span class="nav-text">为什么引入可测试性设计？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可测试性的定义"><span class="nav-number">2.</span> <span class="nav-text">可测试性的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可测试性的分析"><span class="nav-number">3.</span> <span class="nav-text">可测试性的分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#角色和职责"><span class="nav-number">3.1.</span> <span class="nav-text">角色和职责</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可测试性的各个视角"><span class="nav-number">3.2.</span> <span class="nav-text">可测试性的各个视角</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可观察"><span class="nav-number">3.3.</span> <span class="nav-text">可观察</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可操作"><span class="nav-number">3.4.</span> <span class="nav-text">可操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可控制"><span class="nav-number">3.5.</span> <span class="nav-text">可控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可理解性"><span class="nav-number">3.5.1.</span> <span class="nav-text">可理解性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单性"><span class="nav-number">3.5.2.</span> <span class="nav-text">简单性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#稳定性"><span class="nav-number">3.5.3.</span> <span class="nav-text">稳定性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可分解"><span class="nav-number">3.5.4.</span> <span class="nav-text">可分解</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2005 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Deng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

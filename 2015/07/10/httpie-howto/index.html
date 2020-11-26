@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -66,23 +66,25 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="http httpie shell">
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+  <meta name="keywords" content="http httpie shell" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -90,19 +92,18 @@
 
 
 <meta name="description" content="之前在命令行下进行HTTP服务的调试和信息查看都是使用经典的cURL，不过前段时间发现一个交互更加友好的工具，就是HTTPie。">
-<meta name="keywords" content="http httpie shell">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTPie:超爽的HTTP命令行客户端">
 <meta property="og:url" content="http://tonydeng.github.io/2015/07/10/httpie-howto/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="之前在命令行下进行HTTP服务的调试和信息查看都是使用经典的cURL，不过前段时间发现一个交互更加友好的工具，就是HTTPie。">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/httpie/httpie-logo.png">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/httpie/httpie-vs-curl.png">
-<meta property="og:updated_time" content="2019-06-20T12:10:27.466Z">
+<meta property="article:published_time" content="2015-07-10T09:58:49.000Z">
+<meta property="article:modified_time" content="2019-06-20T12:10:27.466Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="http httpie shell">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTTPie:超爽的HTTP命令行客户端">
-<meta name="twitter:description" content="之前在命令行下进行HTTP服务的调试和信息查看都是使用经典的cURL，不过前段时间发现一个交互更加友好的工具，就是HTTPie。">
 <meta name="twitter:image" content="http://tonydeng.github.io/images/blog/httpie/httpie-logo.png">
 
 
@@ -131,17 +132,17 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2015/07/10/httpie-howto/">
+  <link rel="canonical" href="http://tonydeng.github.io/2015/07/10/httpie-howto/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
 
 
   <title> HTTPie:超爽的HTTP命令行客户端 | TonyDeng's Blog </title>
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -199,7 +200,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">TonyDeng's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -229,7 +230,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -239,7 +240,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -249,7 +250,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -259,7 +260,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -269,7 +270,7 @@
         <li class="menu-item menu-item-ppts">
           <a href="/ppts" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             PPT
           </a>
@@ -279,7 +280,7 @@
         <li class="menu-item menu-item-gitbook">
           <a href="/gitbook-zh" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             GitBook
           </a>
@@ -289,7 +290,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -302,7 +303,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -323,7 +324,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -360,7 +363,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
     </span>
 
@@ -403,7 +406,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -415,7 +418,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/效率/" itemprop="url" rel="index">
+                  <a href="/categories/%E6%95%88%E7%8E%87/" itemprop="url" rel="index">
                     <span itemprop="name">效率</span>
                   </a>
                 </span>
@@ -451,7 +454,7 @@
 
       
         <p><img src="/images/blog/httpie/httpie-logo.png" alt="HTTPie Logo"></p>
-<p>之前在命令行下进行HTTP服务的调试和信息查看都是使用经典的<a href="http://curl.haxx.se" target="_blank" rel="noopener">cURL</a>，不过前段时间发现一个交互更加友好的工具，就是<a href="https://github.com/jakubroztocil/httpie" target="_blank" rel="noopener">HTTPie</a>。</p>
+<p>之前在命令行下进行HTTP服务的调试和信息查看都是使用经典的<a href="http://curl.haxx.se/" target="_blank" rel="noopener">cURL</a>，不过前段时间发现一个交互更加友好的工具，就是<a href="https://github.com/jakubroztocil/httpie" target="_blank" rel="noopener">HTTPie</a>。</p>
 <a id="more"></a>
 
 <p>先放一个HTTPie官方的一个HTTPie VS cURL的图给大家看看。</p>
@@ -479,30 +482,30 @@
 <figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/blog/2015/07/10/httpie-howto/</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Accept</span>: */*</span><br><span class="line"><span class="attribute">Accept-Encoding</span>: gzip, deflate</span><br><span class="line"><span class="attribute">Connection</span>: keep-alive</span><br><span class="line"><span class="attribute">Host</span>: tonydeng.github.io</span><br><span class="line"><span class="attribute">Referer</span>: http://tonydeng.github.io</span><br><span class="line"><span class="attribute">User-Agent</span>: Xmodlo/1.0</span><br></pre></td></tr></table></figure>
 
 <h4 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h4><p>你也可以把HTTPie作为文件下载器来使用。</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">http tonydeng.github.io<span class="regexp">/blog/</span><span class="number">2015</span><span class="regexp">/07/</span><span class="number">10</span><span class="regexp">/httpie-howto/</span> &gt; httpie-howto.html</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">http tonydeng.github.io/blog/<span class="number">2015</span>/<span class="number">07</span>/<span class="number">10</span>/httpie-howto/ &gt; httpie-howto.html</span><br></pre></td></tr></table></figure>
 
 <p>或者</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">http --download tonydeng.github.io<span class="regexp">/blog/</span><span class="number">2015</span><span class="regexp">/07/</span><span class="number">10</span><span class="regexp">/httpie-howto/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">http --download tonydeng.github.io/blog/<span class="number">2015</span>/<span class="number">07</span>/<span class="number">10</span>/httpie-howto/</span><br></pre></td></tr></table></figure>
 
 <h4 id="使用其他HTTP方法"><a href="#使用其他HTTP方法" class="headerlink" title="使用其他HTTP方法"></a>使用其他HTTP方法</h4><p>除了默认的GET方法，你还可以使用其他方法（比如PUT、POST、DELETE、HEAD）</p>
-<h5 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h5><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">http PUT tonydeng<span class="selector-class">.github</span><span class="selector-class">.io</span> name=<span class="string">'Tony Deng'</span> email=<span class="string">'tonydeng@email.com'</span></span><br></pre></td></tr></table></figure>
+<h5 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h5><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">http</span> PUT tonydeng.github.io name=<span class="string">'Tony Deng'</span> email=<span class="string">'tonydeng<span class="variable">@email</span>.com'</span></span><br></pre></td></tr></table></figure>
 
-<h5 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h5><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">http -f POST tonydeng<span class="selector-class">.github</span><span class="selector-class">.io</span> name=<span class="string">'Tony Deng'</span> email=<span class="string">'tonydeng@email.com'</span></span><br></pre></td></tr></table></figure>
+<h5 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h5><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">http</span> -f POST tonydeng.github.io name=<span class="string">'Tony Deng'</span> email=<span class="string">'tonydeng<span class="variable">@email</span>.com'</span></span><br></pre></td></tr></table></figure>
 
 <p><code>-f</code> 选项使http命令序列化数据字段，并将<code>Content-Type</code>设置为<code>application/x-www-form-urlencoded;charset=utf-8</code></p>
 <p>这个HTTP POST请求看起这样：</p>
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Accept</span>: */*</span><br><span class="line"><span class="attribute">Accept-Encoding</span>: gzip, deflate</span><br><span class="line"><span class="attribute">Connection</span>: keep-alive</span><br><span class="line"><span class="attribute">Content-Length</span>: 41</span><br><span class="line"><span class="attribute">Content-Type</span>: application/x-www-form-urlencoded; charset=utf-8</span><br><span class="line"><span class="attribute">Host</span>: tonydeng.github.io</span><br><span class="line"><span class="attribute">User-Agent</span>: HTTPie/0.9.2</span><br><span class="line"></span><br><span class="line">name=Tony+Deng&amp;email=tonydeng%40email.com</span><br></pre></td></tr></table></figure>
 
-<h5 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h5><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">http HEAD tonydeng<span class="selector-class">.github</span><span class="selector-class">.io</span></span><br></pre></td></tr></table></figure>
+<h5 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h5><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">http</span> <span class="selector-tag">HEAD</span> <span class="selector-tag">tonydeng</span><span class="selector-class">.github</span><span class="selector-class">.io</span></span><br></pre></td></tr></table></figure>
 
 <p><code>HEAD</code>这个方法只会让服务器返回<code>http response headers</code>。</p>
 <p>这个命令结果如下：</p>
 <h6 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h6><figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">HEAD</span> <span class="string">/</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Accept</span>: */*</span><br><span class="line"><span class="attribute">Accept-Encoding</span>: gzip, deflate</span><br><span class="line"><span class="attribute">Connection</span>: keep-alive</span><br><span class="line"><span class="attribute">Host</span>: tonydeng.github.io</span><br><span class="line"><span class="attribute">User-Agent</span>: HTTPie/0.9.2</span><br></pre></td></tr></table></figure>
 
-<h6 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h6><figure class="highlight http"><table><tr><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Accept-Ranges</span>: bytes</span><br><span class="line"><span class="attribute">Access-Control-Allow-Origin</span>: *</span><br><span class="line"><span class="attribute">Age</span>: 0</span><br><span class="line"><span class="attribute">Cache-Control</span>: max-age=600</span><br><span class="line"><span class="attribute">Connection</span>: keep-alive</span><br><span class="line"><span class="attribute">Content-Encoding</span>: gzip</span><br><span class="line"><span class="attribute">Content-Length</span>: 36794</span><br><span class="line"><span class="attribute">Content-Type</span>: text/html; charset=utf-8</span><br><span class="line"><span class="attribute">Date</span>: Wed, 15 Jul 2015 09:26:22 GMT</span><br><span class="line"><span class="attribute">Expires</span>: Wed, 15 Jul 2015 09:36:22 GMT</span><br><span class="line"><span class="attribute">Last-Modified</span>: Sun, 12 Jul 2015 11:32:15 GMT</span><br><span class="line"><span class="attribute">Server</span>: GitHub.com</span><br><span class="line"><span class="attribute">Vary</span>: Accept-Encoding</span><br><span class="line"><span class="attribute">Via</span>: 1.1 varnish</span><br><span class="line"><span class="attribute">X-Cache</span>: MISS</span><br><span class="line"><span class="attribute">X-Cache-Hits</span>: 0</span><br><span class="line"><span class="attribute">X-Served-By</span>: cache-fra1227-FRA</span><br><span class="line"><span class="attribute">X-Timer</span>: S1436952382.011631,VS0,VE99</span><br></pre></td></tr></table></figure>
+<h6 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h6><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">HTTP/1.1</span> <span class="number">200</span> <span class="string">OK</span></span><br><span class="line"><span class="attr">Accept-Ranges:</span> <span class="string">bytes</span></span><br><span class="line"><span class="attr">Access-Control-Allow-Origin:</span> <span class="string">*</span></span><br><span class="line"><span class="attr">Age:</span> <span class="number">0</span></span><br><span class="line"><span class="attr">Cache-Control:</span> <span class="string">max-age=600</span></span><br><span class="line"><span class="attr">Connection:</span> <span class="string">keep-alive</span></span><br><span class="line"><span class="attr">Content-Encoding:</span> <span class="string">gzip</span></span><br><span class="line"><span class="attr">Content-Length:</span> <span class="number">36794</span></span><br><span class="line"><span class="attr">Content-Type:</span> <span class="string">text/html;</span> <span class="string">charset=utf-8</span></span><br><span class="line"><span class="attr">Date:</span> <span class="string">Wed,</span> <span class="number">15</span> <span class="string">Jul</span> <span class="number">2015</span> <span class="number">09</span><span class="string">:26:22</span> <span class="string">GMT</span></span><br><span class="line"><span class="attr">Expires:</span> <span class="string">Wed,</span> <span class="number">15</span> <span class="string">Jul</span> <span class="number">2015</span> <span class="number">09</span><span class="string">:36:22</span> <span class="string">GMT</span></span><br><span class="line"><span class="attr">Last-Modified:</span> <span class="string">Sun,</span> <span class="number">12</span> <span class="string">Jul</span> <span class="number">2015</span> <span class="number">11</span><span class="string">:32:15</span> <span class="string">GMT</span></span><br><span class="line"><span class="attr">Server:</span> <span class="string">GitHub.com</span></span><br><span class="line"><span class="attr">Vary:</span> <span class="string">Accept-Encoding</span></span><br><span class="line"><span class="attr">Via:</span> <span class="number">1.1</span> <span class="string">varnish</span></span><br><span class="line"><span class="attr">X-Cache:</span> <span class="string">MISS</span></span><br><span class="line"><span class="attr">X-Cache-Hits:</span> <span class="number">0</span></span><br><span class="line"><span class="attr">X-Served-By:</span> <span class="string">cache-fra1227-FRA</span></span><br><span class="line"><span class="attr">X-Timer:</span> <span class="string">S1436952382.011631,VS0,VE99</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="JSON支持"><a href="#JSON支持" class="headerlink" title="JSON支持"></a>JSON支持</h4><p>HTTPie内置JSON的支持。事实上HTTPie默认使用的<code>Content-Type</code>就是<code>application/json</code>。因此，当你不指定<code>Content-Type</code>发送请求参数时，它们就会自动序列化为JSON对象。</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">http POST tonydeng<span class="selector-class">.github</span><span class="selector-class">.io</span> name=<span class="string">'Tony Deng'</span> email=<span class="string">'tonydeng@email.com'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">http</span> POST tonydeng.github.io name=<span class="string">'Tony Deng'</span> email=<span class="string">'tonydeng<span class="variable">@email</span>.com'</span></span><br></pre></td></tr></table></figure>
 
 <p>这个请求看起来就是这样：</p>
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Accept</span>: application/json</span><br><span class="line"><span class="attribute">Accept-Encoding</span>: gzip, deflate</span><br><span class="line"><span class="attribute">Connection</span>: keep-alive</span><br><span class="line"><span class="attribute">Content-Length</span>: 52</span><br><span class="line"><span class="attribute">Content-Type</span>: application/json</span><br><span class="line"><span class="attribute">Host</span>: tonydeng.github.io</span><br><span class="line"><span class="attribute">User-Agent</span>: HTTPie/0.9.2</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    "email": "tonydeng@email.com",</span><br><span class="line">    "name": "Tony Deng"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -620,7 +623,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -631,7 +634,9 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -642,7 +647,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -653,7 +658,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -664,7 +669,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">133</span>
+                <span class="site-state-item-count">136</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -735,7 +740,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Linux上安装"><span class="nav-number">1.0.1.</span> <span class="nav-text">Linux上安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Mac-OSX"><span class="nav-number">1.0.2.</span> <span class="nav-text">Mac OSX</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#安装开发版本"><span class="nav-number">2.</span> <span class="nav-text">安装开发版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用例子"><span class="nav-number">3.</span> <span class="nav-text">使用例子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定制头部"><span class="nav-number">3.1.</span> <span class="nav-text">定制头部</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下载文件"><span class="nav-number">3.2.</span> <span class="nav-text">下载文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用其他HTTP方法"><span class="nav-number">3.3.</span> <span class="nav-text">使用其他HTTP方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#PUT"><span class="nav-number">3.3.1.</span> <span class="nav-text">PUT</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#POST"><span class="nav-number">3.3.2.</span> <span class="nav-text">POST</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HEAD"><span class="nav-number">3.3.3.</span> <span class="nav-text">HEAD</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Request"><span class="nav-number">3.3.3.1.</span> <span class="nav-text">Request</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Response"><span class="nav-number">3.3.3.2.</span> <span class="nav-text">Response</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSON支持"><span class="nav-number">3.4.</span> <span class="nav-text">JSON支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入重定向"><span class="nav-number">3.5.</span> <span class="nav-text">输入重定向</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Linux上安装"><span class="nav-number">1.0.1.</span> <span class="nav-text">Linux上安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Mac-OSX"><span class="nav-number">1.0.2.</span> <span class="nav-text">Mac OSX</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装开发版本"><span class="nav-number">2.</span> <span class="nav-text">安装开发版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用例子"><span class="nav-number">3.</span> <span class="nav-text">使用例子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定制头部"><span class="nav-number">3.1.</span> <span class="nav-text">定制头部</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下载文件"><span class="nav-number">3.2.</span> <span class="nav-text">下载文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用其他HTTP方法"><span class="nav-number">3.3.</span> <span class="nav-text">使用其他HTTP方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#PUT"><span class="nav-number">3.3.1.</span> <span class="nav-text">PUT</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#POST"><span class="nav-number">3.3.2.</span> <span class="nav-text">POST</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HEAD"><span class="nav-number">3.3.3.</span> <span class="nav-text">HEAD</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Request"><span class="nav-number">3.3.3.1.</span> <span class="nav-text">Request</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Response"><span class="nav-number">3.3.3.2.</span> <span class="nav-text">Response</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSON支持"><span class="nav-number">3.4.</span> <span class="nav-text">JSON支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入重定向"><span class="nav-number">3.5.</span> <span class="nav-text">输入重定向</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -755,10 +760,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -767,12 +772,12 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>

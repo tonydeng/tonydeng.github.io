@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -66,23 +66,25 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="Database NoSQL SQL">
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+  <meta name="keywords" content="Database NoSQL SQL" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -90,13 +92,11 @@
 
 
 <meta name="description" content="本文所有内容来自Alphabet高可用架构微信群内部分享，分享是阿里巴巴的沈询老师。 今天想介绍的东西是NoSQL到SQL。我之所以选择这个题目，其实就是因为看到了一张图。  看完以后我真的噗嗤就笑了，黑的漂亮。">
-<meta name="keywords" content="Database NoSQL SQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NoSQL vs SQL By Alphabet高可用架构微信群">
 <meta property="og:url" content="http://tonydeng.github.io/2015/08/20/nosql-vs-sql/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="本文所有内容来自Alphabet高可用架构微信群内部分享，分享是阿里巴巴的沈询老师。 今天想介绍的东西是NoSQL到SQL。我之所以选择这个题目，其实就是因为看到了一张图。  看完以后我真的噗嗤就笑了，黑的漂亮。">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/nosql_vs_sql/a_history_of_databases_in_no-tation.jpg">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/nosql_vs_sql/b-tree.jpg">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/nosql_vs_sql/hierarchiacl_database.jpg">
@@ -108,10 +108,11 @@
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/nosql_vs_sql/sql_step_by_step_2.jpg">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/nosql_vs_sql/mysql_explain.jpg">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/nosql_vs_sql/digg.jpg">
-<meta property="og:updated_time" content="2019-06-20T12:10:27.467Z">
+<meta property="article:published_time" content="2015-08-20T14:06:33.000Z">
+<meta property="article:modified_time" content="2019-06-20T12:10:27.467Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="Database NoSQL SQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NoSQL vs SQL By Alphabet高可用架构微信群">
-<meta name="twitter:description" content="本文所有内容来自Alphabet高可用架构微信群内部分享，分享是阿里巴巴的沈询老师。 今天想介绍的东西是NoSQL到SQL。我之所以选择这个题目，其实就是因为看到了一张图。  看完以后我真的噗嗤就笑了，黑的漂亮。">
 <meta name="twitter:image" content="http://tonydeng.github.io/images/blog/nosql_vs_sql/a_history_of_databases_in_no-tation.jpg">
 
 
@@ -140,17 +141,17 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2015/08/20/nosql-vs-sql/">
+  <link rel="canonical" href="http://tonydeng.github.io/2015/08/20/nosql-vs-sql/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
 
 
   <title> NoSQL vs SQL By Alphabet高可用架构微信群 | TonyDeng's Blog </title>
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -208,7 +209,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">TonyDeng's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -238,7 +239,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -248,7 +249,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -258,7 +259,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -268,7 +269,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -278,7 +279,7 @@
         <li class="menu-item menu-item-ppts">
           <a href="/ppts" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             PPT
           </a>
@@ -288,7 +289,7 @@
         <li class="menu-item menu-item-gitbook">
           <a href="/gitbook-zh" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             GitBook
           </a>
@@ -298,7 +299,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -311,7 +312,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -332,7 +333,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -369,7 +372,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
     </span>
 
@@ -412,7 +415,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -424,7 +427,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
                     <span itemprop="name">数据库</span>
                   </a>
                 </span>
@@ -512,7 +515,7 @@
 <p>相信，很多人都觉得自己了解关系模型，似乎每个人提到它，都说“对对对”绝对对。</p>
 <p>因为这是有数学支持的，所以不应该怀疑。</p>
 <p>可选，实际上如果大家了解科学发现的历史，我们就会发现，自从爱因斯坦把牛顿那又完美数学报纸的自洽理论踢出了神坛，数学自洽就再也不是一个真理的标准了。</p>
-<p>而真理只有一个，哪个用户多，就是哪个<del>~</del></p>
+<p>而真理只有一个，哪个用户多，就是哪个~~~</p>
 <p>那么，为什么关系模型最终赢得了比赛，而层次模型死掉了呢？</p>
 <p>很简单，因为人类都是蠢蛋和傻瓜啊……哪个简单，容易用，就是哪个赢。</p>
 <p>下面，我们就以一个例子俩看看，关系模型易用在哪里。</p>
@@ -645,8 +648,10 @@
 <p>其余的生活基本上就没啥了……更多是跟大家一样，也都是普通的功能开发而已。</p>
 <p>好了，我的故事将完了。</p>
 <h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q &amp; A"></a>Q &amp; A</h2><p>问题1. 能说说DRDS和RDS的关系吗？</p>
-<pre><code>一个偏重分布式，一个偏重单机</code></pre><p>问题2. 请问阿里的DRDS如何实现join sql语句来执行多表关联查询的？如何兼容单机存储的SQL？需要注意哪些坑？</p>
-<pre><code>方案很多，其实如果大家对join有所了解，也就那么几种，hash/index nest loop/sort merge，没有什么魔法。http://coding-geek.com/how-databases-work/ 这个不错，我比较推荐。</code></pre><p>问题3. 请问schema less/free你怎么看？</p>
+<pre><code>一个偏重分布式，一个偏重单机</code></pre>
+<p>问题2. 请问阿里的DRDS如何实现join sql语句来执行多表关联查询的？如何兼容单机存储的SQL？需要注意哪些坑？</p>
+<pre><code>方案很多，其实如果大家对join有所了解，也就那么几种，hash/index nest loop/sort merge，没有什么魔法。http://coding-geek.com/how-databases-work/ 这个不错，我比较推荐。</code></pre>
+<p>问题3. 请问schema less/free你怎么看？</p>
 <pre><code>这俩似乎没见过拼一起哈，我分开。但是本质是同一个东西，我个人觉得有市场。不过能有多大，不知道。
 优势：业务模型更灵活。
 劣势：额外的空间占用。
@@ -654,17 +659,21 @@
 技术债也一定要还的......我清楚的记得当年我维护的一个cms系统，所有数据都是map。结果最后有一些诡异的数据不知道什么时候被塞到里面，然后最后也没有人知道是在哪里塞的，debug都很难找到。
 所以，一般来说，结合会更好一些。
 
-目前pg/mysql都开始支持json了，这东西其实只是工作量的问题，没有什么技术上的难度。</code></pre><p>问题4. 最近很多声音说不要在用户mongodb了，如何来看？</p>
+目前pg/mysql都开始支持json了，这东西其实只是工作量的问题，没有什么技术上的难度。</code></pre>
+<p>问题4. 最近很多声音说不要在用户mongodb了，如何来看？</p>
 <pre><code>这个就纯属于个人意见了啊...... 我个人不喜欢mongodb那帮人的嘴脸......
 
 [MongoDB核心贡献者：不是MongoDB不行，而是你不懂！](http://www.cnblogs.com/shanyou/archive/2012/11/17/2774344.html)
 
 然而，为什么会这样？还不是某些人为了骗分，默认配置特别激进...... 而开发者不会告诉你，如果改成安全配置，他们的性能没比MySQL强哪里去。
 
-一个存储引擎，至少10年才能稳定。前两天刚碰到一个游戏客户说某nosql数据文件损坏无法恢复，问我们有没有办法，我说，下次选择谨慎点......性能不是唯一的。这次请节哀。</code></pre><p>问题5. 海量，低延时（毫秒级），高并发（十万以上），目前关系型数据库是否有并存的方案？</p>
-<pre><code>10w并发不算很高了，DRDS是你最好的选择。</code></pre><p>问题6. 非结构化数据，如文本，树图等，这些sql无法处理的，是否是用nosql更合理？</p>
+一个存储引擎，至少10年才能稳定。前两天刚碰到一个游戏客户说某nosql数据文件损坏无法恢复，问我们有没有办法，我说，下次选择谨慎点......性能不是唯一的。这次请节哀。</code></pre>
+<p>问题5. 海量，低延时（毫秒级），高并发（十万以上），目前关系型数据库是否有并存的方案？</p>
+<pre><code>10w并发不算很高了，DRDS是你最好的选择。</code></pre>
+<p>问题6. 非结构化数据，如文本，树图等，这些sql无法处理的，是否是用nosql更合理？</p>
 <pre><code>非结构化数据也是一个重要的门类，一直都存在，以后也会存在，但是nosql为了宣传，把所有的东西都拉到自己阵营，这其实与其初衷已经违背了。
 twtter的图数据库其实也是依托mysql做的......你给我钱给我人，给我时间，我能汇编写任何东西。</code></pre>
+
       
     </div>
 
@@ -772,7 +781,7 @@ twtter的图数据库其实也是依托mysql做的......你给我钱给我人，
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -783,7 +792,9 @@ twtter的图数据库其实也是依托mysql做的......你给我钱给我人，
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -794,7 +805,7 @@ twtter的图数据库其实也是依托mysql做的......你给我钱给我人，
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -805,7 +816,7 @@ twtter的图数据库其实也是依托mysql做的......你给我钱给我人，
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -816,7 +827,7 @@ twtter的图数据库其实也是依托mysql做的......你给我钱给我人，
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">133</span>
+                <span class="site-state-item-count">136</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -907,10 +918,10 @@ twtter的图数据库其实也是依托mysql做的......你给我钱给我人，
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -919,12 +930,12 @@ twtter的图数据库其实也是依托mysql做的......你给我钱给我人，
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>

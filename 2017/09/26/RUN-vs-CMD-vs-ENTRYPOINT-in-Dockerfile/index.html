@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -66,23 +66,25 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="RUN vs CMD vs ENTRYPOINT in Dockerfile">
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+  <meta name="keywords" content="RUN vs CMD vs ENTRYPOINT in Dockerfile" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -90,18 +92,17 @@
 
 
 <meta name="description" content="RUN、CMD 和 ENTIRYPOINT这三个Dockerfile指令看起来都很类似，很容易搞混。我们来通过一些实践来详细讨论一下它们之间的差别。 简单的说：  RUN执行命令并创建新的镜像层，RUN经常用来安装Docker image中需要的软件。 CMD设置容器启动后默认执行的命令及其参数，但CMD能够被docker run后面跟着的命令行参数代替。 ENTIRYPOINT配置容器启动时运">
-<meta name="keywords" content="RUN vs CMD vs ENTRYPOINT in Dockerfile">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RUN vs CMD vs ENTRYPOINT in Dockerfile">
 <meta property="og:url" content="http://tonydeng.github.io/2017/09/26/RUN-vs-CMD-vs-ENTRYPOINT-in-Dockerfile/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="RUN、CMD 和 ENTIRYPOINT这三个Dockerfile指令看起来都很类似，很容易搞混。我们来通过一些实践来详细讨论一下它们之间的差别。 简单的说：  RUN执行命令并创建新的镜像层，RUN经常用来安装Docker image中需要的软件。 CMD设置容器启动后默认执行的命令及其参数，但CMD能够被docker run后面跟着的命令行参数代替。 ENTIRYPOINT配置容器启动时运">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://logo-logos.com/wp-content/uploads/2016/10/Docker_logo_horizontal.png">
-<meta property="og:updated_time" content="2019-06-20T12:10:27.479Z">
+<meta property="article:published_time" content="2017-09-26T09:09:47.000Z">
+<meta property="article:modified_time" content="2019-06-20T12:10:27.479Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="RUN vs CMD vs ENTRYPOINT in Dockerfile">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RUN vs CMD vs ENTRYPOINT in Dockerfile">
-<meta name="twitter:description" content="RUN、CMD 和 ENTIRYPOINT这三个Dockerfile指令看起来都很类似，很容易搞混。我们来通过一些实践来详细讨论一下它们之间的差别。 简单的说：  RUN执行命令并创建新的镜像层，RUN经常用来安装Docker image中需要的软件。 CMD设置容器启动后默认执行的命令及其参数，但CMD能够被docker run后面跟着的命令行参数代替。 ENTIRYPOINT配置容器启动时运">
 <meta name="twitter:image" content="http://logo-logos.com/wp-content/uploads/2016/10/Docker_logo_horizontal.png">
 
 
@@ -130,17 +131,17 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2017/09/26/RUN-vs-CMD-vs-ENTRYPOINT-in-Dockerfile/">
+  <link rel="canonical" href="http://tonydeng.github.io/2017/09/26/RUN-vs-CMD-vs-ENTRYPOINT-in-Dockerfile/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
 
 
   <title> RUN vs CMD vs ENTRYPOINT in Dockerfile | TonyDeng's Blog </title>
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -198,7 +199,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">TonyDeng's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -228,7 +229,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -238,7 +239,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -248,7 +249,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -258,7 +259,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -268,7 +269,7 @@
         <li class="menu-item menu-item-ppts">
           <a href="/ppts" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             PPT
           </a>
@@ -278,7 +279,7 @@
         <li class="menu-item menu-item-gitbook">
           <a href="/gitbook-zh" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             GitBook
           </a>
@@ -288,7 +289,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -301,7 +302,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -322,7 +323,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -359,7 +362,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
     </span>
 
@@ -402,7 +405,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -414,7 +417,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/效率/" itemprop="url" rel="index">
+                  <a href="/categories/%E6%95%88%E7%8E%87/" itemprop="url" rel="index">
                     <span itemprop="name">效率</span>
                   </a>
                 </span>
@@ -464,7 +467,6 @@
 
 <p>例如：</p>
 <figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get install python3</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"Hello World"</span></span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"Hello World"</span></span></span><br></pre></td></tr></table></figure>
-
 <p>当指令执行是，shell格式底层会调用<code>/bin/sh -c &lt;command&gt;</code>。</p>
 <p>例如下面的Dockerfile片段：</p>
 <figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ENV</span> name Tony Deng</span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"Hello, <span class="variable">$name</span>"</span></span></span><br></pre></td></tr></table></figure>
@@ -518,8 +520,10 @@
 <p>下面看看 CMD 是如何工作的。Dockerfile 片段如下：</p>
 <figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CMD</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"Hello world"</span></span></span><br></pre></td></tr></table></figure>
 
+
 <p>运行容器 <code>docker run -it [image]</code> 将输出：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Hello world</span><br></pre></td></tr></table></figure>
+
 
 <p>但当后面加上一个命令，比如 <code>docker run -it [image] /bin/bash</code>，<code>CMD</code> 会被忽略掉，命令 <code>bash</code> 将被执行：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root@10a32dc7d3d3:/<span class="comment">#</span></span><br></pre></td></tr></table></figure>
@@ -658,7 +662,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -669,7 +673,9 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -680,7 +686,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -691,7 +697,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -702,7 +708,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">133</span>
+                <span class="site-state-item-count">136</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -793,10 +799,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -805,12 +811,12 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>

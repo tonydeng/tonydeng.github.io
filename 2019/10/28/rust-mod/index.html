@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -66,43 +66,48 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="Rust Module Mod">
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+  <meta name="keywords" content="Rust入坑之旅, Rust, Module, Mod" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
 
 
 
-<meta name="description" content="刚开始学习Rust时，我觉得它的模块机制难以理解。后来才明白是自己想多了，Rust模块其实就是命名空间，仅此而已。它的crate倒更像是其他语言的模块。 从Rust编译来理解Rust编译器只接受一个.rs文件作为输入，并且只生成一个crate。这一点要牢记。 生成的crate分两种，源文件中有main函数会生成可执行文件，无main函数则生成库。 // hello.rsfn main() &amp;#12">
-<meta name="keywords" content="Rust Module Mod">
+<meta name="description" content="刚开始学习Rust时，我觉得它的模块机制难以理解。后来才明白是自己想多了，Rust模块其实就是命名空间，仅此而已。它的crate倒更像是其他语言的模块。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Rust模块机制">
 <meta property="og:url" content="http://tonydeng.github.io/2019/10/28/rust-mod/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
-<meta property="og:description" content="刚开始学习Rust时，我觉得它的模块机制难以理解。后来才明白是自己想多了，Rust模块其实就是命名空间，仅此而已。它的crate倒更像是其他语言的模块。 从Rust编译来理解Rust编译器只接受一个.rs文件作为输入，并且只生成一个crate。这一点要牢记。 生成的crate分两种，源文件中有main函数会生成可执行文件，无main函数则生成库。 // hello.rsfn main() &amp;#12">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/rust-mod/rust-mod-tree.png">
-<meta property="og:updated_time" content="2019-10-28T10:08:19.864Z">
+<meta property="og:description" content="刚开始学习Rust时，我觉得它的模块机制难以理解。后来才明白是自己想多了，Rust模块其实就是命名空间，仅此而已。它的crate倒更像是其他语言的模块。">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/rust/rust-language.jpg">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/rust/rust-mod-tree.png">
+<meta property="article:published_time" content="2019-10-28T09:33:39.000Z">
+<meta property="article:modified_time" content="2020-10-14T06:46:33.330Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="Rust入坑之旅">
+<meta property="article:tag" content=" Rust">
+<meta property="article:tag" content=" Module">
+<meta property="article:tag" content=" Mod">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rust模块机制">
-<meta name="twitter:description" content="刚开始学习Rust时，我觉得它的模块机制难以理解。后来才明白是自己想多了，Rust模块其实就是命名空间，仅此而已。它的crate倒更像是其他语言的模块。 从Rust编译来理解Rust编译器只接受一个.rs文件作为输入，并且只生成一个crate。这一点要牢记。 生成的crate分两种，源文件中有main函数会生成可执行文件，无main函数则生成库。 // hello.rsfn main() &amp;#12">
-<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/rust-mod/rust-mod-tree.png">
+<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/rust/rust-language.jpg">
 
 
 
@@ -130,17 +135,17 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2019/10/28/rust-mod/">
+  <link rel="canonical" href="http://tonydeng.github.io/2019/10/28/rust-mod/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
 
 
   <title> Rust模块机制 | TonyDeng's Blog </title>
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -198,7 +203,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">TonyDeng's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -228,7 +233,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -238,7 +243,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -248,7 +253,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -258,7 +263,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -268,7 +273,7 @@
         <li class="menu-item menu-item-ppts">
           <a href="/ppts" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             PPT
           </a>
@@ -278,7 +283,7 @@
         <li class="menu-item menu-item-gitbook">
           <a href="/gitbook-zh" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             GitBook
           </a>
@@ -288,7 +293,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -301,7 +306,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -322,7 +327,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -359,7 +366,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
     </span>
 
@@ -402,7 +409,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -414,8 +421,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Rust学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">Rust学习笔记</span>
+                  <a href="/categories/Rust%E5%85%A5%E5%9D%91%E4%B9%8B%E6%97%85/" itemprop="url" rel="index">
+                    <span itemprop="name">Rust入坑之旅</span>
                   </a>
                 </span>
 
@@ -449,7 +456,10 @@
       
 
       
-        <p>刚开始学习<code>Rust</code>时，我觉得它的模块机制难以理解。后来才明白是自己想多了，<code>Rust</code>模块其实就是命名空间，仅此而已。它的<code>crate</code>倒更像是其他语言的模块。</p>
+        <p><img src="/images/blog/rust/rust-language.jpg" alt="rust-language"></p>
+<p>刚开始学习<code>Rust</code>时，我觉得它的模块机制难以理解。后来才明白是自己想多了，<code>Rust</code>模块其实就是命名空间，仅此而已。它的<code>crate</code>倒更像是其他语言的模块。</p>
+<a id="more"></a>
+
 <h2 id="从Rust编译来理解"><a href="#从Rust编译来理解" class="headerlink" title="从Rust编译来理解"></a>从Rust编译来理解</h2><p><code>Rust</code>编译器只接受一个<code>.rs</code>文件作为输入，并且只生成一个<code>crate</code>。这一点要牢记。</p>
 <p>生成的<code>crate</code>分两种，源文件中有<code>main</code>函数会生成可执行文件，无<code>main</code>函数则生成库。</p>
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// hello.rs</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"hello, rust"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -458,7 +468,7 @@
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// hello.rs</span></span><br><span class="line"><span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">hello</span></span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"hello, rust"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>使用<code>--crate-type=lib</code>参数编译成库，如果没有<code>pub</code>关键字，则会有如下提示。</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line">$ rustc hello.rs --crate-type=lib</span><br><span class="line">warning: function is never used: `hello`</span><br><span class="line"> --&gt; hello.rs:<span class="number">1</span>:<span class="number">1</span></span><br><span class="line">  |</span><br><span class="line"><span class="number">1</span> | <span class="function"><span class="keyword">fn</span> <span class="title">hello</span></span>()&#123;</span><br><span class="line">  | ^^^^^^^^^^</span><br><span class="line">  |</span><br><span class="line">  = note: `<span class="meta">#[warn(dead_code)]</span>` on by <span class="keyword">default</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line">$ rustc hello.rs --crate-type=lib</span><br><span class="line">warning: function is never used: `hello`</span><br><span class="line"> --&gt; hello.rs:<span class="number">1</span>:<span class="number">1</span></span><br><span class="line">  |</span><br><span class="line"><span class="number">1</span> | <span class="function"><span class="keyword">fn</span> <span class="title">hello</span></span>()&#123;</span><br><span class="line">  | ^^^^^^^^^^</span><br><span class="line">  |</span><br><span class="line">  = note: `<span class="meta">#[warn(dead_code)]</span>` on by default</span><br></pre></td></tr></table></figure>
 
 <p>运行<code>rustc hello.rs --crate-type=lib</code>会生成同名的库<code>libhello.rlib</code>。函数前面多了一个关键词<code>pub</code>，如果不加的话编译器会告警，说“你这个库啥<code>public</code>的东西都没有，让别人用毛啊”。恩，<code>Rust</code>编译器还是很贴心的。</p>
 <h2 id="引入命名空间"><a href="#引入命名空间" class="headerlink" title="引入命名空间"></a>引入命名空间</h2><p><code>Rust</code>的模块就是命名空间，用关键词<code>mod</code>表示。它的作用是把一个<code>crate</code>的代码划分成可管理的部分。每一个<code>crate</code>都有一个顶层的匿名根命名空间, 根空间下面的命名空间可以任意嵌套，这样构成一个树形结构。</p>
@@ -470,7 +480,7 @@
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// phrases.rs</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">mod</span> english &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">mod</span> greetings &#123;</span><br><span class="line">        <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">hello</span></span>() &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">"Hello!"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">hey_guies</span></span>() &#123;</span><br><span class="line">           <span class="built_in">println!</span>(<span class="string">"Hey, guies!"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">mod</span> farewells &#123;</span><br><span class="line">        <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">goodbye</span></span>() &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">"Goodbye!"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">see_you</span></span>() &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">"See you!"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">mod</span> chinese &#123;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">mod</span> greetings &#123;</span><br><span class="line">        <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">hello</span></span>() &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">"你好!"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">have_eaten</span></span>() &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">"吃了么?"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">mod</span> farewells &#123;</span><br><span class="line">        <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">goodbye</span></span>() &#123;</span><br><span class="line">            <span class="built_in">println!</span>(<span class="string">"再见!"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">pub</span> <span class="function"><span class="keyword">fn</span> <span class="title">everyone_will_know_you</span></span>() &#123;</span><br><span class="line">            println(<span class="string">"天下谁人不识君!"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>运行<code>rustc phrases.rs --crate-type=lib</code>得到一个程序库，其模块树形图如下:</p>
-<p><img src="/images/blog/rust-mod/rust-mod-tree.png" alt="模块图像树"></p>
+<p><img src="/images/blog/rust/rust-mod-tree.png" alt="模块图像树"></p>
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 朋友分别，请用下面两句</span></span><br><span class="line">phrases::chinese::farewells::goodbye()</span><br><span class="line">phrases::chinese::farewells::everyone_will_know_you()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果不想敲这么多重复的命名空间，请用use</span></span><br><span class="line"><span class="keyword">use</span> phrases::chinese::farewells;</span><br><span class="line"></span><br><span class="line">farewells::goodbye();</span><br><span class="line">farewells::everyone_will_know_you();</span><br></pre></td></tr></table></figure>
 
 <h2 id="打散命名空间"><a href="#打散命名空间" class="headerlink" title="打散命名空间"></a>打散命名空间</h2><p>好，我们已经学会使用命名空间了，但是所有的代码都在<code>phrases.rs</code>这个文件中，这在正式开发中是不能容忍的。还好<code>Rust</code>编译器给我提供了一个将单个文件拆成多个文件的机制。</p>
@@ -528,7 +538,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Rust学习笔记/" rel="tag"># Rust学习笔记</a>
+            <a href="/tags/Rust%E5%85%A5%E5%9D%91%E4%B9%8B%E6%97%85/" rel="tag"># Rust入坑之旅</a>
           
             <a href="/tags/Rust/" rel="tag"># Rust</a>
           
@@ -554,6 +564,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/09/rust-closure-type/" rel="prev" title="Rust的闭包类型(Fn, FnMut, FnOne的区别)">
+                Rust的闭包类型(Fn, FnMut, FnOne的区别) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -601,7 +615,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -612,7 +626,9 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -623,7 +639,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -634,7 +650,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -645,7 +661,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">133</span>
+                <span class="site-state-item-count">136</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -736,10 +752,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -748,12 +764,12 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>

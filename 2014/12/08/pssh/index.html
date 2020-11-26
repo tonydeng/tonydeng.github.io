@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -66,23 +66,25 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="ssh, pssh, brew, linux, 远程服务器控制">
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+  <meta name="keywords" content="ssh, pssh, brew, linux, 远程服务器控制" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -90,18 +92,21 @@
 
 
 <meta name="description" content="pssh是一个用python编写的可以在多台服务器上执行命令的工具，同时支持拷贝文件等功能，在同类工具中还是很方便使用的。项目地址：parallel-ssh">
-<meta name="keywords" content="ssh, pssh, brew, linux, 远程服务器控制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PSSH基本使用介绍">
 <meta property="og:url" content="http://tonydeng.github.io/2014/12/08/pssh/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="pssh是一个用python编写的可以在多台服务器上执行命令的工具，同时支持拷贝文件等功能，在同类工具中还是很方便使用的。项目地址：parallel-ssh">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/pssh.png">
-<meta property="og:updated_time" content="2019-06-20T12:10:27.462Z">
+<meta property="article:published_time" content="2014-12-08T07:33:36.000Z">
+<meta property="article:modified_time" content="2019-06-20T12:10:27.462Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="ssh">
+<meta property="article:tag" content=" pssh">
+<meta property="article:tag" content=" brew">
+<meta property="article:tag" content=" linux">
+<meta property="article:tag" content=" 远程服务器控制">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PSSH基本使用介绍">
-<meta name="twitter:description" content="pssh是一个用python编写的可以在多台服务器上执行命令的工具，同时支持拷贝文件等功能，在同类工具中还是很方便使用的。项目地址：parallel-ssh">
 <meta name="twitter:image" content="http://tonydeng.github.io/images/blog/pssh.png">
 
 
@@ -130,17 +135,17 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2014/12/08/pssh/">
+  <link rel="canonical" href="http://tonydeng.github.io/2014/12/08/pssh/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
 
 
   <title> PSSH基本使用介绍 | TonyDeng's Blog </title>
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -198,7 +203,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">TonyDeng's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -228,7 +233,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -238,7 +243,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -248,7 +253,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -258,7 +263,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -268,7 +273,7 @@
         <li class="menu-item menu-item-ppts">
           <a href="/ppts" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             PPT
           </a>
@@ -278,7 +283,7 @@
         <li class="menu-item menu-item-gitbook">
           <a href="/gitbook-zh" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             GitBook
           </a>
@@ -288,7 +293,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -301,7 +306,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -322,7 +327,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -359,7 +366,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
     </span>
 
@@ -402,7 +409,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -414,7 +421,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/效率/" itemprop="url" rel="index">
+                  <a href="/categories/%E6%95%88%E7%8E%87/" itemprop="url" rel="index">
                     <span itemprop="name">效率</span>
                   </a>
                 </span>
@@ -475,6 +482,7 @@
 <p>如果对pssh的参数不太明白的话，可使用–help来获得帮助。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  pssh  pssh --<span class="built_in">help</span></span><br><span class="line">Usage: pssh [OPTIONS] <span class="built_in">command</span> [...]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  --version             show program<span class="string">'s version number and exit</span></span><br><span class="line"><span class="string">  --help                show this help message and exit</span></span><br><span class="line"><span class="string">  -h HOST_FILE, --hosts=HOST_FILE</span></span><br><span class="line"><span class="string">                        hosts file (each line "[user@]host[:port]")</span></span><br><span class="line"><span class="string">  -H HOST_STRING, --host=HOST_STRING</span></span><br><span class="line"><span class="string">                        additional host entries ("[user@]host[:port]")</span></span><br><span class="line"><span class="string">  -l USER, --user=USER  username (OPTIONAL)</span></span><br><span class="line"><span class="string">  -p PAR, --par=PAR     max number of parallel threads (OPTIONAL)</span></span><br><span class="line"><span class="string">  -o OUTDIR, --outdir=OUTDIR</span></span><br><span class="line"><span class="string">                        output directory for stdout files (OPTIONAL)</span></span><br><span class="line"><span class="string">  -e ERRDIR, --errdir=ERRDIR</span></span><br><span class="line"><span class="string">                        output directory for stderr files (OPTIONAL)</span></span><br><span class="line"><span class="string">  -t TIMEOUT, --timeout=TIMEOUT</span></span><br><span class="line"><span class="string">                        timeout (secs) (0 = no timeout) per host (OPTIONAL)</span></span><br><span class="line"><span class="string">  -O OPTION, --option=OPTION</span></span><br><span class="line"><span class="string">                        SSH option (OPTIONAL)</span></span><br><span class="line"><span class="string">  -v, --verbose         turn on warning and diagnostic messages (OPTIONAL)</span></span><br><span class="line"><span class="string">  -A, --askpass         Ask for a password (OPTIONAL)</span></span><br><span class="line"><span class="string">  -x ARGS, --extra-args=ARGS</span></span><br><span class="line"><span class="string">                        Extra command-line arguments, with processing for</span></span><br><span class="line"><span class="string">                        spaces, quotes, and backslashes</span></span><br><span class="line"><span class="string">  -X ARG, --extra-arg=ARG</span></span><br><span class="line"><span class="string">                        Extra command-line argument</span></span><br><span class="line"><span class="string">  -i, --inline          inline aggregated output and error for each server</span></span><br><span class="line"><span class="string">  --inline-stdout       inline standard output for each server</span></span><br><span class="line"><span class="string">  -I, --send-input      read from standard input and send as input to ssh</span></span><br><span class="line"><span class="string">  -P, --print           print output as we get it</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Example: pssh -h hosts.txt -l irb2 -o /tmp/foo uptime</span></span><br></pre></td></tr></table></figure>
 
+
 <p>简单解释一下pssh help提供的例子。在hosts.txt中列出来的服务器上远程执行uptime命令，并将执行结果输出到/tmp/uptime目录下相应地服务器的文件中。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pssh -h hosts.txt -l root -o /tmp/uptime uptime</span><br></pre></td></tr></table></figure>
 
@@ -491,7 +499,7 @@
 <p>查看执行结果输出</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ls -l /tmp/uptime</span><br><span class="line">-rw-r--r--  1 tonydeng  wheel    71B 12  9 09:51 172.18.10.24</span><br><span class="line">-rw-r--r--  1 tonydeng  wheel    71B 12  9 09:51 172.18.10.25</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">cat</span> /<span class="selector-tag">tmp</span>/<span class="selector-tag">uptime</span>/<span class="selector-tag">172</span><span class="selector-class">.18</span><span class="selector-class">.10</span><span class="selector-class">.24</span></span><br><span class="line"><span class="selector-tag">09</span><span class="selector-pseudo">:51</span><span class="selector-pseudo">:26</span> <span class="selector-tag">up</span> <span class="selector-tag">59</span> <span class="selector-tag">days</span>, <span class="selector-tag">13</span><span class="selector-pseudo">:48</span>,  <span class="selector-tag">0</span> <span class="selector-tag">users</span>,  <span class="selector-tag">load</span> <span class="selector-tag">average</span>: <span class="selector-tag">0</span><span class="selector-class">.00</span>, <span class="selector-tag">0</span><span class="selector-class">.00</span>, <span class="selector-tag">0</span><span class="selector-class">.00</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">cat</span> /<span class="selector-tag">tmp</span>/<span class="selector-tag">uptime</span>/<span class="selector-tag">172</span><span class="selector-class">.18</span><span class="selector-class">.10</span><span class="selector-class">.25</span></span><br><span class="line"><span class="selector-tag">09</span><span class="selector-pseudo">:51</span><span class="selector-pseudo">:26</span> <span class="selector-tag">up</span> <span class="selector-tag">59</span> <span class="selector-tag">days</span>, <span class="selector-tag">13</span><span class="selector-pseudo">:47</span>,  <span class="selector-tag">0</span> <span class="selector-tag">users</span>,  <span class="selector-tag">load</span> <span class="selector-tag">average</span>: <span class="selector-tag">0</span><span class="selector-class">.00</span>, <span class="selector-tag">0</span><span class="selector-class">.00</span>, <span class="selector-tag">0</span><span class="selector-class">.00</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">cat /tmp/uptime/<span class="number">172.18</span><span class="number">.10</span><span class="number">.24</span></span><br><span class="line"><span class="number">09</span>:<span class="number">51</span>:<span class="number">26</span> up <span class="number">59</span> days, <span class="number">13</span>:<span class="number">48</span>,  <span class="number">0</span> users,  load average: <span class="number">0.00</span>, <span class="number">0.00</span>, <span class="number">0.00</span></span><br><span class="line"></span><br><span class="line">cat /tmp/uptime/<span class="number">172.18</span><span class="number">.10</span><span class="number">.25</span></span><br><span class="line"><span class="number">09</span>:<span class="number">51</span>:<span class="number">26</span> up <span class="number">59</span> days, <span class="number">13</span>:<span class="number">47</span>,  <span class="number">0</span> users,  load average: <span class="number">0.00</span>, <span class="number">0.00</span>, <span class="number">0.00</span></span><br></pre></td></tr></table></figure>
 
 <p>通过这个例子大家应该能够明白pssh的使用方法了吧。</p>
 <h2 id="pscp基本用法"><a href="#pscp基本用法" class="headerlink" title="pscp基本用法"></a>pscp基本用法</h2><p><code>pscp</code>用来将文件并行的复制到多个主机上。</p>
@@ -504,7 +512,6 @@
 
 <p><strong>特别参数说明：</strong></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-r 用于递归的复制目录</span><br></pre></td></tr></table></figure>
-
 <h2 id="pslurp基本用法"><a href="#pslurp基本用法" class="headerlink" title="pslurp基本用法"></a>pslurp基本用法</h2><p><code>pslurp</code>把文件并行地从多个远程主机复制到中心主机上</p>
 <p>基本用法:</p>
 <figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">plurp</span> -h <span class="built_in">ip</span>文件  -L 本地目录  远程文件 本地文件名称</span><br></pre></td></tr></table></figure>
@@ -521,7 +528,6 @@
 <p><code>pnuke</code> 的参数与<code>pssh</code>一样,只是最后的字符串为要结束的进程名称</p>
 <p>例子： 将<code>host.txt</code>列出的主机上的<code>httpd</code>进程杀死</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pnuke -h host.txt -l root httpd</span><br><span class="line">[1] 09:55:28 [SUCCESS] 172.18.10.25</span><br><span class="line">[2] 09:55:28 [SUCCESS] 172.18.10.24</span><br></pre></td></tr></table></figure>
-
 
       
     </div>
@@ -626,7 +632,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -637,7 +643,9 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -648,7 +656,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -659,7 +667,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -670,7 +678,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">133</span>
+                <span class="site-state-item-count">136</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -761,10 +769,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -773,12 +781,12 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>

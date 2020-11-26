@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -66,47 +66,48 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="git undo">
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+  <meta name="keywords" content="git undo" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
 
 
 
-<meta name="description" content="GitHub的How to undo (almost) anything with Git这篇文章介绍了Git使用中的各种Undo技巧。 任何版本控制系统中最有用的功能之一就是能够“撤销（undo）”你之前的错误。在Git中“undo”功能可能因为场景的不同而有些许的差异。 当你进行一个新的提交时，Git会保存你在这个特定时间点的快照到本地的仓库中，之后，你可以通过Git来回到你早期的某个版本。">
-<meta name="keywords" content="git undo">
+<meta name="description" content="GitHub的How to undo (almost) anything with Git这篇文章介绍了Git使用中的各种Undo技巧。 任何版本控制系统中最有用的功能之一就是能够**”撤销（undo）”你之前的错误。在Git中“undo”**功能可能因为场景的不同而有些许的差异。 当你进行一个新的提交时，Git会保存你在这个特定时间点的快照到本地的仓库中，之后，你可以通过Git来回到你早期的某">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git的各种Undo技巧">
 <meta property="og:url" content="http://tonydeng.github.io/2015/07/08/how-to-undo-almost-anything-with-git/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
-<meta property="og:description" content="GitHub的How to undo (almost) anything with Git这篇文章介绍了Git使用中的各种Undo技巧。 任何版本控制系统中最有用的功能之一就是能够“撤销（undo）”你之前的错误。在Git中“undo”功能可能因为场景的不同而有些许的差异。 当你进行一个新的提交时，Git会保存你在这个特定时间点的快照到本地的仓库中，之后，你可以通过Git来回到你早期的某个版本。">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:description" content="GitHub的How to undo (almost) anything with Git这篇文章介绍了Git使用中的各种Undo技巧。 任何版本控制系统中最有用的功能之一就是能够**”撤销（undo）”你之前的错误。在Git中“undo”**功能可能因为场景的不同而有些许的差异。 当你进行一个新的提交时，Git会保存你在这个特定时间点的快照到本地的仓库中，之后，你可以通过Git来回到你早期的某">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/git-undo/git-undo.jpg">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/git-undo/reflog.png">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/git-undo/rebase_1.png">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/git-undo/rebase_edit.png">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/git-undo/rebase_fixup.png">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/git-undo/rebase_autosquash.png">
-<meta property="og:updated_time" content="2019-06-20T12:10:27.466Z">
+<meta property="article:published_time" content="2015-07-08T09:04:12.000Z">
+<meta property="article:modified_time" content="2019-06-20T12:10:27.466Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="git undo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git的各种Undo技巧">
-<meta name="twitter:description" content="GitHub的How to undo (almost) anything with Git这篇文章介绍了Git使用中的各种Undo技巧。 任何版本控制系统中最有用的功能之一就是能够“撤销（undo）”你之前的错误。在Git中“undo”功能可能因为场景的不同而有些许的差异。 当你进行一个新的提交时，Git会保存你在这个特定时间点的快照到本地的仓库中，之后，你可以通过Git来回到你早期的某个版本。">
 <meta name="twitter:image" content="http://tonydeng.github.io/images/blog/git-undo/git-undo.jpg">
 
 
@@ -135,17 +136,17 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2015/07/08/how-to-undo-almost-anything-with-git/">
+  <link rel="canonical" href="http://tonydeng.github.io/2015/07/08/how-to-undo-almost-anything-with-git/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
 
 
   <title> Git的各种Undo技巧 | TonyDeng's Blog </title>
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -203,7 +204,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">TonyDeng's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -233,7 +234,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -243,7 +244,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -253,7 +254,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -263,7 +264,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -273,7 +274,7 @@
         <li class="menu-item menu-item-ppts">
           <a href="/ppts" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             PPT
           </a>
@@ -283,7 +284,7 @@
         <li class="menu-item menu-item-gitbook">
           <a href="/gitbook-zh" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             GitBook
           </a>
@@ -293,7 +294,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -306,7 +307,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -327,7 +328,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -364,7 +367,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
     </span>
 
@@ -407,7 +410,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -419,7 +422,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/效率/" itemprop="url" rel="index">
+                  <a href="/categories/%E6%95%88%E7%8E%87/" itemprop="url" rel="index">
                     <span itemprop="name">效率</span>
                   </a>
                 </span>
@@ -455,8 +458,8 @@
 
       
         <p><img src="/images/blog/git-undo/git-undo.jpg" alt="git undo"></p>
-<p><a href="https://github.com" target="_blank" rel="noopener">GitHub</a>的<a href="https://github.com/blog/2019-how-to-undo-almost-anything-with-git" target="_blank" rel="noopener">How to undo (almost) anything with Git</a>这篇文章介绍了<a href="https://git-scm.com" target="_blank" rel="noopener">Git</a>使用中的各种Undo技巧。</p>
-<p>任何版本控制系统中最有用的功能之一就是能够<strong>“撤销（undo）”</strong>你之前的错误。在Git中<strong>“undo”</strong>功能可能因为场景的不同而有些许的差异。</p>
+<p><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>的<a href="https://github.com/blog/2019-how-to-undo-almost-anything-with-git" target="_blank" rel="noopener">How to undo (almost) anything with Git</a>这篇文章介绍了<a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a>使用中的各种Undo技巧。</p>
+<p>任何版本控制系统中最有用的功能之一就是能够**”撤销（undo）”<strong>你之前的错误。在Git中</strong>“undo”**功能可能因为场景的不同而有些许的差异。</p>
 <p>当你进行一个新的提交时，Git会保存你在这个特定时间点的快照到本地的仓库中，之后，你可以通过Git来回到你早期的某个版本。</p>
 <p>我们来先看看一些需要你“撤销”的常见场景，你可以尝试使用Git来用最佳的方式来解决它。</p>
 <a id="more"></a>
@@ -467,10 +470,9 @@
 <h4 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h4><p><strong>git revert</strong> 会创建一个新的<strong>commit</strong>，它和指定SHA对应的<strong>commit</strong>是相反的（或者说是反转的）。如果原型的commit是“物质”，那么新的<strong>commit</strong>就是“反物质”。</p>
 <p>任何从原来的commit里删除的内容都会再新的<strong>commit</strong>里被加回去，任何原来的<strong>commit</strong>中加入的内容都会在新的commit里被删除。</p>
 <p>这是Git中最安全、最基本的撤销场景，因为它并不会改变历史。所以你现在可以<strong>git push</strong>新的<strong>“反转”commit</strong>来抵消你错误提交的commit。</p>
-<h2 id="修正最后一个commit的消息"><a href="#修正最后一个commit的消息" class="headerlink" title="修正最后一个commit的消息"></a>修正最后一个commit的消息</h2><h4 id="场景：-1"><a href="#场景：-1" class="headerlink" title="场景："></a>场景：</h4><p>你在最后一条commit消息里有一个笔误，已经执行了 <strong>git commit -m ‘Fixes bug #42’</strong> ,但是在git push之前你意识到这个消息应该是<strong>“Fix bug #43”</strong>。</p>
+<h2 id="修正最后一个commit的消息"><a href="#修正最后一个commit的消息" class="headerlink" title="修正最后一个commit的消息"></a>修正最后一个commit的消息</h2><h4 id="场景：-1"><a href="#场景：-1" class="headerlink" title="场景："></a>场景：</h4><p>你在最后一条commit消息里有一个笔误，已经执行了 <strong>git commit -m ‘Fixes bug #42’</strong> ,但是在git push之前你意识到这个消息应该是**”Fix bug #43”**。</p>
 <h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><p>你可以使用下面的命令：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">commit</span> <span class="comment">--amend</span></span><br></pre></td></tr></table></figure>
-
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">commit</span> <span class="comment">--amend</span></span><br></pre></td></tr></table></figure>
 <p>或</p>
 <figure class="highlight dsconfig"><table><tr><td class="code"><pre><span class="line"><span class="string">git </span><span class="string">commit </span><span class="built_in">--amend</span> -m <span class="string">'Fixes bug #43'</span></span><br></pre></td></tr></table></figure>
 
@@ -488,11 +490,9 @@
 
 <h4 id="原理：-2"><a href="#原理：-2" class="headerlink" title="原理："></a>原理：</h4><p><code>git reset</code>会把你的代码库历史返回到指定的SHA状态。这样就像是这些提交从来没有发生过。缺省情况下，<code>git reset</code>会保留工作目录。这样，提交是没有了，但是修改内容还在磁盘上。这是一种安全的选择，但通常我们会希望一步就“撤销”提交已经修改内容(这就是<code>--hard</code>选项的功能)。</p>
 <h2 id="在撤销“本地修改”之后再恢复"><a href="#在撤销“本地修改”之后再恢复" class="headerlink" title="在撤销“本地修改”之后再恢复"></a>在撤销“本地修改”之后再恢复</h2><h4 id="场景：-4"><a href="#场景：-4" class="headerlink" title="场景："></a>场景：</h4><p>你提交了几个commit，然后用<code>git reset --hard</code>撤销了这些修改（见上一段），接着你又意识到：你希望还原这些修改！</p>
-<h4 id="方法：-2"><a href="#方法：-2" class="headerlink" title="方法："></a>方法：</h4><figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">git reflog</span></span><br></pre></td></tr></table></figure>
-
+<h4 id="方法：-2"><a href="#方法：-2" class="headerlink" title="方法："></a>方法：</h4><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">ref</span>log</span><br></pre></td></tr></table></figure>
 <p>和</p>
 <figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">git reset</span></span><br></pre></td></tr></table></figure>
-
 <p>或</p>
 <figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">git checkout</span></span><br></pre></td></tr></table></figure>
 
@@ -514,9 +514,9 @@
 <h2 id="利用分支的另一种做法"><a href="#利用分支的另一种做法" class="headerlink" title="利用分支的另一种做法"></a>利用分支的另一种做法</h2><h4 id="场景：-5"><a href="#场景：-5" class="headerlink" title="场景："></a>场景：</h4><p>你进行了一些提交，然后意识到你开始checkout的是master分支。希望这些提交进入到另外一个特性（feature）分支。</p>
 <h4 id="方法：-3"><a href="#方法：-3" class="headerlink" title="方法："></a>方法：</h4><figure class="highlight maxima"><table><tr><td class="code"><pre><span class="line">git branch <span class="built_in">feature</span></span><br><span class="line">git <span class="built_in">reset</span> --hard <span class="built_in">origin</span>/master</span><br><span class="line">git checkout <span class="built_in">feature</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="原理：-4"><a href="#原理：-4" class="headerlink" title="原理："></a>原理：</h4><p>你可能习惯用 <code>git checkout -b &lt;name&gt;</code>创建一个新的分支（这是创建新分支并马上checkout的流行捷径），但是你不希望马上切换分支。这里，<code>git branch feature</code>创建了一个叫做feature的新分支，并指向你最近的commit，但是还是让你checkout在master分支上。</p>
+<h4 id="原理：-4"><a href="#原理：-4" class="headerlink" title="原理："></a>原理：</h4><p>你可能习惯用 <code>git checkout -b &lt;name&gt; </code>创建一个新的分支（这是创建新分支并马上checkout的流行捷径），但是你不希望马上切换分支。这里，<code>git branch feature</code>创建了一个叫做feature的新分支，并指向你最近的commit，但是还是让你checkout在master分支上。</p>
 <p>下一步，在提交任何新的commit之前，用<code>git reset --hard</code> 把master分支倒回origin/master。不过别担心，那些commit还在feature分支里。</p>
-<p>最后，用<code>git checkout</code>切换到新的feature分支，并让你最近所有的工作成果都完好无损。</p>
+<p>最后，用<code>git checkout </code>切换到新的feature分支，并让你最近所有的工作成果都完好无损。</p>
 <h2 id="及时分支，省去繁琐"><a href="#及时分支，省去繁琐" class="headerlink" title="及时分支，省去繁琐"></a>及时分支，省去繁琐</h2><h4 id="场景：-6"><a href="#场景：-6" class="headerlink" title="场景："></a>场景：</h4><p>你在master分支的基础上创建一个feature分支，但是master分支已经滞后于origin/master很多。现在master分支已经和origin/master同步，你希望在feature上的提交从现在开始，而不是从滞后很多的地方开始。</p>
 <h4 id="方法：-4"><a href="#方法：-4" class="headerlink" title="方法："></a>方法：</h4><figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">git checkout feature</span></span><br></pre></td></tr></table></figure>
 
@@ -531,7 +531,7 @@
 <li>然后它把当前checkout的分支提到master的末尾部分，并从临时保存区重新把存放的commit提交到master分支的最后 一个commit之后。</li>
 </ol>
 <h2 id="大量的撤销-恢复"><a href="#大量的撤销-恢复" class="headerlink" title="大量的撤销/恢复"></a>大量的撤销/恢复</h2><h4 id="场景：-7"><a href="#场景：-7" class="headerlink" title="场景："></a>场景：</h4><p>你向某个方向开始实现一个特性，但是你半路意识到另一个方案更好。你已经进行了十几次的提交，但是你现在只需要其中的一部分。你希望其他不需要的提交统统消失。</p>
-<h4 id="方案：-1"><a href="#方案：-1" class="headerlink" title="方案："></a>方案：</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">git rebase -<span class="selector-tag">i</span> &lt;carlier SHA&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="方案：-1"><a href="#方案：-1" class="headerlink" title="方案："></a>方案：</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">git rebase -i <span class="tag">&lt;<span class="name">carlier</span> <span class="attr">SHA</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="原理：-6"><a href="#原理：-6" class="headerlink" title="原理："></a>原理：</h4><p><code>-i</code> 参数会让rebase进入“交互模式”。它开始类似于签名讨论的rebase，但在重新进行任何提交之前，它会暂停下来并允许你详细的修改每一个提交。</p>
 <p><code>rebase -i</code> 会打开你缺省的文本编辑器，里面列出候选的提交。</p>
@@ -546,18 +546,17 @@
 <p>在你保存并推出编辑器的时候，Git会按从顶部到底部的顺序运用你的commit。你可以通过在保存前修改commit顺序来改变运用的顺序。如果你愿意，你也可以同如下安排把<code>af67f82</code>和<code>0835fe2</code>合并到一起。</p>
 <p><img src="/images/blog/git-undo/rebase_fixup.png" alt="rebase -i"></p>
 <h2 id="修复更早期的commit"><a href="#修复更早期的commit" class="headerlink" title="修复更早期的commit"></a>修复更早期的commit</h2><h4 id="场景：-8"><a href="#场景：-8" class="headerlink" title="场景："></a>场景：</h4><p>你在一个更早期的commit里忘记了加入一个文件，如果更早的commit能包含这个忘记的文件就太棒了。你还没有push，但这个commit不是最近的，所以你还没法用commit –amend</p>
-<h4 id="方法：-5"><a href="#方法：-5" class="headerlink" title="方法："></a>方法：</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">commit</span> <span class="comment">--squash &lt;SHA of the earlier commit&gt;</span></span><br></pre></td></tr></table></figure>
-
+<h4 id="方法：-5"><a href="#方法：-5" class="headerlink" title="方法："></a>方法：</h4><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">commit</span> <span class="comment">--squash &lt;SHA of the earlier commit&gt;</span></span><br></pre></td></tr></table></figure>
 <p>和</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">git rebase --autosquash -<span class="selector-tag">i</span> &lt;even earlier SHA&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">git rebase <span class="comment">--autosquash -i &lt;even earlier SHA&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="原理：-7"><a href="#原理：-7" class="headerlink" title="原理："></a>原理：</h4><p><code>git commit --squash</code>会创建一个新的commit，它带有一个commit消息，类似于squash! Earlier commit。(你也可以手工创建一个带有类似commit消息的commit，但是 commit –squash 可以帮你省下输入的工作)</p>
-<p>如果你不想被提示为新合并的commit输入一条新的commit消息，你也可以利用 <code>git commit --fixup</code>。在这个情况下，你很有可能会用<code>commit --fixup</code>，因为你只是希望在rebase的适合，使用早期commit的commit消息。</p>
+<h4 id="原理：-7"><a href="#原理：-7" class="headerlink" title="原理："></a>原理：</h4><p><code>git commit --squash </code>会创建一个新的commit，它带有一个commit消息，类似于squash! Earlier commit。(你也可以手工创建一个带有类似commit消息的commit，但是 commit –squash 可以帮你省下输入的工作)</p>
+<p>如果你不想被提示为新合并的commit输入一条新的commit消息，你也可以利用 <code>git commit --fixup </code>。在这个情况下，你很有可能会用<code>commit --fixup</code>，因为你只是希望在rebase的适合，使用早期commit的commit消息。</p>
 <p><code>rebase --autosquash -i</code> 会激活一个交互式的rebase编辑器，但是编辑器打开的适合，在commit清单里任何squash!和fixup！的commit都已经配对到目标commit上了。</p>
 <p><img src="/images/blog/git-undo/rebase_autosquash.png" alt="rebase --autosquash -i"></p>
 <p>在使用 <code>--squash</code> 和 <code>--fixup</code>的适合，你可能不记得想要修正的commit的SHA了（只是记得它是前面的第1个或者第5个commit）。你会发现Git的<code>^</code>和<code>~</code>操作符特别好用。<code>HEAD~</code>是HEAD的前一个commit。<code>HEAD~4</code>是HEAD往前第4个（或者一起算，倒数第5个commit）。</p>
 <h2 id="停止追踪一个文件"><a href="#停止追踪一个文件" class="headerlink" title="停止追踪一个文件"></a>停止追踪一个文件</h2><h4 id="场景：-9"><a href="#场景：-9" class="headerlink" title="场景："></a>场景：</h4><p>你偶然把application.log加到代码库里了，现在每次你运行应用，Git都会报告在application.log里有未提交的修改。你把 *.log放到了.gitignore文件里，可文件还是在代码库里，你怎样才能让Git“撤销”对这个文件的追踪呢？</p>
-<h4 id="方法：-6"><a href="#方法：-6" class="headerlink" title="方法："></a>方法：</h4><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">rm</span> --cached application.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<h4 id="方法：-6"><a href="#方法：-6" class="headerlink" title="方法："></a>方法：</h4><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">rm</span> --cached application.<span class="keyword">log</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理:"></a>原理:</h4><p>虽然.gitignore会阻止Git追踪文件的修改，甚至不关注文件是否存在，但这只是针对那些以前从来没有追踪过的文件。一旦有个文件被加入并提交了，Git就会持续关注改文件的改变。类似地，如果你利用<code>git add -f</code>来强制或覆盖了.gitignore，Git还会持续追踪改变的情况。之后你就不必用-f来添加这个文件了。</p>
 <p>如果你希望从Git的追踪对象中删除那个本应忽略的文件，<code>git rm --cached</code>会从追踪对象中删除它，但让文件在磁盘上保持原封不动。因为现在它已经被忽略了，你在<code>git status</code>里就不会再看见这个文件，也不回再偶然提交该文件的修改了。</p>
@@ -675,7 +674,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -686,7 +685,9 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -697,7 +698,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -708,7 +709,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -719,7 +720,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">133</span>
+                <span class="site-state-item-count">136</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -790,7 +791,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#撤销已经推送到远程的变更"><span class="nav-number">1.</span> <span class="nav-text">撤销已经推送到远程的变更</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景："><span class="nav-number">1.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方案："><span class="nav-number">1.0.2.</span> <span class="nav-text">方案：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理："><span class="nav-number">1.0.3.</span> <span class="nav-text">原理：</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#修正最后一个commit的消息"><span class="nav-number">2.</span> <span class="nav-text">修正最后一个commit的消息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法"><span class="nav-number">2.0.2.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-1"><span class="nav-number">2.0.3.</span> <span class="nav-text">原理：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#撤销“本地的”修改"><span class="nav-number">3.</span> <span class="nav-text">撤销“本地的”修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-2"><span class="nav-number">3.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法："><span class="nav-number">3.0.2.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理"><span class="nav-number">3.0.3.</span> <span class="nav-text">原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重置“本地的”修改"><span class="nav-number">4.</span> <span class="nav-text">重置“本地的”修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-3"><span class="nav-number">4.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法：-1"><span class="nav-number">4.0.2.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-2"><span class="nav-number">4.0.3.</span> <span class="nav-text">原理：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在撤销“本地修改”之后再恢复"><span class="nav-number">5.</span> <span class="nav-text">在撤销“本地修改”之后再恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-4"><span class="nav-number">5.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法：-2"><span class="nav-number">5.0.2.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-3"><span class="nav-number">5.0.3.</span> <span class="nav-text">原理：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用分支的另一种做法"><span class="nav-number">6.</span> <span class="nav-text">利用分支的另一种做法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-5"><span class="nav-number">6.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法：-3"><span class="nav-number">6.0.2.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-4"><span class="nav-number">6.0.3.</span> <span class="nav-text">原理：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#及时分支，省去繁琐"><span class="nav-number">7.</span> <span class="nav-text">及时分支，省去繁琐</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-6"><span class="nav-number">7.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法：-4"><span class="nav-number">7.0.2.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-5"><span class="nav-number">7.0.3.</span> <span class="nav-text">原理：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大量的撤销-恢复"><span class="nav-number">8.</span> <span class="nav-text">大量的撤销/恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-7"><span class="nav-number">8.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方案：-1"><span class="nav-number">8.0.2.</span> <span class="nav-text">方案：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-6"><span class="nav-number">8.0.3.</span> <span class="nav-text">原理：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修复更早期的commit"><span class="nav-number">9.</span> <span class="nav-text">修复更早期的commit</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-8"><span class="nav-number">9.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法：-5"><span class="nav-number">9.0.2.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-7"><span class="nav-number">9.0.3.</span> <span class="nav-text">原理：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#停止追踪一个文件"><span class="nav-number">10.</span> <span class="nav-text">停止追踪一个文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-9"><span class="nav-number">10.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法：-6"><span class="nav-number">10.0.2.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理-1"><span class="nav-number">10.0.3.</span> <span class="nav-text">原理:</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#撤销已经推送到远程的变更"><span class="nav-number">1.</span> <span class="nav-text">撤销已经推送到远程的变更</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景："><span class="nav-number">1.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方案："><span class="nav-number">1.0.2.</span> <span class="nav-text">方案：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理："><span class="nav-number">1.0.3.</span> <span class="nav-text">原理：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修正最后一个commit的消息"><span class="nav-number">2.</span> <span class="nav-text">修正最后一个commit的消息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法"><span class="nav-number">2.0.2.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-1"><span class="nav-number">2.0.3.</span> <span class="nav-text">原理：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#撤销“本地的”修改"><span class="nav-number">3.</span> <span class="nav-text">撤销“本地的”修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-2"><span class="nav-number">3.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法："><span class="nav-number">3.0.2.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理"><span class="nav-number">3.0.3.</span> <span class="nav-text">原理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重置“本地的”修改"><span class="nav-number">4.</span> <span class="nav-text">重置“本地的”修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-3"><span class="nav-number">4.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法：-1"><span class="nav-number">4.0.2.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-2"><span class="nav-number">4.0.3.</span> <span class="nav-text">原理：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在撤销“本地修改”之后再恢复"><span class="nav-number">5.</span> <span class="nav-text">在撤销“本地修改”之后再恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-4"><span class="nav-number">5.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法：-2"><span class="nav-number">5.0.2.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-3"><span class="nav-number">5.0.3.</span> <span class="nav-text">原理：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用分支的另一种做法"><span class="nav-number">6.</span> <span class="nav-text">利用分支的另一种做法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-5"><span class="nav-number">6.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法：-3"><span class="nav-number">6.0.2.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-4"><span class="nav-number">6.0.3.</span> <span class="nav-text">原理：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#及时分支，省去繁琐"><span class="nav-number">7.</span> <span class="nav-text">及时分支，省去繁琐</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-6"><span class="nav-number">7.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法：-4"><span class="nav-number">7.0.2.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-5"><span class="nav-number">7.0.3.</span> <span class="nav-text">原理：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大量的撤销-恢复"><span class="nav-number">8.</span> <span class="nav-text">大量的撤销&#x2F;恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-7"><span class="nav-number">8.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方案：-1"><span class="nav-number">8.0.2.</span> <span class="nav-text">方案：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-6"><span class="nav-number">8.0.3.</span> <span class="nav-text">原理：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修复更早期的commit"><span class="nav-number">9.</span> <span class="nav-text">修复更早期的commit</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-8"><span class="nav-number">9.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法：-5"><span class="nav-number">9.0.2.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-7"><span class="nav-number">9.0.3.</span> <span class="nav-text">原理：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#停止追踪一个文件"><span class="nav-number">10.</span> <span class="nav-text">停止追踪一个文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景：-9"><span class="nav-number">10.0.1.</span> <span class="nav-text">场景：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法：-6"><span class="nav-number">10.0.2.</span> <span class="nav-text">方法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理-1"><span class="nav-number">10.0.3.</span> <span class="nav-text">原理:</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -810,10 +811,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -822,12 +823,12 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>

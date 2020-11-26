@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -66,23 +66,25 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="git git分支 分支管理实践">
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+  <meta name="keywords" content="git git分支 分支管理实践" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -90,13 +92,11 @@
 
 
 <meta name="description" content="Git是目前最流行的代码版本管理系统，像Github也被称为全球最大的同性交友网站 ;-) 可见Git在工程师人群中的流行程度。不过在使用Git时，经常会碰到一个问题，就是采用什么样用的分支模型进行管理，Git官方也提供了很多分支模型推荐（分布式工作流程这篇文章有相应的记载）。 我们这次主要介绍三种常见的Git分支模型。">
-<meta name="keywords" content="git git分支 分支管理实践">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git常见分支管理实践">
 <meta property="og:url" content="http://tonydeng.github.io/2017/08/31/git-common-branch-management-practices/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="Git是目前最流行的代码版本管理系统，像Github也被称为全球最大的同性交友网站 ;-) 可见Git在工程师人群中的流行程度。不过在使用Git时，经常会碰到一个问题，就是采用什么样用的分支模型进行管理，Git官方也提供了很多分支模型推荐（分布式工作流程这篇文章有相应的记载）。 我们这次主要介绍三种常见的Git分支模型。">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://wac-cdn.atlassian.com/dam/jcr:389059a7-214c-46a3-bc52-7781b4730301/hero.svg?cdnVersion=if">
 <meta property="og:image" content="https://www.ibm.com/developerworks/cn/java/j-lo-git-mange/img001.png">
 <meta property="og:image" content="http://nvie.com/img/git-model@2x.png">
@@ -105,11 +105,12 @@
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/git-flow-release-branches.png">
 <meta property="og:image" content="http://nvie.com/img/hotfix-branches@2x.png">
 <meta property="og:image" content="https://www.ibm.com/developerworks/cn/java/j-lo-git-mange/img002.png">
-<meta property="og:image" content="https://cloud.githubusercontent.com/assets/70/6769770/61a2dcba-d0a8-11e4-9924-3576232053ee.png">
-<meta property="og:updated_time" content="2019-06-20T12:10:27.479Z">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/github-pull-requests.png">
+<meta property="article:published_time" content="2017-08-31T08:41:28.000Z">
+<meta property="article:modified_time" content="2020-10-14T06:46:33.329Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="git git分支 分支管理实践">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git常见分支管理实践">
-<meta name="twitter:description" content="Git是目前最流行的代码版本管理系统，像Github也被称为全球最大的同性交友网站 ;-) 可见Git在工程师人群中的流行程度。不过在使用Git时，经常会碰到一个问题，就是采用什么样用的分支模型进行管理，Git官方也提供了很多分支模型推荐（分布式工作流程这篇文章有相应的记载）。 我们这次主要介绍三种常见的Git分支模型。">
 <meta name="twitter:image" content="https://wac-cdn.atlassian.com/dam/jcr:389059a7-214c-46a3-bc52-7781b4730301/hero.svg?cdnVersion=if">
 
 
@@ -138,17 +139,17 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2017/08/31/git-common-branch-management-practices/">
+  <link rel="canonical" href="http://tonydeng.github.io/2017/08/31/git-common-branch-management-practices/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
 
 
   <title> Git常见分支管理实践 | TonyDeng's Blog </title>
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -206,7 +207,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">TonyDeng's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -236,7 +237,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -246,7 +247,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -256,7 +257,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -266,7 +267,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -276,7 +277,7 @@
         <li class="menu-item menu-item-ppts">
           <a href="/ppts" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             PPT
           </a>
@@ -286,7 +287,7 @@
         <li class="menu-item menu-item-gitbook">
           <a href="/gitbook-zh" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             GitBook
           </a>
@@ -296,7 +297,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -309,7 +310,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -330,7 +331,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -367,7 +370,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
     </span>
 
@@ -410,7 +413,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -422,7 +425,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/效率/" itemprop="url" rel="index">
+                  <a href="/categories/%E6%95%88%E7%8E%87/" itemprop="url" rel="index">
                     <span itemprop="name">效率</span>
                   </a>
                 </span>
@@ -458,57 +461,57 @@
 
       
         <p><img src="https://wac-cdn.atlassian.com/dam/jcr:389059a7-214c-46a3-bc52-7781b4730301/hero.svg?cdnVersion=if" alt="git branches"></p>
-<p>Git是目前最流行的代码版本管理系统，像<a href="https://github.io" target="_blank" rel="noopener">Github</a>也被称为全球最大的同性交友网站 ;-) 可见Git在工程师人群中的流行程度。不过在使用Git时，经常会碰到一个问题，就是采用什么样用的分支模型进行管理，Git官方也提供了很多分支模型推荐（<a href="https://git-scm.com/book/zh/v2/%E5%88%86%E5%B8%83%E5%BC%8F-Git-%E5%88%86%E5%B8%83%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B" target="_blank" rel="noopener">分布式工作流程</a>这篇文章有相应的记载）。</p>
+<p>Git是目前最流行的代码版本管理系统，像<a href="https://github.io/" target="_blank" rel="noopener">Github</a>也被称为全球最大的同性交友网站 ;-) 可见Git在工程师人群中的流行程度。不过在使用Git时，经常会碰到一个问题，就是采用什么样用的分支模型进行管理，Git官方也提供了很多分支模型推荐（<a href="https://git-scm.com/book/zh/v2/%E5%88%86%E5%B8%83%E5%BC%8F-Git-%E5%88%86%E5%B8%83%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B" target="_blank" rel="noopener">分布式工作流程</a>这篇文章有相应的记载）。</p>
 <p>我们这次主要介绍三种常见的Git分支模型。</p>
 <a id="more"></a>
 
-<h2 id="单主干"><a href="#单主干" class="headerlink" title="单主干"></a>单主干</h2><p>单主干的分支实践（Trunk-based development,TBD）在SVN中比较流行。<a href="http://paulhammant.com/2013/05/06/googles-scaled-trunk-based-development/" target="_blank" rel="noopener">Google</a>和<a href="http://paulhammant.com/2013/03/13/facebook-tbd-take-2/" target="_blank" rel="noopener">Facebook</a>都使用这种方式。<code>trunk</code>是SVN中主干分支的名称，对应Git中则是<code>master</code>分支。</p>
+<h2 id="单主干"><a href="#单主干" class="headerlink" title="单主干"></a>单主干</h2><p>单主干的分支实践（<code>Trunk-based development</code>,<code>TBD</code>）在<code>SVN</code>中比较流行。<a href="http://paulhammant.com/2013/05/06/googles-scaled-trunk-based-development/" target="_blank" rel="noopener">Google</a>和<a href="http://paulhammant.com/2013/03/13/facebook-tbd-take-2/" target="_blank" rel="noopener">Facebook</a>都使用这种方式。<code>trunk</code>是SVN中主干分支的名称，对应Git中则是<code>master</code>分支。</p>
 <p>TBD的特点是所有团队成员都在单个主干分支上进行开发。当需要发布时，先考虑使用标签（<code>tag</code>）,即<code>tag</code>某个<code>commit</code>来作为发布的版本。</p>
 <p>如果仅仅依靠<code>tag</code>不能满足要求，则从主干分支创建发布分支。</p>
 <p><code>bug</code>修复在主干分支进行，再<code>cherry-pick</code>到发布分支。</p>
 <p><img src="https://www.ibm.com/developerworks/cn/java/j-lo-git-mange/img001.png" alt="TBD中分支流程"></p>
-<p>由于所有开发人员都在同一个分支工作，团队需要合理的分工和充分沟通来保证不同开发人员的代码尽可能少的发生冲突。因此持续集成和自动化是必要的，用来及时发现主干分支中的bug。因为主干分支是所有开发人员公用的，一个开发人员引入的bug可能对所有人造成影响。</p>
+<p>由于所有开发人员都在同一个分支工作，团队需要合理的分工和充分沟通来保证不同开发人员的代码尽可能少的发生冲突。因此持续集成和自动化是必要的，用来及时发现主干分支中的<code>bug</code>。因为主干分支是所有开发人员公用的，一个开发人员引入的bug可能对所有人造成影响。</p>
 <p>不过好处是由于分支所带来的额外开销非常小。开发人员不用频繁在不同的分支之间切换。</p>
 <h2 id="Git-Flow"><a href="#Git-Flow" class="headerlink" title="Git Flow"></a>Git Flow</h2><p><a href="http://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="noopener">Git Flow</a>应该是目前流传最广的Git分支管理实践。</p>
 <p><img src="http://nvie.com/img/git-model@2x.png" alt="git flow"></p>
-<p>Git Flow围绕的核心概念是版本发布（release）。因此Git Flow适用于各种版本发布周期的项目。</p>
-<p>Git Flow流程中包含5类分支，分别是master、develop、feature（新功能分支）、release（发布分支）和 hotfix（热修复分支）。这些分支的作用和生命周期各不相同。</p>
-<h3 id="主分支"><a href="#主分支" class="headerlink" title="主分支"></a>主分支</h3><p><img src="http://nvie.com/img/main-branches@2x.png" alt="the main branches"><br>主分支是<code>git flow</code>整个分支模型的核心，它们有无限的声明周期。主分支分别是<code>master</code>和<code>develop</code>分支。</p>
+<p><code>Git Flow</code>围绕的核心概念是版本发布（<code>release</code>）。因此<code>Git Flow</code>适用于各种版本发布周期的项目。</p>
+<p><code>Git Flow</code>流程中包含5类分支，分别是<code>master</code>、<code>develop</code>、<code>feature</code>（新功能分支）、<code>release</code>（发布分支）和 <code>hotfix</code>（热修复分支）。这些分支的作用和生命周期各不相同。</p>
+<h3 id="主分支"><a href="#主分支" class="headerlink" title="主分支"></a>主分支</h3><p><img src="http://nvie.com/img/main-branches@2x.png" alt="the main branches"><br>主分支是<code>git flow</code>整个分支模型的核心，它们有无限的生命周期。主分支分别是<code>master</code>和<code>develop</code>分支。</p>
 <p><code>origin/master</code>分支应该对每个<code>Git</code>用户都很熟悉。与<code>master</code>分支并行，另一个分支称为<code>develop</code>。</p>
 <p>我们认为<code>origin/master</code>是<code>HEAD</code>源代码生产就绪状态的主要分支。</p>
 <p><code>origin/develop</code>是<code>HEAD</code>源代码反映下一版本的最新发展变化的状态的主要分支。也有人会称之为“整合分支”，可以基于<code>develop</code>分支定时执行每日构建的工作。</p>
 <p>当<code>develop</code>分支中的源代码达到一个稳定点并准备被<code>release</code>时，所有的改变应该以某种方式合并回<code>master</code>，然后用一个版本号来标记。</p>
 <p>因此，每次将更改合并回主数据库时，这都是定义的新产品发布。在这方面往往非常严格，所以可以使用一个<code>Git Hook</code>脚本来自动构建和发布软件到生产服务器。</p>
-<h3 id="支持分支"><a href="#支持分支" class="headerlink" title="支持分支"></a>支持分支</h3><p>除了主分支以外，<code>git flow</code>还定义了三类支持分支，分别用于不同场景。这些分支都是有限的声明周期，最终都是会被删除的。</p>
+<h3 id="支持分支"><a href="#支持分支" class="headerlink" title="支持分支"></a>支持分支</h3><p>除了主分支以外，<code>git flow</code>还定义了三类支持分支，分别用于不同场景。这些分支都是有限的生命周期，最终都是会被删除的。</p>
 <p>这些分支分别是：</p>
 <ul>
 <li>Feature分支</li>
 <li>Release分支</li>
 <li>Hotfix分支</li>
 </ul>
-<p>每个分支都有特定的目的，对于哪些分支是用于开发工作，哪些分支是其他分支的合并目标，都有严格的规定。 </p>
+<p>每个分支都有特定的目的，对于哪些分支是用于开发工作，哪些分支是其他分支的合并目标，都有严格的规定。</p>
 <p>分支类型只是按照我们使用它们来进行的分类。从技术的角度来看，这些分支并不“特殊”的，它们也仅仅只是普通的Git分支。</p>
 <h4 id="Feature分支"><a href="#Feature分支" class="headerlink" title="Feature分支"></a>Feature分支</h4><p><img src="http://nvie.com/img/fb@2x.png" alt="feature branchs"></p>
 <p>从上面的图就能够很清楚的知道，<code>feature</code>分支可能来源于<code>develop</code>，并且只能合并回<code>develop</code>。</p>
-<p><code>feature</code>分支（或有时称为<code>topic</code>分支）用于为即将到来的版本开发新功能。 </p>
+<p><code>feature</code>分支（或有时称为<code>topic</code>分支）用于为即将到来的版本开发新功能。</p>
 <p>当开始一个特征的开发时，这个特征将被合并到的目标版本可能在那个时候是未知的。 feature分支的本质是，只要功能处于开发阶段，它就会存在，但最终会被合并回<code>develop</code>（为了明确地添加新功能到即将发布的版本）或丢弃（如果是令人失望的实验）。</p>
 <h4 id="Release分支"><a href="#Release分支" class="headerlink" title="Release分支"></a>Release分支</h4><p><img src="/images/blog/git-flow-release-branches.png" alt="release branches"></p>
 <p><code>release</code>分支可能来源于<code>develop</code>，并且只能合并回<code>develop</code>和<code>master</code>。</p>
-<p><code>release</code>分支主要用来产品发布的准备。<code>release</code>分支允许有一些小的bug修复和准备发表的一些配置或元数据(版本号，生成日期等)的修改和提交，在发表版本之前，在<code>release</code>分支上完成这些所有的工作。此时，<code>develop</code>可以继续接受下一个大版本的feature分支的合并。</p>
+<p><code>release</code>分支主要用来产品发布的准备。<code>release</code>分支允许有一些小的bug修复和准备发表的一些配置或元数据(版本号，生成日期等)的修改和提交，在发布版本之前，在<code>release</code>分支上完成这些所有的工作。此时，<code>develop</code>可以继续接受下一个大版本的feature分支的合并。</p>
 <p>在<code>release</code>分支建立之后，即将发行的版本才被分配了一个版本号。在创建<code>release</code>分支之前，<code>develop</code>分支只是反映了“下一个版本”将要有的变化，但是不知道这个“下一个版本”是否最终会变成<code>0.3</code>或<code>1.0</code>，直到<code>release</code>分支开始创建才能确定。正常来说，这个版本号确定的决定是在<code>release</code>分支开始的时候做出的，并且需要遵循项目的版本号规则。</p>
 <h4 id="Hotfix分支"><a href="#Hotfix分支" class="headerlink" title="Hotfix分支"></a>Hotfix分支</h4><p><img src="http://nvie.com/img/hotfix-branches@2x.png" alt="hotfix beanches"></p>
 <p><code>hotfix</code>分支可能来源于<code>master</code>，并且只能合并回<code>develop</code>和<code>master</code>。</p>
 <p><code>hotfix</code>分支非常类似于<code>release</code>分支，因为它也意味着准备新的产品发布，尽管是无计划的。</p>
 <p> <code>hotfix</code>分支是由于需要立即修复生产版本的<code>bug</code>而产生的。 当生产版本中的关键错误必须立即解决时，将会基于<code>master</code>来创建一个新的<code>hotfix</code>分支出来。</p>
 <p>这时团队成员（开发部门）的工作可以在<code>develop</code>、<code>feature</code>、<code>release</code>分支中继续，而另一个人则在<code>hotfix</code>分支中解决生产环境的bug，紧急修复并上线发布。</p>
-<h2 id="Github-Flow"><a href="#Github-Flow" class="headerlink" title="Github Flow"></a>Github Flow</h2><p><a href="http://scottchacon.com/2011/08/31/github-flow.html" target="_blank" rel="noopener">Github Flow</a>是<a href="https://github.com" target="_blank" rel="noopener">Github</a>所使用的一种流程，它主要是依托于<code>git-flow</code>，并依托Github的<code>pull request</code>功能创建的分支模型和流程。</p>
+<h2 id="Github-Flow"><a href="#Github-Flow" class="headerlink" title="Github Flow"></a>Github Flow</h2><p><a href="http://scottchacon.com/2011/08/31/github-flow.html" target="_blank" rel="noopener">Github Flow</a>是<a href="https://github.com/" target="_blank" rel="noopener">Github</a>所使用的一种流程，它主要是依托于<code>git-flow</code>，并依托Github的<code>pull request</code>功能创建的分支模型和流程。</p>
 <p><img src="https://www.ibm.com/developerworks/cn/java/j-lo-git-mange/img002.png" alt="Github Flow的分支流程"></p>
-<p><code>GitHub flow</code>的好处在于非常简单实用。开发人员需要注意的事项非常少，很容易形成习惯。当需要进行任何修改时，总是从<code>master</code>分支创建新分支。完成之后通过<code>pull request</code>和相关的代码审查来合并回<code>master</code>分支。<code>GitHub flow</code>要求项目有完善的自动化测试、持续集成和部署等相关的基础设施。每个新分支都需要测试和部署，如果这些不能自动化进行，会增加开发人员的工作量，导致无法有效地实施该流程。这种分支实践也要求团队有代码审查的相应流程。</p>
+<p><code>GitHub flow</code>的好处在于非常简单实用。开发人员需要注意的事项非常少，很容易形成习惯。当需要进行任何修改时，总是从<code>master</code>分支创建新分支。完成之后通过<code>pull request</code>和相关的代码审查来合并回<code>master</code>分支。<code>GitHub flow </code>要求项目有完善的自动化测试、持续集成和部署等相关的基础设施。每个新分支都需要测试和部署，如果这些不能自动化进行，会增加开发人员的工作量，导致无法有效地实施该流程。这种分支实践也要求团队有代码审查的相应流程。</p>
 <p>在<code>Github Flow</code>中，<code>master</code>分支中也是代表着稳定的代码。该分支已经或即将被部署在生产环境。</p>
-<p><img src="https://cloud.githubusercontent.com/assets/70/6769770/61a2dcba-d0a8-11e4-9924-3576232053ee.png" alt="pull requests"></p>
+<p><img src="/images/blog/github-pull-requests.png" alt="pull requests"></p>
 <p><code>master</code>分支的作用是提供一个稳定可靠的代码基础。任何开发人员都不允许把未测试或未审核的代码直接提交到<code>master</code>分支。</p>
 <p>对于代码的任何修改，包括<code>bug</code>修复，<code>hotfix</code>、新功能开发都在单独的分支中进行。不管是一行代码的小改动，还是需要几个星期开发的新功能，都采用同样的方式来管理。当需要进行修改时，从<code>master</code>创建一个新的分支。新分支的名称应该简单清晰的描述该分支的作用。所有相关的代码修改都在新分支中进行。开发人员可以自由的提交代码和<code>push</code>到远程仓库。</p>
-<p>当新分支中的代码全部完成之后，通过<code>Github</code>提交一个新的<code>pull request</code>。团队中的其他人会对代码进行审核，提出相关修改意见。由持续集成服务器（如<code>Jenkins</code>）对新分支进行自动化测试。当代码通过自动化测试和代码审核之后，该分支的代码被合并到<code>master</code>分支。然后从<code>master</code>分支不是到生产环境。</p>
+<p>当新分支中的代码全部完成之后，通过<code>Github</code>提交一个新的<code>pull request</code>。团队中的其他人会对代码进行审核，提出相关修改意见。由持续集成服务器（如<code>Jenkins</code>）对新分支进行自动化测试。当代码通过自动化测试和代码审核之后，该分支的代码被合并到<code>master</code>分支。然后从<code>master</code>分支部署到生产环境。</p>
 
       
     </div>
@@ -615,7 +618,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -626,7 +629,9 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -637,7 +642,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -648,7 +653,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -659,7 +664,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">133</span>
+                <span class="site-state-item-count">136</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -750,10 +755,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -762,12 +767,12 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>

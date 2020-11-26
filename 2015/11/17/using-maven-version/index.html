@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -66,23 +66,25 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="java, maven, properties, version">
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+  <meta name="keywords" content="java, maven, properties, version" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -90,18 +92,20 @@
 
 
 <meta name="description" content="场景描述我们在开发一些项目的时候需要知道当前的版本状态，比如传递版本客户端信息到服务端等等。 那我们有些什么办法能够获取当前项目版本呢？ 比较简单的办法就是在我们的程序中写一个常量来记录版本号，每次升级了就更新这个常量。但是这个方案还需要我们每次升级的时候都要记得这个事情，这个对于我这种记性不太好的人来说，简直就是灾难。 那还有什么更好的办法吗？">
-<meta name="keywords" content="java, maven, properties, version">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在Java中使用Maven配置的版本信息">
 <meta property="og:url" content="http://tonydeng.github.io/2015/11/17/using-maven-version/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="场景描述我们在开发一些项目的时候需要知道当前的版本状态，比如传递版本客户端信息到服务端等等。 那我们有些什么办法能够获取当前项目版本呢？ 比较简单的办法就是在我们的程序中写一个常量来记录版本号，每次升级了就更新这个常量。但是这个方案还需要我们每次升级的时候都要记得这个事情，这个对于我这种记性不太好的人来说，简直就是灾难。 那还有什么更好的办法吗？">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/using-maven-version.png">
-<meta property="og:updated_time" content="2019-06-20T12:10:27.471Z">
+<meta property="article:published_time" content="2015-11-17T10:56:48.000Z">
+<meta property="article:modified_time" content="2019-06-20T12:10:27.471Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content=" maven">
+<meta property="article:tag" content=" properties">
+<meta property="article:tag" content=" version">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在Java中使用Maven配置的版本信息">
-<meta name="twitter:description" content="场景描述我们在开发一些项目的时候需要知道当前的版本状态，比如传递版本客户端信息到服务端等等。 那我们有些什么办法能够获取当前项目版本呢？ 比较简单的办法就是在我们的程序中写一个常量来记录版本号，每次升级了就更新这个常量。但是这个方案还需要我们每次升级的时候都要记得这个事情，这个对于我这种记性不太好的人来说，简直就是灾难。 那还有什么更好的办法吗？">
 <meta name="twitter:image" content="http://tonydeng.github.io/images/blog/using-maven-version.png">
 
 
@@ -130,17 +134,17 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2015/11/17/using-maven-version/">
+  <link rel="canonical" href="http://tonydeng.github.io/2015/11/17/using-maven-version/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
 
 
   <title> 在Java中使用Maven配置的版本信息 | TonyDeng's Blog </title>
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -198,7 +202,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">TonyDeng's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -228,7 +232,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -238,7 +242,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -248,7 +252,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -258,7 +262,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -268,7 +272,7 @@
         <li class="menu-item menu-item-ppts">
           <a href="/ppts" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             PPT
           </a>
@@ -278,7 +282,7 @@
         <li class="menu-item menu-item-gitbook">
           <a href="/gitbook-zh" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             GitBook
           </a>
@@ -288,7 +292,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -301,7 +305,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -322,7 +326,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -359,7 +365,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
     </span>
 
@@ -402,7 +408,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -414,7 +420,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/效率/" itemprop="url" rel="index">
+                  <a href="/categories/%E6%95%88%E7%8E%87/" itemprop="url" rel="index">
                     <span itemprop="name">效率</span>
                   </a>
                 </span>
@@ -464,9 +470,9 @@
 
 <h3 id="配置pom-xml"><a href="#配置pom-xml" class="headerlink" title="配置pom.xml"></a>配置pom.xml</h3><figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="params">&lt;build&gt;</span></span><br><span class="line">       <span class="params">&lt;resources&gt;</span></span><br><span class="line">           <span class="params">&lt;resource&gt;</span></span><br><span class="line">               <span class="params">&lt;directory&gt;</span>src<span class="meta-keyword">/main/</span>resources<span class="params">&lt;/directory&gt;</span></span><br><span class="line">               <span class="params">&lt;filtering&gt;</span>true<span class="params">&lt;/filtering&gt;</span></span><br><span class="line">           <span class="params">&lt;/resource&gt;</span></span><br><span class="line">       <span class="params">&lt;/resources&gt;</span></span><br><span class="line"><span class="params">&lt;/build&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="实现对hsc-version的读取"><a href="#实现对hsc-version的读取" class="headerlink" title="实现对hsc.version的读取"></a>实现对hsc.version的读取</h3><figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="markdown">/**</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">    * </span>获取HSC版本信息</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">    * </span>@return</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="code">    */</span></span></span></span><br><span class="line">   public <span class="keyword">static</span> <span class="built_in">String</span> getHSCVersion() &#123;</span><br><span class="line">       <span class="keyword">if</span> (<span class="keyword">null</span> == HSCVersion) &#123;</span><br><span class="line">           Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               properties.load(HSCUtils.<span class="keyword">class</span>.getClassLoader().getResourceAsStream(<span class="string">"hsc-application.properties"</span>));</span><br><span class="line">               <span class="keyword">if</span> (!properties.isEmpty()) &#123;</span><br><span class="line">                   HSCVersion = properties.getProperty(<span class="string">"hsc.version"</span>);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> HSCVersion;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="实现对hsc-version的读取"><a href="#实现对hsc-version的读取" class="headerlink" title="实现对hsc.version的读取"></a>实现对hsc.version的读取</h3><figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 获取HSC版本信息</span></span><br><span class="line"><span class="comment">    * @return</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   public static String get<span class="constructor">HSCVersion()</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (null<span class="operator"> == </span>HSCVersion) &#123;</span><br><span class="line">           Properties properties = <span class="keyword">new</span> <span class="constructor">Properties()</span>;</span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               properties.load(<span class="module-access"><span class="module"><span class="identifier">HSCUtils</span>.</span></span><span class="keyword">class</span>.get<span class="constructor">ClassLoader()</span>.get<span class="constructor">ResourceAsStream(<span class="string">"hsc-application.properties"</span>)</span>);</span><br><span class="line">               <span class="keyword">if</span> (!properties.is<span class="constructor">Empty()</span>) &#123;</span><br><span class="line">                   HSCVersion = properties.get<span class="constructor">Property(<span class="string">"hsc.version"</span>)</span>;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125; catch (IOException e) &#123;</span><br><span class="line">               e.print<span class="constructor">StackTrace()</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       return HSCVersion;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="测试获取版本信息"><a href="#测试获取版本信息" class="headerlink" title="测试获取版本信息"></a>测试获取版本信息</h3><figure class="highlight d"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@Test</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> testApplicationVersion()&#123;</span><br><span class="line">      String <span class="keyword">version</span> = HSCUtils.getHSCVersion();</span><br><span class="line"></span><br><span class="line">      log.info(<span class="string">"hsc version:'&#123;&#125;'"</span>,<span class="keyword">version</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="测试获取版本信息"><a href="#测试获取版本信息" class="headerlink" title="测试获取版本信息"></a>测试获取版本信息</h3><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">  <span class="built_in">public</span> <span class="type">void</span> testApplicationVersion()&#123;</span><br><span class="line">      String version = HSCUtils.getHSCVersion();</span><br><span class="line"></span><br><span class="line">      <span class="keyword">log</span>.<span class="keyword">info</span>("hsc version:'&#123;&#125;'",<span class="keyword">version</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://books.sonatype.com/mvnref-book/reference/resource-filtering-sect-properties.html" target="_blank" rel="noopener">maven可以使用内部变量</a></p>
 
@@ -517,7 +523,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/30/java-mail-no-object-dch-for-mime-type-multipart-mixed/" rel="next" title="Java发送邮件出现" no object dch for mime type multipart mixed"异常的解决办法及过程">
+              <a href="/2015/10/30/java-mail-no-object-dch-for-mime-type-multipart-mixed/" rel="next" title="Java发送邮件出现"no object dch for mime type multipart/mixed"异常的解决办法及过程">
                 <i class="fa fa-chevron-left"></i> Java发送邮件出现"no object dch for mime type multipart/mixed"异常的解决办法及过程
               </a>
             
@@ -577,7 +583,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -588,7 +594,9 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -599,7 +607,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -610,7 +618,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -621,7 +629,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">133</span>
+                <span class="site-state-item-count">136</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -692,7 +700,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#场景描述"><span class="nav-number">1.</span> <span class="nav-text">场景描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子："><span class="nav-number">2.</span> <span class="nav-text">例子：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在src-main-resources-hsc-application-properties文件中放置如下内容："><span class="nav-number">2.1.</span> <span class="nav-text">在src/main/resources/hsc-application.properties文件中放置如下内容：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置pom-xml"><span class="nav-number">2.2.</span> <span class="nav-text">配置pom.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现对hsc-version的读取"><span class="nav-number">2.3.</span> <span class="nav-text">实现对hsc.version的读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试获取版本信息"><span class="nav-number">2.4.</span> <span class="nav-text">测试获取版本信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#场景描述"><span class="nav-number">1.</span> <span class="nav-text">场景描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子："><span class="nav-number">2.</span> <span class="nav-text">例子：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在src-main-resources-hsc-application-properties文件中放置如下内容："><span class="nav-number">2.1.</span> <span class="nav-text">在src&#x2F;main&#x2F;resources&#x2F;hsc-application.properties文件中放置如下内容：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置pom-xml"><span class="nav-number">2.2.</span> <span class="nav-text">配置pom.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现对hsc-version的读取"><span class="nav-number">2.3.</span> <span class="nav-text">实现对hsc.version的读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试获取版本信息"><span class="nav-number">2.4.</span> <span class="nav-text">测试获取版本信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -712,10 +720,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -724,12 +732,12 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>

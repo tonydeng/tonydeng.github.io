@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -66,23 +66,25 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="mailcap,java,engineered,email, no object dch for mime type multipart/mixed" 异常的解决办法及过程">
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+  <meta name="keywords" content="mailcap,java,engineered,email, no object dch for mime type multipart/mixed"异常的解决办法及过程" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -90,18 +92,21 @@
 
 
 <meta name="description" content="前两天写了一个发送邮件的功能，结果出现了一个比较灵异的状况，现在整理一下解决办法和中间的过程。">
-<meta name="keywords" content="mailcap,java,engineered,email, no object dch for mime type multipart&#x2F;mixed&quot;异常的解决办法及过程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java发送邮件出现&quot;no object dch for mime type multipart&#x2F;mixed&quot;异常的解决办法及过程">
 <meta property="og:url" content="http://tonydeng.github.io/2015/10/30/java-mail-no-object-dch-for-mime-type-multipart-mixed/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="前两天写了一个发送邮件的功能，结果出现了一个比较灵异的状况，现在整理一下解决办法和中间的过程。">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/email-error/error.jpg">
-<meta property="og:updated_time" content="2019-06-20T12:10:27.471Z">
+<meta property="article:published_time" content="2015-10-30T10:00:50.000Z">
+<meta property="article:modified_time" content="2019-06-20T12:10:27.471Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="mailcap">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="engineered">
+<meta property="article:tag" content="email">
+<meta property="article:tag" content=" no object dch for mime type multipart&#x2F;mixed&quot;异常的解决办法及过程">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java发送邮件出现&quot;no object dch for mime type multipart&#x2F;mixed&quot;异常的解决办法及过程">
-<meta name="twitter:description" content="前两天写了一个发送邮件的功能，结果出现了一个比较灵异的状况，现在整理一下解决办法和中间的过程。">
 <meta name="twitter:image" content="http://tonydeng.github.io/images/blog/email-error/error.jpg">
 
 
@@ -130,17 +135,17 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2015/10/30/java-mail-no-object-dch-for-mime-type-multipart-mixed/">
+  <link rel="canonical" href="http://tonydeng.github.io/2015/10/30/java-mail-no-object-dch-for-mime-type-multipart-mixed/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
 
 
   <title> Java发送邮件出现"no object dch for mime type multipart/mixed"异常的解决办法及过程 | TonyDeng's Blog </title>
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -198,7 +203,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">TonyDeng's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -228,7 +233,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -238,7 +243,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -248,7 +253,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -258,7 +263,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -268,7 +273,7 @@
         <li class="menu-item menu-item-ppts">
           <a href="/ppts" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             PPT
           </a>
@@ -278,7 +283,7 @@
         <li class="menu-item menu-item-gitbook">
           <a href="/gitbook-zh" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             GitBook
           </a>
@@ -288,7 +293,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -301,7 +306,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -322,7 +327,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -359,7 +366,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
     </span>
 
@@ -402,7 +409,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -414,7 +421,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/效率/" itemprop="url" rel="index">
+                  <a href="/categories/%E6%95%88%E7%8E%87/" itemprop="url" rel="index">
                     <span itemprop="name">效率</span>
                   </a>
                 </span>
@@ -461,11 +468,11 @@
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.mail<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mail<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.4.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.activation<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>activation<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>发送邮件的代码也非常简单：</p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="markdown">/**</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>发送邮件</span></span></span><br><span class="line"><span class="comment"><span class="markdown"> *</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>@param recipients</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>@param subject</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>@param content</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>@throws TException</span></span></span><br><span class="line"><span class="comment"><span class="markdown"> */</span></span></span><br><span class="line">public <span class="keyword">void</span> sendMails(<span class="built_in">List</span>&lt;Recipient&gt; recipients, <span class="built_in">String</span> subject, <span class="built_in">String</span> content) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="built_in">List</span>&lt;InternetAddress&gt; addresses = getReplys(recipients);</span><br><span class="line">        <span class="keyword">if</span>(log.isInfoEnabled())&#123;</span><br><span class="line">            log.info(<span class="string">"send mail to recipients:'&#123;&#125;' subject:'&#123;&#125;'"</span>, addresses, subject);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(CollectionUtils.isNotEmpty(addresses))&#123;</span><br><span class="line">            Email email = settingEmail(<span class="keyword">new</span> HtmlEmail());</span><br><span class="line">            email.setSubject(subject);</span><br><span class="line">            email.setMsg(content);</span><br><span class="line">            email.setTo(addresses);</span><br><span class="line">            email.send();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (EmailException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment"><span class="markdown">/**</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>设置邮件配置</span></span></span><br><span class="line"><span class="comment"><span class="markdown"> *</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>@param email</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>@return</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>@throws EmailException</span></span></span><br><span class="line"><span class="comment"><span class="markdown"> */</span></span></span><br><span class="line">private Email settingEmail(Email email) throws EmailException &#123;</span><br><span class="line">    email.setHostName(mailConfig.getProperty(<span class="string">"mail.host"</span>));</span><br><span class="line">    email.setCharset(mailConfig.getProperty(<span class="string">"mail.charset"</span>));</span><br><span class="line">    email.setSSLOnConnect(<span class="keyword">true</span>);</span><br><span class="line">    email.setAuthentication(mailConfig.getProperty(<span class="string">"mail.username"</span>), mailConfig.getProperty(<span class="string">"mail.password"</span>));</span><br><span class="line">    email.setFrom(mailConfig.getProperty(<span class="string">"mail.from"</span>));</span><br><span class="line">    <span class="keyword">return</span> email;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 发送邮件</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param recipients</span></span><br><span class="line"><span class="comment"> * @param subject</span></span><br><span class="line"><span class="comment"> * @param content</span></span><br><span class="line"><span class="comment"> * @throws TException</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">public void send<span class="constructor">Mails(List&lt;Recipient&gt; <span class="params">recipients</span>, String <span class="params">subject</span>, String <span class="params">content</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        List&lt;InternetAddress&gt; addresses = get<span class="constructor">Replys(<span class="params">recipients</span>)</span>;</span><br><span class="line">        <span class="keyword">if</span>(log.is<span class="constructor">InfoEnabled()</span>)&#123;</span><br><span class="line">            log.info(<span class="string">"send mail to recipients:'&#123;&#125;' subject:'&#123;&#125;'"</span>, addresses, subject);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="module-access"><span class="module"><span class="identifier">CollectionUtils</span>.</span></span>is<span class="constructor">NotEmpty(<span class="params">addresses</span>)</span>)&#123;</span><br><span class="line">            Email email = setting<span class="constructor">Email(<span class="params">new</span> HtmlEmail()</span>);</span><br><span class="line">            email.set<span class="constructor">Subject(<span class="params">subject</span>)</span>;</span><br><span class="line">            email.set<span class="constructor">Msg(<span class="params">content</span>)</span>;</span><br><span class="line">            email.set<span class="constructor">To(<span class="params">addresses</span>)</span>;</span><br><span class="line">            email.send<span class="literal">()</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch (EmailException e) &#123;</span><br><span class="line">        e.print<span class="constructor">StackTrace()</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 设置邮件配置</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param email</span></span><br><span class="line"><span class="comment"> * @return</span></span><br><span class="line"><span class="comment"> * @throws EmailException</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> Email setting<span class="constructor">Email(Email <span class="params">email</span>)</span> throws EmailException &#123;</span><br><span class="line">    email.set<span class="constructor">HostName(<span class="params">mailConfig</span>.<span class="params">getProperty</span>(<span class="string">"mail.host"</span>)</span>);</span><br><span class="line">    email.set<span class="constructor">Charset(<span class="params">mailConfig</span>.<span class="params">getProperty</span>(<span class="string">"mail.charset"</span>)</span>);</span><br><span class="line">    email.set<span class="constructor">SSLOnConnect(<span class="params">true</span>)</span>;</span><br><span class="line">    email.set<span class="constructor">Authentication(<span class="params">mailConfig</span>.<span class="params">getProperty</span>(<span class="string">"mail.username"</span>)</span>, mailConfig.get<span class="constructor">Property(<span class="string">"mail.password"</span>)</span>);</span><br><span class="line">    email.set<span class="constructor">From(<span class="params">mailConfig</span>.<span class="params">getProperty</span>(<span class="string">"mail.from"</span>)</span>);</span><br><span class="line">    return email;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>OK，代码写完了，单元测试也没有问题，一般情况下，就认为这个功能完成了，那么就打包部署吧。我现在使用了<code>Thrift</code>作为RPC框架，没有想到部署到测试环境中发现使用<code>Thrift</code>客户端调用发送邮件服务却无法正常发送邮件。</p>
 <h1 id="灵异状况"><a href="#灵异状况" class="headerlink" title="灵异状况"></a>灵异状况</h1><p>查看日志，却发现出现了下面的异常。</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Caused by: javax.activation.UnsupportedDataTypeException: <span class="literal">no</span> object DCH <span class="keyword">for</span> MIME<span class="built_in"> type </span>multipart/mixed;</span><br><span class="line">	<span class="attribute">boundary</span>=<span class="string">"----=_Part_0_1434202756.1446193111088"</span></span><br><span class="line">	at javax.activation.ObjectDataContentHandler.writeTo(DataHandler.java:896)</span><br><span class="line">	at javax.activation.DataHandler.writeTo(DataHandler.java:317)</span><br><span class="line">	at javax.mail.internet.MimeBodyPart.writeTo(MimeBodyPart.java:1485)</span><br><span class="line">	at javax.mail.internet.MimeMessage.writeTo(MimeMessage.java:1773)</span><br><span class="line">	at com.sun.mail.smtp.SMTPTransport.sendMessage(SMTPTransport.java:1121)</span><br><span class="line">	<span class="built_in">..</span>. 17 more</span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">Caused by: javax.activation.UnsupportedDataTypeException: no object DCH for MIME <span class="keyword">type</span> multipart/mixed;</span><br><span class="line">	boundary=<span class="string">"----=_Part_0_1434202756.1446193111088"</span></span><br><span class="line">	at javax.activation.<span class="module-access"><span class="module"><span class="identifier">ObjectDataContentHandler</span>.</span></span>write<span class="constructor">To(DataHandler.<span class="params">java</span>:896)</span></span><br><span class="line">	at javax.activation.<span class="module-access"><span class="module"><span class="identifier">DataHandler</span>.</span></span>write<span class="constructor">To(DataHandler.<span class="params">java</span>:317)</span></span><br><span class="line">	at javax.mail.internet.<span class="module-access"><span class="module"><span class="identifier">MimeBodyPart</span>.</span></span>write<span class="constructor">To(MimeBodyPart.<span class="params">java</span>:1485)</span></span><br><span class="line">	at javax.mail.internet.<span class="module-access"><span class="module"><span class="identifier">MimeMessage</span>.</span></span>write<span class="constructor">To(MimeMessage.<span class="params">java</span>:1773)</span></span><br><span class="line">	at com.sun.mail.smtp.<span class="module-access"><span class="module"><span class="identifier">SMTPTransport</span>.</span></span>send<span class="constructor">Message(SMTPTransport.<span class="params">java</span>:1121)</span></span><br><span class="line"><span class="operator">	... </span><span class="number">17</span> more</span><br></pre></td></tr></table></figure>
 
 <p>当时的第一反应，是否是邮件服务器那边做了调整，出现新的状况？毕竟之前的单元测试也没有问题。</p>
 <p>那重新写一个新的单元测试看看是怎么回事。</p>
@@ -476,18 +483,18 @@
 <p>果然很灵异，一般来说，在邮件服务的单元测试跑通之后，这个功能就应该是没有问题了。</p>
 <p>现在出现了在服务端写的单元测试可以跑通，客户端的单元测试却出现异常。</p>
 <h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>翻墙通过Google查了一下，主要的原因都是因为<code>mailcap</code>配置的问题。解决方案有两个。</p>
-<h2 id="一个是在代码中加上一段mailcap配置"><a href="#一个是在代码中加上一段mailcap配置" class="headerlink" title="一个是在代码中加上一段mailcap配置"></a>一个是在代码中加上一段mailcap配置</h2><figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">MailcapCommandMap mc = (MailcapCommandMap) CommandMap.getDefaultCommandMap()<span class="comment">;</span></span><br><span class="line">mc.addMailcap(<span class="string">"text/html;; x-java-content-handler=com.sun.mail.handlers.text_html"</span>)<span class="comment">;</span></span><br><span class="line">mc.addMailcap(<span class="string">"text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml"</span>)<span class="comment">;</span></span><br><span class="line">mc.addMailcap(<span class="string">"text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain"</span>)<span class="comment">;</span></span><br><span class="line">mc.addMailcap(<span class="string">"multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed"</span>)<span class="comment">;</span></span><br><span class="line">mc.addMailcap(<span class="string">"message/rfc822;; x-java-content-handler=com.sun.mail.handlers.message_rfc822"</span>)<span class="comment">;</span></span><br><span class="line">CommandMap.setDefaultCommandMap(mc)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<h2 id="一个是在代码中加上一段mailcap配置"><a href="#一个是在代码中加上一段mailcap配置" class="headerlink" title="一个是在代码中加上一段mailcap配置"></a>一个是在代码中加上一段mailcap配置</h2><figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">MailcapCommandMap mc = (MailcapCommandMap) <span class="module-access"><span class="module"><span class="identifier">CommandMap</span>.</span></span>get<span class="constructor">DefaultCommandMap()</span>;</span><br><span class="line">mc.add<span class="constructor">Mailcap(<span class="string">"text/html;; x-java-content-handler=com.sun.mail.handlers.text_html"</span>)</span>;</span><br><span class="line">mc.add<span class="constructor">Mailcap(<span class="string">"text/xml;; x-java-content-handler=com.sun.mail.handlers.text_xml"</span>)</span>;</span><br><span class="line">mc.add<span class="constructor">Mailcap(<span class="string">"text/plain;; x-java-content-handler=com.sun.mail.handlers.text_plain"</span>)</span>;</span><br><span class="line">mc.add<span class="constructor">Mailcap(<span class="string">"multipart/*;; x-java-content-handler=com.sun.mail.handlers.multipart_mixed"</span>)</span>;</span><br><span class="line">mc.add<span class="constructor">Mailcap(<span class="string">"message/rfc822;; x-java-content-handler=com.sun.mail.handlers.message_rfc822"</span>)</span>;</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">CommandMap</span>.</span></span>set<span class="constructor">DefaultCommandMap(<span class="params">mc</span>)</span>;</span><br></pre></td></tr></table></figure>
 
 <h2 id="一个是将javax-mail下的mailcap相关文件复制到当前项目的META-INF目录下。"><a href="#一个是将javax-mail下的mailcap相关文件复制到当前项目的META-INF目录下。" class="headerlink" title="一个是将javax.mail下的mailcap相关文件复制到当前项目的META-INF目录下。"></a>一个是将javax.mail下的mailcap相关文件复制到当前项目的<code>META-INF</code>目录下。</h2><p>查看了一下<code>MailcapCommandMap</code>源码，在<code>META-INF</code>中加入<code>mailcap</code>配置文件，也应该能够和在代码中加入<code>mailcap</code>配置起到一样的作用。</p>
 <p>附上<code>MailcapCommandMap</code>初始化方法：</p>
-<figure class="highlight processing"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> MailcapCommandMap() &#123;</span><br><span class="line">        ArrayList dbv = <span class="keyword">new</span> ArrayList(<span class="number">5</span>);</span><br><span class="line">        MailcapFile mf = <span class="keyword">null</span>;</span><br><span class="line">        dbv.<span class="built_in">add</span>((<span class="keyword">Object</span>)<span class="keyword">null</span>);</span><br><span class="line">        LogSupport.<span class="built_in">log</span>(<span class="string">"MailcapCommandMap: load HOME"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">String</span> ex;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ex = System.getProperty(<span class="string">"user.home"</span>);</span><br><span class="line">            <span class="keyword">if</span>(ex != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">String</span> path = ex + File.separator + <span class="string">".mailcap"</span>;</span><br><span class="line">                mf = <span class="keyword">this</span>.loadFile(path);</span><br><span class="line">                <span class="keyword">if</span>(mf != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    dbv.<span class="built_in">add</span>(mf);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SecurityException var7) &#123;</span><br><span class="line">            ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        LogSupport.<span class="built_in">log</span>(<span class="string">"MailcapCommandMap: load SYS"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ex = System.getProperty(<span class="string">"java.home"</span>) + File.separator + <span class="string">"lib"</span> + File.separator + <span class="string">"mailcap"</span>;</span><br><span class="line">            mf = <span class="keyword">this</span>.loadFile(ex);</span><br><span class="line">            <span class="keyword">if</span>(mf != <span class="keyword">null</span>) &#123;</span><br><span class="line">                dbv.<span class="built_in">add</span>(mf);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SecurityException var6) &#123;</span><br><span class="line">            ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        LogSupport.<span class="built_in">log</span>(<span class="string">"MailcapCommandMap: load JAR"</span>);</span><br><span class="line">        <span class="keyword">this</span>.loadAllResources(dbv, <span class="string">"META-INF/mailcap"</span>);</span><br><span class="line">        LogSupport.<span class="built_in">log</span>(<span class="string">"MailcapCommandMap: load DEF"</span>);</span><br><span class="line">        <span class="keyword">synchronized</span>(MailcapCommandMap.class) &#123;</span><br><span class="line">            <span class="keyword">if</span>(defDB == <span class="keyword">null</span>) &#123;</span><br><span class="line">                defDB = <span class="keyword">this</span>.loadResource(<span class="string">"/META-INF/mailcap.default"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(defDB != <span class="keyword">null</span>) &#123;</span><br><span class="line">            dbv.<span class="built_in">add</span>(defDB);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.DB = <span class="keyword">new</span> MailcapFile[dbv.<span class="built_in">size</span>()];</span><br><span class="line">        <span class="keyword">this</span>.DB = (MailcapFile[])((MailcapFile[])dbv.toArray(<span class="keyword">this</span>.DB));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">public <span class="constructor">MailcapCommandMap()</span> &#123;</span><br><span class="line">        ArrayList dbv = <span class="keyword">new</span> <span class="constructor">ArrayList(5)</span>;</span><br><span class="line">        MailcapFile mf = null;</span><br><span class="line">        dbv.add((Object)null);</span><br><span class="line">        <span class="module-access"><span class="module"><span class="identifier">LogSupport</span>.</span></span>log(<span class="string">"MailcapCommandMap: load HOME"</span>);</span><br><span class="line"></span><br><span class="line">        String ex;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ex = <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>get<span class="constructor">Property(<span class="string">"user.home"</span>)</span>;</span><br><span class="line">            <span class="keyword">if</span>(ex != null) &#123;</span><br><span class="line">                String path = ex + <span class="module-access"><span class="module"><span class="identifier">File</span>.</span></span>separator + <span class="string">".mailcap"</span>;</span><br><span class="line">                mf = this.load<span class="constructor">File(<span class="params">path</span>)</span>;</span><br><span class="line">                <span class="keyword">if</span>(mf != null) &#123;</span><br><span class="line">                    dbv.add(mf);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (SecurityException var7) &#123;</span><br><span class="line">            ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="module-access"><span class="module"><span class="identifier">LogSupport</span>.</span></span>log(<span class="string">"MailcapCommandMap: load SYS"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ex = <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>get<span class="constructor">Property(<span class="string">"java.home"</span>)</span> + <span class="module-access"><span class="module"><span class="identifier">File</span>.</span></span>separator + <span class="string">"lib"</span> + <span class="module-access"><span class="module"><span class="identifier">File</span>.</span></span>separator + <span class="string">"mailcap"</span>;</span><br><span class="line">            mf = this.load<span class="constructor">File(<span class="params">ex</span>)</span>;</span><br><span class="line">            <span class="keyword">if</span>(mf != null) &#123;</span><br><span class="line">                dbv.add(mf);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (SecurityException var6) &#123;</span><br><span class="line">            ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="module-access"><span class="module"><span class="identifier">LogSupport</span>.</span></span>log(<span class="string">"MailcapCommandMap: load JAR"</span>);</span><br><span class="line">        this.load<span class="constructor">AllResources(<span class="params">dbv</span>, <span class="string">"META-INF/mailcap"</span>)</span>;</span><br><span class="line">        <span class="module-access"><span class="module"><span class="identifier">LogSupport</span>.</span></span>log(<span class="string">"MailcapCommandMap: load DEF"</span>);</span><br><span class="line">        synchronized(<span class="module-access"><span class="module"><span class="identifier">MailcapCommandMap</span>.</span></span><span class="keyword">class</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(defDB<span class="operator"> == </span>null) &#123;</span><br><span class="line">                defDB = this.load<span class="constructor">Resource(<span class="string">"/META-INF/mailcap.default"</span>)</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(defDB != null) &#123;</span><br><span class="line">            dbv.add(defDB);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        this.DB = <span class="keyword">new</span> MailcapFile<span class="literal">[<span class="identifier">dbv</span>.<span class="identifier">size</span>()]</span>;</span><br><span class="line">        this.DB = (MailcapFile<span class="literal">[]</span>)((MailcapFile<span class="literal">[]</span>)dbv.<span class="keyword">to</span><span class="constructor">Array(<span class="params">this</span>.DB)</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>按照我的习惯，能够配置的就不要写在代码里了，看样子正解应该是在<code>META-INF</code>文件夹中加入<code>mailcap</code>配置文件了。</p>
 <p>于是从<code>activation</code>包中将mailcap.default文件拷贝到<code>META-INF</code>中，并更新了maven打包的配置。</p>
 <p>结果，还是不行？</p>
 <p>难道还是要在代码中加入<code>mailcap</code>的配置？尝试了一下在代码中加入相关配置代码，的确可以正常发送邮件，但是这样的解决办法是在是太不爽了。</p>
 <h1 id="那继续看看还有哪儿出问题了。"><a href="#那继续看看还有哪儿出问题了。" class="headerlink" title="那继续看看还有哪儿出问题了。"></a>那继续看看还有哪儿出问题了。</h1><p>于是我在发送邮件之前将当期的支持的mimetype都打印出来看看。</p>
-<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="built_in">log</span>.isInfoEnabled())&#123;</span><br><span class="line">       MailcapCommandMap mc = (MailcapCommandMap) CommandMap.getDefaultCommandMap();</span><br><span class="line">       <span class="built_in">log</span>.info(<span class="string">"mail mimetypes:'&#123;&#125;' multipart/mixed:'&#123;&#125;' "</span>, mc.getMimeTypes(), mc.getAllCommands(<span class="string">"multipart/mixed"</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(log.is<span class="constructor">InfoEnabled()</span>)&#123;</span><br><span class="line">       MailcapCommandMap mc = (MailcapCommandMap) <span class="module-access"><span class="module"><span class="identifier">CommandMap</span>.</span></span>get<span class="constructor">DefaultCommandMap()</span>;</span><br><span class="line">       log.info(<span class="string">"mail mimetypes:'&#123;&#125;' multipart/mixed:'&#123;&#125;' "</span>, mc.get<span class="constructor">MimeTypes()</span>, mc.get<span class="constructor">AllCommands(<span class="string">"multipart/mixed"</span>)</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>发现在server端单元测试的输出和打包后的输出有很大的差异。</p>
 <ul>
@@ -502,11 +509,11 @@
 
 <p>看样子应该是打包之后配置加载问题。</p>
 <p>再重新check一下<code>MailcapCommandMap</code>的代码，看样子应该是这段代码的缘故。</p>
-<figure class="highlight d"><table><tr><td class="code"><pre><span class="line"><span class="keyword">synchronized</span>(MailcapCommandMap.<span class="keyword">class</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(defDB == <span class="literal">null</span>) &#123;</span><br><span class="line">        defDB = <span class="keyword">this</span>.loadResource(<span class="string">"/META-INF/mailcap.default"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line"><span class="keyword">synchronized</span>(MailcapCommandMap<span class="class">.<span class="keyword">class</span>) &#123;</span></span><br><span class="line">    <span class="keyword">if</span>(defDB == <span class="literal">null</span>) &#123;</span><br><span class="line">        defDB = <span class="keyword">this</span>.loadResource(<span class="string">"/META-INF/mailcap.default"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>看样子，应该是defDB中有<code>[text/*]</code>,所以，就没有走到读取<code>/META-INF/mailcap.default</code>文件</p>
 <h1 id="最终解决办法"><a href="#最终解决办法" class="headerlink" title="最终解决办法"></a>最终解决办法</h1><p>其实也很简单，将<code>mailcap.default</code>重命名为<code>mailcap</code>就好了。<code>MailcapCommandMap</code>不管怎么样都会读取到<code>mailcap</code>文件了。</p>
-<h2 id="MailcapCommandMap相关代码"><a href="#MailcapCommandMap相关代码" class="headerlink" title="MailcapCommandMap相关代码"></a>MailcapCommandMap相关代码</h2><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">LogSupport.log(<span class="string">"MailcapCommandMap: load JAR"</span>);</span><br><span class="line"><span class="keyword">this</span>.loadAllResources(dbv, <span class="string">"META-INF/mailcap"</span>);</span><br><span class="line">LogSupport.log(<span class="string">"MailcapCommandMap: load DEF"</span>);</span><br><span class="line">synchronized(MailcapCommandMap.<span class="keyword">class</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(defDB == <span class="literal">null</span>) &#123;</span><br><span class="line">        defDB = <span class="keyword">this</span>.loadResource(<span class="string">"/META-INF/mailcap.default"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="MailcapCommandMap相关代码"><a href="#MailcapCommandMap相关代码" class="headerlink" title="MailcapCommandMap相关代码"></a>MailcapCommandMap相关代码</h2><figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="module-access"><span class="module"><span class="identifier">LogSupport</span>.</span></span>log(<span class="string">"MailcapCommandMap: load JAR"</span>);</span><br><span class="line">this.load<span class="constructor">AllResources(<span class="params">dbv</span>, <span class="string">"META-INF/mailcap"</span>)</span>;</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">LogSupport</span>.</span></span>log(<span class="string">"MailcapCommandMap: load DEF"</span>);</span><br><span class="line">synchronized(<span class="module-access"><span class="module"><span class="identifier">MailcapCommandMap</span>.</span></span><span class="keyword">class</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(defDB<span class="operator"> == </span>null) &#123;</span><br><span class="line">        defDB = this.load<span class="constructor">Resource(<span class="string">"/META-INF/mailcap.default"</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="mailcap配置"><a href="#mailcap配置" class="headerlink" title="mailcap配置"></a>mailcap配置</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Default mailcap file for the JavaMail System.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># JavaMail content-handlers:</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">text/plain;;		x-java-content-<span class="keyword">handler</span>=com.sun.mail.handlers.text_plain</span><br><span class="line"><span class="built_in">text</span>/html;;		x-java-content-<span class="keyword">handler</span>=com.sun.mail.handlers.text_html</span><br><span class="line"><span class="built_in">text</span>/<span class="keyword">xml</span>;;		x-java-content-<span class="keyword">handler</span>=com.sun.mail.handlers.text_xml</span><br><span class="line">multipart<span class="comment">/*;;		x-java-content-handler=com.sun.mail.handlers.multipart_mixed; x-java-fallback-entry=true</span></span><br><span class="line"><span class="comment">message/rfc822;;	x-java-content-handler=com.sun.mail.handlers.message_rfc822</span></span><br></pre></td></tr></table></figure>
 
@@ -621,7 +628,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -632,7 +639,9 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -643,7 +652,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -654,7 +663,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -665,7 +674,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">133</span>
+                <span class="site-state-item-count">136</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -756,10 +765,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -768,12 +777,12 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>

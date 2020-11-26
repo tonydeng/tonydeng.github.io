@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -66,23 +66,25 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="java stream">
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+  <meta name="keywords" content="java stream" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -90,19 +92,18 @@
 
 
 <meta name="description" content="Stream是 Java 8新增加的类，用来补充集合类。 Stream代表数据流，流中的数据元素的数量可能是有限的，也可能是无限的。 Stream和其它集合类的区别在于：其它集合类主要关注与有限数量的数据的访问和有效管理(增删改)，而Stream并没有提供访问和管理元素的方式，而是通过声明数据源的方式，利用可计算的操作在数据源上执行，当然BaseStream.iterator() 和 BaseS">
-<meta name="keywords" content="java stream">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java Stream详解">
 <meta property="og:url" content="http://tonydeng.github.io/2016/04/25/java-stream/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="Stream是 Java 8新增加的类，用来补充集合类。 Stream代表数据流，流中的数据元素的数量可能是有限的，也可能是无限的。 Stream和其它集合类的区别在于：其它集合类主要关注与有限数量的数据的访问和有效管理(增删改)，而Stream并没有提供访问和管理元素的方式，而是通过声明数据源的方式，利用可计算的操作在数据源上执行，当然BaseStream.iterator() 和 BaseS">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://tonydeng.github.io/images/stream-api-java8.png">
 <meta property="og:image" content="http://tonydeng.github.io/images/streams.png">
-<meta property="og:updated_time" content="2019-06-20T12:10:27.473Z">
+<meta property="article:published_time" content="2016-04-25T08:59:03.000Z">
+<meta property="article:modified_time" content="2019-06-20T12:10:27.473Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="java stream">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java Stream详解">
-<meta name="twitter:description" content="Stream是 Java 8新增加的类，用来补充集合类。 Stream代表数据流，流中的数据元素的数量可能是有限的，也可能是无限的。 Stream和其它集合类的区别在于：其它集合类主要关注与有限数量的数据的访问和有效管理(增删改)，而Stream并没有提供访问和管理元素的方式，而是通过声明数据源的方式，利用可计算的操作在数据源上执行，当然BaseStream.iterator() 和 BaseS">
 <meta name="twitter:image" content="http://tonydeng.github.io/images/stream-api-java8.png">
 
 
@@ -131,17 +132,17 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2016/04/25/java-stream/">
+  <link rel="canonical" href="http://tonydeng.github.io/2016/04/25/java-stream/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
 
 
   <title> Java Stream详解 | TonyDeng's Blog </title>
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -199,7 +200,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">TonyDeng's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -229,7 +230,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -239,7 +240,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -249,7 +250,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -259,7 +260,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -269,7 +270,7 @@
         <li class="menu-item menu-item-ppts">
           <a href="/ppts" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             PPT
           </a>
@@ -279,7 +280,7 @@
         <li class="menu-item menu-item-gitbook">
           <a href="/gitbook-zh" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             GitBook
           </a>
@@ -289,7 +290,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -302,7 +303,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -323,7 +324,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -360,7 +363,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
     </span>
 
@@ -403,7 +406,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -415,7 +418,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/程序设计/" itemprop="url" rel="index">
+                  <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index">
                     <span itemprop="name">程序设计</span>
                   </a>
                 </span>
@@ -494,7 +497,7 @@
 <p>对于串行流，流有序与否不会影响其性能，只是会影响确定性(determinism)，无序流在多次执行的时候结果可能是不一样的。</p>
 <p>对于并行流，去掉有序这个约束可能会提供性能，比如<code>distinct</code>、<code>groupingBy</code>这些聚合操作。</p>
 <h3 id="结合性-Associativity"><a href="#结合性-Associativity" class="headerlink" title="结合性 Associativity"></a>结合性 Associativity</h3><p>一个操作或者函数op满足结合性意味着它满足下面的条件：</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">(<span class="selector-tag">a</span> op b) op c == <span class="selector-tag">a</span> op (<span class="selector-tag">b</span> op c)</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">(a <span class="keyword">op</span> b) <span class="keyword">op</span> c == a <span class="keyword">op</span> (b <span class="keyword">op</span> c)</span><br></pre></td></tr></table></figure>
 
 <p>对于并发流来说，如果操作满足结合性，我们就可以并行计算：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">a op b op c op d == (a op b) op (c op d)</span><br></pre></td></tr></table></figure>
@@ -530,10 +533,9 @@
 <p>可以看到<code>mapper</code>函数会将每一个元素转换成一个流对象，而flatMap方法返回的流包含的元素为<code>mapper</code>生成的所有流中的元素。</p>
 <p>下面这个例子中将一首唐诗生成一个按行分割的流，然后在这个流上调用<code>flatmap</code>得到单词的小写形式的集合，去掉重复的单词然后打印出来。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String poetry = <span class="string">"Where, before me, are the ages that have gone?\n"</span> +</span><br><span class="line">        <span class="string">"And where, behind me, are the coming generations?\n"</span> +</span><br><span class="line">        <span class="string">"I think of heaven and earth, without limit, without end,\n"</span> +</span><br><span class="line">        <span class="string">"And I am all alone and my tears fall down."</span>;</span><br><span class="line">Stream&lt;String&gt; lines = Arrays.stream(poetry.split(<span class="string">"\n"</span>));</span><br><span class="line">Stream&lt;String&gt; words = lines.flatMap(line -&gt; Arrays.stream(line.split(<span class="string">" "</span>)));</span><br><span class="line">List&lt;String&gt; l = words.map( w -&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (w.endsWith(<span class="string">","</span>) || w.endsWith(<span class="string">"."</span>) || w.endsWith(<span class="string">"?"</span>))</span><br><span class="line">        <span class="keyword">return</span> w.substring(<span class="number">0</span>,w.length() -<span class="number">1</span>).trim().toLowerCase();</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> w.trim().toLowerCase();</span><br><span class="line">&#125;).distinct().sorted().collect(Collectors.toList());</span><br><span class="line">System.out.println(l); <span class="comment">//[ages, all, alone, am, and, are, before, behind, coming, down, earth, end, fall, generations, gone, have, heaven, i, limit, me, my, of, tears, that, the, think, where, without]</span></span><br></pre></td></tr></table></figure>
-
 <p><code>flatMapToDouble</code>、<code>flatMapToInt</code>、<code>flatMapToLong</code>提供了转换成特定流的方法。</p>
 <h3 id="limit"><a href="#limit" class="headerlink" title="limit"></a>limit</h3><p><code>limit</code>方法指定数量的元素的流。对于串行流，这个方法是有效的，这是因为它只需返回前n个元素即可，但是对于有序的并行流，它可能花费相对较长的时间，如果你不在意有序，可以将有序并行流转换为无序的，可以提高性能。</p>
-<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; l = IntStream.range(<span class="number">1</span>,<span class="number">100</span>).limit(<span class="number">5</span>)</span><br><span class="line">        .boxed()</span><br><span class="line">        .<span class="keyword">collect</span>(Collectors.<span class="keyword">toList</span>());</span><br><span class="line">System.out.<span class="keyword">println</span>(l);<span class="comment">//[1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; l = <span class="module-access"><span class="module"><span class="identifier">IntStream</span>.</span></span>range(<span class="number">1</span>,<span class="number">100</span>).limit(<span class="number">5</span>)</span><br><span class="line">        .boxed<span class="literal">()</span></span><br><span class="line">        .collect(<span class="module-access"><span class="module"><span class="identifier">Collectors</span>.</span></span><span class="keyword">to</span><span class="constructor">List()</span>);</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(l);<span class="comment">//[1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="peek"><a href="#peek" class="headerlink" title="peek"></a>peek</h3><p><code>peek</code>方法方法会使用一个<code>Consumer</code>消费流中的元素，但是返回的流还是包含原来的流中的元素。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String[] arr = <span class="keyword">new</span> String[]&#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>,<span class="string">"d"</span>&#125;;</span><br><span class="line">Arrays.stream(arr)</span><br><span class="line">        .peek(System.out::println) <span class="comment">//a,b,c,d</span></span><br><span class="line">        .count();</span><br></pre></td></tr></table></figure>
@@ -549,10 +551,11 @@
 <p><code>allMatch</code>只有在所有的元素都满足断言时才返回true,否则flase,流为空时总是返回true</p>
 <p><code>anyMatch</code>只有在任意一个元素满足断言时就返回true,否则flase,</p>
 <p><code>noneMatch</code>只有在所有的元素都不满足断言时才返回true,否则flase,</p>
-<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">System.out.println(Stream.of(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).allMatch( i -&gt; i &gt; <span class="number">0</span>)); <span class="comment">//true</span></span><br><span class="line">System.out.println(Stream.of(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).anyMatch( i -&gt; i &gt; <span class="number">0</span>)); <span class="comment">//true</span></span><br><span class="line">System.out.println(Stream.of(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).noneMatch( i -&gt; i &gt; <span class="number">0</span>)); <span class="comment">//false</span></span><br><span class="line">System.out.println(Stream.&lt;Integer&gt;empty().allMatch( i -&gt; i &gt; <span class="number">0</span>)); <span class="comment">//true</span></span><br><span class="line">System.out.println(Stream.&lt;Integer&gt;empty().anyMatch( i -&gt; i &gt; <span class="number">0</span>)); <span class="comment">//false</span></span><br><span class="line">System.out.println(Stream.&lt;Integer&gt;empty().noneMatch( i -&gt; i &gt; <span class="number">0</span>)); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Stream</span>.</span></span><span class="keyword">of</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).all<span class="constructor">Match( <span class="params">i</span> -&gt; <span class="params">i</span> &gt; 0)</span>); <span class="comment">//true</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Stream</span>.</span></span><span class="keyword">of</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).any<span class="constructor">Match( <span class="params">i</span> -&gt; <span class="params">i</span> &gt; 0)</span>); <span class="comment">//true</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Stream</span>.</span></span><span class="keyword">of</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>).none<span class="constructor">Match( <span class="params">i</span> -&gt; <span class="params">i</span> &gt; 0)</span>); <span class="comment">//false</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(Stream.&lt;Integer&gt;empty<span class="literal">()</span>.all<span class="constructor">Match( <span class="params">i</span> -&gt; <span class="params">i</span> &gt; 0)</span>); <span class="comment">//true</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(Stream.&lt;Integer&gt;empty<span class="literal">()</span>.any<span class="constructor">Match( <span class="params">i</span> -&gt; <span class="params">i</span> &gt; 0)</span>); <span class="comment">//false</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(Stream.&lt;Integer&gt;empty<span class="literal">()</span>.none<span class="constructor">Match( <span class="params">i</span> -&gt; <span class="params">i</span> &gt; 0)</span>); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="count"><a href="#count" class="headerlink" title="count"></a>count</h3><p><code>count</code>方法返回流中的元素的数量。它实现为：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">mapToLong(e -&gt; <span class="number">1L</span>).sum();</span><br></pre></td></tr></table></figure>
+
 
 <h3 id="collect"><a href="#collect" class="headerlink" title="collect"></a>collect</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;R,A&gt; <span class="function">R 	<span class="title">collect</span><span class="params">(Collector&lt;? <span class="keyword">super</span> T,A,R&gt; collector)</span></span></span><br><span class="line"><span class="function">&lt;R&gt; R 	<span class="title">collect</span><span class="params">(Supplier&lt;R&gt; supplier, BiConsumer&lt;R,? <span class="keyword">super</span> T&gt; accumulator, BiConsumer&lt;R,R&gt; combiner)</span></span></span><br></pre></td></tr></table></figure>
 
@@ -701,7 +704,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -712,7 +715,9 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -723,7 +728,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -734,7 +739,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -745,7 +750,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">133</span>
+                <span class="site-state-item-count">136</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -836,10 +841,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -848,12 +853,12 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>

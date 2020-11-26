@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -66,23 +66,25 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="前端 解耦">
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+  <meta name="keywords" content="前端 解耦" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -90,18 +92,17 @@
 
 
 <meta name="description" content="松耦合当你能够做到修改一个组件而不需要更改其他组件时，就做到了松耦合，松耦合对于代码可维护性来说是至关重要的。 原则 不要使用 css 表达式。（这种方式应该已经废弃了） javascript 和 css 之间只通过 className 进行通信。 不要使用 html 的 on 属性，如：onclick。应该使用 id 保持 javascript 和 html 的沟通。 使用模板。">
-<meta name="keywords" content="前端 解耦">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端解耦原则">
 <meta property="og:url" content="http://tonydeng.github.io/2015/01/05/frontend-decoupling-principle/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="松耦合当你能够做到修改一个组件而不需要更改其他组件时，就做到了松耦合，松耦合对于代码可维护性来说是至关重要的。 原则 不要使用 css 表达式。（这种方式应该已经废弃了） javascript 和 css 之间只通过 className 进行通信。 不要使用 html 的 on 属性，如：onclick。应该使用 id 保持 javascript 和 html 的沟通。 使用模板。">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/decoupling.png">
-<meta property="og:updated_time" content="2019-06-20T12:10:27.463Z">
+<meta property="article:published_time" content="2015-01-05T10:29:52.000Z">
+<meta property="article:modified_time" content="2019-06-20T12:10:27.463Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="前端 解耦">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端解耦原则">
-<meta name="twitter:description" content="松耦合当你能够做到修改一个组件而不需要更改其他组件时，就做到了松耦合，松耦合对于代码可维护性来说是至关重要的。 原则 不要使用 css 表达式。（这种方式应该已经废弃了） javascript 和 css 之间只通过 className 进行通信。 不要使用 html 的 on 属性，如：onclick。应该使用 id 保持 javascript 和 html 的沟通。 使用模板。">
 <meta name="twitter:image" content="http://tonydeng.github.io/images/blog/decoupling.png">
 
 
@@ -130,17 +131,17 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2015/01/05/frontend-decoupling-principle/">
+  <link rel="canonical" href="http://tonydeng.github.io/2015/01/05/frontend-decoupling-principle/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
 
 
   <title> 前端解耦原则 | TonyDeng's Blog </title>
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -198,7 +199,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">TonyDeng's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -228,7 +229,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -238,7 +239,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -248,7 +249,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -258,7 +259,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -268,7 +269,7 @@
         <li class="menu-item menu-item-ppts">
           <a href="/ppts" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             PPT
           </a>
@@ -278,7 +279,7 @@
         <li class="menu-item menu-item-gitbook">
           <a href="/gitbook-zh" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             GitBook
           </a>
@@ -288,7 +289,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -301,7 +302,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -322,7 +323,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -359,7 +362,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
     </span>
 
@@ -402,7 +405,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -414,7 +417,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/程序设计/" itemprop="url" rel="index">
+                  <a href="/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index">
                     <span itemprop="name">程序设计</span>
                   </a>
                 </span>
@@ -474,18 +477,17 @@
 <h2 id="将-javascript-从-html-中抽离"><a href="#将-javascript-从-html-中抽离" class="headerlink" title="将 javascript 从 html 中抽离"></a>将 <strong>javascript</strong> 从 <strong>html</strong> 中抽离</h2><h3 id="不好的写法-2"><a href="#不好的写法-2" class="headerlink" title="不好的写法"></a>不好的写法</h3><figure class="highlight hsp"><table><tr><td class="code"><pre><span class="line">&lt;<span class="keyword">button</span> <span class="keyword">onclick</span>=<span class="string">"doSomething()"</span> id=<span class="string">"action"</span>&gt;click me&lt;/<span class="keyword">button</span>&gt;</span><br></pre></td></tr></table></figure>
 
 <p>我们要避免使用 onclick 等 on 属性来绑定一个事件处理程序。<br>应该使用 id 保持 javascript 和 html 的沟通。</p>
-<h3 id="好的写法-如使用-jQuery"><a href="#好的写法-如使用-jQuery" class="headerlink" title="好的写法, 如使用 jQuery"></a>好的写法, 如使用 jQuery</h3><figure class="highlight livescript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">"<span class="subst">#action</span>"</span>).<span class="literal">on</span>(<span class="string">"click"</span>,doSomething);</span><br></pre></td></tr></table></figure>
+<h3 id="好的写法-如使用-jQuery"><a href="#好的写法-如使用-jQuery" class="headerlink" title="好的写法, 如使用 jQuery"></a>好的写法, 如使用 jQuery</h3><figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">"#action"</span>).<span class="keyword">on</span><span class="params">(<span class="string">"click"</span>,doSomething)</span>;</span><br></pre></td></tr></table></figure>
 
 <h2 id="将-html-从-javascript-中抽离"><a href="#将-html-从-javascript-中抽离" class="headerlink" title="将 html 从 javascript 中抽离"></a>将 <strong>html</strong> 从 <strong>javascript</strong> 中抽离</h2><p>注释中包含模板文本</p>
-<figure class="highlight bnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">&lt;ul id="mylist"&gt;</span><span class="attribute">&lt;!--&lt;li id="item%s"&gt;</span><span class="attribute">&lt;a href="%s"&gt;</span>%s<span class="attribute">&lt;/a&gt;</span><span class="attribute">&lt;/li&gt;</span></span><br><span class="line">    <span class="attribute">&lt;li&gt;</span><span class="attribute">&lt;a href="1"&gt;</span>First item<span class="attribute">&lt;/a&gt;</span><span class="attribute">&lt;/li&gt;</span></span><br><span class="line">    <span class="attribute">&lt;li&gt;</span><span class="attribute">&lt;a href="2"&gt;</span>Second item<span class="attribute">&lt;/a&gt;</span><span class="attribute">&lt;/li&gt;</span></span><br><span class="line">    <span class="attribute">&lt;li&gt;</span><span class="attribute">&lt;a href="3"&gt;</span>Third item<span class="attribute">&lt;/a&gt;</span><span class="attribute">&lt;/li&gt;</span></span><br><span class="line"><span class="attribute">&lt;/ul&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;ul id=<span class="string">"mylist"</span>&gt;&lt;!--<span class="xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"item%s"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"%s"</span>&gt;</span>%s<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">    &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"1"</span>&gt;</span>First item<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span>&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;li&gt;&lt;a href="2"&gt;Second item&lt;/</span>a&gt;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;li&gt;&lt;a href="3"&gt;Third item&lt;/</span>a&gt;&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">&lt;/u</span>l&gt;</span><br></pre></td></tr></table></figure>
 
 <h3 id="注释也是-DOM-的一部分"><a href="#注释也是-DOM-的一部分" class="headerlink" title="注释也是 DOM 的一部分"></a>注释也是 <strong>DOM</strong> 的一部分</h3><p>function addItem(url, text) {<br>    var mylist = document.getElementById(“mylist”),<br>        templateText = mylist.firstChild.nodeValue;<br>        result = sprintf(template, url, text);<br>    div.innerHTML = result;<br>    mylist.insertAdjacentHTML(“beforeend”, result);<br>}<br>addItem(“4”, “Four item”);</p>
 <h3 id="使用一个带有自定义-type-属性的-script-元素。"><a href="#使用一个带有自定义-type-属性的-script-元素。" class="headerlink" title="使用一个带有自定义 type 属性的 script 元素。"></a>使用一个带有自定义 <strong>type</strong> 属性的 <strong>script</strong> 元素。</h3><p>浏览器会默认地将 <strong>script</strong> 元素中的内容识别为 <strong>JavaScript</strong> 代码， 但你可以通过给 <strong>type</strong> 赋值为浏览器不识别的类型，来告诉浏览器这不是一段 javascript 脚本。</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/x-my-template"</span> <span class="attr">id</span>=<span class="string">"list-item"</span>&gt;</span></span><br><span class="line"><span class="handlebars"><span class="xml">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"%s"</span>&gt;</span>%s<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>你可以通过 <strong>script</strong> 标签的 <strong>text</strong> 属性来提取模板文本。<br>这样 <strong>addItem()</strong> 函数就会变成这样。</p>
-<figure class="highlight qml"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addItem</span>(<span class="params">url, text</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> mylist = <span class="built_in">document</span>.getElementById(<span class="string">"mylist"</span>),</span><br><span class="line">        script = <span class="built_in">document</span>.getElementById(<span class="string">"list-item"</span>),</span><br><span class="line">        templateText = script.test,</span><br><span class="line">        result = sprintf(template, <span class="built_in">url</span>, text),</span><br><span class="line">        div = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line">    div.innerHTML = result.replace(<span class="regexp">/^\s*/</span>, <span class="string">""</span>);</span><br><span class="line">    <span class="built_in">list</span>.appendChild(div.firstChild);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 用法</span></span><br><span class="line">addItem(<span class="string">"/item/4"</span>, <span class="string">"Four item"</span>);</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> add<span class="constructor">Item(<span class="params">url</span>, <span class="params">text</span>)</span> &#123;</span><br><span class="line">    var mylist = document.get<span class="constructor">ElementById(<span class="string">"mylist"</span>)</span>,</span><br><span class="line">        script = document.get<span class="constructor">ElementById(<span class="string">"list-item"</span>)</span>,</span><br><span class="line">        templateText = script.test,</span><br><span class="line">        result = sprintf(template, url, text),</span><br><span class="line">        div = document.create<span class="constructor">Element(<span class="string">"div"</span>)</span>;</span><br><span class="line">    div.innerHTML = result.replace(/^\s*/, <span class="string">""</span>);</span><br><span class="line">    <span class="built_in">list</span>.append<span class="constructor">Child(<span class="params">div</span>.<span class="params">firstChild</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 用法</span></span><br><span class="line">add<span class="constructor">Item(<span class="string">"/item/4"</span>, <span class="string">"Four item"</span>)</span>;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -590,7 +592,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -601,7 +603,9 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -612,7 +616,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -623,7 +627,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -634,7 +638,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">133</span>
+                <span class="site-state-item-count">136</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -725,10 +729,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -737,12 +741,12 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>

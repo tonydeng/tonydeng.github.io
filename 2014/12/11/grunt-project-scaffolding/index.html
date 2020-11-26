@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -66,41 +66,47 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="grunt, scaffold, front-end, nodejs, engineered, grunt-init">
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+  <meta name="keywords" content="grunt, scaffold, front-end, nodejs, engineered, grunt-init" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
 
 
 
-<meta name="description" content="原文： https://github.com/gruntjs/grunt-docs/blob/master/Project-Scaffolding.md  1. grunt-initgrunt-init 是一个脚手架工具，用于自动创建项目。基于当前的环境和几个问题的答案创建一个完整的目录结构。确切的文件和内容取决于所选的模板，和模板提出的问题的答案。 注：本独立程序曾经作为“init”任务内置于">
-<meta name="keywords" content="grunt, scaffold, front-end, nodejs, engineered, grunt-init">
+<meta name="description" content="原文： https:&#x2F;&#x2F;github.com&#x2F;gruntjs&#x2F;grunt-docs&#x2F;blob&#x2F;master&#x2F;Project-Scaffolding.md  1. grunt-initgrunt-init 是一个脚手架工具，用于自动创建项目。基于当前的环境和几个问题的答案创建一个完整的目录结构。确切的文件和内容取决于所选的模板，和模板提出的问题的答案。 注：本独立程序曾经作为“init”任务内置于">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Grunt项目脚手架">
 <meta property="og:url" content="http://tonydeng.github.io/2014/12/11/grunt-project-scaffolding/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
-<meta property="og:description" content="原文： https://github.com/gruntjs/grunt-docs/blob/master/Project-Scaffolding.md  1. grunt-initgrunt-init 是一个脚手架工具，用于自动创建项目。基于当前的环境和几个问题的答案创建一个完整的目录结构。确切的文件和内容取决于所选的模板，和模板提出的问题的答案。 注：本独立程序曾经作为“init”任务内置于">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-20T12:10:27.462Z">
+<meta property="og:description" content="原文： https:&#x2F;&#x2F;github.com&#x2F;gruntjs&#x2F;grunt-docs&#x2F;blob&#x2F;master&#x2F;Project-Scaffolding.md  1. grunt-initgrunt-init 是一个脚手架工具，用于自动创建项目。基于当前的环境和几个问题的答案创建一个完整的目录结构。确切的文件和内容取决于所选的模板，和模板提出的问题的答案。 注：本独立程序曾经作为“init”任务内置于">
+<meta property="article:published_time" content="2014-12-11T06:04:00.000Z">
+<meta property="article:modified_time" content="2019-06-20T12:10:27.462Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="grunt">
+<meta property="article:tag" content=" scaffold">
+<meta property="article:tag" content=" front-end">
+<meta property="article:tag" content=" nodejs">
+<meta property="article:tag" content=" engineered">
+<meta property="article:tag" content=" grunt-init">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Grunt项目脚手架">
-<meta name="twitter:description" content="原文： https://github.com/gruntjs/grunt-docs/blob/master/Project-Scaffolding.md  1. grunt-initgrunt-init 是一个脚手架工具，用于自动创建项目。基于当前的环境和几个问题的答案创建一个完整的目录结构。确切的文件和内容取决于所选的模板，和模板提出的问题的答案。 注：本独立程序曾经作为“init”任务内置于">
 
 
 
@@ -128,17 +134,17 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2014/12/11/grunt-project-scaffolding/">
+  <link rel="canonical" href="http://tonydeng.github.io/2014/12/11/grunt-project-scaffolding/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
 
 
   <title> Grunt项目脚手架 | TonyDeng's Blog </title>
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -196,7 +202,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">TonyDeng's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -226,7 +232,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -236,7 +242,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -246,7 +252,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -256,7 +262,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -266,7 +272,7 @@
         <li class="menu-item menu-item-ppts">
           <a href="/ppts" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             PPT
           </a>
@@ -276,7 +282,7 @@
         <li class="menu-item menu-item-gitbook">
           <a href="/gitbook-zh" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             GitBook
           </a>
@@ -286,7 +292,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -299,7 +305,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -320,7 +326,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -357,7 +365,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
     </span>
 
@@ -400,7 +408,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -412,7 +420,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/效率/" itemprop="url" rel="index">
+                  <a href="/categories/%E6%95%88%E7%8E%87/" itemprop="url" rel="index">
                     <span itemprop="name">效率</span>
                   </a>
                 </span>
@@ -466,7 +474,7 @@
 </ul>
 <p>需要注意的是，大多数模板在当前目录中生成它们的文件，因此一定要先切换到一个新目录，如果不希望覆盖已有文件的话。</p>
 <h1 id="4-安装模板"><a href="#4-安装模板" class="headerlink" title="4. 安装模板"></a>4. 安装模板</h1><p>一旦模板被安装到 <code>~/.grunt-init/</code> 目录（在 Windows 上是 <code>(%USERPROFILE%\.grunt=init\）</code>，就可以通过 grunt-init 使用它们。使用你使用 git 拷贝一个模范到该目录中。例如，可以这样安装 <a href="https://github.com/gruntjs/grunt-init-jquery" target="_blank" rel="noopener">grunt-init-jquery</a> 模板：</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">git clone git@github<span class="selector-class">.com</span>:gruntjs/grunt-init-jquery<span class="selector-class">.git</span> ~/.grunt-init/jquery</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">git</span>@github.com:gruntjs/grunt-init-jquery.git ~/.grunt-init/jquery</span><br></pre></td></tr></table></figure>
 
 <p>注：如果你想以<em>“foobarbaz”</em>在本地使用模板，你可以在拷贝时指定<code>~/.grunt-init/foobarbaz</code>。grunt-init 将使用模板在目录 <code>~/.grunt-init/</code> 中的实际目录名。</p>
 <p>一些 grunt-init 模板由官方维护：</p>
@@ -503,13 +511,11 @@
 </blockquote>
 <h2 id="7-1-exports-description"><a href="#7-1-exports-description" class="headerlink" title="7.1 exports.description"></a>7.1 exports.description</h2><p>当用户运行 <code>grunt init</code> 或 <code>grunt-init</code> 来显示所有有效的初始化模板列表时，简短的模板描述随模板名称一起显示。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">exports.description = descriptionString;</span><br></pre></td></tr></table></figure>
-
 <h2 id="7-2-exports-notes"><a href="#7-2-exports-notes" class="headerlink" title="7.2 exports.notes"></a>7.2 exports.notes</h2><p>如果指定了，该可选的扩展描述将在所有提示之前显示。这是一个很好的向用户提供一点点帮助解释命名约定的地方，哪些提示是必须或可选的，等等。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">exports.notes = notesString;</span><br></pre></td></tr></table></figure>
 
 <h2 id="7-3-exports-warnOn"><a href="#7-3-exports-warnOn" class="headerlink" title="7.3 exports.warnOn"></a>7.3 exports.warnOn</h2><p>如果该可选（但是推荐）的通配符或通配符数组被（已存在的文件或目录）匹配，Grunt 将中止，并导致一条警告信息，用户可以使用 <code>--force</code> 覆盖该行为。这些初试化模板可能潜在的覆盖已存在文件时非常有用。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">exports.warnOn = wildcardPattern;</span><br></pre></td></tr></table></figure>
-
 <p>而最常见的值是 ‘*’，匹配所有文件或文件夹，使用的 <a href="https://github.com/isaacs/minimatch" target="_blank" rel="noopener">minimatch</a> 通配符语法允许很大的灵活性。例如：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">exports.warnOn = <span class="string">'Gruntfile.js'</span>;    <span class="comment">// Warn on a Gruntfile.js file.</span></span><br><span class="line">exports.warnOn = <span class="string">'*.js'</span>;            <span class="comment">// Warn on any .js file.</span></span><br><span class="line">exports.warnOn = <span class="string">'*'</span>;               <span class="comment">// Warn on any non-dotfile or non-dotdir.</span></span><br><span class="line">exports.warnOn = <span class="string">'.*'</span>;              <span class="comment">// Warn on any dotfile or dotdir.</span></span><br><span class="line">exports.warnOn = <span class="string">'&#123;.*,*&#125;'</span>;          <span class="comment">// Warn on any file or dir (dot or non-dot).</span></span><br><span class="line">exports.warnOn = <span class="string">'!*/**'</span>;           <span class="comment">// Warn on any file (ignoring dirs).</span></span><br><span class="line">exports.warnOn = <span class="string">'*.&#123;png,gif,jpg&#125;'</span>; <span class="comment">// Warn on any image file.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// This is another way of writing the last example.</span></span><br><span class="line">exports.warnOn = [<span class="string">'*.png'</span>, <span class="string">'*.gif'</span>, <span class="string">'*.jpg'</span>];</span><br></pre></td></tr></table></figure>
 
@@ -524,20 +530,16 @@
 
 <h2 id="8-3-init-copy"><a href="#8-3-init-copy" class="headerlink" title="8.3 init.copy"></a>8.3 init.copy</h2><p>复制一个文件，指定一个绝对或相对源路径和一个可选的相对目标路径，可以通过传入的回调函数处理复制的文件。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.copy(srcpath[, destpath], options)</span><br></pre></td></tr></table></figure>
-
 <h2 id="8-4-init-copyAndProcess"><a href="#8-4-init-copyAndProcess" class="headerlink" title="8.4 init.copyAndProcess"></a>8.4 init.copyAndProcess</h2><p>遍历传入的对象中的所有文件，拷贝源文件到目标地址，并处理文件内容。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.copyAndProcess(files, props[, options])</span><br></pre></td></tr></table></figure>
-
 <h2 id="8-5-init-defaults"><a href="#8-5-init-defaults" class="headerlink" title="8.5 init.defaults"></a>8.5 init.defaults</h2><p><code>defaults.json</code> 中用户指定的默认初始值。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.defaults</span><br></pre></td></tr></table></figure>
-
 <h2 id="8-6-init-destpath"><a href="#8-6-init-destpath" class="headerlink" title="8.6 init.destpath"></a>8.6 init.destpath</h2><p>绝对目标文件路径。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.destpath()</span><br></pre></td></tr></table></figure>
 
 <h2 id="8-7-init-expand"><a href="#8-7-init-expand" class="headerlink" title="8.7 init.expand"></a>8.7 init.expand</h2><p>与 <a href="https://github.com/gruntjs/grunt/wiki/grunt.file#wiki-grunt-file-expand" target="_blank" rel="noopener">grunt.file.expand</a> 一致。</p>
 <p>返回一个不重复数组，含有匹配通配符模式的所有文件和目录路径。该方法接收逗号分割的痛佩服模式，或者通配符模式数组。匹配以 ! 开头的模式的路径将从返回值中排除。模式被顺序处理，所以包含和排除的顺序是重要的。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.expand([options, ] patterns)</span><br></pre></td></tr></table></figure>
-
 <h2 id="8-8-init-filesToCopy"><a href="#8-8-init-filesToCopy" class="headerlink" title="8.8 init.filesToCopy"></a>8.8 init.filesToCopy</h2><p>返回一个包含了待复制文件的对象，包含绝对源路径和相对目标路径，按照 <code>rename.json</code>（如果存在的话）中的规则重命名（或忽略）。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> files = init.filesToCopy(props);</span><br><span class="line"><span class="comment">/* files === &#123; '.gitignore': 'template/root/.gitignore',</span></span><br><span class="line"><span class="comment">  '.jshintrc': 'template/root/.jshintrc',</span></span><br><span class="line"><span class="comment">  'Gruntfile.js': 'template/root/Gruntfile.js',</span></span><br><span class="line"><span class="comment">  'README.md': 'template/root/README.md',</span></span><br><span class="line"><span class="comment">  'test/test_test.js': 'template/root/test/name_test.js' &#125; */</span></span><br></pre></td></tr></table></figure>
 
@@ -546,22 +548,17 @@
 
 <h2 id="8-10-init-getTemplates"><a href="#8-10-init-getTemplates" class="headerlink" title="8.10 init.getTemplates"></a>8.10 init.getTemplates</h2><p>返回含有所有有效模板的对象。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.getTemplates()</span><br></pre></td></tr></table></figure>
-
 <h2 id="8-11-init-initSearchDirs"><a href="#8-11-init-initSearchDirs" class="headerlink" title="8.11 init.initSearchDirs"></a>8.11 init.initSearchDirs</h2><p>初始化目录来搜索初始化模板。这里的<code>模板</code>是指模板路径。会包括 <code>~/.grunt-init/</code> 和 <code>grunt-init</code> 中的核心初始化任务。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.initSearchDirs([filename])</span><br></pre></td></tr></table></figure>
-
 <h2 id="8-12-init-process"><a href="#8-12-init-process" class="headerlink" title="8.12 init.process"></a>8.12 init.process</h2><p>启动进程，开始提示输入。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.process(options, prompts, done)</span><br><span class="line"></span><br><span class="line">init.process(&#123;&#125;, [</span><br><span class="line">  <span class="comment">// Prompt for these values</span></span><br><span class="line">  init.prompt(<span class="string">'name'</span>),</span><br><span class="line">  init.prompt(<span class="string">'description'</span>),</span><br><span class="line">  init.prompt(<span class="string">'version'</span>)</span><br><span class="line">], <span class="function"><span class="keyword">function</span>(<span class="params">err, props</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// All finished, do something with the properties</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h2 id="8-13-init-prompt"><a href="#8-13-init-prompt" class="headerlink" title="8.13 init.prompt"></a>8.13 init.prompt</h2><p>提示用户输入。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.prompt(name[, <span class="keyword">default</span>])</span><br></pre></td></tr></table></figure>
-
 <h2 id="8-14-init-prompts"><a href="#8-14-init-prompts" class="headerlink" title="8.14 init.prompts"></a>8.14 init.prompts</h2><p>含有所有提示的对象。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> prompts = init.prompts;</span><br></pre></td></tr></table></figure>
-
 <h2 id="8-15-init-readDefaults"><a href="#8-15-init-readDefaults" class="headerlink" title="8.15 init.readDefaults"></a>8.15 init.readDefaults</h2><p>从任务文件（如果存在的话）读取 JSON 默认值，并合并到一个数据对象中。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.readDefaults(filepath[, ...])</span><br></pre></td></tr></table></figure>
-
 <h2 id="8-16-init-renames"><a href="#8-16-init-renames" class="headerlink" title="8.16 init.renames"></a>8.16 init.renames</h2><p>模板的重命名规则。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> renames = init.renames;</span><br><span class="line"><span class="comment">// renames === &#123; 'test/name_test.js': 'test/\&#123;\%= name \%\&#125;_test.js' &#125;</span></span><br></pre></td></tr></table></figure>
 
@@ -576,7 +573,6 @@
 
 <h2 id="8-20-init-writePackageJSON"><a href="#8-20-init-writePackageJSON" class="headerlink" title="8.20 init.writePackageJSON"></a>8.20 init.writePackageJSON</h2><p>保存一个 package.json 文件到目标目录。回调函数可以用来后置处理属性，或添加或移除或其他任何操作。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">init.writePackageJSON(filename, props[, callback])</span><br></pre></td></tr></table></figure>
-
 <h1 id="9-内置提示"><a href="#9-内置提示" class="headerlink" title="9. 内置提示"></a>9. 内置提示</h1><h2 id="9-1-author-email"><a href="#9-1-author-email" class="headerlink" title="9.1 author_email"></a>9.1 author_email</h2><p>Author’s email address to use in the <code>package.json</code>. Will attempt to find a default value from the user’s git config.</p>
 <h2 id="9-2-author-name"><a href="#9-2-author-name" class="headerlink" title="9.2 author_name"></a>9.2 author_name</h2><p>Author’s full name to use in the <code>package.json</code> and copyright notices. Will attempt to find a default value from the user’s git config.</p>
 <h2 id="9-3-author-url"><a href="#9-3-author-url" class="headerlink" title="9.3 author_url"></a>9.3 author_url</h2><p>A public URL to the author’s website to use in the <code>package.json</code>.</p>
@@ -702,7 +698,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -713,7 +709,9 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -724,7 +722,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -735,7 +733,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -746,7 +744,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">133</span>
+                <span class="site-state-item-count">136</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -837,10 +835,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -849,12 +847,12 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>

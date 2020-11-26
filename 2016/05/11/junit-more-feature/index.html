@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -66,23 +66,25 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="Junit Rule">
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+  <meta name="keywords" content="Junit Rule" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -90,18 +92,17 @@
 
 
 <meta name="description" content="Junit 是Java开发领域中非常普遍的单元测试框架，不过，大部分的使用者仅仅只是使用它一部分的功能。 先整理一部分相对不常用，但是个人觉得非常有用的功能（其他的慢慢补充），希望对大家有所帮助。">
-<meta name="keywords" content="Junit Rule">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Junit的一些的高级用法">
 <meta property="og:url" content="http://tonydeng.github.io/2016/05/11/junit-more-feature/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="Junit 是Java开发领域中非常普遍的单元测试框架，不过，大部分的使用者仅仅只是使用它一部分的功能。 先整理一部分相对不常用，但是个人觉得非常有用的功能（其他的慢慢补充），希望对大家有所帮助。">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/junit.png">
-<meta property="og:updated_time" content="2019-06-20T12:10:27.473Z">
+<meta property="article:published_time" content="2016-05-11T10:39:23.000Z">
+<meta property="article:modified_time" content="2019-06-20T12:10:27.473Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="Junit Rule">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Junit的一些的高级用法">
-<meta name="twitter:description" content="Junit 是Java开发领域中非常普遍的单元测试框架，不过，大部分的使用者仅仅只是使用它一部分的功能。 先整理一部分相对不常用，但是个人觉得非常有用的功能（其他的慢慢补充），希望对大家有所帮助。">
 <meta name="twitter:image" content="http://tonydeng.github.io/images/blog/junit.png">
 
 
@@ -130,17 +131,17 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2016/05/11/junit-more-feature/">
+  <link rel="canonical" href="http://tonydeng.github.io/2016/05/11/junit-more-feature/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
 
 
   <title> 使用Junit的一些的高级用法 | TonyDeng's Blog </title>
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -198,7 +199,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">TonyDeng's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -228,7 +229,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -238,7 +239,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -248,7 +249,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -258,7 +259,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -268,7 +269,7 @@
         <li class="menu-item menu-item-ppts">
           <a href="/ppts" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             PPT
           </a>
@@ -278,7 +279,7 @@
         <li class="menu-item menu-item-gitbook">
           <a href="/gitbook-zh" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             GitBook
           </a>
@@ -288,7 +289,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -301,7 +302,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -322,7 +323,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -359,7 +362,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
     </span>
 
@@ -402,7 +405,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -414,7 +417,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/效率/" itemprop="url" rel="index">
+                  <a href="/categories/%E6%95%88%E7%8E%87/" itemprop="url" rel="index">
                     <span itemprop="name">效率</span>
                   </a>
                 </span>
@@ -460,7 +463,7 @@
 <p><code>@Rule</code> 只能注解在字段中，该字段必须是 <code>public</code> 的并且类型必须实现了 <code>TestRule</code> 接口或者 <code>MethodRule</code> 接口。</p>
 <p>Junit 4.9之后还加入了一个 <code>@ClassRule</code> 注解。相对 <code>@Rule</code> 来说， <code>@ClassRule</code> 是一个类级别的注解。就像 <code>@Before</code> 与 <code>@BeforeClass</code> 的区别。</p>
 <h3 id="通过-Rule注解生成临时文件或临时文件夹"><a href="#通过-Rule注解生成临时文件或临时文件夹" class="headerlink" title="通过@Rule注解生成临时文件或临时文件夹"></a>通过@Rule注解生成临时文件或临时文件夹</h3><p>有时候程序运行时必须生成文件或文件夹，往往需要写不少代码来实现这个功能。我们可以使用 TemporaryFolder 来在测试的时候创建文件和目录，最爽的是它在测试运行结束之后会将测试时创建的文件和目录的自动删除。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.commons.io.FileUtils;</span><br><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"><span class="keyword">import</span> org.junit.Rule;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.rules.TemporaryFolder;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by tonydeng on 16/5/10.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JunitRuleTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(JunitRuleTest.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Rule</span></span><br><span class="line">    <span class="keyword">public</span> TemporaryFolder tempFolder = <span class="keyword">new</span> TemporaryFolder();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFileCreateAndWrite</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        File file = tempFolder.newFile(<span class="string">"simple.txt"</span>);</span><br><span class="line">        log.info(<span class="string">"temp file:'&#123;&#125;'"</span>, file.getPath());</span><br><span class="line">        FileUtils.writeStringToFile(file, <span class="string">"Junit Rules!"</span>);</span><br><span class="line">        String line = FileUtils.readFileToString(file);</span><br><span class="line">        Assert.assertThat(line, is(<span class="string">"Junit Rules!"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.commons.io.FileUtils;</span><br><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"><span class="keyword">import</span> org.junit.Rule;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.rules.TemporaryFolder;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by tonydeng on 16/5/10.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JunitRuleTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(JunitRuleTest<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Rule</span></span><br><span class="line">    <span class="keyword">public</span> TemporaryFolder tempFolder = <span class="keyword">new</span> TemporaryFolder();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFileCreateAndWrite</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        File file = tempFolder.newFile(<span class="string">"simple.txt"</span>);</span><br><span class="line">        log.info(<span class="string">"temp file:'&#123;&#125;'"</span>, file.getPath());</span><br><span class="line">        FileUtils.writeStringToFile(file, <span class="string">"Junit Rules!"</span>);</span><br><span class="line">        String line = FileUtils.readFileToString(file);</span><br><span class="line">        Assert.assertThat(line, is(<span class="string">"Junit Rules!"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>测试完成之后，生成的这个simple.txt文件就会自动删除了。</p>
 <h3 id="取得当前的测试方法名称"><a href="#取得当前的测试方法名称" class="headerlink" title="取得当前的测试方法名称"></a>取得当前的测试方法名称</h3><p>想要取得执行中的测试方法名的时候，通过@Rule注解TestName类的实例化对象可以取得。</p>
@@ -472,6 +475,7 @@
 <h3 id="在一个运行测试方法过程中收集多个错误信息"><a href="#在一个运行测试方法过程中收集多个错误信息" class="headerlink" title="在一个运行测试方法过程中收集多个错误信息"></a>在一个运行测试方法过程中收集多个错误信息</h3><p>使用 <code>ErrorCollector</code> 类，可以在一个测试方法中收集多个测试错误。也就是说，一个测试方法执行中，不会在第一个确认出错后就停止执行。使用 <code>ErrorCollector</code> 可以在所有点确认完后统一报出。</p>
 <p>比如，有三个点需要check，但是又不想出错了就马上退出测试，可以尝试下面的方式。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Rule</span></span><br><span class="line"><span class="keyword">public</span> ErrorCollector collector = <span class="keyword">new</span> ErrorCollector();</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMoreCollector</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	String s = <span class="keyword">null</span>;</span><br><span class="line">	collector.checkThat(<span class="string">"Value should not be null"</span>, <span class="keyword">null</span>, is(s));</span><br><span class="line"></span><br><span class="line">	s = <span class="string">""</span>;</span><br><span class="line">	collector.checkThat(<span class="string">"Value should have the length of 1"</span>,s.length(),is(<span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">	s = <span class="string">"Junit!"</span>;</span><br><span class="line">	collector.checkThat(<span class="string">"Value should have the length of 10"</span>,s.length(),is(<span class="number">10</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
 <p>上面的测试会报这样的错误信息：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Failed tests:   testMoreCollector(com.github.tonydeng.demo.java8.JunitRuleTest): Value should have the length of <span class="number">1</span>(..)</span><br><span class="line">  testMoreCollector(com.github.tonydeng.demo.java8.JunitRuleTest): Value should have the length of <span class="number">10</span>(..)</span><br></pre></td></tr></table></figure>
@@ -502,10 +506,10 @@
 <h2 id="Parameterized注解"><a href="#Parameterized注解" class="headerlink" title="Parameterized注解"></a>Parameterized注解</h2><p>如果我们需要对我们的测试方法进行参数化，也就是只写一个测试方法，把若干种情况作为参数传递进去，一次性完成测试。那我们该怎么办？</p>
 <p>可以使用 <code>Parameterized</code> 相关的注解来解决这个问题。</p>
 <p>来一个简单的计算斐波纳契数的例子：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by tonydeng on 16/5/12.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RunWith</span>(Parameterized.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FibonacciNumbersTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(FibonacciNumbersTest.class);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Collection&lt;Integer[]&gt; data() &#123;</span><br><span class="line">        <span class="keyword">return</span> Arrays.asList(<span class="keyword">new</span> Integer[][]&#123;</span><br><span class="line">                &#123;<span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">1</span>, <span class="number">1</span>&#125;, &#123;<span class="number">2</span>, <span class="number">1</span>&#125;,</span><br><span class="line">                &#123;<span class="number">3</span>, <span class="number">2</span>&#125;, &#123;<span class="number">4</span>, <span class="number">3</span>&#125;, &#123;<span class="number">5</span>, <span class="number">5</span>&#125;,</span><br><span class="line">                &#123;<span class="number">6</span>, <span class="number">8</span>&#125;&#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> value;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> expected;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FibonacciNumbersTest</span><span class="params">(<span class="keyword">int</span> input, <span class="keyword">int</span> expected)</span> </span>&#123;</span><br><span class="line">        value = input;</span><br><span class="line">        <span class="keyword">this</span>.expected = expected;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fibonacciNumberCall</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        log.info(<span class="string">"expected &#123;&#125; fib(value) &#123;&#125;"</span>, expected, fib(value));</span><br><span class="line">        Assert.assertEquals(expected, fib(value));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> fib(n - <span class="number">1</span>) + fib(n - <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by tonydeng on 16/5/12.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RunWith</span>(Parameterized<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">FibonacciNumbersTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(FibonacciNumbersTest<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Collection&lt;Integer[]&gt; data() &#123;</span><br><span class="line">        <span class="keyword">return</span> Arrays.asList(<span class="keyword">new</span> Integer[][]&#123;</span><br><span class="line">                &#123;<span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">1</span>, <span class="number">1</span>&#125;, &#123;<span class="number">2</span>, <span class="number">1</span>&#125;,</span><br><span class="line">                &#123;<span class="number">3</span>, <span class="number">2</span>&#125;, &#123;<span class="number">4</span>, <span class="number">3</span>&#125;, &#123;<span class="number">5</span>, <span class="number">5</span>&#125;,</span><br><span class="line">                &#123;<span class="number">6</span>, <span class="number">8</span>&#125;&#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> value;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> expected;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FibonacciNumbersTest</span><span class="params">(<span class="keyword">int</span> input, <span class="keyword">int</span> expected)</span> </span>&#123;</span><br><span class="line">        value = input;</span><br><span class="line">        <span class="keyword">this</span>.expected = expected;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fibonacciNumberCall</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        log.info(<span class="string">"expected &#123;&#125; fib(value) &#123;&#125;"</span>, expected, fib(value));</span><br><span class="line">        Assert.assertEquals(expected, fib(value));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> fib(n - <span class="number">1</span>) + fib(n - <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>或者，这么来写：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by tonydeng on 16/5/12.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RunWith</span>(Parameterized.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FibonacciNumbersTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(FibonacciNumbersTest.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Parameterized</span>.Parameters(name = <span class="string">"&#123;index&#125;: fib(&#123;0&#125;=&#123;1&#125;)"</span>)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Collection&lt;Integer[]&gt; data() &#123;</span><br><span class="line">        <span class="keyword">return</span> Arrays.asList(<span class="keyword">new</span> Integer[][]&#123;</span><br><span class="line">                &#123;<span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">1</span>, <span class="number">1</span>&#125;, &#123;<span class="number">2</span>, <span class="number">1</span>&#125;,</span><br><span class="line">                &#123;<span class="number">3</span>, <span class="number">2</span>&#125;, &#123;<span class="number">4</span>, <span class="number">3</span>&#125;, &#123;<span class="number">5</span>, <span class="number">5</span>&#125;,</span><br><span class="line">                &#123;<span class="number">6</span>, <span class="number">8</span>&#125;&#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Parameterized</span>.Parameter</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> fInput;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Parameterized</span>.Parameter(value = <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> fExpected;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testParemeter</span><span class="params">()</span></span>&#123;</span><br><span class="line">        log.info(<span class="string">"fExpected &#123;&#125; fib(fInput) &#123;&#125;"</span>, fExpected, fib(fInput));</span><br><span class="line">        Assert.assertEquals(fExpected, fib(fInput));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> fib(n - <span class="number">1</span>) + fib(n - <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by tonydeng on 16/5/12.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RunWith</span>(Parameterized<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">FibonacciNumbersTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(FibonacciNumbersTest<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Parameterized</span>.Parameters(name = <span class="string">"&#123;index&#125;: fib(&#123;0&#125;=&#123;1&#125;)"</span>)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Collection&lt;Integer[]&gt; data() &#123;</span><br><span class="line">        <span class="keyword">return</span> Arrays.asList(<span class="keyword">new</span> Integer[][]&#123;</span><br><span class="line">                &#123;<span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">1</span>, <span class="number">1</span>&#125;, &#123;<span class="number">2</span>, <span class="number">1</span>&#125;,</span><br><span class="line">                &#123;<span class="number">3</span>, <span class="number">2</span>&#125;, &#123;<span class="number">4</span>, <span class="number">3</span>&#125;, &#123;<span class="number">5</span>, <span class="number">5</span>&#125;,</span><br><span class="line">                &#123;<span class="number">6</span>, <span class="number">8</span>&#125;&#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Parameterized</span>.Parameter</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> fInput;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Parameterized</span>.Parameter(value = <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> fExpected;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testParemeter</span><span class="params">()</span></span>&#123;</span><br><span class="line">        log.info(<span class="string">"fExpected &#123;&#125; fib(fInput) &#123;&#125;"</span>, fExpected, fib(fInput));</span><br><span class="line">        Assert.assertEquals(fExpected, fib(fInput));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> fib(n - <span class="number">1</span>) + fib(n - <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>上面的两个例子中，都是利用了 <code>data()</code> 方法构建了各个测试方法的参数，其中返回值的第一个是input参数，第二个是expected参数。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/junit-team/junit4/wiki" target="_blank" rel="noopener">junit4 wiki via github</a></p>
@@ -618,7 +622,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -629,7 +633,9 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -640,7 +646,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -651,7 +657,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -662,7 +668,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">133</span>
+                <span class="site-state-item-count">136</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -753,10 +759,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -765,12 +771,12 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>

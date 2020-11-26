@@ -6,15 +6,15 @@
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -32,7 +32,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -66,23 +66,25 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="maven">
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-
-
-
-  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml">
+  <meta name="keywords" content="maven" />
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -90,19 +92,18 @@
 
 
 <meta name="description" content="Maven是我一直用来管理Java项目生命周期的工具，从2006年开始使用，到现在快十年了。没想到今天碰到一个新的问题，就是使用 mvn artchetype:create 来创建项目时失败了。">
-<meta name="keywords" content="maven">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决Maven使用artchetype:create创建工程失败的问题">
 <meta property="og:url" content="http://tonydeng.github.io/2015/09/18/maven-generate-project/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="Maven是我一直用来管理Java项目生命周期的工具，从2006年开始使用，到现在快十年了。没想到今天碰到一个新的问题，就是使用 mvn artchetype:create 来创建项目时失败了。">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/maven/maven-jee.png">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/maven/archetype-overview.png">
-<meta property="og:updated_time" content="2019-06-20T12:10:27.468Z">
+<meta property="article:published_time" content="2015-09-18T05:32:48.000Z">
+<meta property="article:modified_time" content="2019-06-20T12:10:27.468Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="maven">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决Maven使用artchetype:create创建工程失败的问题">
-<meta name="twitter:description" content="Maven是我一直用来管理Java项目生命周期的工具，从2006年开始使用，到现在快十年了。没想到今天碰到一个新的问题，就是使用 mvn artchetype:create 来创建项目时失败了。">
 <meta name="twitter:image" content="http://tonydeng.github.io/images/blog/maven/maven-jee.png">
 
 
@@ -131,17 +132,17 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2015/09/18/maven-generate-project/">
+  <link rel="canonical" href="http://tonydeng.github.io/2015/09/18/maven-generate-project/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0">
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
 
 
   <title> 解决Maven使用artchetype:create创建工程失败的问题 | TonyDeng's Blog </title>
-</head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -199,7 +200,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">TonyDeng's Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -229,7 +230,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -239,7 +240,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -249,7 +250,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -259,7 +260,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -269,7 +270,7 @@
         <li class="menu-item menu-item-ppts">
           <a href="/ppts" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             PPT
           </a>
@@ -279,7 +280,7 @@
         <li class="menu-item menu-item-gitbook">
           <a href="/gitbook-zh" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
             GitBook
           </a>
@@ -289,7 +290,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -302,7 +303,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -323,7 +324,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -360,7 +363,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
     </span>
 
@@ -403,7 +406,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -415,7 +418,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/效率/" itemprop="url" rel="index">
+                  <a href="/categories/%E6%95%88%E7%8E%87/" itemprop="url" rel="index">
                     <span itemprop="name">效率</span>
                   </a>
                 </span>
@@ -471,7 +474,7 @@
 
 <p>那还有没有别的简单的方法来创建，就像之前使用archetype:create一样呢？</p>
 <p>你可以使用下面的命令来进行创建项目。</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">mvn archetype:generate \</span><br><span class="line">    -DarchetypeGroupId=org<span class="selector-class">.apache</span><span class="selector-class">.maven</span><span class="selector-class">.archetypes</span> \</span><br><span class="line">    -DgroupId=com<span class="selector-class">.github</span><span class="selector-class">.tonydeng</span><span class="selector-class">.bluebrid</span> \</span><br><span class="line">    -DartifactId=bluebrid \</span><br><span class="line">    -T20</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">mvn archetype:generate \</span><br><span class="line">    <span class="attribute">-DarchetypeGroupId</span>=org.apache.maven.archetypes \</span><br><span class="line">    <span class="attribute">-DgroupId</span>=com.github.tonydeng.bluebrid \</span><br><span class="line">    <span class="attribute">-DartifactId</span>=bluebrid \</span><br><span class="line">    -T20</span><br></pre></td></tr></table></figure>
 
 <p>不过，这样创建项目，你会发现在如下两个点要等N长的时间，这个N长的时间可能要以几十分钟来计算。</p>
 <blockquote>
@@ -488,6 +491,7 @@
 </blockquote>
 <p>完整的命令如下：</p>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">mvn archetype:generate \</span><br><span class="line">    <span class="attribute">-DarchetypeGroupId</span>=org.apache.maven.archetypes \</span><br><span class="line">    <span class="attribute">-DinteractiveMode</span>=<span class="literal">false</span> \</span><br><span class="line">    <span class="attribute">-DarchetypeCatalog</span>=internal \</span><br><span class="line">    <span class="attribute">-DgroupId</span>=com.github.tonydeng.bluebrid \</span><br><span class="line">    <span class="attribute">-DartifactId</span>=bluebrid \</span><br><span class="line">    -T20</span><br></pre></td></tr></table></figure>
+
 
 <p>创建webapp项目命令如下：</p>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">mvn archetype:generate \</span><br><span class="line">    <span class="attribute">-DarchetypeGroupId</span>=org.apache.maven.archetypes \</span><br><span class="line">    <span class="attribute">-DinteractiveMode</span>=<span class="literal">false</span> \</span><br><span class="line">    <span class="attribute">-DarchetypeCatalog</span>=internal \</span><br><span class="line">    <span class="attribute">-DgroupId</span>=com.github.tonydeng.bluebrid \</span><br><span class="line">    <span class="attribute">-DartifactId</span>=bluebrid-webapp \</span><br><span class="line">    <span class="attribute">-DarchetypeArtifactId</span>=maven-archetype-webapp \</span><br><span class="line">    -T20</span><br></pre></td></tr></table></figure>
@@ -601,7 +605,9 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460" alt="Tony Deng">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
@@ -612,7 +618,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -623,7 +629,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -634,7 +640,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">133</span>
+                <span class="site-state-item-count">136</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -709,10 +715,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">
+        <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -721,12 +727,12 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
   主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
     NexT.Mist
   </a>
 </div>

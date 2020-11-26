@@ -1,0 +1,1089 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Rust入坑之旅, 闭包, Rust, Closure, Fn, FnOne, FnMut" />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="对于支持函数式编程的语言来说，支持闭包是一个非常必要的能力。但是我们在Rust中使用闭包的时候经常会出现一些莫名其妙、无法理解的错误。 你可能会这样的经历：你非常兴奋的使用闭包这个特性写了一段自认牛逼的代码，发现根本无法编译通，修改了好几次，终于在编译器的友（残）好（暴）提（敲）示（打）下，终于编译完成，执行成功了，但是下一次依然碰到同样的遭遇。 为了避免持续出现这样的情况，我们来系统的看一看R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rust的闭包类型(Fn, FnMut, FnOne的区别)">
+<meta property="og:url" content="http://tonydeng.github.io/2019/11/09/rust-closure-type/index.html">
+<meta property="og:site_name" content="TonyDeng&#39;s Blog">
+<meta property="og:description" content="对于支持函数式编程的语言来说，支持闭包是一个非常必要的能力。但是我们在Rust中使用闭包的时候经常会出现一些莫名其妙、无法理解的错误。 你可能会这样的经历：你非常兴奋的使用闭包这个特性写了一段自认牛逼的代码，发现根本无法编译通，修改了好几次，终于在编译器的友（残）好（暴）提（敲）示（打）下，终于编译完成，执行成功了，但是下一次依然碰到同样的遭遇。 为了避免持续出现这样的情况，我们来系统的看一看R">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/rust/rust-language.jpg">
+<meta property="og:image" content="http://tonydeng.github.io/images/blog/rust/rust-closure.jpg">
+<meta property="article:published_time" content="2019-11-08T16:27:10.000Z">
+<meta property="article:modified_time" content="2020-10-14T06:46:33.332Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="Rust入坑之旅">
+<meta property="article:tag" content=" 闭包">
+<meta property="article:tag" content=" Rust">
+<meta property="article:tag" content=" Closure">
+<meta property="article:tag" content=" Fn">
+<meta property="article:tag" content=" FnOne">
+<meta property="article:tag" content=" FnMut">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/rust/rust-language.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tonydeng.github.io/2019/11/09/rust-closure-type/"/>
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
+
+
+  <title> Rust的闭包类型(Fn, FnMut, FnOne的区别) | TonyDeng's Blog </title>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80673215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43d979b191269e68beffa09e2d17a081";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TonyDeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">“In me the tiger sniffes the rose.” -- Siegfried Sasson</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ppts">
+          <a href="/ppts" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            PPT
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gitbook">
+          <a href="/gitbook-zh" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            GitBook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2019/11/09/rust-closure-type/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Rust的闭包类型(Fn, FnMut, FnOne的区别)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-09T00:27:10+08:00">
+                2019-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Rust%E5%85%A5%E5%9D%91%E4%B9%8B%E6%97%85/" itemprop="url" rel="index">
+                    <span itemprop="name">Rust入坑之旅</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/blog/rust/rust-language.jpg" alt="Rust Logo"></p>
+<p>对于支持函数式编程的语言来说，支持闭包是一个非常必要的能力。但是我们在<code>Rust</code>中使用闭包的时候经常会出现一些莫名其妙、无法理解的错误。</p>
+<p>你可能会这样的经历：你非常兴奋的使用闭包这个特性写了一段自认牛逼的代码，发现根本无法编译通，修改了好几次，终于在编译器的友（残）好（暴）提（敲）示（打）下，终于编译完成，执行成功了，但是下一次依然碰到同样的遭遇。</p>
+<p>为了避免持续出现这样的情况，我们来系统的看一看<code>Rust</code>中的闭包。</p>
+<a id="more"></a>
+
+<h2 id="闭包是什么？"><a href="#闭包是什么？" class="headerlink" title="闭包是什么？"></a>闭包是什么？</h2><p>先来看看<a href="https://zh.wikipedia.org/wiki/%E9%97%AD%E5%8C%85_(%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6)" target="_blank" rel="noopener">维基百科</a>上的描述：</p>
+<blockquote>
+<p>在计算机科学中，闭包（英语：<code>Closure</code>），又称词法闭包（<code>Lexical Closure</code>）或函数闭包（<code>function closures</code>），是<strong>引用了自由变量的函数</strong>。这个被引用的自由变量将和这个函数一同存在，即使已经离开了创造它的环境也不例外。所以，有另一种说法认为闭包是由函数和与其相关的引用环境组合而成的实体。闭包在运行时可以有多个实例，不同的引用环境和相同的函数组合可以产生不同的实例。</p>
+</blockquote>
+<p>闭包的概念出现于60年代，最早实现闭包的程序语言是<code>Scheme</code>。之后，闭包被广泛使用于函数式编程语言如<code>ML</code>语言和<code>LISP</code>。很多命令式程序语言也开始支持闭包。</p>
+<p>可以看到，第一句就已经说明了什么是闭包：闭包是引用了自由变量的函数。所以，闭包是一种特殊的函数。</p>
+<p>在<code>Rust</code>里，闭包被分为了三种类型，列举如下</p>
+<ul>
+<li><a href="https://doc.rust-lang.org/std/ops/trait.Fn.html" target="_blank" rel="noopener">Fn(&amp;self)</a></li>
+<li><a href="https://doc.rust-lang.org/std/ops/trait.FnMut.html" target="_blank" rel="noopener">FnMut(&amp;mut self)</a></li>
+<li><a href="https://doc.rust-lang.org/std/ops/trait.FnOnce.html" target="_blank" rel="noopener">FnOnce(self)</a></li>
+</ul>
+<p>在<code>rust</code>中，函数和闭包都是实现了<code>Fn</code>、<code>FnMut</code>或<code>FnOnce</code>特质（<code>trait</code>）的类型。任何实现了这三种特质其中一种的类型的对象，都是 可调用对象 ，都能像函数和闭包一样通过这样<code>name()</code>的形式调用，<code>()</code>在<code>rust</code>中是一个操作符，操作符在<code>rust</code>中是可以重载的。<code>rust</code>的操作符重载是通过实现相应的<code>trait</code>来实现，而<code>()</code>操作符的相应<code>trait</code>就是<code>Fn</code>、<code>FnMut</code>和<code>FnOnce</code>，所以，任何实现了这三个<code>trait</code>中的一种的类型，其实就是重载了<code>()</code>操作符。</p>
+<h2 id="Rust中三种闭包的定义："><a href="#Rust中三种闭包的定义：" class="headerlink" title="Rust中三种闭包的定义："></a><code>Rust</code>中三种闭包的定义：</h2><p><img src="/images/blog/rust/rust-closure.jpg" alt="Rust的三种闭包类型"></p>
+<blockquote>
+<p>图片来源于<a href="https://zhuanlan.zhihu.com/p/64417628" target="_blank" rel="noopener">知乎-Rust编程专栏</a></p>
+</blockquote>
+<h3 id="FnOnce"><a href="#FnOnce" class="headerlink" title="FnOnce"></a><code>FnOnce</code></h3><h4 id="标准库定义"><a href="#标准库定义" class="headerlink" title="标准库定义"></a>标准库定义</h4><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[lang = <span class="meta-string">"fn_once"</span>]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">trait</span> <span class="title">FnOnce</span></span>&lt;Args&gt; &#123;</span><br><span class="line">    <span class="class"><span class="keyword">type</span> <span class="title">Output</span></span>;</span><br><span class="line">    <span class="keyword">extern</span> <span class="string">"rust-call"</span> <span class="function"><span class="keyword">fn</span> <span class="title">call_once</span></span>(<span class="keyword">self</span>, args: Args) -&gt; Self::Output;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参数类型是<code>self</code>，所以，这种类型的闭包会获取变量的所有权，生命周期只能是当前作用域，之后就会被释放了。</p>
+<h4 id="FnOnce例子："><a href="#FnOnce例子：" class="headerlink" title="FnOnce例子："></a><code>FnOnce</code>例子：</h4><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">E</span></span> &#123;</span><br><span class="line">    a: <span class="built_in">String</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="built_in">Drop</span> <span class="keyword">for</span> E &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">drop</span></span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>) &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"destroyed struct E"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">fn_once</span></span>&lt;F&gt;(func: F) <span class="keyword">where</span> F: <span class="built_in">FnOnce</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"fn_once begins"</span>);</span><br><span class="line">    func();</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"fn_once ended"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> e = E &#123; a: <span class="string">"fn_once"</span>.to_string() &#125;;</span><br><span class="line">    <span class="comment">// 这样加个move，看看程序执行输出顺序有什么不同</span></span><br><span class="line">    <span class="comment">// let f = move || println!("fn once calls: &#123;:?&#125;", e);</span></span><br><span class="line">    <span class="keyword">let</span> f = || <span class="built_in">println!</span>(<span class="string">"fn once closure calls: &#123;:?&#125;"</span>, e);</span><br><span class="line">    fn_once(f);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"main ended"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>打印结果如下：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line">fn_once begins</span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">once</span> <span class="title">closure</span> <span class="title">calls</span>: <span class="title">E</span> &#123; <span class="title">a</span>: "<span class="title">fn_once</span>" &#125;</span></span><br><span class="line"><span class="function"><span class="title">fn_once</span> <span class="title">ended</span></span></span><br><span class="line"><span class="function"><span class="title">main</span> <span class="title">ended</span></span></span><br><span class="line"><span class="function"><span class="title">destroyed</span> <span class="title">struct</span> <span class="title">E</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&code=%23%5Bderive(Debug)%5D%0Astruct%20E%20%7B%0A%20%20%20%20a:%20String,%0A%7D%0A%0Aimpl%20Drop%20for%20E%20%7B%0A%20%20%20%20fn%20drop(&mut%20self)%20%7B%0A%20%20%20%20%20%20%20%20println!(%22destroyed%20struct%20E%22);%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20fn_once%3CF%3E(func:%20F)%20where%20F:%20FnOnce()%20%7B%0A%20%20%20%20println!(%22fn_once%20begins%22);%0A%20%20%20%20func();%0A%20%20%20%20println!(%22fn_once%20ended%22);%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20e%20=%20E%20%7B%20a:%20%22fn_once%22.to_string()%20%7D;%0A%20%20%20%20//%20%E8%BF%99%E6%A0%B7%E5%8A%A0%E4%B8%AAmove%EF%BC%8C%E7%9C%8B%E7%9C%8B%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E8%BE%93%E5%87%BA%E9%A1%BA%E5%BA%8F%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%0A%20%20%20%20//%20let%20f%20=%20move%20%7C%7C%20println!(%22fn%20once%20calls:%20%7B:?%7D%22,%20e);%0A%20%20%20%20let%20f%20=%20%7C%7C%20println!(%22fn%20once%20closure%20calls:%20%7B:?%7D%22,%20e);%0A%20%20%20%20fn_once(f);%0A%20%20%20%20println!(%22main%20ended%22);%0A%7D" target="_blank" rel="noopener">FnOnce类型闭包-Rust playground例子</a></p>
+</blockquote>
+<p>但是如果闭包运行两次，比如:</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">fn_once</span></span>&lt;F&gt;(func: F) <span class="keyword">where</span> F: <span class="built_in">FnOnce</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"fn_once begins"</span>);</span><br><span class="line">    func();</span><br><span class="line">    func();</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"fn_once ended"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>则编译器就报错了，类似这样：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line">error[E0382]: <span class="keyword">use</span> of moved value: `func`</span><br><span class="line">  --&gt; src/main.rs:<span class="number">15</span>:<span class="number">5</span></span><br><span class="line">   |</span><br><span class="line"><span class="number">12</span> | <span class="function"><span class="keyword">fn</span> <span class="title">fn_once</span></span>&lt;F&gt;(func: F) <span class="keyword">where</span> F: <span class="built_in">FnOnce</span>() &#123;</span><br><span class="line">   |            -  ---- move occurs because `func` has type `F`, which does not implement the `Copy` trait</span><br><span class="line">   |            |</span><br><span class="line">   |            consider adding a `<span class="built_in">Copy</span>` constraint to this <span class="class"><span class="keyword">type</span> <span class="title">argument</span></span></span><br><span class="line"><span class="number">13</span> |     <span class="built_in">println!</span>(<span class="string">"fn_once begins"</span>);</span><br><span class="line"><span class="number">14</span> |     func();</span><br><span class="line">   |     ---- value moved here</span><br><span class="line"><span class="number">15</span> |     func();</span><br><span class="line">   |     ^^^^ value used here after <span class="keyword">move</span></span><br><span class="line"></span><br><span class="line">error: aborting due to previous error</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&code=%23%5Bderive(Debug)%5D%0Astruct%20E%20%7B%0A%20%20%20%20a:%20String,%0A%7D%0A%0Aimpl%20Drop%20for%20E%20%7B%0A%20%20%20%20fn%20drop(&mut%20self)%20%7B%0A%20%20%20%20%20%20%20%20println!(%22destroyed%20struct%20E%22);%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20fn_once%3CF%3E(func:%20F)%20where%20F:%20FnOnce()%20%7B%0A%20%20%20%20println!(%22fn_once%20begins%22);%0A%20%20%20%20func();%0A%20%20%20%20func();%0A%20%20%20%20println!(%22fn_once%20ended%22);%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20e%20=%20E%20%7B%20a:%20%22fn_once%22.to_string()%20%7D;%0A%20%20%20%20//%20%E8%BF%99%E6%A0%B7%E5%8A%A0%E4%B8%AAmove%EF%BC%8C%E7%9C%8B%E7%9C%8B%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E8%BE%93%E5%87%BA%E9%A1%BA%E5%BA%8F%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%0A%20%20%20%20//%20let%20f%20=%20move%20%7C%7C%20println!(%22fn%20once%20calls:%20%7B:?%7D%22,%20e);%0A%20%20%20%20let%20f%20=%20%7C%7C%20println!(%22fn%20once%20closure%20calls:%20%7B:?%7D%22,%20e);%0A%20%20%20%20fn_once(f);%0A%20%20%20%20println!(%22main%20ended%22);%0A%7D" target="_blank" rel="noopener">FnOnce类型闭包错误-Rust playgroound例子</a></p>
+</blockquote>
+<p>这是为什么呢？</p>
+<p>还是回到<code>FnOnce</code>的定义，参数类型是<code>self</code>，所以在<code>func</code>第一次执行完之后，之前捕获的变量已经被释放了，所以已经无法在执行第二次了。所以，如果要运行多次，可以使用<code>FnMut\Fn</code>。</p>
+<h3 id="FnMut"><a href="#FnMut" class="headerlink" title="FnMut"></a><code>FnMut</code></h3><h4 id="标准库定义-1"><a href="#标准库定义-1" class="headerlink" title="标准库定义"></a>标准库定义</h4><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[lang = <span class="meta-string">"fn_mut"</span>]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">trait</span> <span class="title">FnMut</span></span>&lt;Args&gt;: <span class="built_in">FnOnce</span>&lt;Args&gt; &#123;</span><br><span class="line">    <span class="keyword">extern</span> <span class="string">"rust-call"</span> <span class="function"><span class="keyword">fn</span> <span class="title">call_mut</span></span>(&amp;<span class="keyword">mut</span> <span class="keyword">self</span>, args: Args) -&gt; Self::Output;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参数类型是<code>&amp;mut self</code>，所以，这种类型的闭包是可变借用，会改变变量，但不会释放该变量。所以可以运行多次。</p>
+<h4 id="FnMut例子"><a href="#FnMut例子" class="headerlink" title="FnMut例子"></a><code>FnMut</code>例子</h4><p>和上面的例子差不多，有两个地方要改下:</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">fn_mut</span></span>&lt;F&gt;(<span class="keyword">mut</span> func: F) <span class="keyword">where</span> F: <span class="built_in">FnMut</span>() &#123;</span><br><span class="line">    func();</span><br><span class="line">    func();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> e = E &#123; a: <span class="string">"fn_once"</span>.to_string() &#125;;</span><br><span class="line"><span class="keyword">let</span> f = || &#123; <span class="built_in">println!</span>(<span class="string">"FnMut closure calls: &#123;:?&#125;"</span>, e); e.a = <span class="string">"fn_mut"</span>.to_string(); &#125;;</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<p>打印结果如下：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line">fn_mut begins</span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">mut</span> <span class="title">closure</span> <span class="title">calls</span>: <span class="title">E</span> &#123; <span class="title">a</span>: "<span class="title">fn_mut</span>" &#125;</span></span><br><span class="line"><span class="function"><span class="title">fn</span> <span class="title">mut</span> <span class="title">closure</span> <span class="title">calls</span>: <span class="title">E</span> &#123; <span class="title">a</span>: "<span class="title">fn_mut</span>" &#125;</span></span><br><span class="line"><span class="function"><span class="title">fn_mut</span> <span class="title">ended</span></span></span><br><span class="line"><span class="function"><span class="title">main</span> <span class="title">ended</span></span></span><br><span class="line"><span class="function"><span class="title">destroyed</span> <span class="title">struct</span> <span class="title">E</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&code=%23%5Bderive(Debug)%5D%0Astruct%20E%20%7B%0A%20%20%20%20a:%20String,%0A%7D%0A%0Aimpl%20Drop%20for%20E%20%7B%0A%20%20%20%20fn%20drop(&mut%20self)%20%7B%0A%20%20%20%20%20%20%20%20println!(%22destroyed%20struct%20E%22);%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20fn_mut%3CF%3E(mut%20func:%20F)%20where%20F:%20FnMut()%20%7B%0A%20%20%20%20println!(%22fn_mut%20begins%22);%0A%20%20%20%20func();%0A%20%20%20%20func();%0A%20%20%20%20println!(%22fn_mut%20ended%22);%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20e%20=%20E%20%7B%20a:%20%22fn_mut%22.to_string()%20%7D;%0A%20%20%20%20let%20f%20=%20%7C%7C%20println!(%22fn%20mut%20closure%20calls:%20%7B:?%7D%22,%20e);%0A%20%20%20%20fn_mut(f);%0A%20%20%20%20println!(%22main%20ended%22);%0A%7D" target="_blank" rel="noopener">FnMut类型闭包-Rust playground例子</a></p>
+</blockquote>
+<p>可以看出<code>FnMut</code>类型的闭包是可以运行多次的，且可以修改捕获变量的值。</p>
+<h3 id="Fn"><a href="#Fn" class="headerlink" title="Fn"></a>Fn</h3><h4 id="标准库定义-2"><a href="#标准库定义-2" class="headerlink" title="标准库定义"></a>标准库定义</h4><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[lang = <span class="meta-string">"fn"</span>]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="class"><span class="keyword">trait</span> <span class="title">Fn</span></span>&lt;Args&gt;: <span class="built_in">FnMut</span>&lt;Args&gt; &#123;</span><br><span class="line">    <span class="keyword">extern</span> <span class="string">"rust-call"</span> <span class="function"><span class="keyword">fn</span> <span class="title">call</span></span>(&amp;<span class="keyword">self</span>, args: Args) -&gt; Self::Output;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参数类型是<code>&amp;self</code>，所以，这种类型的闭包是不可变借用，不会改变变量，也不会释放该变量。所以可以运行多次。</p>
+<h4 id="Fn例子"><a href="#Fn例子" class="headerlink" title="Fn例子"></a><code>Fn</code>例子</h4><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">fn_immut</span></span>&lt;F&gt;(func: F) <span class="keyword">where</span> F: <span class="built_in">Fn</span>() &#123;</span><br><span class="line">    func();</span><br><span class="line">    func();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">let</span> e = E &#123; a: <span class="string">"fn"</span>.to_string() &#125;;</span><br><span class="line"><span class="keyword">let</span> f = || &#123; <span class="built_in">println!</span>(<span class="string">"Fn closure calls: &#123;:?&#125;"</span>, e); &#125;;</span><br><span class="line">fn_immut(f);</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<p>打印结果如下：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line">fn_imut begins</span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">closure</span> <span class="title">calls</span>: <span class="title">E</span> &#123; <span class="title">a</span>: "<span class="title">fn</span>" &#125;</span></span><br><span class="line"><span class="function"><span class="title">fn</span> <span class="title">closure</span> <span class="title">calls</span>: <span class="title">E</span> &#123; <span class="title">a</span>: "<span class="title">fn</span>" &#125;</span></span><br><span class="line"><span class="function"><span class="title">fn_imut</span> <span class="title">ended</span></span></span><br><span class="line"><span class="function"><span class="title">main</span> <span class="title">ended</span></span></span><br><span class="line"><span class="function"><span class="title">destroyed</span> <span class="title">struct</span> <span class="title">E</span></span></span><br></pre></td></tr></table></figure>
+
+<p>可以看出<code>Fn</code>类型的闭包是可以运行多次的，但不可以修改捕获变量的值。</p>
+<blockquote>
+<p><a href="https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&code=%23%5Bderive(Debug)%5D%0Astruct%20E%20%7B%0A%20%20%20%20a:%20String,%0A%7D%0A%0Aimpl%20Drop%20for%20E%20%7B%0A%20%20%20%20fn%20drop(&mut%20self)%20%7B%0A%20%20%20%20%20%20%20%20println!(%22destroyed%20struct%20E%22);%0A%20%20%20%20%7D%0A%7D%0A%0Afn%20fn_imut%3CF%3E(func:%20F)%20where%20F:%20Fn()%20%7B%0A%20%20%20%20println!(%22fn_imut%20begins%22);%0A%20%20%20%20func();%0A%20%20%20%20func();%0A%20%20%20%20println!(%22fn_imut%20ended%22);%0A%7D%0A%0Afn%20main()%20%7B%0A%20%20%20%20let%20e%20=%20E%20%7B%20a:%20%22fn%22.to_string()%20%7D;%0A%20%20%20%20let%20f%20=%20%7C%7C%20println!(%22Fn%20closure%20calls:%20%7B:?%7D%22,%20e);%0A%20%20%20%20fn_imut(f);%0A%20%20%20%20println!(%22main%20ended%22);%0A%7D" target="_blank" rel="noopener">Fn类型闭包-Rust playground例子</a></p>
+</blockquote>
+<h2 id="常见的错误"><a href="#常见的错误" class="headerlink" title="常见的错误"></a>常见的错误</h2><p>有时候在使用<code>Fn/FnMut</code>这里类型的闭包，编译器经常会给出这样的错误:</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"># ...</span><br><span class="line">cannot <span class="keyword">move</span> out of captured variable <span class="keyword">in</span> an <span class="built_in">Fn</span>(<span class="built_in">FnMut</span>) closure</span><br><span class="line"># ...</span><br></pre></td></tr></table></figure>
+
+<p>看下如何复现这种情形:</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">fn_immut</span></span>&lt;F&gt;(f: F) <span class="keyword">where</span> F: <span class="built_in">Fn</span>() -&gt; <span class="built_in">String</span> &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"calling Fn closure from fn, &#123;&#125;"</span>, f());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> a = <span class="string">"Fn"</span>.to_string();</span><br><span class="line">    fn_immut(|| a); <span class="comment">// 闭包返回一个字符串</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样写就会出现上面的那种错误。但如何修复呢？</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line">fn_immut(|| a.clone());</span><br></pre></td></tr></table></figure>
+
+<p>但原因是什么呢？</p>
+<p>只要稍稍改下上面的代码，运行一次，编译器给出的错误就很明显了:</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fn</span> <span class="title">fn_immut</span></span>&lt;F&gt;(f: F) <span class="keyword">where</span> F: <span class="built_in">Fn</span>() -&gt; <span class="built_in">String</span> &#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">"calling Fn closure from fn, &#123;&#125;"</span>, f());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> a = <span class="string">"Fn"</span>.to_string();</span><br><span class="line">    <span class="keyword">let</span> f = || a;</span><br><span class="line">    fn_immut(f);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译器给出的错误如下:</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="number">7</span> |     <span class="keyword">let</span> f = <span class="keyword">move</span> || a;</span><br><span class="line">  |             ^^^^^^^^-</span><br><span class="line">  |             |       |</span><br><span class="line">  |             |       closure is `<span class="built_in">FnOnce</span>` because it moves the variable `a` out of its environment</span><br><span class="line">  |             this closure implements `<span class="built_in">FnOnce</span>`, not `<span class="built_in">Fn</span>`</span><br><span class="line"><span class="number">8</span> |     fn_immut(f);</span><br><span class="line">  |     -------- the requirement to implement `<span class="built_in">Fn</span>` derives from here</span><br></pre></td></tr></table></figure>
+
+<p>看到没，编译器推导出这个闭包是<code>FnOnce</code>类型的，因为闭包最后返回了<code>a</code>，交还了所有权，是不能再运行第二次了，因为闭包不再是<code>a</code>的所有者。</p>
+<p>而<code>Fn/FnMut</code>是被认定可以多次运行的，如果交还了捕获变量的所有权，则下次就不能运行了，所以会报出前面那个错误。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>因为闭包和<code>rust</code>里的生命周期，所有权紧紧联系在一起了，有时候不怎么好理解，但多写写代码，多试几次，大概就能明白这三者之间的区别。</p>
+<p>总之，闭包是<code>rust</code>里非常好用的功能，能让代码变得简洁优雅，是值得去学习和掌握的！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Rust%E5%85%A5%E5%9D%91%E4%B9%8B%E6%97%85/" rel="tag"># Rust入坑之旅</a>
+          
+            <a href="/tags/%E9%97%AD%E5%8C%85/" rel="tag"># 闭包</a>
+          
+            <a href="/tags/Rust/" rel="tag"># Rust</a>
+          
+            <a href="/tags/Closure/" rel="tag"># Closure</a>
+          
+            <a href="/tags/Fn/" rel="tag"># Fn</a>
+          
+            <a href="/tags/FnOne/" rel="tag"># FnOne</a>
+          
+            <a href="/tags/FnMut/" rel="tag"># FnMut</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/28/rust-mod/" rel="next" title="Rust模块机制">
+                <i class="fa fa-chevron-left"></i> Rust模块机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/26/what-is-testability-in-DFX/" rel="prev" title="DFX中的可测试性是什么？">
+                DFX中的可测试性是什么？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
+          <p class="site-author-name" itemprop="name">Tony Deng</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">70</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">136</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tonydeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wolfdeng" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/tonydeng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-global"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包是什么？"><span class="nav-number">1.</span> <span class="nav-text">闭包是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rust中三种闭包的定义："><span class="nav-number">2.</span> <span class="nav-text">Rust中三种闭包的定义：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FnOnce"><span class="nav-number">2.1.</span> <span class="nav-text">FnOnce</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标准库定义"><span class="nav-number">2.1.1.</span> <span class="nav-text">标准库定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FnOnce例子："><span class="nav-number">2.1.2.</span> <span class="nav-text">FnOnce例子：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FnMut"><span class="nav-number">2.2.</span> <span class="nav-text">FnMut</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标准库定义-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">标准库定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FnMut例子"><span class="nav-number">2.2.2.</span> <span class="nav-text">FnMut例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fn"><span class="nav-number">2.3.</span> <span class="nav-text">Fn</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标准库定义-2"><span class="nav-number">2.3.1.</span> <span class="nav-text">标准库定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fn例子"><span class="nav-number">2.3.2.</span> <span class="nav-text">Fn例子</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的错误"><span class="nav-number">3.</span> <span class="nav-text">常见的错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2005 - 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Deng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
