@@ -10,6 +10,8 @@ date: 2020-11-26 11:38:58
 keywords: DFX中的可测试性是什么？, 架构设计, DFX, 可测试性
 ---
 
+![DFX](/images/blog/DFX/DFX.jpg)
+
 ## 为什么引入可测试性设计？
 
 在讨论可测试性之前，我们不妨先来思考一个问题：
@@ -17,6 +19,8 @@ keywords: DFX中的可测试性是什么？, 架构设计, DFX, 可测试性
 当我们来盖一栋楼，如果不能保证钢筋、水泥、砖土质量合格，却想要盖出合格的大楼来，这个可能吗？
 
 然而，很多团队的软件开发就是这么做的。很荒唐吧！
+
+<!-- more -->
 
 ![DFX类型](/images/blog/DFX/DFX-Type.png)
 
@@ -72,25 +76,25 @@ keywords: DFX中的可测试性是什么？, 架构设计, DFX, 可测试性
 
 ![可控制用例](/images/blog/DFX/testability/can-be-controlled-usecase.png)
 
-#### 可理解性
+### 可理解性
 
 > 得到的信息越多，进行的测试越准确、精细
 
 ![可理解性用例](/images/blog/DFX/testability/can-understand-usecase.png)
 
-#### 简单性
+### 简单性
 
 > 需要测试的内容越少，测试的速度越快
 
 ![简单性用例](/images/blog/DFX/testability/simplicity-usecase.png)
 
-#### 稳定性
+### 稳定性
 
 > 改变越少，对测试的破坏越小
 
 ![稳定性用例](/images/blog/DFX/testability/stability-usecase.png)
 
-#### 可分解
+### 可分解
 
 > 通过控制测试范围，能够更好分解问题，执行测试
 
