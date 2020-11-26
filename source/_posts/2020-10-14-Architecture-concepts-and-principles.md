@@ -1,6 +1,6 @@
 layout: post
 title: 架构设计中的概念和原则
-published: true
+published: false
 comments: true
 sharing: true
 footer: true
@@ -8,6 +8,7 @@ categories: [架构]
 tags: [arch, DFX, engineered]
 date: 2020-10-14 14:48:18
 keywords: 架构设计 概念 原则 架构设计中的概念和原则
+参考： https://tqzy.gitee.io/2019/04/30/jgjbyz/
 ---
 
 ## 概念关系

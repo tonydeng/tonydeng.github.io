@@ -4,10 +4,10 @@ published: true
 comments: true
 sharing: true
 footer: true
-categories: [架构]
-tags: [etcd]
+categories: [架构设计]
+tags: [etcd,架构设计]
 date: 2015-10-19 15:49:41
-keywords: etcd, 应用场景
+keywords: etcd, 应用场景, 架构设计
 ---
 ![etcd logo](/images/blog/etcd/etcd2-0.png)
 # etcd是什么？

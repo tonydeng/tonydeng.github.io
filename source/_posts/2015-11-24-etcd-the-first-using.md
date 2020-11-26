@@ -4,10 +4,10 @@ published: true
 comments: true
 sharing: true
 footer: true
-categories: [架构]
-tags: [etcd, restful, api]
+categories: [架构设计]
+tags: [etcd, restful, api, 架构设计]
 date: 2015-11-24 17:11:55
-keywords:
+keywords:架构设计, etcd, 初试ETCD
 ---
 
 ![etcd logo](/images/blog/etcd/etcd-api.png)
