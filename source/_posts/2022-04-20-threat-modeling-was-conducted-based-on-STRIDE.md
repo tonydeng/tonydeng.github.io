@@ -38,6 +38,8 @@ keywords:
 
 ![STRIDE整体活动流程](/images/blog/stride/STRIDE-Activity-Main.png)
 
+<!-- more -->
+
 在威胁建模过程中起主导作用的是软件设计者、开发人员和测试人员。威胁建模的对象并不一定是一个完整的软件。根据需求的不同，建模对象可以是整个应用、安全和隐私相关的功能、跨信任边界的功能等等。
 
 ![stride entity main](/images/blog/stride/STRIDE-Entity-Main.png)
