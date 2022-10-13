@@ -11,6 +11,7 @@ keywords: Gitbook NETCONF RESTCONF SDN SDN手册 RFC RFC8040 RFC6241 RFC7950 交
 ## 架构设计
 
 1. [架构师手册](https://tonydeng.github.io/architect-manual)
+2. [企业架构设计方法与实践](https://tonydeng.github.io/EA-practices)
 
 ## SDN
 
@@ -25,4 +26,5 @@ keywords: Gitbook NETCONF RESTCONF SDN SDN手册 RFC RFC8040 RFC6241 RFC7950 交
 1. [简约至上：交互式设计四策略（Simple and Usable Web,Mobile, and Interaction Design）笔记](https://tonydeng.github.io/Interactive-design-notes/)
 
 ## Gitbook
+
 1. [Gitbook使用入门](/gitbook-zh/gitbook-howtouse/)
