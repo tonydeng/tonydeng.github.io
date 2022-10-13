@@ -7,7 +7,7 @@ footer: true
 categories: [架构设计]
 tags: [etcd, restful, api, 架构设计]
 date: 2015-11-24 17:11:55
-keywords:架构设计, etcd, 初试ETCD
+keywords: 架构设计 etcd 初试ETCD
 ---
 
 ![etcd logo](/images/blog/etcd/etcd-api.png)
@@ -16,6 +16,7 @@ keywords:架构设计, etcd, 初试ETCD
 
 etcd 2.0之后，规范了端口号的使用，并且写入了[IANA组织的标准端口记录](http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml)。etcd将提供给外部客户端的端口变为2379，而etcd服务间通信的端口变为2380（不过现在依然还是兼容原来4001和7001端口）。
 <!-- more -->
+
 # 安装etcd
 
 在mac osx下安装依然是非常简单，直接使用下面的命令就可以搞定。
