@@ -503,6 +503,155 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2015/11/24/etcd-the-first-using/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/24/etcd-the-first-using/" itemprop="url">
+                  初试ETCD
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-24T17:11:55+08:00">
+                2015-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index">
+                    <span itemprop="name">架构设计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="/images/blog/etcd/etcd-api.png" alt="etcd logo"></p>
+<p>之前我们分享过<a href="/2015/10/19/etcd-application-scenarios/">ETCD应用场景</a>，所有的应用场景都需要etcd提供的api来做支撑，所以这次我们就来看看ectd提供的REST API如何来使用。</p>
+<p>etcd 2.0之后，规范了端口号的使用，并且写入了<a href="http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml" target="_blank" rel="noopener">IANA组织的标准端口记录</a>。etcd将提供给外部客户端的端口变为2379，而etcd服务间通信的端口变为2380（不过现在依然还是兼容原来4001和7001端口）。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/11/24/etcd-the-first-using/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2015/11/19/install-leiningen/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1686,164 +1835,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2015/10/19/etcd-application-scenarios/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tony Deng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TonyDeng's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/19/etcd-application-scenarios/" itemprop="url">
-                  ETCD应用场景
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-19T15:49:41+08:00">
-                2015-10-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index">
-                    <span itemprop="name">架构设计</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="/images/blog/etcd/etcd2-0.png" alt="etcd logo"></p>
-<h1 id="etcd是什么？"><a href="#etcd是什么？" class="headerlink" title="etcd是什么？"></a>etcd是什么？</h1><p>很多人对这个问题的第一反应可能是，它是一个键值存储仓库，却没有重视官方定义的后半句，用于<strong>配置共享</strong>和<strong>服务发现</strong>。</p>
-<blockquote>
-<p>A highly-available key value store for shared configuration and service discovery.</p>
-</blockquote>
-<p>实际上，etcd作为一个受到Zookeeper和doozer启发而催生的项目，除了拥有与之类似的功能外，更具有以下4个特点。（<a href="https://github.com/coreos/etcd" target="_blank" rel="noopener">引自etcd官方文档</a>）</p>
-<ul>
-<li>简单： 基于HTTP+JSON的API让你可以用CURL命令就可以轻松使用。</li>
-<li>安全： 可以选择SSL客户认证机制。</li>
-<li>快速： 每个实例每秒支持一千次写操作。</li>
-<li>可信： 使用<a href="http://raftconsensus.github.io/" target="_blank" rel="noopener">Ralf</a>算法充分实现了分布式。</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2015/10/19/etcd-application-scenarios/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1893,7 +1884,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1915,7 +1906,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">140</span>
+                <span class="site-state-item-count">142</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

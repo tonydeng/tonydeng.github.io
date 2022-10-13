@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://tonydeng.github.io/2015/11/24/etcd-the-first-using/</loc>
+    
+    <lastmod>2022-10-13</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://tonydeng.github.io/gitbook-zh/index.html</loc>
     
     <lastmod>2022-10-13</lastmod>
@@ -1517,6 +1524,20 @@
   
   <url>
     <loc>http://tonydeng.github.io/tags/Threat-Modeling/</loc>
+    <lastmod>2022-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/restful/</loc>
+    <lastmod>2022-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/api/</loc>
     <lastmod>2022-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

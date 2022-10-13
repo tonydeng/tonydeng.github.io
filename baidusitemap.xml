@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://tonydeng.github.io/2015/11/24/etcd-the-first-using/</loc>
+    <lastmod>2022-10-13</lastmod>
+  </url>
+  <url>
     <loc>http://tonydeng.github.io/2022/04/20/threat-modeling-was-conducted-based-on-STRIDE/</loc>
     <lastmod>2022-05-11</lastmod>
   </url>
