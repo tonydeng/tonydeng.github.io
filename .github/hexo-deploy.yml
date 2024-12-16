@@ -1,0 +1,73 @@
+name: deploying Hexo project to GitHub pages
+on:
+  push:
+    branches:
+      - develop # 分支有 push 行为时就触发这个 action
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_USER:  'github-actions[bot]'
+      # GitHub Pages仓库 即博客部署需要用到的仓库
+      DEPLOY_REPO: tonydeng.github.io
+      DEPLOY_BRANCH: master
+      GIT_USER:  'github-actions[bot]'
+      GIT_EMAIL: 'github-actions[bot]@users.noreply.github.com'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+          fetch-depth: 0
+      
+      - name: Set timezone to Asia/Shanghai
+        uses: szenius/set-timezone@v1.0
+        with:
+          # 设置执行环境的时区为 Linux 上海时区
+          timezoneLinux: "Asia/Shanghai"
+
+      - name: Echo current time
+        run: timedatectl
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.15.0
+
+      - name: Generate pages
+        run: |
+          export TZ='Asia/Shanghai'
+          npm install -g hexo-cli hexo
+          npm install
+          hexo clean && hexo g
+      
+      - name: Git config
+        run: |
+          git config --global user.name "${{GIT_USER}}"
+          git config --global user.email "${{GIT_EMAIL}}"
+      
+      - name: Pull blog repo && Copy files
+        run: |
+          git clone https://github.com/${{GITHUB_USER}}/${{DEPLOY_REPO}}.git
+          rm -rf ${{DEPLOY_REPO}}/*
+          cp -r ./public/* ./${{DEPLOY_REPO}}
+
+      - name: Deploy blog
+        run: |
+          echo '>_ Enter repo: ${{GITHUB_USER}}/${{DEPLOY_REPO}} ...'
+          cd ${{DEPLOY_REPO}}
+          echo '>_ Pwd current dir ...'
+          pwd
+          echo '>_ Show files ...'
+          ls -al
+          echo '>_ Set remote git ...'
+          rm -rf .git
+          git init
+          git remote add origin https://${{secrets.DEPLOY_TOKEN}}@github.com/${{GITHUB_USER}}/${{DEPLOY_REPO}}.git
+          git branch -M ${{DEPLOY_BRANCH}}
+          git add .
+          echo '>_ Start Commit ...'
+          git commit --allow-empty -m "Github Action Automated Deployment $(date +'%Y-%m-%d %H:%M:%S')"
+          echo '>_ Start Push ...'
+          git push -u origin ${{DEPLOY_BRANCH}} --force
