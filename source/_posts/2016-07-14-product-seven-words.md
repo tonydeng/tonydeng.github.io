@@ -21,21 +21,21 @@ keywords: 产品经理七字真言 产品设计
 
 比如，想不通的......
 
-![产品经理频繁改需求为什么会惹毛程序员？](http://www.wanho.net/data/upload/ueditor/56d65d9d43914.jpg)
+![产品经理频繁改需求为什么会惹毛程序员？](/images/blog/seven-words/56d65d9d43914.jpg)
 
 比如，比较暴力的......
 
-![产品经理改需求惨遭囚禁凌虐](http://www.dongao.com/kjzx/UploadFiles_5705/201507/2015071016354845.png)
+![产品经理改需求惨遭囚禁凌虐](/images/blog/seven-words/2015071016354845.png)
 
 
 或者，如此求解的......
 
-![产品经理如何和程序员共处](http://www.dongao.com/kjzx/UploadFiles_5705/201507/2015071016360147.png)
+![产品经理如何和程序员共处](/images/blog/seven-words/2015071016360147.png)
 
 
 感觉整个互联网行业，甚至IT圈都在上演产品经理和程序员的“恩怨情仇”，堪比各大影院前段时间上映的迪斯尼大片《Zootopia》（疯狂动物城）。
 
-![产品经理和程序员的恩怨情仇](http://www.woshipm.com/wp-content/uploads/2015/07/QQ20150717145729.png)
+![产品经理和程序员的恩怨情仇](/images/blog/seven-words/QQ20150717145729.png)
 
 ## 矛盾如何产生？
 
@@ -86,7 +86,7 @@ keywords: 产品经理七字真言 产品设计
 一个没有概念，规划的产品设计，你让一个思维严谨的程序猿如何能接受？他们只会认为，产品经理不靠谱，这种不靠谱的需求只会导致如下情况：
 
 > 如果让这个产品通过了产品讨论阶段，那么他们只能为这个不靠谱的产品设计和产品经理买单，程序猿们会产生这样的想法： 我TMD就是那个“接盘侠”。
-> ![接盘侠](http://www.cyxqd.com/wp-content/uploads/2014/01/jiepanxia.jpg)
+> ![接盘侠](/images/blog/seven-words/jiepanxia.jpg)
 
 ** 产品汪们，你们也想想，你们愿意当这个接盘侠吗？ **
 
@@ -115,11 +115,11 @@ keywords: 产品经理七字真言 产品设计
 
 那很多产品汪就非常郁闷的说，这么多的问题，怎么样才能够都考虑到呢？
 
-![我们不专业](http://images.rednet.cn/articleimage/2006/07/29/104016572.jpg)
+![我们不专业](/images/blog/seven-words/104016572.jpg)
 
 那怎么办呢？我们是不是需要进修一下呢？比如学星爷研读的秘籍《产品狗的自我修养》。
 
-![产品狗的自我修养](http://image.woshipm.com/wp-files/2015/07/chanpingou.jpg)
+![产品狗的自我修养](/images/blog/seven-words/chanpingou.jpg)
 
 其实，我们并不需要研读那么深刻的著作，其实我们只要掌握了产品设计的**七字真言**，基本上也程序猿的在产品讨论会上碰到的问题就能解决的差不多了。
 
@@ -209,12 +209,12 @@ keywords: 产品经理七字真言 产品设计
 
 有一个比喻非常好，“产品是孩子，开发是妈妈，产品经理是爸爸，测试时医生”，**We are 伐木累！**，产品汪，你们觉得呢？
 
-![we are 伐木累](http://www.android100.org/uploadfile/2015/0829/20150829004427_0.gif)
+![we are 伐木累](/images/blog/seven-words/20150829004427_0.gif)
 
 最后说一句，不管怎么样，各位产品汪们，需要对产品经理本身的职责要搞清楚，如果你短时间内不能达到产品经理本身应该具备的素质，那你就应该努力提高自己对产品设计和产品经理职责的理解，good good study,day day up！并且，要发挥自己的亲和力将整个团队的各个成员的长处组合起来，一起完成一个满意的产品。
 
-![任何不能杀了我的只会让我更强](http://image.woshipm.com/wp-files/2015/07/QQ20150727200359.png)
+![任何不能杀了我的只会让我更强](/images/blog/seven-words/QQ20150727200359.png)
 
 另外，程序猿们也不要太过难为产品汪，大家都是在一个团队工作，为了同一个目标而努力，能够互相支持，互相补位的就多多支持和补位。毕竟大家也都是在**同一个马勺里喝水**。
 
-![同一个马勺里喝水](http://www.yixieshi.com/uploads/allimg/140525/1-14052520102TZ.jpg)
+![同一个马勺里喝水](/images/blog/seven-words/1-14052520102TZ.jpg)
