@@ -12,8 +12,6 @@ jobs:
       # GitHub Pages仓库 即博客部署需要用到的仓库
       DEPLOY_REPO: tonydeng.github.io
       DEPLOY_BRANCH: master
-      GIT_USER:  'github-actions[bot]'
-      GIT_EMAIL: 'github-actions[bot]@users.noreply.github.com'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -44,8 +42,8 @@ jobs:
       
       - name: Git config
         run: |
-          git config --global user.name "${{GIT_USER}}"
-          git config --global user.email "${{GIT_EMAIL}}"
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
       
       - name: Pull blog repo && Copy files
         run: |
