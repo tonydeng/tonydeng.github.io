@@ -8,7 +8,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     env:
-      GITHUB_USER:  'github-actions[bot]'
+      GITHUB_USER:  'tonydeng'
       # GitHub Pages仓库 即博客部署需要用到的仓库
       DEPLOY_REPO: tonydeng.github.io
       DEPLOY_BRANCH: master
