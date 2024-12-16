@@ -1,71 +1,49 @@
-name: deploying Hexo project to GitHub pages
+name: Deploy Hexo to GitHub Pages
+
 on:
   push:
     branches:
-      - develop # 分支有 push 行为时就触发这个 action
+      - develop # 或你使用的默认分支名称
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_USER:  tonydeng
-      # GitHub Pages仓库 即博客部署需要用到的仓库
-      DEPLOY_REPO: tonydeng.github.io
-      DEPLOY_BRANCH: master
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          submodules: true
-          fetch-depth: 0
-      
-      - name: Set timezone to Asia/Shanghai
-        uses: szenius/set-timezone@v1.0
-        with:
-          # 设置执行环境的时区为 Linux 上海时区
-          timezoneLinux: "Asia/Shanghai"
 
-      - name: Echo current time
-        run: timedatectl
+    steps:
+      - name: Checkout blog source
+        uses: actions/checkout@v2
+        with:
+          path: blog
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v1
         with:
-          node-version: 16.15.0
+          node-version: "16" # 设置 Node.js 版本
 
-      - name: Generate pages
-        run: |
-          export TZ='Asia/Shanghai'
-          npm install -g hexo-cli hexo
-          npm install
-          hexo clean && hexo g
-      
-      - name: Git config
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-      
-      - name: Pull blog repo && Copy files
-        run: |
-          git clone https://github.com/${{GITHUB_USER}}/${{DEPLOY_REPO}}.git
-          rm -rf ${{DEPLOY_REPO}}/*
-          cp -r ./public/* ./${{DEPLOY_REPO}}
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      - name: Deploy blog
-        run: |
-          echo '>_ Enter repo: ${{GITHUB_USER}}/${{DEPLOY_REPO}} ...'
-          cd ${{DEPLOY_REPO}}
-          echo '>_ Pwd current dir ...'
-          pwd
-          echo '>_ Show files ...'
-          ls -al
-          echo '>_ Set remote git ...'
-          rm -rf .git
-          git init
-          git remote add origin https://${{secrets.DEPLOY_TOKEN}}@github.com/${{GITHUB_USER}}/${{DEPLOY_REPO}}.git
-          git branch -M ${{DEPLOY_BRANCH}}
-          git add .
-          echo '>_ Start Commit ...'
-          git commit --allow-empty -m "Github Action Automated Deployment $(date +'%Y-%m-%d %H:%M:%S')"
-          echo '>_ Start Push ...'
-          git push -u origin ${{DEPLOY_BRANCH}} --force
+      - name: Install dependencies
+        run: npm install
+        working-directory: .
+
+      - name: Install Hexo CLI
+        run: npm install -g hexo-cli
+        working-directory: .
+
+      - name: Generate static pages
+        run: hexo generate
+        working-directory: .
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.DEPLOY_REPO }}
+          publish_dir: /public
+          external_repository: tonydeng/tonydeng.github.io # 更改为你的 GitHub Pages 仓库, username 是你的用户名
+          publish_branch: master # GitHub Pages 分支
