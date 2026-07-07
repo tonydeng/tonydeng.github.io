@@ -1,9 +1,23 @@
+# OS
 .DS_Store
 Thumbs.db
+
+# Hexo
 db.json
 *.log
-node_modules/
 public/
 .deploy*/
+.cache/
+tmp/
+
+# Node
+node_modules/
+
+# Editor
 *.swp
 *.ldb
+.vscode/
+.idea/
+
+# Tools
+.omo/

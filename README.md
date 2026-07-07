@@ -1,6 +1,6 @@
 # TonyDeng's Blog
 
-[![Build Status](https://travis-ci.org/tonydeng/tonydeng.github.io.svg?branch=develop)](https://travis-ci.org/tonydeng/tonydeng.github.io)
+[![Deploy Hexo](https://github.com/tonydeng/tonydeng.github.io/actions/workflows/hexo-deploy.yml/badge.svg)](https://github.com/tonydeng/tonydeng.github.io/actions/workflows/hexo-deploy.yml)
 
 ## 安装NodeJS及NPM
 

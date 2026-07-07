@@ -3,47 +3,44 @@ name: Deploy Hexo to GitHub Pages
 on:
   push:
     branches:
-      - develop # 或你使用的默认分支名称
+      - develop
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
 
     steps:
       - name: Checkout blog source
-        uses: actions/checkout@v2
-        with:
-          path: blog
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: "16" # 设置 Node.js 版本
-
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install dependencies
-        run: npm install
-        working-directory: .
+          node-version: "20"
+          cache: "npm"
 
       - name: Install Hexo CLI
         run: npm install -g hexo-cli
-        working-directory: .
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Generate static pages
-        run: hexo generate
-        working-directory: .
+        run: hexo clean && hexo generate
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          personal_token: ${{ secrets.DEPLOY_REPO }}
-          publish_dir: /public
-          external_repository: tonydeng/tonydeng.github.io # 更改为你的 GitHub Pages 仓库, username 是你的用户名
-          publish_branch: master # GitHub Pages 分支
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: master
+          keep_files: false
+          user_name: "Tony Deng"
+          user_email: "wolf.deng@gmail.com"
+          commit_message: "Deploy Hexo Blog (${{ github.sha }})"
