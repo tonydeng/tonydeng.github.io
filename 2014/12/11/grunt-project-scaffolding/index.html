@@ -98,7 +98,7 @@
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="原文： https:&#x2F;&#x2F;github.com&#x2F;gruntjs&#x2F;grunt-docs&#x2F;blob&#x2F;master&#x2F;Project-Scaffolding.md  1. grunt-initgrunt-init 是一个脚手架工具，用于自动创建项目。基于当前的环境和几个问题的答案创建一个完整的目录结构。确切的文件和内容取决于所选的模板，和模板提出的问题的答案。 注：本独立程序曾经作为“init”任务内置于">
 <meta property="article:published_time" content="2014-12-11T06:04:00.000Z">
-<meta property="article:modified_time" content="2019-06-20T12:10:27.462Z">
+<meta property="article:modified_time" content="2026-07-08T01:27:40.777Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="grunt">
 <meta property="article:tag" content=" scaffold">
@@ -476,7 +476,7 @@
 <h1 id="4-安装模板"><a href="#4-安装模板" class="headerlink" title="4. 安装模板"></a>4. 安装模板</h1><p>一旦模板被安装到 <code>~/.grunt-init/</code> 目录（在 Windows 上是 <code>(%USERPROFILE%\.grunt=init\）</code>，就可以通过 grunt-init 使用它们。使用你使用 git 拷贝一个模范到该目录中。例如，可以这样安装 <a href="https://github.com/gruntjs/grunt-init-jquery" target="_blank" rel="noopener">grunt-init-jquery</a> 模板：</p>
 <figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">git</span>@github.com:gruntjs/grunt-init-jquery.git ~/.grunt-init/jquery</span><br></pre></td></tr></table></figure>
 
-<p>注：如果你想以<em>“foobarbaz”</em>在本地使用模板，你可以在拷贝时指定<code>~/.grunt-init/foobarbaz</code>。grunt-init 将使用模板在目录 <code>~/.grunt-init/</code> 中的实际目录名。</p>
+<p>注：如果你想以*“foobarbaz”*在本地使用模板，你可以在拷贝时指定<code>~/.grunt-init/foobarbaz</code>。grunt-init 将使用模板在目录 <code>~/.grunt-init/</code> 中的实际目录名。</p>
 <p>一些 grunt-init 模板由官方维护：</p>
 <ul>
 <li><a href="https://github.com/gruntjs/grunt-init-commonjs" target="_blank" rel="noopener">grunt-init-commonjs</a> - 创建一个 commonjs 模块，包括 Nodeunit 单元测试。（<a href="https://github.com/gruntjs/grunt-init-commonjs-sample/tree/generated" target="_blank" rel="noopener">生成的样本库</a> | <a href="https://github.com/gruntjs/grunt-init-commonjs-sample#project-creation-transcript" target="_blank" rel="noopener">创建记录</a>）</li>
@@ -488,9 +488,9 @@
 <h1 id="5-自定义模板"><a href="#5-自定义模板" class="headerlink" title="5. 自定义模板"></a>5. 自定义模板</h1><p>你可以创建和使用自定义模板。你的模板必须遵循与上述模板同样的结构。</p>
 <p>一个命名为 <code>my-template</code> 的模板要遵循下面的通用文件结构：</p>
 <ul>
-<li>my-template/template.js - 主模板文件.</li>
-<li>my-template/rename.json - 模板特定的命名规则，作为模板处理。</li>
-<li>my-template/root/ - 拷贝到目标位置的文件。</li>
+<li>my-template&#x2F;template.js - 主模板文件.</li>
+<li>my-template&#x2F;rename.json - 模板特定的命名规则，作为模板处理。</li>
+<li>my-template&#x2F;root&#x2F; - 拷贝到目标位置的文件。</li>
 </ul>
 <p>假设这些文件已经在 <code>/path/to/my-template</code>，可以用命令 <code>grunt-init /path/to/my-template</code> 处理该模板。多个不重名的模板可以存在于同一个目录项，就像内置模板一样。</p>
 <blockquote>
@@ -507,7 +507,7 @@
 
 <p>注：在所有内置提示被文档化之前，你可以在<a href="https://github.com/gruntjs/grunt-init/blob/master/tasks/init.js" target="_blank" rel="noopener">源代码</a>中找到它们的名称和默认值。</p>
 <h1 id="7-定义一个初始化模板"><a href="#7-定义一个初始化模板" class="headerlink" title="7. 定义一个初始化模板"></a>7. 定义一个初始化模板</h1><blockquote>
-<p>对照 ~/.grunt-init/node/template.js 理解。</p>
+<p>对照 ~&#x2F;.grunt-init&#x2F;node&#x2F;template.js 理解。</p>
 </blockquote>
 <h2 id="7-1-exports-description"><a href="#7-1-exports-description" class="headerlink" title="7.1 exports.description"></a>7.1 exports.description</h2><p>当用户运行 <code>grunt init</code> 或 <code>grunt-init</code> 来显示所有有效的初始化模板列表时，简短的模板描述随模板名称一起显示。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">exports.description = descriptionString;</span><br></pre></td></tr></table></figure>
@@ -838,7 +838,7 @@
         <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

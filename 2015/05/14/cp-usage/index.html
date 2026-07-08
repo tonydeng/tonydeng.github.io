@@ -99,7 +99,7 @@
 <meta property="og:description" content="就算如司空见惯的 cp 命令，某些用法我们或许也不了解。">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/linux-command.jpg">
 <meta property="article:published_time" content="2015-05-14T09:52:46.000Z">
-<meta property="article:modified_time" content="2019-06-20T12:10:27.465Z">
+<meta property="article:modified_time" content="2026-07-08T01:27:40.777Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content=" cp">
@@ -463,7 +463,7 @@
 <h2 id="保留文件属性"><a href="#保留文件属性" class="headerlink" title="保留文件属性"></a>保留文件属性</h2><p>在复制时，可以保留源文件的时间戳、模式、所有权等属性。</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">cp --preserve=timestamps file file1 <span class="comment"># 保留时间戳</span></span><br><span class="line">cp --preserve=mode file file1       <span class="comment"># 保留模式</span></span><br><span class="line">cp --preserve=ownership file file1  <span class="comment"># 保留所有权</span></span><br><span class="line">cp -p file file1                    <span class="comment"># 包括上述三者</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="创建软-硬链接"><a href="#创建软-硬链接" class="headerlink" title="创建软/硬链接"></a>创建软/硬链接</h2><p>在 <strong>Linux</strong> 下，创建软/硬链接本是 <strong>ln</strong> 的专职，但 <strong>cp</strong> 却可以代劳。</p>
+<h2 id="创建软-硬链接"><a href="#创建软-硬链接" class="headerlink" title="创建软&#x2F;硬链接"></a>创建软&#x2F;硬链接</h2><p>在 <strong>Linux</strong> 下，创建软&#x2F;硬链接本是 <strong>ln</strong> 的专职，但 <strong>cp</strong> 却可以代劳。</p>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">cp -l file file1 <span class="comment"># 创建硬链</span></span><br><span class="line">cp -s file file1 <span class="comment"># 创建软链接</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="更新文件"><a href="#更新文件" class="headerlink" title="更新文件"></a>更新文件</h2><p>仅当源文件比目标文件更新时才复制。</p>
@@ -710,7 +710,7 @@
         <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

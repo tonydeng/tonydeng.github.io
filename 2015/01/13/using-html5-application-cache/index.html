@@ -99,7 +99,7 @@
 <meta property="og:description" content="简介 HTML5 提供一种 应用缓存 机制，使得基于web的应用程序可以离线运行。开发者可以使用 Application Cache (AppCache) 接口设定浏览器缓存的数据并使得数据离线有效。 在处于离线状态时，即使用户点击刷新按钮，应用也能正常加载与工作。 使用应用缓存可以得到以下益处：  离线浏览: 用户可以在离线状态下浏览网站内容。 更快的速度: 因为数据被存储在本地，所以速度会更">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/manifest.png">
 <meta property="article:published_time" content="2015-01-13T13:56:27.000Z">
-<meta property="article:modified_time" content="2019-06-20T12:10:27.464Z">
+<meta property="article:modified_time" content="2026-07-08T01:27:40.777Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="html5">
 <meta property="article:tag" content=" manifest">
@@ -482,19 +482,19 @@
 <li>如果清单文件已经改变，文件中列出的所有文件—也包括通过调用 applicationCache.add() 方法添加到缓存中的那些文件—会被获取并放到一个临时缓存中，遵循适当的 HTTP 缓存规则。对于每个加入到临时缓存中的文件，浏览器会向 applicationCache 对象发送一个 progress 事件。如果出现任何错误，浏览器会发送一个 error 事件，并暂停更新。</li>
 <li>一旦所有文件都获取成功，它们会自动移送到真正的离线缓存中，并向  applicationCache 对象发送一个 cached 事件。鉴于文档早已经被从缓存加载到浏览器中，所以更新后的文档不会重新渲染，直到页面重新加载(可以手动或通过程序).</li>
 </ol>
-<h1 id="存储位置与清除离线缓存"><a href="#存储位置与清除离线缓存" class="headerlink" title="存储位置与清除离线缓存"></a>存储位置与清除离线缓存</h1><p>在 Chrome 中，你可以在设置中选择 「清除浏览器数据…」 或访问 <a href="chrome://appcache-internals">chrome://appcache-internals</a> 来清除缓存。</p>
+<h1 id="存储位置与清除离线缓存"><a href="#存储位置与清除离线缓存" class="headerlink" title="存储位置与清除离线缓存"></a>存储位置与清除离线缓存</h1><p>在 Chrome 中，你可以在设置中选择 「清除浏览器数据…」 或访问 <a href="chrome://appcache-internals">chrome:&#x2F;&#x2F;appcache-internals</a> 来清除缓存。</p>
 <p>Safari 在设置中有一个类似的”清空缓存” 选项，但是需要重启浏览器后才能生效。</p>
 <p>在 Firefox 中，离线缓存数据与 Firefox 配置文件是分开存储的—紧挨着硬盘缓存：</p>
 <ul>
-<li>Windows Vista/7: C:\Users&lt;username&gt;\AppData\Local\Mozilla\Firefox\Profiles&lt;salt&gt;.<profile name>\OfflineCache</li>
-<li>Mac/Linux: /Users/<username>/Library/Caches/Firefox/Profiles/<salt>.<profile name>/OfflineCache</li>
+<li>Windows Vista&#x2F;7: C:\Users&lt;username&gt;\AppData\Local\Mozilla\Firefox\Profiles&lt;salt&gt;.<profile name>\OfflineCache</li>
+<li>Mac&#x2F;Linux: &#x2F;Users&#x2F;<username>&#x2F;Library&#x2F;Caches&#x2F;Firefox&#x2F;Profiles&#x2F;<salt>.<profile name>&#x2F;OfflineCache</li>
 </ul>
 <p>应用缓存可以变成废弃的。如果从服务器上移除一个应用的清单文件，浏览器将会清除所有清单中列出的应用缓存，并向 applicationCache 对象发送一个「obsolete」事件。这将使得应用缓存的状态变为 OBSOLETE。</p>
-<h1 id="缓存清单文件"><a href="#缓存清单文件" class="headerlink" title="缓存清单文件"></a>缓存清单文件</h1><h2 id="引用一个缓存清单文件"><a href="#引用一个缓存清单文件" class="headerlink" title="引用一个缓存清单文件"></a>引用一个缓存清单文件</h2><p>web 应用中的 manifest 特性可以指定为缓存清单文件的相对路径或一个绝对 URL(绝对 URL 必须与应用同源)。缓存清单文件可以使用任意扩展名，但传输它的 MIME 类型必须为 text/cache-manifest。</p>
+<h1 id="缓存清单文件"><a href="#缓存清单文件" class="headerlink" title="缓存清单文件"></a>缓存清单文件</h1><h2 id="引用一个缓存清单文件"><a href="#引用一个缓存清单文件" class="headerlink" title="引用一个缓存清单文件"></a>引用一个缓存清单文件</h2><p>web 应用中的 manifest 特性可以指定为缓存清单文件的相对路径或一个绝对 URL(绝对 URL 必须与应用同源)。缓存清单文件可以使用任意扩展名，但传输它的 MIME 类型必须为 text&#x2F;cache-manifest。</p>
 <p>Apache配置对manifest支持，在根目录或应用的同级目录下的**.htaccess**中加入下面的配置</p>
 <figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">AddType <span class="type">text</span>/<span class="keyword">cache</span>-manifest .appcache</span><br></pre></td></tr></table></figure>
 
-<p>Nginx配置对manifest支持，在<strong>conf/mime.types</strong>中加入下面的配置</p>
+<p>Nginx配置对manifest支持，在<strong>conf&#x2F;mime.types</strong>中加入下面的配置</p>
 <figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="type">text</span>/<span class="keyword">cache</span>-manifest                  appcache manifest;</span><br></pre></td></tr></table></figure>
 
 <h2 id="缓存清单文件中的记录"><a href="#缓存清单文件中的记录" class="headerlink" title="缓存清单文件中的记录"></a>缓存清单文件中的记录</h2><p>缓存清单文件是一个纯文本文件，它列出了所有浏览器应该缓存起来的资源，以便能够离线访问。资源使用 URI 来标识。在缓存清单文件中列出的所有记录必须拥有相同的协议、主机名与端口号。</p>
@@ -515,16 +515,17 @@
 <figure class="highlight vala"><table><tr><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line"><span class="meta"># v1 2011-08-14</span></span><br><span class="line"><span class="meta"># This is another comment</span></span><br><span class="line">index.html</span><br><span class="line">cache.html</span><br><span class="line">style.css</span><br><span class="line">image1.png</span><br><span class="line"></span><br><span class="line"><span class="meta"># Use from network if available</span></span><br><span class="line">NETWORK:</span><br><span class="line">network.html</span><br><span class="line"></span><br><span class="line"><span class="meta"># Fallback content</span></span><br><span class="line">FALLBACK:</span><br><span class="line">/ fallback.html</span><br></pre></td></tr></table></figure>
 
 <p>该例子使用了 NETWORK 与 FALLBACK 段落，指明了 network.html 页面必须始终从网络获取，fallback.html 页面应该作为后备资源来提供(例如，当无法与服务器建立连接时)。</p>
-<h2 id="缓存清单文件的结构"><a href="#缓存清单文件的结构" class="headerlink" title="缓存清单文件的结构"></a>缓存清单文件的结构</h2><p>缓存清单文件必须以 <strong>text/cache-manifest</strong> MIME 类型来传输。所有通过 MIME 类型传输的文件必须符合本节中定义的适用于应用缓存清单的语法。</p>
+<h2 id="缓存清单文件的结构"><a href="#缓存清单文件的结构" class="headerlink" title="缓存清单文件的结构"></a>缓存清单文件的结构</h2><p>缓存清单文件必须以 <strong>text&#x2F;cache-manifest</strong> MIME 类型来传输。所有通过 MIME 类型传输的文件必须符合本节中定义的适用于应用缓存清单的语法。</p>
 <p>缓存清单是 UTF-8 格式的文本文件，有可能包含一个 BOM 字符。新行可能使用换行符(U+000A)，回车(U+000D)，或回车加换行符来表示。</p>
 <p>缓存清单文件的第一行必须包含字符串 CACHE MANIFEST (两个单词间使用一个 U+0020 空白)，紧接着是零或多个空白或制表符。本行的其他文本会被忽略。</p>
 <p>缓存清单文件的余下内容必须包含零或多个下面的行：</p>
 <p><strong>空行</strong><br>    你可以使用包含零或多个空白与制表符的空行。</p>
 <p><strong>注释</strong><br>    注释包括零或多个制表符或空白字符，紧接着是一个 # 字符，再然后是零或多个注释文本字符。注释只能在所在行起作用，不能追加到其他行上。这意味着你无法使用片段标识符。</p>
 <p><strong>段落标题</strong><br>    段落标题指定了缓存文件即将操作的段落。有三个可选的标题：</p>
-<pre><code>    CACHE:         切换到缓存清单的显式段落(默认段落)。
-    NETWORK:     切换到缓存清单的在线白名单段落。
-    FALLBACK:     切换到缓存清单的后备资源段落。</code></pre>
+<pre><code>    CACHE: 	    切换到缓存清单的显式段落(默认段落)。
+    NETWORK: 	切换到缓存清单的在线白名单段落。
+    FALLBACK: 	切换到缓存清单的后备资源段落。
+</code></pre>
 <p>缓存清单可以在段落内任意切换(每个段落标题可以使用多次)，而且段落允许为空。</p>
 <h1 id="一个应用缓存中的资源"><a href="#一个应用缓存中的资源" class="headerlink" title="一个应用缓存中的资源"></a>一个应用缓存中的资源</h1><p>一个应用缓存至少会包含一个资源，由 URI 指定。所有资源都属于下列类别之一：</p>
 <p><strong>主记录</strong><br>    这些资源被加入缓存的原因是：用户浏览的一个上下文中包含一个文档，该文档用 manifest 特性明确指明了它属于该缓存。</p>
@@ -829,7 +830,7 @@
         <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

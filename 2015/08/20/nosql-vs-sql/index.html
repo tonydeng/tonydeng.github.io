@@ -109,7 +109,7 @@
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/nosql_vs_sql/mysql_explain.jpg">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/nosql_vs_sql/digg.jpg">
 <meta property="article:published_time" content="2015-08-20T14:06:33.000Z">
-<meta property="article:modified_time" content="2019-06-20T12:10:27.467Z">
+<meta property="article:modified_time" content="2026-07-08T01:27:40.777Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="Database NoSQL SQL">
 <meta name="twitter:card" content="summary">
@@ -491,7 +491,7 @@
 <p>如果大家了解一点点的磁盘知识的画，就立刻会发现一个问题，<code>map.put/get</code> 操作，其实都是有一次寻找的过程。而这个寻找的过程，对于磁盘来说，就会转变为一次随机的寻道过程。</p>
 <p>这里有很多种方式，能够用磁盘结构来存储类似Map这样的概念，我今天只介绍一种，就是B-tree。</p>
 <p>不知道大家对这个词儿是不是熟悉啊 ，反正我面试基本都会问问……</p>
-<p>需要先提的一件事是B树==B-树。所谓B-树，并不是B减树的意思，希望大家不要跟我一样土鳖……</p>
+<p>需要先提的一件事是B树&#x3D;&#x3D;B-树。所谓B-树，并不是B减树的意思，希望大家不要跟我一样土鳖……</p>
 <p><img src="/images/blog/nosql_vs_sql/b-tree.jpg" alt="B Tree"></p>
 <p>这就是一个最简单的B树，我们观察一下就会发现，其实B树的出发点很简单，既然磁盘寻道时间很多，那就减少它~~ 一次寻道就能够从磁盘取更多的数据就行了。</p>
 <p>所以，它是以“数组”为单位，存储数据的，而数组，其实就是一片连续并且有界的空间。</p>
@@ -537,21 +537,21 @@
 <p>这张图就是整个关系代数引擎所经过的步骤。</p>
 <p>最原始的是SQL字符串。类似 <code>select * from tab where id = 1</code> ,它经过的过程叫做SQL解析，会生成一个AST抽象语法树。</p>
 <p><img src="/images/blog/nosql_vs_sql/abstract_syntax_tree.jpg" alt="抽象语法树"></p>
-<p>select被拆解为fromList/WhereClause等细碎的字串。</p>
+<p>select被拆解为fromList&#x2F;WhereClause等细碎的字串。</p>
 <p>这个过程的主要作用是，作为计算机编写代码而言，我们更容易识别这种结构化的数据，而文档属于非结构化数据。有了这棵树，我们还需要再做一件事情，就是执行优化。它的入参是AST树+索引源信息。</p>
 <p>索引源信息又是什么鬼？</p>
 <p>要讲明白这个，得先看看关系模型和Map是怎么对应起来的。我用几张PPT来讲解一下。</p>
 <p><img src="/images/blog/nosql_vs_sql/sql_step_by_step_1.jpg" alt="如何按照key找到对应的数据"></p>
-<p>第一个SQL是 select * from tab where id = ? ，上面的那个则是一个表格。</p>
+<p>第一个SQL是 select * from tab where id &#x3D; ? ，上面的那个则是一个表格。</p>
 <p>如果我们用map来表示，可以表示成这样：</p>
 <figure class="highlight xl"><table><tr><td class="code"><pre><span class="line">M<span class="function"><span class="title">ap</span>: key -&gt;</span> <span class="function"><span class="title">primaryKey</span>, value -&gt;</span> [pk,user_id,Name]</span><br></pre></td></tr></table></figure>
 
 <p>也就是，以PK值作为Map的key，以一个包含了pk,user_id,Name的值的结构作为Map的value。（当然也可以只包含user_id,Name）。也OK~</p>
-<p>有了这个map，我们只需要从AST里面取出id=？，得知id=0（假设），然后 map.get(0)，就可以拿到对应的user_id和Name数据了，加上输入的id=0这个数据，就可以返回了。</p>
+<p>有了这个map，我们只需要从AST里面取出id&#x3D;？，得知id&#x3D;0（假设），然后 map.get(0)，就可以拿到对应的user_id和Name数据了，加上输入的id&#x3D;0这个数据，就可以返回了。</p>
 <p>再来看另一个需求。</p>
 <p>这里面，我们的查询条件发生了变化，不是id了，而是user_id。</p>
 <p>而我们刚才只有一个Map : Map: key -&gt; primaryKey, value -&gt; [user_id,Name] ，我应该如何利用这个Map去找到所有符合要求的结果呢？</p>
-<p>我能想到的第一种方式是，遍历Map里面的每一个Entry，取出每一个Entry以后，看看user_id == 我想要的值？如果不等于，丢弃，如果等于，返回。即可。</p>
+<p>我能想到的第一种方式是，遍历Map里面的每一个Entry，取出每一个Entry以后，看看user_id &#x3D;&#x3D; 我想要的值？如果不等于，丢弃，如果等于，返回。即可。</p>
 <p>然而，这中方式带来的问题就是，如果我有1亿条记录，我就要做这件事情1亿次。明显O(N)效率太慢了。</p>
 <p>怎么加快一下？</p>
 <p>有需求就有人相应，于是，我们可以用一个空间换时间的法子。</p>
@@ -564,7 +564,7 @@
 <p><img src="/images/blog/nosql_vs_sql/sql_step_by_step_2.jpg" alt="如何按照key找到对应的数据-二级索引-name"></p>
 <p>如果我有一个user_id的二级索引，又有一个Name的二级索引。我该选择哪一个作为查询用的索引呢？是不是我需要一种机制，来选择那个最“便宜”的索引？</p>
 <p>这就是索引选择的过程，我们进行索引选择，就必然的需要知道每一个索引的区分高还是低（说白了，就是一个key对应的plist.size()少还是多）……</p>
-<p>而这个索引的区分度高/低，就是所谓索引源信息的最简单模式。在真实的数据库中，还会有很多其他信息，也是索引的源信息，不过为了方便大家理解，简化一下。</p>
+<p>而这个索引的区分度高&#x2F;低，就是所谓索引源信息的最简单模式。在真实的数据库中，还会有很多其他信息，也是索引的源信息，不过为了方便大家理解，简化一下。</p>
 <p>有了索引源信息和AST树，我们就可以生成执行计划了。</p>
 <p><img src="/images/blog/nosql_vs_sql/mysql_explain.jpg" alt="mysql explain"></p>
 <p>这时候，再尝试看看这个，相信大家就大概能够猜到这里的东西所表示的含义了。</p>
@@ -647,11 +647,13 @@
 <p>上上次我的确很是紧张……因为新接了一个消息系统。这种削峰填谷的系统才是亚历山大啊……</p>
 <p>其余的生活基本上就没啥了……更多是跟大家一样，也都是普通的功能开发而已。</p>
 <p>好了，我的故事将完了。</p>
-<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q &amp; A"></a>Q &amp; A</h2><p>问题1. 能说说DRDS和RDS的关系吗？</p>
-<pre><code>一个偏重分布式，一个偏重单机</code></pre>
+<h2 id="Q-A"><a href="#Q-A" class="headerlink" title="Q &amp; A"></a>Q &amp; A</h2><p>问题1. 能说说DRDS和RDS的关系吗？</p>
+<pre><code>一个偏重分布式，一个偏重单机
+</code></pre>
 <p>问题2. 请问阿里的DRDS如何实现join sql语句来执行多表关联查询的？如何兼容单机存储的SQL？需要注意哪些坑？</p>
-<pre><code>方案很多，其实如果大家对join有所了解，也就那么几种，hash/index nest loop/sort merge，没有什么魔法。http://coding-geek.com/how-databases-work/ 这个不错，我比较推荐。</code></pre>
-<p>问题3. 请问schema less/free你怎么看？</p>
+<pre><code>方案很多，其实如果大家对join有所了解，也就那么几种，hash/index nest loop/sort merge，没有什么魔法。http://coding-geek.com/how-databases-work/ 这个不错，我比较推荐。
+</code></pre>
+<p>问题3. 请问schema less&#x2F;free你怎么看？</p>
 <pre><code>这俩似乎没见过拼一起哈，我分开。但是本质是同一个东西，我个人觉得有市场。不过能有多大，不知道。
 优势：业务模型更灵活。
 劣势：额外的空间占用。
@@ -659,7 +661,8 @@
 技术债也一定要还的......我清楚的记得当年我维护的一个cms系统，所有数据都是map。结果最后有一些诡异的数据不知道什么时候被塞到里面，然后最后也没有人知道是在哪里塞的，debug都很难找到。
 所以，一般来说，结合会更好一些。
 
-目前pg/mysql都开始支持json了，这东西其实只是工作量的问题，没有什么技术上的难度。</code></pre>
+目前pg/mysql都开始支持json了，这东西其实只是工作量的问题，没有什么技术上的难度。
+</code></pre>
 <p>问题4. 最近很多声音说不要在用户mongodb了，如何来看？</p>
 <pre><code>这个就纯属于个人意见了啊...... 我个人不喜欢mongodb那帮人的嘴脸......
 
@@ -667,12 +670,15 @@
 
 然而，为什么会这样？还不是某些人为了骗分，默认配置特别激进...... 而开发者不会告诉你，如果改成安全配置，他们的性能没比MySQL强哪里去。
 
-一个存储引擎，至少10年才能稳定。前两天刚碰到一个游戏客户说某nosql数据文件损坏无法恢复，问我们有没有办法，我说，下次选择谨慎点......性能不是唯一的。这次请节哀。</code></pre>
+一个存储引擎，至少10年才能稳定。前两天刚碰到一个游戏客户说某nosql数据文件损坏无法恢复，问我们有没有办法，我说，下次选择谨慎点......性能不是唯一的。这次请节哀。
+</code></pre>
 <p>问题5. 海量，低延时（毫秒级），高并发（十万以上），目前关系型数据库是否有并存的方案？</p>
-<pre><code>10w并发不算很高了，DRDS是你最好的选择。</code></pre>
+<pre><code>10w并发不算很高了，DRDS是你最好的选择。
+</code></pre>
 <p>问题6. 非结构化数据，如文本，树图等，这些sql无法处理的，是否是用nosql更合理？</p>
 <pre><code>非结构化数据也是一个重要的门类，一直都存在，以后也会存在，但是nosql为了宣传，把所有的东西都拉到自己阵营，这其实与其初衷已经违背了。
-twtter的图数据库其实也是依托mysql做的......你给我钱给我人，给我时间，我能汇编写任何东西。</code></pre>
+twtter的图数据库其实也是依托mysql做的......你给我钱给我人，给我时间，我能汇编写任何东西。
+</code></pre>
 
       
     </div>
@@ -898,7 +904,7 @@ twtter的图数据库其实也是依托mysql做的......你给我钱给我人，
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1970-We-have-no-SQL"><span class="nav-number">1.</span> <span class="nav-text">1970:We have no SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下面，我们就来到1980年：-Know-SQL。知道SQL了。"><span class="nav-number">2.</span> <span class="nav-text">下面，我们就来到1980年： Know SQL。知道SQL了。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NO-SQL"><span class="nav-number">3.</span> <span class="nav-text">NO SQL!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2005：-Not-only-SQL。不仅仅是SQL"><span class="nav-number">4.</span> <span class="nav-text">2005： Not only SQL。不仅仅是SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2013-No-SQL"><span class="nav-number">5.</span> <span class="nav-text">2013 No, SQL!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-amp-A"><span class="nav-number">6.</span> <span class="nav-text">Q &amp; A</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1970-We-have-no-SQL"><span class="nav-number">1.</span> <span class="nav-text">1970:We have no SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下面，我们就来到1980年：-Know-SQL。知道SQL了。"><span class="nav-number">2.</span> <span class="nav-text">下面，我们就来到1980年： Know SQL。知道SQL了。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NO-SQL"><span class="nav-number">3.</span> <span class="nav-text">NO SQL!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2005：-Not-only-SQL。不仅仅是SQL"><span class="nav-number">4.</span> <span class="nav-text">2005： Not only SQL。不仅仅是SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2013-No-SQL"><span class="nav-number">5.</span> <span class="nav-text">2013 No, SQL!</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-A"><span class="nav-number">6.</span> <span class="nav-text">Q &amp; A</span></a></li></ol></div>
             
 
           </div>
@@ -921,7 +927,7 @@ twtter的图数据库其实也是依托mysql做的......你给我钱给我人，
         <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

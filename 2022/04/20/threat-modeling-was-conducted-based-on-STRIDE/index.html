@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/stride/openapi-platform-example.jpeg">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/stride/threat-mitigation-program.png">
 <meta property="article:published_time" content="2022-04-20T03:14:57.000Z">
-<meta property="article:modified_time" content="2022-05-11T01:45:45.168Z">
+<meta property="article:modified_time" content="2026-07-08T01:27:40.781Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="STRIDE">
 <meta property="article:tag" content="SDL">
@@ -517,10 +517,10 @@
 <p>微软Azure的威胁建模的数据流图，有点是通过数字表示流程顺序</p>
 </blockquote>
 <h3 id="3-2-Low-Level威胁建模"><a href="#3-2-Low-Level威胁建模" class="headerlink" title="3.2. Low Level威胁建模"></a>3.2. Low Level威胁建模</h3><p>Low Level可以采用两种建模方式。</p>
-<h4 id="3-2-1-应用图（Application-Diagram）"><a href="#3-2-1-应用图（Application-Diagram）" class="headerlink" title="3.2.1. 应用图（Application Diagram）"></a>3.2.1. 应用图（Application Diagram）</h4><p>应用是可单独运行/可部署的单元（例如，单独的进程空间）执行代码或存储数据。应用图显示了软件体系结构的高层结构以及如何分配职责。它还显示了主要的技术选择以及容器之间的通信方式。</p>
+<h4 id="3-2-1-应用图（Application-Diagram）"><a href="#3-2-1-应用图（Application-Diagram）" class="headerlink" title="3.2.1. 应用图（Application Diagram）"></a>3.2.1. 应用图（Application Diagram）</h4><p>应用是可单独运行&#x2F;可部署的单元（例如，单独的进程空间）执行代码或存储数据。应用图显示了软件体系结构的高层结构以及如何分配职责。它还显示了主要的技术选择以及容器之间的通信方式。</p>
 <p>一个应用包含多个服务，如果一个系统有多个子系统，应该对每个子系统都进行分析。通过威胁建模应该尝试了解整体情况，包含应用本身、数据库、交互、部署场景、云服务、接入的基础服务。</p>
 <p><img src="/images/blog/stride/pay-stride-dataflow.jpeg" alt="支付应用示例"></p>
-<h4 id="3-2-2-服务图（Service-Component-diagram）"><a href="#3-2-2-服务图（Service-Component-diagram）" class="headerlink" title="3.2.2. 服务图（Service Component diagram）"></a>3.2.2. 服务图（Service Component diagram）</h4><p>服务图显示了服务如何由多个“组件”组成，每个组件是什么，它们的职责以及技术/实现接口（API）或者细节。这个细粒度的分解是建模最大的工作量，为分解的各个通用组件创建的威胁模型结果可以复用在其他应用上。比如Kubernetes被分为Kube-Proxy、ETCD、Kubelet、Kube-APIServer、Scheduler、Container、Pods等。</p>
+<h4 id="3-2-2-服务图（Service-Component-diagram）"><a href="#3-2-2-服务图（Service-Component-diagram）" class="headerlink" title="3.2.2. 服务图（Service Component diagram）"></a>3.2.2. 服务图（Service Component diagram）</h4><p>服务图显示了服务如何由多个“组件”组成，每个组件是什么，它们的职责以及技术&#x2F;实现接口（API）或者细节。这个细粒度的分解是建模最大的工作量，为分解的各个通用组件创建的威胁模型结果可以复用在其他应用上。比如Kubernetes被分为Kube-Proxy、ETCD、Kubelet、Kube-APIServer、Scheduler、Container、Pods等。</p>
 <p><img src="/images/blog/stride/k8s-dataflows.jpeg" alt="k8s示例"></p>
 <h2 id="4-威胁识别"><a href="#4-威胁识别" class="headerlink" title="4. 威胁识别"></a>4. 威胁识别</h2><p>建模完成后，进入威胁识别过程。</p>
 <p><img src="/images/blog/stride/Threat-Identification-Main.png" alt="威胁识别主要活动"></p>
@@ -631,7 +631,7 @@
 <td>*</td>
 </tr>
 <tr>
-<td>数据流（命令/响应）</td>
+<td>数据流（命令&#x2F;响应）</td>
 <td>跨越机器边界</td>
 <td></td>
 <td>*</td>
@@ -712,14 +712,14 @@
 <li><strong><code>Affected users</code>（受影响用户）</strong>：指如果威胁被利用并成功攻击，有多少用户会受到影响，10指所有用户都会受到影响，1～9表示受影响用户的百分比。</li>
 <li><strong><code>Discoverability</code>（可发现性）</strong>：指如果威胁被利用并成功攻击，有多少用户会受到影响，10指所有用户都会受到影响，1～9表示受影响用户的百分比。</li>
 </ul>
-<p>依据公式 *<em>“风险=受攻击概率</em>危害程度”** ，可以计算出五个风险值，然后对五个风险值求平均数，平均数越大，则威胁对系统造成的风险就越大。假设受攻击概率为100%，最高风险值是10。</p>
+<p>依据公式 <strong>“风险&#x3D;受攻击概率*危害程度”</strong> ，可以计算出五个风险值，然后对五个风险值求平均数，平均数越大，则威胁对系统造成的风险就越大。假设受攻击概率为100%，最高风险值是10。</p>
 <h2 id="5-威胁缓解"><a href="#5-威胁缓解" class="headerlink" title="5. 威胁缓解"></a>5. 威胁缓解</h2><p>识别威胁后，就可以对已经暴露的威胁进行缓解。</p>
 <p>不同风险等级的威胁可以采取不同处理策略：</p>
 <ul>
 <li>低风险安全威胁，可以保持现状</li>
 <li>潜在的用户危险操作，要及时提醒</li>
 <li>可以缓解的威胁，要采取加密、认证等技术缓解措施</li>
-<li>风险过高并且难以实施缓解措施的威胁，可以考虑删除/关闭相应功能</li>
+<li>风险过高并且难以实施缓解措施的威胁，可以考虑删除&#x2F;关闭相应功能</li>
 </ul>
 <h3 id="5-1-确立缓解顺序"><a href="#5-1-确立缓解顺序" class="headerlink" title="5.1. 确立缓解顺序"></a>5.1. 确立缓解顺序</h3><p>威胁的缓解顺序在整体设计上要有条理性和层次性。</p>
 <blockquote>
@@ -1001,7 +1001,7 @@
         <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

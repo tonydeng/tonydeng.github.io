@@ -113,7 +113,7 @@
 <meta property="og:image" content="https://tonydeng.github.io/EA-practices/app-arch/images/Port-adapter-architecture.png">
 <meta property="og:image" content="https://tonydeng.github.io/EA-practices/app-arch/images/Domain-driven-design-VS-Data-driven-design.png">
 <meta property="article:published_time" content="2022-11-06T07:05:05.000Z">
-<meta property="article:modified_time" content="2022-11-06T07:16:21.045Z">
+<meta property="article:modified_time" content="2026-07-08T01:27:40.781Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="领域驱动设计">
 <meta name="twitter:card" content="summary">
@@ -528,7 +528,7 @@
 <li><strong>已发布的语言（Published Language）</strong>：两个上下文使用共同的语言，比如SOA服务总线定义了一堆XML模型，或者基于共享的文件或数据库，上下文可以基于此进行直接交互。</li>
 <li><strong>开放主机服务（Open Host）</strong>：又叫统一协议，为上下文之间的服务定义一套包含标准化数据结构在内的协议，比如基于HTTP风格的RESTful接口协议。</li>
 <li><strong>共享内核（Shared Kernel）</strong>：两个上下文使用一个共同的代码内核作为通用语言，比如两个工程使用同一个Bean基础模型库。</li>
-<li><strong>客户/供应商（Customer/Supplier）</strong>：一个上下文使用另一个上下文的服务，有显著的上下游依赖关系，比如基于RPC的服务交互方式。</li>
+<li><strong>客户&#x2F;供应商（Customer&#x2F;Supplier）</strong>：一个上下文使用另一个上下文的服务，有显著的上下游依赖关系，比如基于RPC的服务交互方式。</li>
 <li><strong>顺从者（Conformist）</strong>：一个上下文使用另一个上下文的服务，但彼此之间的关系并不紧密，比如基于消息传递机制的交互模式。</li>
 <li><strong>防腐层（Anti-Corruption Layer，ACL）</strong>：使用一层适配层来协助上下文的交互，隔离业务逻辑，比如在商品子域和采购子域之间提供防腐层，将商品的变更进行收口，隔离子域内的后端业务实现。</li>
 </ul>
@@ -557,7 +557,7 @@
 <li><strong>充血模型</strong>：<strong>DDD中的实体属于充血模型</strong>，会封装包含这个实体相关的所有业务逻辑，它既是多个业务属性的载体，又是操作或行为的载体。</li>
 </ul>
 <blockquote>
-<p>以订单（Order）为例，<strong>Order有下单、发货和退单等行为</strong>，**<em>而面向数据设计方式是将这些行为放到另一个服务OrderService中，而不是Order对象中**</em>。</p>
+<p>以订单（Order）为例，<strong>Order有下单、发货和退单等行为</strong>，<em><strong>而面向数据设计方式是将这些行为放到另一个服务OrderService中，而不是Order对象中</strong></em>。</p>
 </blockquote>
 <h3 id="值对象（Value-Object）"><a href="#值对象（Value-Object）" class="headerlink" title="值对象（Value Object）"></a>值对象（Value Object）</h3><p><strong>值对象是只关心属性的对象，并且是一个没有标识符的对象</strong>。</p>
 <p><strong>值对象本质上是一个集合，这个集合中包含若干用于描述目的、具有整体概念和不可修改的属性</strong>。它可以避免属性零碎，使属性归类更加清晰，从概念理解上也更加完整。</p>
@@ -590,7 +590,7 @@
 </ul>
 <p>除根实体外的其他对象都有本地标识，但这些标识<strong>只有在聚合内部才需要加以区分，因为外部对象除根实体外看不到其他对象</strong>。</p>
 <p><strong>聚合行为被视为一个整体，在每个行为完成时，必须满足聚合内部所应用的固定规则的要求，即保证数据变化的一致性</strong>。</p>
-<p>根实体最终检查固定规则，如**<em>删除操作必须一次删除聚合边界之内的所有对象**</em>。</p>
+<p>根实体最终检查固定规则，如<em><strong>删除操作必须一次删除聚合边界之内的所有对象</strong></em>。</p>
 <blockquote>
 <p>过程中有一些最佳实践，比如<strong>可以设计一些小的聚合</strong>，通过唯一标识引用其他聚合，并且在边界之外考虑最终的一致性。</p>
 <p>比如，订单域可能有很多实体，如Order、子订单、订单明细、地址、物流信息、支付信息等，而在我们将它们聚合为订单域后，这些实体都聚焦在一起，并<strong>由Order这个实体作为聚合根对外交互</strong>。</p>
@@ -612,7 +612,7 @@
 <h3 id="领域事件（Domain-Event）"><a href="#领域事件（Domain-Event）" class="headerlink" title="领域事件（Domain Event）"></a>领域事件（Domain Event）</h3><p><strong>领域事件表示领域中所发生的重要事件，在事件发生后通常会导致进一步的业务操作，或者在系统其他地方引起反应</strong>。</p>
 <p>领域事件非常重要，我们在系统设计过程中经常需要解耦，技术人员一般通过MQ方式进行；架构人员可能采用<a href="patterns.md#%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%9E%B6%E6%9E%84">事件驱动架构（<code>Event Driven Architecture</code>，<code>EDA</code>）</a>的方式。<code>Serverless</code>架构中核心的就是基于事件编程，这一切的<strong>核心就是对领域事件的设计</strong>，不过当前大部分系统事件（<code>Event</code>）设计比较随性，从而导致<code>Event</code>滥用和无用情况发生，而领域事件是对我们很好的指引。</p>
 <blockquote>
-<p>比如，在订单的例子中，在订单下单后，会进行**<em>库存冻结、支付状态更新、物流同步**</em>等，这些都是对系统事件良好的解耦设计。</p>
+<p>比如，在订单的例子中，在订单下单后，会进行<em><strong>库存冻结、支付状态更新、物流同步</strong></em>等，这些都是对系统事件良好的解耦设计。</p>
 </blockquote>
 <ul>
 <li><strong>Event命名</strong>：<code>Domain Name</code> + 动词的过去式 + <code>Event</code>，如<code>OrderCreatedEvent</code>。</li>
@@ -625,7 +625,7 @@
 <p>图例：DDD核心概念</p>
 </blockquote>
 <h2 id="DDD常用的分析方法"><a href="#DDD常用的分析方法" class="headerlink" title="DDD常用的分析方法"></a>DDD常用的分析方法</h2><p>DDD常用的分析方法主要有<strong>用例分析法</strong>、<strong>四色建模法</strong>和<strong>事件风暴法</strong>。</p>
-<h3 id="用例分析法"><a href="#用例分析法" class="headerlink" title="用例分析法"></a>用例分析法</h3><p>用例分析是比较通用的领域建模方法，可以在**<em>比较传统的需求调研过程中结合领域模型的设计思路**</em>进行，核心是<strong>通过业务需求、场景流程等梳理用例，进而规划领域模型</strong>。</p>
+<h3 id="用例分析法"><a href="#用例分析法" class="headerlink" title="用例分析法"></a>用例分析法</h3><p>用例分析是比较通用的领域建模方法，可以在<em><strong>比较传统的需求调研过程中结合领域模型的设计思路</strong></em>进行，核心是<strong>通过业务需求、场景流程等梳理用例，进而规划领域模型</strong>。</p>
 <p>用例分析的<strong>前提是业务架构的需求输入，其中核心是业务能力与业务流程</strong>。</p>
 <blockquote>
 <p>比如电商领域的订单寻源、库存锁定、商品价格计算、优惠券核销等业务能力，以及订单处理、分单和拆单、逆向退款等业务流程。</p>
@@ -723,7 +723,7 @@
 </ul>
 <p>在DDD中，领域模型和数据模型是解耦的，有时也不是一一对应的，因此<strong>在应用DDD进行设计时，一定要摆脱数据模型优先的束缚，不要让领域模型被数据模型“绑架”，设计出合理的领域模型是首要任务</strong>。</p>
 <h3 id="DDD与微服务的关系"><a href="#DDD与微服务的关系" class="headerlink" title="DDD与微服务的关系"></a>DDD与微服务的关系</h3><p><strong>微服务是技术层面的分布式技术架构模式，是技术实现和部署的范畴</strong>，它提倡将应用划分成更细粒度的服务，服务之间互相协调、互相配合，为用户提供最终价值。</p>
-<p>DDD根据限界上下文设计出的领域模型和领域服务，通过微服务进行落地，并结合微服务及其他分布式技术（如DevOps、CI/CD、秒杀、全链路压测等），加速系统的落地。<strong>一个域服务可由一个微服务来实现，也可根据DDD领域分析拆分为多个微服务，对外集合成统一的域服务</strong>。</p>
+<p>DDD根据限界上下文设计出的领域模型和领域服务，通过微服务进行落地，并结合微服务及其他分布式技术（如DevOps、CI&#x2F;CD、秒杀、全链路压测等），加速系统的落地。<strong>一个域服务可由一个微服务来实现，也可根据DDD领域分析拆分为多个微服务，对外集合成统一的域服务</strong>。</p>
 <h3 id="DDD与企业架构的关系"><a href="#DDD与企业架构的关系" class="headerlink" title="DDD与企业架构的关系"></a>DDD与企业架构的关系</h3><p>DDD在企业架构中扮演着重要的角色。<strong>DDD不仅是应用架构中领域建模重要的设计方法，同时在企业架构中承接业务架构，并对技术架构及具体落地时微服务等技术实现都有着重要的指导作用</strong>。更重要的是，<strong>DDD建立了共同语言，让企业的业务人员和技术人员可以高效地沟通</strong>。同时，有些企业强调共享能力中心的设计和沉淀，<strong>DDD可以作为其模型和服务建设方法</strong>，结合其他架构服务设计模式及相关的最佳实践，助力企业的架构设计与规划。</p>
 <h3 id="DDD与开发实施的关系"><a href="#DDD与开发实施的关系" class="headerlink" title="DDD与开发实施的关系"></a>DDD与开发实施的关系</h3><p>DDD带来了很多好处，本质上是<strong>设计模式的改变，让领域与数据解耦，从业务需求出发，从领域出发，分析领域内模型及它们之间的关系，并进行领域建模，设计核心业务逻辑，进而实现技术细节</strong>。DDD起到了承前启后的关键作用，其不仅<strong>将业务人员和技术人员连接起来</strong>，还把系统从需求、设计、开发、部署、运维整个生命周期环节有效地串接起来，DDD更多地<strong>从总体和顶层设计，从问题域、解决方案域、业务模型角度，不深度干预其他环节细节，边界清晰，关注点分离</strong>。</p>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><ul>
@@ -974,7 +974,7 @@
         <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

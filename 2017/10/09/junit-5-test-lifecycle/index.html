@@ -100,7 +100,7 @@
 <meta property="og:image" content="http://junit.org/junit4/images/junit5-banner.png">
 <meta property="og:image" content="http://junit.org/junit5/docs/current/user-guide/images/extensions_lifecycle.png">
 <meta property="article:published_time" content="2017-10-09T08:57:29.000Z">
-<meta property="article:modified_time" content="2019-06-20T12:10:27.480Z">
+<meta property="article:modified_time" content="2026-07-08T01:27:40.780Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="JUnit5教程 生命周期">
 <meta name="twitter:card" content="summary">
@@ -458,7 +458,7 @@
 <a id="more"></a>
 
 <h2 id="生命周期结构"><a href="#生命周期结构" class="headerlink" title="生命周期结构"></a>生命周期结构</h2><p><img src="http://junit.org/junit5/docs/current/user-guide/images/extensions_lifecycle.png" alt="junit 5 test lifecycle"></p>
-<h2 id="Before-amp-After"><a href="#Before-amp-After" class="headerlink" title="Before &amp; After"></a>Before &amp; After</h2><p>在junit测试生命周期中，我们需要一些方法来设置和清除测试运行的环境或测试数据。</p>
+<h2 id="Before-After"><a href="#Before-After" class="headerlink" title="Before &amp; After"></a>Before &amp; After</h2><p>在junit测试生命周期中，我们需要一些方法来设置和清除测试运行的环境或测试数据。</p>
 <p>在JUnit中，对于每个测试 - 创建了一个新的测试实例。<code>@BeforeAll</code>和@<code>AfterAll</code>注释 - 以其名称清除 - 在整个测试执行周期中只应调用一次。所以他们必须被宣布</p>
 <p>在JUnit中，对于每个测试 ，都会创建了一个新的测试实例。<code>@BeforeAll</code>和<code>@AfterAll</code>注解，在整个测试执行周期中只应调用一次。所以他们必须被声明为<code>static</code>。</p>
 <p>如果他们是用相同注释注释的多个方法（例如两个方法<code>@BeforeAll</code>），那么它们的执行顺序是不确定的。</p>
@@ -493,7 +493,7 @@
 <p>这可以被提供作为一个JVM系统属性，作为配置参数在 LauncherDiscoveryRequest被传递到Launcher，或通过JUnit的平台配置文件。</p>
 <p>例如，要设置成默认的测试生命周期模式<code>Lifecycle.PER_CLASS</code>,可以使用以下系统属性启动JVM。</p>
 <blockquote>
-<p>-Djunit.jupiter.testinstance.lifecycle.default=per_class</p>
+<p>-Djunit.jupiter.testinstance.lifecycle.default&#x3D;per_class</p>
 </blockquote>
 <p>但是请注意，通过JUnit平台配置文件设置默认测试实例生命周期模式是一个更强大的解决方案，因为配置文件可以与项目一起检入版本控制系统，因此可以在IDE和您的构建软件中使用。</p>
 <p>要<code>Lifecycle.PER_CLASS</code>通过JUnit平台配置文件设置默认测试实例生命周期模式，请创建一个以<code>junit-platform.properties</code>类路径根目录命名的文件（例如，<code>src/test/resources</code>），具有以下内容。</p>
@@ -729,7 +729,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期结构"><span class="nav-number">1.</span> <span class="nav-text">生命周期结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Before-amp-After"><span class="nav-number">2.</span> <span class="nav-text">Before &amp; After</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁用测试"><span class="nav-number">3.</span> <span class="nav-text">禁用测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#断言"><span class="nav-number">4.</span> <span class="nav-text">断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#假设"><span class="nav-number">5.</span> <span class="nav-text">假设</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改默认测试实例生命周期"><span class="nav-number">6.</span> <span class="nav-text">更改默认测试实例生命周期</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期结构"><span class="nav-number">1.</span> <span class="nav-text">生命周期结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Before-After"><span class="nav-number">2.</span> <span class="nav-text">Before &amp; After</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁用测试"><span class="nav-number">3.</span> <span class="nav-text">禁用测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#断言"><span class="nav-number">4.</span> <span class="nav-text">断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#假设"><span class="nav-number">5.</span> <span class="nav-text">假设</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改默认测试实例生命周期"><span class="nav-number">6.</span> <span class="nav-text">更改默认测试实例生命周期</span></a></li></ol></div>
             
 
           </div>
@@ -752,7 +752,7 @@
         <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

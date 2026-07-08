@@ -99,7 +99,7 @@
 <meta property="og:description" content="pssh是一个用python编写的可以在多台服务器上执行命令的工具，同时支持拷贝文件等功能，在同类工具中还是很方便使用的。项目地址：parallel-ssh">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/pssh.png">
 <meta property="article:published_time" content="2014-12-08T07:33:36.000Z">
-<meta property="article:modified_time" content="2019-06-20T12:10:27.462Z">
+<meta property="article:modified_time" content="2026-07-08T01:27:40.777Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="ssh">
 <meta property="article:tag" content=" pssh">
@@ -483,14 +483,14 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  pssh  pssh --<span class="built_in">help</span></span><br><span class="line">Usage: pssh [OPTIONS] <span class="built_in">command</span> [...]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  --version             show program<span class="string">'s version number and exit</span></span><br><span class="line"><span class="string">  --help                show this help message and exit</span></span><br><span class="line"><span class="string">  -h HOST_FILE, --hosts=HOST_FILE</span></span><br><span class="line"><span class="string">                        hosts file (each line "[user@]host[:port]")</span></span><br><span class="line"><span class="string">  -H HOST_STRING, --host=HOST_STRING</span></span><br><span class="line"><span class="string">                        additional host entries ("[user@]host[:port]")</span></span><br><span class="line"><span class="string">  -l USER, --user=USER  username (OPTIONAL)</span></span><br><span class="line"><span class="string">  -p PAR, --par=PAR     max number of parallel threads (OPTIONAL)</span></span><br><span class="line"><span class="string">  -o OUTDIR, --outdir=OUTDIR</span></span><br><span class="line"><span class="string">                        output directory for stdout files (OPTIONAL)</span></span><br><span class="line"><span class="string">  -e ERRDIR, --errdir=ERRDIR</span></span><br><span class="line"><span class="string">                        output directory for stderr files (OPTIONAL)</span></span><br><span class="line"><span class="string">  -t TIMEOUT, --timeout=TIMEOUT</span></span><br><span class="line"><span class="string">                        timeout (secs) (0 = no timeout) per host (OPTIONAL)</span></span><br><span class="line"><span class="string">  -O OPTION, --option=OPTION</span></span><br><span class="line"><span class="string">                        SSH option (OPTIONAL)</span></span><br><span class="line"><span class="string">  -v, --verbose         turn on warning and diagnostic messages (OPTIONAL)</span></span><br><span class="line"><span class="string">  -A, --askpass         Ask for a password (OPTIONAL)</span></span><br><span class="line"><span class="string">  -x ARGS, --extra-args=ARGS</span></span><br><span class="line"><span class="string">                        Extra command-line arguments, with processing for</span></span><br><span class="line"><span class="string">                        spaces, quotes, and backslashes</span></span><br><span class="line"><span class="string">  -X ARG, --extra-arg=ARG</span></span><br><span class="line"><span class="string">                        Extra command-line argument</span></span><br><span class="line"><span class="string">  -i, --inline          inline aggregated output and error for each server</span></span><br><span class="line"><span class="string">  --inline-stdout       inline standard output for each server</span></span><br><span class="line"><span class="string">  -I, --send-input      read from standard input and send as input to ssh</span></span><br><span class="line"><span class="string">  -P, --print           print output as we get it</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Example: pssh -h hosts.txt -l irb2 -o /tmp/foo uptime</span></span><br></pre></td></tr></table></figure>
 
 
-<p>简单解释一下pssh help提供的例子。在hosts.txt中列出来的服务器上远程执行uptime命令，并将执行结果输出到/tmp/uptime目录下相应地服务器的文件中。</p>
+<p>简单解释一下pssh help提供的例子。在hosts.txt中列出来的服务器上远程执行uptime命令，并将执行结果输出到&#x2F;tmp&#x2F;uptime目录下相应地服务器的文件中。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pssh -h hosts.txt -l root -o /tmp/uptime uptime</span><br></pre></td></tr></table></figure>
 
 <p>其中相关参数说明：</p>
 <blockquote>
 <p>-h hosts.txt 指定服务器列表的文件为hosts.txt</p>
 <p>-l root 指定远程用户为root</p>
-<p>-o /tmp/uptime 指定远程命令执行返回结果输出目录为/tmp/uptime</p>
+<p>-o &#x2F;tmp&#x2F;uptime 指定远程命令执行返回结果输出目录为&#x2F;tmp&#x2F;uptime</p>
 <p>uptime 指定远程服务器上执行的命令为uptime</p>
 </blockquote>
 <p>我们执行一下看看，执行结果说明在172.18.10.25和172.18.10.24两台服务器上执行成功。</p>
@@ -772,7 +772,7 @@
         <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -100,7 +100,7 @@
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/gradle.png">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/javaPluginConfigurations.png">
 <meta property="article:published_time" content="2015-01-12T05:47:19.000Z">
-<meta property="article:modified_time" content="2019-06-20T12:10:27.464Z">
+<meta property="article:modified_time" content="2026-07-08T01:27:40.777Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="gradle dependency">
 <meta name="twitter:card" content="summary">
@@ -460,31 +460,39 @@
 
 <h3 id="那我们来看看Gradle的依赖范围（dependent-scope到底有哪些）。"><a href="#那我们来看看Gradle的依赖范围（dependent-scope到底有哪些）。" class="headerlink" title="那我们来看看Gradle的依赖范围（dependent scope到底有哪些）。"></a>那我们来看看Gradle的依赖范围（dependent scope到底有哪些）。</h3><h4 id="war插件使用的依赖范围"><a href="#war插件使用的依赖范围" class="headerlink" title="war插件使用的依赖范围"></a>war插件使用的依赖范围</h4><ul>
 <li><p>providedCompile</p>
-<pre><code>  war插件提供的范围类型:与compile作用类似,但不会被添加到最终的war包中这是由于编译、测试阶段代码需要依赖此类jar包，而运行阶段容器已经提供了相应的支持，所以无需将这些文件打入到war包中了;例如Servlet API就是一个很明显的例子.</code></pre>
+<pre><code>  war插件提供的范围类型:与compile作用类似,但不会被添加到最终的war包中这是由于编译、测试阶段代码需要依赖此类jar包，而运行阶段容器已经提供了相应的支持，所以无需将这些文件打入到war包中了;例如Servlet API就是一个很明显的例子.
+</code></pre>
 </li>
 <li><p>providedRuntime</p>
-<pre><code>  同providedCompile类似，也是war插件提供的范围类型。它的范围和jar插件的runtime基本一样，。</code></pre>
+<pre><code>  同providedCompile类似，也是war插件提供的范围类型。它的范围和jar插件的runtime基本一样，。
+</code></pre>
 </li>
 </ul>
 <p>相关说明可以看看Gradle官方文档的<a href="http://www.gradle.org/docs/current/userguide/war_plugin.html#N131A1" target="_blank" rel="noopener">第26章第4节 The War Plugin</a></p>
 <h4 id="java插件使用的依赖范围"><a href="#java插件使用的依赖范围" class="headerlink" title="java插件使用的依赖范围"></a>java插件使用的依赖范围</h4><ul>
 <li><p>compile</p>
-<pre><code>  编译范围依赖在所有的classpath中可用，同时它们也会被打包。</code></pre>
+<pre><code>  编译范围依赖在所有的classpath中可用，同时它们也会被打包。
+</code></pre>
 </li>
 <li><p>runtime</p>
-<pre><code>  runtime依赖在运行和测试系统的时候需要，但在编译的时候不需要。比如，你可能在编译的时候只需要JDBC API JAR，而只有在运行的时候才需要JDBC驱动实现。</code></pre>
+<pre><code>  runtime依赖在运行和测试系统的时候需要，但在编译的时候不需要。比如，你可能在编译的时候只需要JDBC API JAR，而只有在运行的时候才需要JDBC驱动实现。
+</code></pre>
 </li>
 <li><p>testCompile</p>
-<pre><code>  测试期编译需要的附加依赖</code></pre>
+<pre><code>  测试期编译需要的附加依赖
+</code></pre>
 </li>
 <li><p>testRuntime</p>
-<pre><code>  测试期编译需要的附加依赖</code></pre>
+<pre><code>  测试期编译需要的附加依赖
+</code></pre>
 </li>
 <li><p>archives</p>
-<pre><code>  项目构件时会使用的依赖范围</code></pre>
+<pre><code>  项目构件时会使用的依赖范围
+</code></pre>
 </li>
 <li><p>default</p>
-<pre><code>  配置默认依赖范围，用在这个项目上一个项目依赖的默认配置。包含本项目在运行时所需的构件和依赖。</code></pre>
+<pre><code>  配置默认依赖范围，用在这个项目上一个项目依赖的默认配置。包含本项目在运行时所需的构件和依赖。
+</code></pre>
 </li>
 </ul>
 <p>相关说明可以查看Gradle官方文档的<a href="http://www.gradle.org/docs/current/userguide/java_plugin.html#sec:java_plugin_and_dependency_management" target="_blank" rel="noopener">第23章第5节 The Java Plugin</a></p>
@@ -734,7 +742,7 @@
         <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

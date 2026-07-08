@@ -104,7 +104,7 @@
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/git-undo/rebase_fixup.png">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/git-undo/rebase_autosquash.png">
 <meta property="article:published_time" content="2015-07-08T09:04:12.000Z">
-<meta property="article:modified_time" content="2019-06-20T12:10:27.466Z">
+<meta property="article:modified_time" content="2026-07-08T01:27:40.777Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="git undo">
 <meta name="twitter:card" content="summary">
@@ -469,7 +469,7 @@
 
 <h4 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h4><p><strong>git revert</strong> 会创建一个新的<strong>commit</strong>，它和指定SHA对应的<strong>commit</strong>是相反的（或者说是反转的）。如果原型的commit是“物质”，那么新的<strong>commit</strong>就是“反物质”。</p>
 <p>任何从原来的commit里删除的内容都会再新的<strong>commit</strong>里被加回去，任何原来的<strong>commit</strong>中加入的内容都会在新的commit里被删除。</p>
-<p>这是Git中最安全、最基本的撤销场景，因为它并不会改变历史。所以你现在可以<strong>git push</strong>新的<strong>“反转”commit</strong>来抵消你错误提交的commit。</p>
+<p>这是Git中最安全、最基本的撤销场景，因为它并不会改变历史。所以你现在可以<strong>git push</strong>新的**“反转”commit**来抵消你错误提交的commit。</p>
 <h2 id="修正最后一个commit的消息"><a href="#修正最后一个commit的消息" class="headerlink" title="修正最后一个commit的消息"></a>修正最后一个commit的消息</h2><h4 id="场景：-1"><a href="#场景：-1" class="headerlink" title="场景："></a>场景：</h4><p>你在最后一条commit消息里有一个笔误，已经执行了 <strong>git commit -m ‘Fixes bug #42’</strong> ,但是在git push之前你意识到这个消息应该是**”Fix bug #43”**。</p>
 <h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><p>你可以使用下面的命令：</p>
 <figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">commit</span> <span class="comment">--amend</span></span><br></pre></td></tr></table></figure>
@@ -515,9 +515,9 @@
 <h4 id="方法：-3"><a href="#方法：-3" class="headerlink" title="方法："></a>方法：</h4><figure class="highlight maxima"><table><tr><td class="code"><pre><span class="line">git branch <span class="built_in">feature</span></span><br><span class="line">git <span class="built_in">reset</span> --hard <span class="built_in">origin</span>/master</span><br><span class="line">git checkout <span class="built_in">feature</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="原理：-4"><a href="#原理：-4" class="headerlink" title="原理："></a>原理：</h4><p>你可能习惯用 <code>git checkout -b &lt;name&gt; </code>创建一个新的分支（这是创建新分支并马上checkout的流行捷径），但是你不希望马上切换分支。这里，<code>git branch feature</code>创建了一个叫做feature的新分支，并指向你最近的commit，但是还是让你checkout在master分支上。</p>
-<p>下一步，在提交任何新的commit之前，用<code>git reset --hard</code> 把master分支倒回origin/master。不过别担心，那些commit还在feature分支里。</p>
+<p>下一步，在提交任何新的commit之前，用<code>git reset --hard</code> 把master分支倒回origin&#x2F;master。不过别担心，那些commit还在feature分支里。</p>
 <p>最后，用<code>git checkout </code>切换到新的feature分支，并让你最近所有的工作成果都完好无损。</p>
-<h2 id="及时分支，省去繁琐"><a href="#及时分支，省去繁琐" class="headerlink" title="及时分支，省去繁琐"></a>及时分支，省去繁琐</h2><h4 id="场景：-6"><a href="#场景：-6" class="headerlink" title="场景："></a>场景：</h4><p>你在master分支的基础上创建一个feature分支，但是master分支已经滞后于origin/master很多。现在master分支已经和origin/master同步，你希望在feature上的提交从现在开始，而不是从滞后很多的地方开始。</p>
+<h2 id="及时分支，省去繁琐"><a href="#及时分支，省去繁琐" class="headerlink" title="及时分支，省去繁琐"></a>及时分支，省去繁琐</h2><h4 id="场景：-6"><a href="#场景：-6" class="headerlink" title="场景："></a>场景：</h4><p>你在master分支的基础上创建一个feature分支，但是master分支已经滞后于origin&#x2F;master很多。现在master分支已经和origin&#x2F;master同步，你希望在feature上的提交从现在开始，而不是从滞后很多的地方开始。</p>
 <h4 id="方法：-4"><a href="#方法：-4" class="headerlink" title="方法："></a>方法：</h4><figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">git checkout feature</span></span><br></pre></td></tr></table></figure>
 
 <p>和</p>
@@ -530,7 +530,7 @@
 <li>然后它reset当前checkout的分支到那个共同祖先 ，在一个临时保存区存放所有之前的提交。</li>
 <li>然后它把当前checkout的分支提到master的末尾部分，并从临时保存区重新把存放的commit提交到master分支的最后 一个commit之后。</li>
 </ol>
-<h2 id="大量的撤销-恢复"><a href="#大量的撤销-恢复" class="headerlink" title="大量的撤销/恢复"></a>大量的撤销/恢复</h2><h4 id="场景：-7"><a href="#场景：-7" class="headerlink" title="场景："></a>场景：</h4><p>你向某个方向开始实现一个特性，但是你半路意识到另一个方案更好。你已经进行了十几次的提交，但是你现在只需要其中的一部分。你希望其他不需要的提交统统消失。</p>
+<h2 id="大量的撤销-恢复"><a href="#大量的撤销-恢复" class="headerlink" title="大量的撤销&#x2F;恢复"></a>大量的撤销&#x2F;恢复</h2><h4 id="场景：-7"><a href="#场景：-7" class="headerlink" title="场景："></a>场景：</h4><p>你向某个方向开始实现一个特性，但是你半路意识到另一个方案更好。你已经进行了十几次的提交，但是你现在只需要其中的一部分。你希望其他不需要的提交统统消失。</p>
 <h4 id="方案：-1"><a href="#方案：-1" class="headerlink" title="方案："></a>方案：</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">git rebase -i <span class="tag">&lt;<span class="name">carlier</span> <span class="attr">SHA</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="原理：-6"><a href="#原理：-6" class="headerlink" title="原理："></a>原理：</h4><p><code>-i</code> 参数会让rebase进入“交互模式”。它开始类似于签名讨论的rebase，但在重新进行任何提交之前，它会暂停下来并允许你详细的修改每一个提交。</p>
@@ -814,7 +814,7 @@
         <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

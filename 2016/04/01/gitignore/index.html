@@ -99,7 +99,7 @@
 <meta property="og:description" content="gitignore的使用场景使用Git的同学都知道.gitignore 配置文件用于配置不需要加入版本管理的文件，对版本管理带来很大的便利。今天有个需求就是忽略版本库下除少数几个文件和文件夹之外的所有文件，首先想到的方式是使用gitignore树的概念，即在需要的文件夹下都添加 .gitignore 文件，并在其中设定相应的规则。但是，这种方式比较麻烦。">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/gitignore.jpg">
 <meta property="article:published_time" content="2016-04-01T08:00:17.000Z">
-<meta property="article:modified_time" content="2019-06-20T12:10:27.472Z">
+<meta property="article:modified_time" content="2026-07-08T01:27:40.778Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="git gitignore 最佳实践">
 <meta name="twitter:card" content="summary">
@@ -459,12 +459,14 @@
 <h2 id="gitignore的使用模式"><a href="#gitignore的使用模式" class="headerlink" title="gitignore的使用模式"></a>gitignore的使用模式</h2><p>好好研究了一下gitignore的语法，知道了<code>.gitignore</code> 文件过滤有两种模式：开放模式和保守模式。</p>
 <h3 id="开放模式"><a href="#开放模式" class="headerlink" title="开放模式"></a>开放模式</h3><p>开放模式负责设置过滤哪些文件和文件夹</p>
 <p>例如： </p>
-<pre><code> /target/ 表示项目根目录下的target文件夹里面所有的内容都会被过滤，不被跟踪
-
- .classpath 表示项目根目录下的.classpath文件会被过滤，不被跟踪</code></pre>
+<pre><code>	/target/ 表示项目根目录下的target文件夹里面所有的内容都会被过滤，不被跟踪
+	
+	.classpath 表示项目根目录下的.classpath文件会被过滤，不被跟踪
+</code></pre>
 <h3 id="保守模式"><a href="#保守模式" class="headerlink" title="保守模式"></a>保守模式</h3><p>保守模式负责设置哪些文件不被过滤，也就是哪些文件要被跟踪</p>
 <p>例如：</p>
-<pre><code> !/target/*.h 表示target文件夹目录下所有的.h文件将被跟踪</code></pre>
+<pre><code>	!/target/*.h 表示target文件夹目录下所有的.h文件将被跟踪
+</code></pre>
 <p>还有就是，gitignore是从上到下逐行匹配的，因此.gitignore文件的编写原则就是：</p>
 <p><strong>先编写开放模式，在编写保守模式</strong></p>
 <p>要不然，开放模式的规则会把保守模式的规则给覆盖了。</p>
@@ -472,9 +474,10 @@
 <figure class="highlight diff"><table><tr><td class="code"><pre><span class="line">/*</span><br><span class="line"><span class="addition">!.gitignore</span></span><br><span class="line"><span class="addition">!/posts/</span></span><br></pre></td></tr></table></figure>
 
 <p>只跟踪版本库中的.gitignore文件和posts目录。这里需要注意的是：</p>
-<pre><code>一定是/*而不是*，/*表示当前目录下的所有文件，而不是所有文件*</code></pre>
+<pre><code>一定是/*而不是*，/*表示当前目录下的所有文件，而不是所有文件*
+</code></pre>
 <h2 id="gitignore的简单语法："><a href="#gitignore的简单语法：" class="headerlink" title="gitignore的简单语法："></a>gitignore的简单语法：</h2><ol>
-<li><p>以斜杠“/”开头表目录</p>
+<li><p>以斜杠“&#x2F;”开头表目录</p>
 </li>
 <li><p>以星号“*”通配多字符</p>
 </li>
@@ -735,7 +738,7 @@
         <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

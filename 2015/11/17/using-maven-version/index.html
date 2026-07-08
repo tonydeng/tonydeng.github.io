@@ -99,7 +99,7 @@
 <meta property="og:description" content="场景描述我们在开发一些项目的时候需要知道当前的版本状态，比如传递版本客户端信息到服务端等等。 那我们有些什么办法能够获取当前项目版本呢？ 比较简单的办法就是在我们的程序中写一个常量来记录版本号，每次升级了就更新这个常量。但是这个方案还需要我们每次升级的时候都要记得这个事情，这个对于我这种记性不太好的人来说，简直就是灾难。 那还有什么更好的办法吗？">
 <meta property="og:image" content="http://tonydeng.github.io/images/blog/using-maven-version.png">
 <meta property="article:published_time" content="2015-11-17T10:56:48.000Z">
-<meta property="article:modified_time" content="2019-06-20T12:10:27.471Z">
+<meta property="article:modified_time" content="2026-07-08T01:27:40.778Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content=" maven">
@@ -466,7 +466,7 @@
 <p>应该是可以，不过，如果要读取出来，我们是否需要去分析<code>Maven</code>的<code>pom.xml</code>文件吗？如果是这样，工作量也有点大。</p>
 <p>其实<code>maven</code>已经给出了方案，就是可以在自定义的资源文件（<code>properties</code>）中放置<code>pom.xml</code>设置的变量，就会自动将变量替换成为真实地值。</p>
 <h2 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h2><p>我有一个hsc的项目，代码中需要知道当前项目的版本。那我应该怎么来做呢？</p>
-<h3 id="在src-main-resources-hsc-application-properties文件中放置如下内容："><a href="#在src-main-resources-hsc-application-properties文件中放置如下内容：" class="headerlink" title="在src/main/resources/hsc-application.properties文件中放置如下内容："></a>在src/main/resources/hsc-application.properties文件中放置如下内容：</h3><figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">hsc.version</span>=<span class="variable">$&#123;project.version&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="在src-main-resources-hsc-application-properties文件中放置如下内容："><a href="#在src-main-resources-hsc-application-properties文件中放置如下内容：" class="headerlink" title="在src&#x2F;main&#x2F;resources&#x2F;hsc-application.properties文件中放置如下内容："></a>在src&#x2F;main&#x2F;resources&#x2F;hsc-application.properties文件中放置如下内容：</h3><figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">hsc.version</span>=<span class="variable">$&#123;project.version&#125;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="配置pom-xml"><a href="#配置pom-xml" class="headerlink" title="配置pom.xml"></a>配置pom.xml</h3><figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="params">&lt;build&gt;</span></span><br><span class="line">       <span class="params">&lt;resources&gt;</span></span><br><span class="line">           <span class="params">&lt;resource&gt;</span></span><br><span class="line">               <span class="params">&lt;directory&gt;</span>src<span class="meta-keyword">/main/</span>resources<span class="params">&lt;/directory&gt;</span></span><br><span class="line">               <span class="params">&lt;filtering&gt;</span>true<span class="params">&lt;/filtering&gt;</span></span><br><span class="line">           <span class="params">&lt;/resource&gt;</span></span><br><span class="line">       <span class="params">&lt;/resources&gt;</span></span><br><span class="line"><span class="params">&lt;/build&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -723,7 +723,7 @@
         <div class="copyright" >
   
   &copy;  2005 - 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
