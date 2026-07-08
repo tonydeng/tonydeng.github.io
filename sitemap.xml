@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://tonydeng.github.io/ppts/index.html</loc>
-    
-    <lastmod>2026-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://tonydeng.github.io/tags/index.html</loc>
     
     <lastmod>2026-07-08</lastmod>
@@ -20,7 +11,43 @@
   </url>
   
   <url>
+    <loc>http://tonydeng.github.io/ppts/index.html</loc>
+    
+    <lastmod>2026-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://tonydeng.github.io/gitbook-zh/index.html</loc>
+    
+    <lastmod>2026-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/2017/11/28/netconf-call-home/</loc>
+    
+    <lastmod>2026-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/2018/02/27/pyenv/</loc>
+    
+    <lastmod>2026-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/2018/02/13/the-two-laws-of-building-products/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -74,15 +101,6 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/about/index.html</loc>
-    
-    <lastmod>2026-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://tonydeng.github.io/categories/index.html</loc>
     
     <lastmod>2026-07-08</lastmod>
@@ -92,7 +110,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2017/04/14/hexo-plantuml-diagram-plugin/</loc>
+    <loc>http://tonydeng.github.io/about/index.html</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -101,7 +119,25 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2017/05/07/six-key-ability-of-managers/</loc>
+    <loc>http://tonydeng.github.io/2017/01/01/implementation-and-algorithm-of-collaborative-filtering/</loc>
+    
+    <lastmod>2026-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/2017/03/03/jit-in-python/</loc>
+    
+    <lastmod>2026-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/2017/03/03/common-algorithms-for-machine-learning/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -119,16 +155,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2017/09/26/RUN-vs-CMD-vs-ENTRYPOINT-in-Dockerfile/</loc>
-    
-    <lastmod>2026-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/2017/10/09/junit-5-test-lifecycle/</loc>
+    <loc>http://tonydeng.github.io/2017/05/07/six-key-ability-of-managers/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -138,6 +165,24 @@
   
   <url>
     <loc>http://tonydeng.github.io/2017/08/31/git-common-branch-management-practices/</loc>
+    
+    <lastmod>2026-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/2017/04/14/hexo-plantuml-diagram-plugin/</loc>
+    
+    <lastmod>2026-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/2017/10/09/junit-5-test-lifecycle/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -164,7 +209,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2017/11/28/netconf-call-home/</loc>
+    <loc>http://tonydeng.github.io/2017/09/26/RUN-vs-CMD-vs-ENTRYPOINT-in-Dockerfile/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -173,7 +218,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2018/02/13/the-two-laws-of-building-products/</loc>
+    <loc>http://tonydeng.github.io/2015/11/27/batch-conversion-file-encoding/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -182,16 +227,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2018/02/27/pyenv/</loc>
-    
-    <lastmod>2026-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/2016/04/25/java-stream/</loc>
+    <loc>http://tonydeng.github.io/2015/11/24/etcd-the-first-using/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -209,7 +245,16 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2016/07/07/use-lsof-to-replace-netstat/</loc>
+    <loc>http://tonydeng.github.io/2016/04/01/gitignore/</loc>
+    
+    <lastmod>2026-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/2016/04/25/java-stream/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -227,7 +272,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2016/07/12/statistics-for-hackers/</loc>
+    <loc>http://tonydeng.github.io/2016/07/07/use-lsof-to-replace-netstat/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -236,7 +281,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2016/07/14/product-seven-words/</loc>
+    <loc>http://tonydeng.github.io/2016/07/12/statistics-for-hackers/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -263,16 +308,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2016/08/05/zsh-plugins-like-fish-shell/</loc>
-    
-    <lastmod>2026-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/2016/07/28/on-the-use-of-tesseract-picture-text-recognition/</loc>
+    <loc>http://tonydeng.github.io/2016/07/14/product-seven-words/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -290,7 +326,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2017/01/01/implementation-and-algorithm-of-collaborative-filtering/</loc>
+    <loc>http://tonydeng.github.io/2016/07/28/on-the-use-of-tesseract-picture-text-recognition/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -299,7 +335,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2017/03/03/common-algorithms-for-machine-learning/</loc>
+    <loc>http://tonydeng.github.io/2016/08/05/zsh-plugins-like-fish-shell/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -308,7 +344,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2017/03/03/jit-in-python/</loc>
+    <loc>http://tonydeng.github.io/2015/09/18/maven-generate-project/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -318,6 +354,24 @@
   
   <url>
     <loc>http://tonydeng.github.io/2015/09/20/netty5-user-guide/</loc>
+    
+    <lastmod>2026-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/2015/08/20/nosql-vs-sql/</loc>
+    
+    <lastmod>2026-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/2015/10/21/capitalization-error-handing-in-git/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -353,7 +407,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2015/10/21/capitalization-error-handing-in-git/</loc>
+    <loc>http://tonydeng.github.io/2015/10/24/the-six-thinking-hats/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -363,15 +417,6 @@
   
   <url>
     <loc>http://tonydeng.github.io/2015/10/30/java-mail-no-object-dch-for-mime-type-multipart-mixed/</loc>
-    
-    <lastmod>2026-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/2015/10/24/the-six-thinking-hats/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -407,33 +452,6 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2015/11/24/etcd-the-first-using/</loc>
-    
-    <lastmod>2026-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/2015/11/27/batch-conversion-file-encoding/</loc>
-    
-    <lastmod>2026-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/2016/04/01/gitignore/</loc>
-    
-    <lastmod>2026-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://tonydeng.github.io/2005/03/17/the-xiantao-dishes-i-love/</loc>
     
     <lastmod>2026-07-08</lastmod>
@@ -461,7 +479,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2009/10/19/are-you-a-professional-engineer/</loc>
+    <loc>http://tonydeng.github.io/2007/04/06/the-difference-between-setuid-setgid-and-sticky-bit-in-linux/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -497,7 +515,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2007/04/06/the-difference-between-setuid-setgid-and-sticky-bit-in-linux/</loc>
+    <loc>http://tonydeng.github.io/2014/12/09/linux-performance-tools/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -515,7 +533,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2014/12/09/zsh-scp-wildcard/</loc>
+    <loc>http://tonydeng.github.io/2009/10/19/are-you-a-professional-engineer/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -524,16 +542,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2014/12/09/linux-performance-tools/</loc>
-    
-    <lastmod>2026-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/2014/12/11/grunt-project-scaffolding/</loc>
+    <loc>http://tonydeng.github.io/2014/12/31/brew-update-error/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -560,15 +569,6 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2014/12/31/brew-update-error/</loc>
-    
-    <lastmod>2026-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://tonydeng.github.io/2015/01/05/frontend-decoupling-principle/</loc>
     
     <lastmod>2026-07-08</lastmod>
@@ -578,7 +578,16 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2015/01/13/are-you-a-salted-fish/</loc>
+    <loc>http://tonydeng.github.io/2014/12/11/grunt-project-scaffolding/</loc>
+    
+    <lastmod>2026-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/2014/12/09/zsh-scp-wildcard/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -588,6 +597,24 @@
   
   <url>
     <loc>http://tonydeng.github.io/2015/01/13/using-html5-application-cache/</loc>
+    
+    <lastmod>2026-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/2015/01/12/gradle-dependency-scope/</loc>
+    
+    <lastmod>2026-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/2015/01/13/are-you-a-salted-fish/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -606,15 +633,6 @@
   
   <url>
     <loc>http://tonydeng.github.io/2015/02/10/golang-project-directory-structure/</loc>
-    
-    <lastmod>2026-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/2015/01/12/gradle-dependency-scope/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -650,6 +668,15 @@
   </url>
   
   <url>
+    <loc>http://tonydeng.github.io/2015/07/11/brew-reinstall/</loc>
+    
+    <lastmod>2026-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://tonydeng.github.io/2015/07/08/how-to-undo-almost-anything-with-git/</loc>
     
     <lastmod>2026-07-08</lastmod>
@@ -668,34 +695,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/2015/07/11/brew-reinstall/</loc>
-    
-    <lastmod>2026-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://tonydeng.github.io/2015/07/16/linkedhashmap-based-lrucache-implementation/</loc>
-    
-    <lastmod>2026-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/2015/08/20/nosql-vs-sql/</loc>
-    
-    <lastmod>2026-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/2015/09/18/maven-generate-project/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -769,14 +769,21 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/engineered/</loc>
+    <loc>http://tonydeng.github.io/tags/setuid/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/professional/</loc>
+    <loc>http://tonydeng.github.io/tags/setgid/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/sticky-bit/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -791,6 +798,34 @@
   
   <url>
     <loc>http://tonydeng.github.io/tags/design/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/engineered/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/grunt/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/front-end/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/nodejs/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -825,49 +860,28 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/setuid/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/setgid/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/sticky-bit/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/grunt/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/front-end/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/nodejs/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://tonydeng.github.io/tags/pssh/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/professional/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/brew/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/mac-osx/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -916,34 +930,6 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/brew/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/mac-osx/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/life/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/thinking/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://tonydeng.github.io/tags/html5/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -959,6 +945,20 @@
   
   <url>
     <loc>http://tonydeng.github.io/tags/gradle/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/life/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/thinking/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -986,6 +986,13 @@
   </url>
   
   <url>
+    <loc>http://tonydeng.github.io/tags/mac/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://tonydeng.github.io/tags/undo/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -1007,7 +1014,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/mac/</loc>
+    <loc>http://tonydeng.github.io/tags/maven/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1021,14 +1028,7 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/cache/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/lru/</loc>
+    <loc>http://tonydeng.github.io/tags/netty/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1063,20 +1063,6 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/maven/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/netty/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://tonydeng.github.io/tags/etcd/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -1099,6 +1085,20 @@
   
   <url>
     <loc>http://tonydeng.github.io/tags/UE/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/cache/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/lru/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1147,20 +1147,6 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/mailcap/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/email/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://tonydeng.github.io/tags/the-six-thinking-hasts/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -1169,6 +1155,20 @@
   
   <url>
     <loc>http://tonydeng.github.io/tags/%E5%85%AD%E9%A1%B6%E6%80%9D%E8%80%83%E5%B8%BD/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/mailcap/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/email/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1231,20 +1231,6 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/restful/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/api/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://tonydeng.github.io/tags/iconv/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -1259,14 +1245,14 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/gitignore/</loc>
+    <loc>http://tonydeng.github.io/tags/restful/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/stream/</loc>
+    <loc>http://tonydeng.github.io/tags/api/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1294,14 +1280,14 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/lsof/</loc>
+    <loc>http://tonydeng.github.io/tags/gitignore/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/netstat/</loc>
+    <loc>http://tonydeng.github.io/tags/stream/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1323,6 +1309,20 @@
   
   <url>
     <loc>http://tonydeng.github.io/tags/vulnerability/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/lsof/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/netstat/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1364,27 +1364,6 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/autosuggestions/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/color/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/tesseact/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://tonydeng.github.io/tags/etcd4j/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -1406,6 +1385,20 @@
   </url>
   
   <url>
+    <loc>http://tonydeng.github.io/tags/python/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/JIT/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://tonydeng.github.io/tags/algorithms/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -1421,34 +1414,6 @@
   
   <url>
     <loc>http://tonydeng.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/hexo/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/python/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/JIT/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/%E7%AE%A1%E7%90%86/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1483,35 +1448,49 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/docker/</loc>
+    <loc>http://tonydeng.github.io/tags/tesseact/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/Dockerfile/</loc>
+    <loc>http://tonydeng.github.io/tags/autosuggestions/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/run/</loc>
+    <loc>http://tonydeng.github.io/tags/color/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/cmd/</loc>
+    <loc>http://tonydeng.github.io/tags/%E7%AE%A1%E7%90%86/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/entrypoint/</loc>
+    <loc>http://tonydeng.github.io/tags/branch/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/scm/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/hexo/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1553,21 +1532,42 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/tags/branch/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/scm/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://tonydeng.github.io/tags/annotations/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/docker/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/Dockerfile/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/run/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/cmd/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/entrypoint/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1589,6 +1589,13 @@
   
   <url>
     <loc>http://tonydeng.github.io/tags/RFC8071/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://tonydeng.github.io/tags/pyenv/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1617,13 +1624,6 @@
   
   <url>
     <loc>http://tonydeng.github.io/tags/Module/</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://tonydeng.github.io/tags/pyenv/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1751,14 +1751,14 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</loc>
+    <loc>http://tonydeng.github.io/categories/%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/categories/%E5%AE%89%E5%85%A8/</loc>
+    <loc>http://tonydeng.github.io/categories/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1772,14 +1772,14 @@
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/categories/%E7%AE%A1%E7%90%86/</loc>
+    <loc>http://tonydeng.github.io/categories/Mac-OSX/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://tonydeng.github.io/categories/Mac-OSX/</loc>
+    <loc>http://tonydeng.github.io/categories/%E7%AE%A1%E7%90%86/</loc>
     <lastmod>2026-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
