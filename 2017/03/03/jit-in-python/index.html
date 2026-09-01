@@ -43,9 +43,6 @@
   
 
   
-    
-    
-  
 
   
 
@@ -55,10 +52,6 @@
 
   
 
-  
-    
-    
-    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -94,13 +87,13 @@
 <meta name="description" content="编译型 or 解释型？玩过 Python 的同学应该都听过 python 是解释型语言，那么什么是解释型语言，其实在现代的编程语言中，关于解释型 和 编译型 的界限越来越模糊了，这里我根据我自己的理解下个定义：  解释型：不能直接编译成可执行二进制程序的语言 编译型：可以直接编译成可执行二进制程序运行的语言  根据这个定义的话，可以明确给出界定，C&#x2F;C++ 是 编译型 的，而 Java 则是 解释">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python的JIT">
-<meta property="og:url" content="http://tonydeng.github.io/2017/03/03/jit-in-python/index.html">
+<meta property="og:url" content="https://tonydeng.github.io/2017/03/03/jit-in-python/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="编译型 or 解释型？玩过 Python 的同学应该都听过 python 是解释型语言，那么什么是解释型语言，其实在现代的编程语言中，关于解释型 和 编译型 的界限越来越模糊了，这里我根据我自己的理解下个定义：  解释型：不能直接编译成可执行二进制程序的语言 编译型：可以直接编译成可执行二进制程序运行的语言  根据这个定义的话，可以明确给出界定，C&#x2F;C++ 是 编译型 的，而 Java 则是 解释">
 <meta property="og:image" content="https://ooo.0o0.ooo/2017/02/04/58959aaa98af7.jpg">
 <meta property="og:image" content="https://ooo.0o0.ooo/2017/02/04/58959ffd5678f.png">
 <meta property="article:published_time" content="2017-03-03T05:37:38.000Z">
-<meta property="article:modified_time" content="2026-07-08T01:39:22.447Z">
+<meta property="article:modified_time" content="2026-09-01T13:41:58.220Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="Python JIT">
 <meta name="twitter:card" content="summary">
@@ -132,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2017/03/03/jit-in-python/"/>
+  <link rel="canonical" href="https://tonydeng.github.io/2017/03/03/jit-in-python/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.css" />
 
 
   <title> Python的JIT | TonyDeng's Blog </title>
@@ -174,12 +167,6 @@
 
 
 
-
-
-
-  <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
-  </div>
 
 
 
@@ -359,7 +346,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2017/03/03/jit-in-python/">
+    <link itemprop="mainEntityOfPage" href="https://tonydeng.github.io/2017/03/03/jit-in-python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
@@ -601,7 +588,7 @@
                alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">Tony Deng 的个人技术博客，分享软件架构、领域驱动设计、Java/Golang/前端工程、DevOps 与信息安全等领域的实践与思考。</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -805,7 +792,7 @@
 
 
 
-<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
 
   
 

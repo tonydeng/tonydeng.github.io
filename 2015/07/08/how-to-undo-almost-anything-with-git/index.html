@@ -43,9 +43,6 @@
   
 
   
-    
-    
-  
 
   
 
@@ -55,10 +52,6 @@
 
   
 
-  
-    
-    
-    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -94,21 +87,21 @@
 <meta name="description" content="GitHub的How to undo (almost) anything with Git这篇文章介绍了Git使用中的各种Undo技巧。 任何版本控制系统中最有用的功能之一就是能够**”撤销（undo）”你之前的错误。在Git中“undo”**功能可能因为场景的不同而有些许的差异。 当你进行一个新的提交时，Git会保存你在这个特定时间点的快照到本地的仓库中，之后，你可以通过Git来回到你早期的某">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git的各种Undo技巧">
-<meta property="og:url" content="http://tonydeng.github.io/2015/07/08/how-to-undo-almost-anything-with-git/index.html">
+<meta property="og:url" content="https://tonydeng.github.io/2015/07/08/how-to-undo-almost-anything-with-git/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="GitHub的How to undo (almost) anything with Git这篇文章介绍了Git使用中的各种Undo技巧。 任何版本控制系统中最有用的功能之一就是能够**”撤销（undo）”你之前的错误。在Git中“undo”**功能可能因为场景的不同而有些许的差异。 当你进行一个新的提交时，Git会保存你在这个特定时间点的快照到本地的仓库中，之后，你可以通过Git来回到你早期的某">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/git-undo/git-undo.jpg">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/git-undo/reflog.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/git-undo/rebase_1.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/git-undo/rebase_edit.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/git-undo/rebase_fixup.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/git-undo/rebase_autosquash.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/git-undo/git-undo.jpg">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/git-undo/reflog.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/git-undo/rebase_1.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/git-undo/rebase_edit.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/git-undo/rebase_fixup.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/git-undo/rebase_autosquash.png">
 <meta property="article:published_time" content="2015-07-08T09:04:12.000Z">
-<meta property="article:modified_time" content="2026-07-08T01:39:22.444Z">
+<meta property="article:modified_time" content="2026-09-01T13:41:58.218Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="git undo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/git-undo/git-undo.jpg">
+<meta name="twitter:image" content="https://tonydeng.github.io/images/blog/git-undo/git-undo.jpg">
 
 
 
@@ -136,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2015/07/08/how-to-undo-almost-anything-with-git/"/>
+  <link rel="canonical" href="https://tonydeng.github.io/2015/07/08/how-to-undo-almost-anything-with-git/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.css" />
 
 
   <title> Git的各种Undo技巧 | TonyDeng's Blog </title>
@@ -178,12 +171,6 @@
 
 
 
-
-
-
-  <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
-  </div>
 
 
 
@@ -363,7 +350,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2015/07/08/how-to-undo-almost-anything-with-git/">
+    <link itemprop="mainEntityOfPage" href="https://tonydeng.github.io/2015/07/08/how-to-undo-almost-anything-with-git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
@@ -690,7 +677,7 @@
                alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">Tony Deng 的个人技术博客，分享软件架构、领域驱动设计、Java/Golang/前端工程、DevOps 与信息安全等领域的实践与思考。</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -894,7 +881,7 @@
 
 
 
-<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
 
   
 

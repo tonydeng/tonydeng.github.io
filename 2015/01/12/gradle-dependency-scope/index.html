@@ -43,9 +43,6 @@
   
 
   
-    
-    
-  
 
   
 
@@ -55,10 +52,6 @@
 
   
 
-  
-    
-    
-    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -94,17 +87,17 @@
 <meta name="description" content="自从Google推出Android的集成开发环境（IDE）– Android Studio，默认集成了Gradle来进行对Android项目生命周期的管理。那我们也需要从原来的Ant转成Gradle。 对于开发工程师来说，像Gradle这样的工具，第一体验是对依赖的管理。团队里面有不少原来是使用Maven的同学，会有这样的问题：“maven的依赖管理除了最基本的坐标体系（groupId、arti">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Gradle依赖范围介绍">
-<meta property="og:url" content="http://tonydeng.github.io/2015/01/12/gradle-dependency-scope/index.html">
+<meta property="og:url" content="https://tonydeng.github.io/2015/01/12/gradle-dependency-scope/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="自从Google推出Android的集成开发环境（IDE）– Android Studio，默认集成了Gradle来进行对Android项目生命周期的管理。那我们也需要从原来的Ant转成Gradle。 对于开发工程师来说，像Gradle这样的工具，第一体验是对依赖的管理。团队里面有不少原来是使用Maven的同学，会有这样的问题：“maven的依赖管理除了最基本的坐标体系（groupId、arti">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/gradle.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/javaPluginConfigurations.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/gradle.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/javaPluginConfigurations.png">
 <meta property="article:published_time" content="2015-01-12T05:47:19.000Z">
-<meta property="article:modified_time" content="2026-07-08T01:39:22.444Z">
+<meta property="article:modified_time" content="2026-09-01T13:41:58.218Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="gradle dependency">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/gradle.png">
+<meta name="twitter:image" content="https://tonydeng.github.io/images/blog/gradle.png">
 
 
 
@@ -132,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2015/01/12/gradle-dependency-scope/"/>
+  <link rel="canonical" href="https://tonydeng.github.io/2015/01/12/gradle-dependency-scope/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.css" />
 
 
   <title> Gradle依赖范围介绍 | TonyDeng's Blog </title>
@@ -174,12 +167,6 @@
 
 
 
-
-
-
-  <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
-  </div>
 
 
 
@@ -359,7 +346,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2015/01/12/gradle-dependency-scope/">
+    <link itemprop="mainEntityOfPage" href="https://tonydeng.github.io/2015/01/12/gradle-dependency-scope/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
@@ -618,7 +605,7 @@
                alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">Tony Deng 的个人技术博客，分享软件架构、领域驱动设计、Java/Golang/前端工程、DevOps 与信息安全等领域的实践与思考。</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -822,7 +809,7 @@
 
 
 
-<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
 
   
 

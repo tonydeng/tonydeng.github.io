@@ -43,9 +43,6 @@
   
 
   
-    
-    
-  
 
   
 
@@ -55,10 +52,6 @@
 
   
 
-  
-    
-    
-    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -94,29 +87,29 @@
 <meta name="description" content="为什么引入可测试性设计？在讨论可测试性之前，我们不妨先来思考一个问题： 当我们来盖一栋楼，如果不能保证钢筋、水泥、砖土质量合格，却想要盖出合格的大楼来，这个可能吗？ 然而，很多团队的软件开发就是这么做的。很荒唐吧！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DFX中的可测试性是什么？">
-<meta property="og:url" content="http://tonydeng.github.io/2020/11/26/what-is-testability-in-DFX/index.html">
+<meta property="og:url" content="https://tonydeng.github.io/2020/11/26/what-is-testability-in-DFX/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="为什么引入可测试性设计？在讨论可测试性之前，我们不妨先来思考一个问题： 当我们来盖一栋楼，如果不能保证钢筋、水泥、砖土质量合格，却想要盖出合格的大楼来，这个可能吗？ 然而，很多团队的软件开发就是这么做的。很荒唐吧！">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/DFX.jpg">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/DFX-Type.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/actors.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/Usecase.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/can-be-viewed-usecase.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/operability-usecase.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/can-be-controlled-usecase.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/can-understand-usecase.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/simplicity-usecase.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/stability-usecase.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/DFX/testability/decomposability-usecase.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/DFX/DFX.jpg">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/DFX/DFX-Type.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/DFX/testability/actors.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/DFX/testability/Usecase.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/DFX/testability/can-be-viewed-usecase.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/DFX/testability/operability-usecase.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/DFX/testability/can-be-controlled-usecase.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/DFX/testability/can-understand-usecase.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/DFX/testability/simplicity-usecase.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/DFX/testability/stability-usecase.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/DFX/testability/decomposability-usecase.png">
 <meta property="article:published_time" content="2020-11-26T03:38:58.000Z">
-<meta property="article:modified_time" content="2026-07-08T01:39:22.448Z">
+<meta property="article:modified_time" content="2026-09-01T13:41:58.221Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="DFX中的可测试性是什么？">
 <meta property="article:tag" content=" 架构设计">
 <meta property="article:tag" content=" DFX">
 <meta property="article:tag" content=" 可测试性">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/DFX/DFX.jpg">
+<meta name="twitter:image" content="https://tonydeng.github.io/images/blog/DFX/DFX.jpg">
 
 
 
@@ -144,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2020/11/26/what-is-testability-in-DFX/"/>
+  <link rel="canonical" href="https://tonydeng.github.io/2020/11/26/what-is-testability-in-DFX/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.css" />
 
 
   <title> DFX中的可测试性是什么？ | TonyDeng's Blog </title>
@@ -186,12 +179,6 @@
 
 
 
-
-
-
-  <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
-  </div>
 
 
 
@@ -371,7 +358,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2020/11/26/what-is-testability-in-DFX/">
+    <link itemprop="mainEntityOfPage" href="https://tonydeng.github.io/2020/11/26/what-is-testability-in-DFX/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
@@ -641,7 +628,7 @@
                alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">Tony Deng 的个人技术博客，分享软件架构、领域驱动设计、Java/Golang/前端工程、DevOps 与信息安全等领域的实践与思考。</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -845,7 +832,7 @@
 
 
 
-<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
 
   
 

@@ -43,9 +43,6 @@
   
 
   
-    
-    
-  
 
   
 
@@ -55,10 +52,6 @@
 
   
 
-  
-    
-    
-    <link href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -94,28 +87,28 @@
 <meta name="description" content="1. 什么是STRIDE威胁建模计算机发明后不久，人脉就发现需要为这些信息系统处理威胁。早在1994年，NSA和DARPA就提出攻击树、威胁树等概念。1999年微软内部发表了《The threats to out products》的文章，为定义Windows全系列产品面临的安全威胁正式提出了STRIDE。随着2002年比尔.盖茨著名的《可信任计算备忘》发布，微软承诺改善软件产品的安全性，随即正式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于STRIDE进行威胁建模">
-<meta property="og:url" content="http://tonydeng.github.io/2022/04/20/threat-modeling-was-conducted-based-on-STRIDE/index.html">
+<meta property="og:url" content="https://tonydeng.github.io/2022/04/20/threat-modeling-was-conducted-based-on-STRIDE/index.html">
 <meta property="og:site_name" content="TonyDeng&#39;s Blog">
 <meta property="og:description" content="1. 什么是STRIDE威胁建模计算机发明后不久，人脉就发现需要为这些信息系统处理威胁。早在1994年，NSA和DARPA就提出攻击树、威胁树等概念。1999年微软内部发表了《The threats to out products》的文章，为定义Windows全系列产品面临的安全威胁正式提出了STRIDE。随着2002年比尔.盖茨著名的《可信任计算备忘》发布，微软承诺改善软件产品的安全性，随即正式">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/stride/STRIDE-Activity-Main.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/stride/STRIDE-Entity-Main.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/stride/Threat-Model-Main.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/stride/stride-dataflows-diagram-elements.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/stride/Azure-stride-dataflows.jpeg">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/stride/pay-stride-dataflow.jpeg">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/stride/k8s-dataflows.jpeg">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/stride/Threat-Identification-Main.png">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/stride/openapi-platform-example.jpeg">
-<meta property="og:image" content="http://tonydeng.github.io/images/blog/stride/threat-mitigation-program.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/stride/STRIDE-Activity-Main.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/stride/STRIDE-Entity-Main.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/stride/Threat-Model-Main.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/stride/stride-dataflows-diagram-elements.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/stride/Azure-stride-dataflows.jpeg">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/stride/pay-stride-dataflow.jpeg">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/stride/k8s-dataflows.jpeg">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/stride/Threat-Identification-Main.png">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/stride/openapi-platform-example.jpeg">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/stride/threat-mitigation-program.png">
 <meta property="article:published_time" content="2022-04-20T03:14:57.000Z">
-<meta property="article:modified_time" content="2026-07-08T01:39:22.448Z">
+<meta property="article:modified_time" content="2026-09-01T13:41:58.221Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="STRIDE">
 <meta property="article:tag" content="SDL">
 <meta property="article:tag" content="威胁建模">
 <meta property="article:tag" content="Threat-Modeling">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://tonydeng.github.io/images/blog/stride/STRIDE-Activity-Main.png">
+<meta name="twitter:image" content="https://tonydeng.github.io/images/blog/stride/STRIDE-Activity-Main.png">
 
 
 
@@ -143,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://tonydeng.github.io/2022/04/20/threat-modeling-was-conducted-based-on-STRIDE/"/>
+  <link rel="canonical" href="https://tonydeng.github.io/2022/04/20/threat-modeling-was-conducted-based-on-STRIDE/"/>
 
 
 
 
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/mermaid/6.0.0/mermaid.min.css?v=6.0.0" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.css" />
 
 
   <title> 基于STRIDE进行威胁建模 | TonyDeng's Blog </title>
@@ -185,12 +178,6 @@
 
 
 
-
-
-
-  <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1261975682&web_id=1261975682" language="JavaScript"></script>
-  </div>
 
 
 
@@ -370,7 +357,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://tonydeng.github.io/2022/04/20/threat-modeling-was-conducted-based-on-STRIDE/">
+    <link itemprop="mainEntityOfPage" href="https://tonydeng.github.io/2022/04/20/threat-modeling-was-conducted-based-on-STRIDE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Deng">
@@ -877,7 +864,7 @@
                alt="Tony Deng" />
           <p class="site-author-name" itemprop="name">Tony Deng</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">Tony Deng 的个人技术博客，分享软件架构、领域驱动设计、Java/Golang/前端工程、DevOps 与信息安全等领域的实践与思考。</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -1081,7 +1068,7 @@
 
 
 
-<script type="text/javascript" src="//cdn.bootcss.com/mermaid/6.0.0/mermaid.min.js?v=6.0.0"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
 
   
 
