@@ -5,7 +5,7 @@
 # Site
 title: TonyDeng's Blog
 subtitle: “In me the tiger sniffes the rose.” -- Siegfried Sasson
-description:
+description: Tony Deng 的个人技术博客，分享软件架构、领域驱动设计、Java/Golang/前端工程、DevOps 与信息安全等领域的实践与思考。
 author: Tony Deng
 language: zh-Hans
 timezone:
@@ -14,7 +14,7 @@ since: 2014
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://tonydeng.github.io
+url: https://tonydeng.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:

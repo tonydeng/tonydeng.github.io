@@ -21,3 +21,5 @@ node_modules/
 
 # Tools
 .omo/
+# 分析报告（不入库）
+blog-optimization-report.html

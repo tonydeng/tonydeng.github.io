@@ -6,21 +6,21 @@
     "version": "4.2.1"
   },
   "dependencies": {
-    "hexo": "^4.0.0",
-    "hexo-deployer-git": "latest",
-    "hexo-generator-archive": "latest",
-    "hexo-generator-baidu-sitemap": "latest",
-    "hexo-generator-category": "latest",
-    "hexo-generator-feed": "latest",
-    "hexo-generator-index": "latest",
-    "hexo-generator-search": "latest",
-    "hexo-generator-sitemap": "latest",
-    "hexo-generator-tag": "latest",
-    "hexo-migrator-rss": "latest",
-    "hexo-renderer-ejs": "latest",
-    "hexo-renderer-marked": "latest",
-    "hexo-renderer-stylus": "latest",
-    "hexo-server": "latest",
-    "hexo-tag-plantuml": "^1.0.0"
+    "hexo": "~4.2.1",
+    "hexo-deployer-git": "~4.0.0",
+    "hexo-generator-archive": "~2.0.0",
+    "hexo-generator-baidu-sitemap": "~0.1.9",
+    "hexo-generator-category": "~2.0.0",
+    "hexo-generator-feed": "~4.0.0",
+    "hexo-generator-index": "~4.0.0",
+    "hexo-generator-search": "~2.4.3",
+    "hexo-generator-sitemap": "~3.0.1",
+    "hexo-generator-tag": "~2.0.0",
+    "hexo-migrator-rss": "~1.1.0",
+    "hexo-renderer-ejs": "~2.0.0",
+    "hexo-renderer-marked": "~7.0.1",
+    "hexo-renderer-stylus": "~3.0.1",
+    "hexo-server": "~3.0.0",
+    "hexo-tag-plantuml": "~1.0.0"
   }
 }

@@ -29,7 +29,8 @@ jobs:
         run: npm install -g hexo-cli
 
       - name: Install dependencies
-        run: npm install
+        # 使用 npm ci 严格按 package-lock.json 可复现安装
+        run: npm ci
 
       - name: Generate static pages
         run: hexo clean && hexo generate
