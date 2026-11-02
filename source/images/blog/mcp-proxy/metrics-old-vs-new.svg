@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" font-family="'PingFang SC','Microsoft YaHei',sans-serif">
+  <rect x="0" y="0" width="1280" height="520" fill="#FBFCFE"/>
+  <text x="40" y="44" font-size="26" font-weight="700" fill="#1E3A5F">旧格式 → 新格式：第一题各项指标降幅</text>
+  <g stroke="#DCE4EC" stroke-width="1">
+    <line x1="120" y1="100" x2="1120" y2="100"/>
+    <line x1="120" y1="180" x2="1120" y2="180"/>
+    <line x1="120" y1="260" x2="1120" y2="260"/>
+    <line x1="120" y1="340" x2="1120" y2="340"/>
+  </g>
+  <text x="110" y="104" text-anchor="end" font-size="12" fill="#8AA0B8">100%</text>
+  <text x="110" y="184" text-anchor="end" font-size="12" fill="#8AA0B8">75%</text>
+  <text x="110" y="264" text-anchor="end" font-size="12" fill="#8AA0B8">50%</text>
+  <text x="110" y="344" text-anchor="end" font-size="12" fill="#8AA0B8">25%</text>
+  <line x1="120" y1="420" x2="1120" y2="420" stroke="#1E3A5F" stroke-width="2"/>
+  <g>
+    <rect x="180" y="158" width="140" height="262" rx="6" fill="#2B9FC7"/>
+    <text x="250" y="146" text-anchor="middle" font-size="16" font-weight="700" fill="#0F5E87">81.9%</text>
+    <text x="250" y="448" text-anchor="middle" font-size="14" font-weight="700" fill="#1E3A5F">总 token</text>
+    <text x="250" y="468" text-anchor="middle" font-size="12" fill="#5A6E85">415,967 → 75,073</text>
+    <rect x="410" y="198" width="140" height="222" rx="6" fill="#2B9FC7"/>
+    <text x="480" y="186" text-anchor="middle" font-size="16" font-weight="700" fill="#0F5E87">69.2%</text>
+    <text x="480" y="448" text-anchor="middle" font-size="14" font-weight="700" fill="#1E3A5F">LLM 轮次</text>
+    <text x="480" y="468" text-anchor="middle" font-size="12" fill="#5A6E85">13 → 4 轮</text>
+    <rect x="640" y="142" width="140" height="278" rx="6" fill="#3E9B6F"/>
+    <text x="710" y="130" text-anchor="middle" font-size="16" font-weight="700" fill="#2E7D57">87.0%</text>
+    <text x="710" y="448" text-anchor="middle" font-size="14" font-weight="700" fill="#1E3A5F">工具调用</text>
+    <text x="710" y="468" text-anchor="middle" font-size="12" fill="#5A6E85">46 → 6 次</text>
+    <rect x="870" y="118" width="140" height="302" rx="6" fill="#E8A33D"/>
+    <text x="940" y="106" text-anchor="middle" font-size="16" font-weight="700" fill="#7A4A12">94.5%</text>
+    <text x="940" y="448" text-anchor="middle" font-size="14" font-weight="700" fill="#1E3A5F">会话时长</text>
+    <text x="940" y="468" text-anchor="middle" font-size="12" fill="#5A6E85">379.7s → 20.8s</text>
+  </g>
+  <rect x="40" y="486" width="1200" height="26" rx="8" fill="#F2FAF5" stroke="#8FC7A9" stroke-width="1"/>
+  <text x="60" y="504" font-size="13" fill="#2E6B4C">判断准则：优化空间 = 基线的冗余轮次数 · 第二题基线已接近最优（-15.3%），附加格式反而成为净成本</text>
+</svg>
