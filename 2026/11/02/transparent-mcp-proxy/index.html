@@ -1,0 +1,1276 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MCP, 透明代理, 数据落盘, Agent, 上下文窗口" />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="TonyDeng's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在 Agent 里调一次远程 MCP 工具，再把结果写进文件，看起来是最没有技术含量的一步。可就是这一步，把本该秒级结束的事情拖到了二十秒，还让大量返回数据留在上下文里，既推高成本，也干扰后续判断。 这篇文章记录 mcp-proxy 从取证到落地的过程：哪里慢、试过什么、哪些判断后来被自己的数据推翻。文中出现的耗时、token、轮次都来自项目记录，外部引用列在文末。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="透明 MCP 代理实战：把数据落盘从 Agent 循环中剥离出来">
+<meta property="og:url" content="https://tonydeng.github.io/2026/11/02/transparent-mcp-proxy/index.html">
+<meta property="og:site_name" content="TonyDeng&#39;s Blog">
+<meta property="og:description" content="在 Agent 里调一次远程 MCP 工具，再把结果写进文件，看起来是最没有技术含量的一步。可就是这一步，把本该秒级结束的事情拖到了二十秒，还让大量返回数据留在上下文里，既推高成本，也干扰后续判断。 这篇文章记录 mcp-proxy 从取证到落地的过程：哪里慢、试过什么、哪些判断后来被自己的数据推翻。文中出现的耗时、token、轮次都来自项目记录，外部引用列在文末。">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/mcp-proxy/header.jpg">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/mcp-proxy/dataflow-before-after.svg">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/mcp-proxy/proxy-boundary.svg">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/mcp-proxy/return-size-adaptive.svg">
+<meta property="og:image" content="https://tonydeng.github.io/images/blog/mcp-proxy/metrics-old-vs-new.svg">
+<meta property="article:published_time" content="2026-11-02T03:16:20.000Z">
+<meta property="article:modified_time" content="2026-11-02T08:33:26.669Z">
+<meta property="article:author" content="Tony Deng">
+<meta property="article:tag" content="MCP">
+<meta property="article:tag" content=" 透明代理">
+<meta property="article:tag" content=" 数据落盘">
+<meta property="article:tag" content=" Agent">
+<meta property="article:tag" content=" 上下文窗口">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tonydeng.github.io/images/blog/mcp-proxy/header.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://tonydeng.github.io/2026/11/02/transparent-mcp-proxy/"/>
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.css" />
+
+
+  <title> 透明 MCP 代理实战：把数据落盘从 Agent 循环中剥离出来 | TonyDeng's Blog </title>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-80673215-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43d979b191269e68beffa09e2d17a081";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TonyDeng's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">“In me the tiger sniffes the rose.” -- Siegfried Sasson</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ppts">
+          <a href="/ppts" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            PPT
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-gitbook">
+          <a href="/gitbook-zh" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            GitBook
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://tonydeng.github.io/2026/11/02/transparent-mcp-proxy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Deng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/629519?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TonyDeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                透明 MCP 代理实战：把数据落盘从 Agent 循环中剥离出来
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-11-02T11:16:20+08:00">
+                2026-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI-Agent/" itemprop="url" rel="index">
+                    <span itemprop="name">AI Agent</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/blog/mcp-proxy/header.jpg" alt="透明 MCP 代理：数据从 Agent 循环中剥离"></p>
+<p>在 Agent 里调一次远程 MCP 工具，再把结果写进文件，看起来是最没有技术含量的一步。可就是这一步，把本该秒级结束的事情拖到了二十秒，还让大量返回数据留在上下文里，既推高成本，也干扰后续判断。</p>
+<p>这篇文章记录 <code>mcp-proxy</code> 从取证到落地的过程：哪里慢、试过什么、哪些判断后来被自己的数据推翻。文中出现的耗时、token、轮次都来自项目记录，外部引用列在文末。</p>
+<a id="more"></a>
+
+<h2 id="1-一个写文件动作，二十秒"><a href="#1-一个写文件动作，二十秒" class="headerlink" title="1. 一个写文件动作，二十秒"></a>1. 一个写文件动作，二十秒</h2><p>在 opencode 的 skill 场景里，流程简单得不能再简单：调用远程 MCP 服务取数据，把返回结果写进本地文件。</p>
+<p>实测下来，10 条数据的写文件环节要 20 秒左右；同样的数据，远程调用本身（网络加远端处理）是秒级完成的。瓶颈既不在网络，也不在远端服务，而在”工具结果 → 文件”这一段。它由模型在 agent 循环里执行：读工具结果，流式生成文件内容，多轮工具往返。</p>
+<p>磁盘 I&#x2F;O 是毫秒级的，慢的是让模型把数据再说一遍。LLM 推理是计算密集型，写文件是 I&#x2F;O 密集型，两件事串在一条链上，延迟只能叠加。</p>
+<p><img src="/images/blog/mcp-proxy/dataflow-before-after.svg" alt="改造前后：数据怎么流动"></p>
+<p>取证时我们给自己定了一条规矩：<strong>证据要分级</strong>。一手实测（对话逐字转录、真实耗时记录）算高可信；社区 issue 属于转述，只能作方向性佐证。当时 GitHub 直连不通，社区那部分是通过第三方转述拿到的，报告里直接标成”低”。把证据等级写进报告，比结论本身更有用——它决定了后面哪些判断可以当事实用，哪些只能当假设。</p>
+<h2 id="2-两个更省事的方案，为什么都不行"><a href="#2-两个更省事的方案，为什么都不行" class="headerlink" title="2. 两个更省事的方案，为什么都不行"></a>2. 两个更省事的方案，为什么都不行</h2><p>动手写代理之前，先排除了两条更轻的路径。</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>结论</th>
+<th>为什么不够</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>opencode 配置优化（关 LSP、关 formatter、放宽权限门）</td>
+<td>不够</td>
+<td>只能削掉 write 工具的后处理链，削不掉”模型逐 token 复述数据”的刚性成本</td>
+</tr>
+<tr>
+<td>skill 脚本模式（MCP 结果先落临时文件，再交给脚本处理）</td>
+<td>不够</td>
+<td>临时文件还是模型亲手写，瓶颈原样保留</td>
+</tr>
+</tbody></table>
+<p>两条路指向同一个结论：只要数据还得经过模型上下文，问题就绕不开。于是方案定为——本地进程直接对接远程 MCP，数据由进程写盘，模型只拿一个文件路径。</p>
+<p>这就是立项依据，后来也成了整个项目的边界。</p>
+<h2 id="3-代理的边界和在整个链路中的位置"><a href="#3-代理的边界和在整个链路中的位置" class="headerlink" title="3. 代理的边界和在整个链路中的位置"></a>3. 代理的边界和在整个链路中的位置</h2><p><img src="/images/blog/mcp-proxy/proxy-boundary.svg" alt="mcp-proxy 代理边界"></p>
+<ul>
+<li>对下游，它用 <code>StdioServerTransport</code> 对外扮演一个 MCP server，由 opencode 按 <code>mcp.&lt;name&gt;</code>（<code>type: &quot;local&quot;</code>）拉起。</li>
+<li>对上游，它用 <code>StreamableHTTPClientTransport</code> 发起 client 连接，失败回退 SSE。</li>
+<li>工具调用的结果由代理直接写入本地文件，返回给下游的是文件路径加元信息。</li>
+</ul>
+<p>三条可度量的目标：</p>
+<table>
+<thead>
+<tr>
+<th>目标</th>
+<th>度量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>工具透传，作为直连远程的 drop-in 替代</td>
+<td><code>tools/list</code> 结果与直连逐字段一致</td>
+</tr>
+<tr>
+<td>落盘加速，只把路径与元信息返回给调用方</td>
+<td>≤1MB 结果落盘 &lt; 100ms</td>
+</tr>
+<tr>
+<td>端到端性能</td>
+<td>远程调用耗时 + &lt; 1 秒（改造前约 20 秒）</td>
+</tr>
+</tbody></table>
+<p>第三条后来是靠 CI 里的基准持续守住的，不是靠某一次手工演示。这一点第 9 节再说。</p>
+<p>边界另一侧写得同样具体。不做 <code>resources</code> &#x2F; <code>prompts</code>，只代理 <code>tools</code>；不做多远程聚合，一个实例对一个上游；不做数据转换、清洗、格式改写，结果原样落盘；不做响应缓存，也不管 OAuth 流程，只做静态请求头注入；不做后台清理服务，只留一个可选的保留天数参数，落盘时顺手清理；不定义数据文件的消费侧读取约定，那是 skill 层的事。</p>
+<p>为什么坚持一个实例对一个上游？做成 1:N 的话，工具重名要靠命名空间解决，直接破坏透明原则；配置复杂度随上游数量平方增长；任何一个上游出问题都是单点；<code>tools/list</code> 的聚合延迟还要被最慢的那个上游拖住。什么时候可以推翻这个决定，我们也写清楚了：上游超过 10 个、确实需要统一命名空间、出现跨上游的调用链编排、或者内存被严格限制。<strong>把”什么条件下改回去”写下来，比决策本身更有用。</strong></p>
+<h2 id="4-先把确定性的东西钉死"><a href="#4-先把确定性的东西钉死" class="headerlink" title="4. 先把确定性的东西钉死"></a>4. 先把确定性的东西钉死</h2><p>写第一行代码之前，有四件事先查清楚——它们一旦定错，后面全是返工。</p>
+<h3 id="4-1-协议版本"><a href="#4-1-协议版本" class="headerlink" title="4.1 协议版本"></a>4.1 协议版本</h3><p>上游是一个基于 Spring AI 的 MCP 服务。查它的协议版本支持集：<code>2024-11-05</code>、<code>2025-03-26</code>、<code>2025-06-18</code>，上限就到 <code>2025-06-18</code>。代理这边钉死 MCP TypeScript SDK 1.30.0，其支持范围覆盖 <code>2024-10-07</code> 到 <code>2025-11-25</code>。</p>
+<p><code>2026-07-28</code> 那版修订不桥接。它移除了 initialize 握手，<code>tools/list_changed</code> 改由 <code>subscriptions/listen</code> 流承载。只支持这一版的上游，会在连接期显式失败。</p>
+<p>这是有意的：<strong>协议版本是确定性事实，宁可在连接时明确报错，也不要在运行期悄悄降级</strong>。一旦允许”看起来能跑”，后面所有诡异现象都要从头排查。配套证据是多组 initialize 协商的原始转录、Spring AI 与 MCP Java SDK 的版本映射、官方 changelog 合辑，以及 opencode 1.16.2 的源码检视——确认它消费 <code>tools/list_changed</code>，而且这是工具清单唯一的刷新机制。</p>
+<h3 id="4-2-两个外部代理项目"><a href="#4-2-两个外部代理项目" class="headerlink" title="4.2 两个外部代理项目"></a>4.2 两个外部代理项目</h3><p><code>nuwax-ai/mcp-proxy</code>（Rust）是第一个参照。它的 README 只写了 <code>check</code> 和 <code>detect</code> 两个命令，源码里其实是五个：<code>convert</code>、<code>check</code>、<code>detect</code>、<code>proxy</code>、<code>health</code>。更要紧的是语义——<code>check</code> 只做轻量协议探测，真正建连握手的是 <code>health</code>，立项文档里引用的”check”实际对应人家的 <code>health</code>。这种偏差不看源码发现不了。</p>
+<p>吸收了两点：输出流分离（裸值走 stdout，过程和报告走 stderr），以及 check 报告带耗时——“通但慢 3 秒”和”通且 50 毫秒”是两个完全不同的结论。没吸收的也有理由：三命令拆分，<code>check</code> 和 <code>detect</code> 语义本来就重叠；<code>-q</code> 静默模式，用不上；独立的 <code>--timeout</code> 参数，复用既有的连接超时预算就够了。</p>
+<p>第二个是 <code>punkpeye/mcp-proxy</code>（TypeScript）。它的主方向是 stdio → HTTP，和本项目的 HTTP 上游 + stdio 下游正好正交，所以当参考架构看，不当竞品看。capability 驱动注册、progress 重标记加 abort 透传、SDK timeout 显式兜底、依赖注入点、check&#x2F;detect 子命令、audit 异步写，这 6 项落了地。多客户端复用、双协议、事件存储重放、CORS&#x2F;APIKey、无状态模式、会话空闲清理、请求体上限、300 秒 requestTimeout，这 8 项明确不借，每项都对应到本项目的具体条款，不是一句”看着不需要”。</p>
+<p>顺带勘误两处：连接超时那条前提记错了，原规格本来就规定了 10 秒，缺口只是没做成可配置；commit 数记成了 305，API 实测 315。</p>
+<h3 id="4-3-日志"><a href="#4-3-日志" class="headerlink" title="4.3 日志"></a>4.3 日志</h3><p>对比 pino、winston 和自写，看依赖体积、功能匹配度、以及与单文件分发的兼容性。pino 用 Worker Threads，和 esbuild 单文件 bundle 天然冲突，一票否决。最后自写四级日志，落 stderr，头部值打码，不到 50 行，签名与 pino 保持兼容——以后想换回去不用改调用点。</p>
+<h3 id="4-4-输出该长什么样"><a href="#4-4-输出该长什么样" class="headerlink" title="4.4 输出该长什么样"></a>4.4 输出该长什么样</h3><p>这份调研后来改变了整个项目的价值主张，结论放在第 6 节，这里只说方法。</p>
+<p>翻了三类材料：MCP 规范的 <code>outputSchema</code>、Anthropic 那篇写工具的文章（截断必须带可执行的指引）、AgentPatterns 讲的三层负载——有效前缀、结构化截断标记、续接句柄。再加上下游客户端自身的工具输出上限——超过阈值就静默截断，模型看到的是一段被切掉的内容，页面上却没有任何提示。这条来自二手转述，具体阈值随版本变化，只作方向参考。</p>
+<p>看完的共同感受是：<strong>问题不是信息太少，是给错了类型</strong>。<code>text(1130 chars)</code> 只告诉模型”有 1130 个字符”，模型仍然不知道里面是什么结构、有没有拿全，只能去读文件，或者重新调一遍。</p>
+<h2 id="5-落盘契约"><a href="#5-落盘契约" class="headerlink" title="5. 落盘契约"></a>5. 落盘契约</h2><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">&#123;dataDir&#125;/</span><br><span class="line">  <span class="number">20260902</span><span class="number">-103000</span>-a1b2/          ← instanceId（会话层，启动时间戳 + <span class="number">4</span> 位随机）</span><br><span class="line">    _instance.json               ← 实例元信息（每进程一份）</span><br><span class="line">    _calls.jsonl                 ← 调用账本（每次调用追加一行）</span><br><span class="line">    search_records/</span><br><span class="line">      <span class="number">20260902</span><span class="number">-103000</span><span class="number">-001.</span>json   ← raw 主文件（payload 或 envelope 形态）</span><br><span class="line">      blocks/</span><br><span class="line">        <span class="number">20260902</span><span class="number">-103000</span><span class="number">-001</span>-block<span class="number">-0.</span>png</span><br></pre></td></tr></table></figure>
+
+<p><code>instanceId</code> 目录用 <code>mkdir</code> 的 <code>recursive: false</code> 原子创建，撞了就重新生成。多进程同秒撞名这件事，靠结构消掉，不靠概率。文件名 <code>yyyyMMdd-HHmmss-NNN.json</code> 里的 <code>NNN</code> 是进程内同步计数器，同秒多次调用也不会撞。</p>
+<p>写文件先写同目录 <code>.tmp</code> 再 rename。写失败就返回 JSON-RPC internal error 并附上原因——不能返回一个不含文件路径的”成功”。</p>
+<p>主文件的形态有三条规则：</p>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>条件</th>
+<th>文件形态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><code>content</code> 恰为单个 <code>text</code> 块，无附加字段、无 <code>structuredContent</code></td>
+<td><strong>payload</strong>：文件体等于 text 原文，逐字节直写，业务 JSON 可以直接被 jq 消费</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>content</code> 为空且存在 <code>structuredContent</code></td>
+<td><strong>payload</strong>：文件体等于 <code>structuredContent</code> 的紧凑序列化</td>
+</tr>
+<tr>
+<td>3</td>
+<td>其余情况：多块、并存、空串、带附加字段</td>
+<td><strong>envelope</strong>：上游 CallToolResult 原文信封，顶层保留 <code>content</code> 键</td>
+</tr>
+</tbody></table>
+<p>消费侧靠一个约定判别：文件顶层有 <code>content</code> 键就是信封，没有就是数据本体。任何形态都不加代理自产的 meta 包装——<strong>主数据文件必须无损记录上游返回的数据</strong>，不脱敏、不截断、不重排。这条不变式在后来的评审里挡掉过好几次”顺手清洗一下”的提议。</p>
+<p>几个配套机制：</p>
+<ul>
+<li><strong>二进制块外存</strong>。image &#x2F; audio 块的 base64 data、resource 块的内嵌 blob，全部剔出来单独存 <code>blocks/</code>，原块位置换成相对路径。</li>
+<li><strong>调用账本</strong>。<code>_calls.jsonl</code> 一次调用一行，<code>schemaVersion: 3</code>，记 <code>file</code>、<code>tool</code>、<code>arguments</code> 全量、<code>durationMs</code>、<code>isError</code>、<code>shape</code>。追加失败只 warn 不阻断——raw 是数据本体，账本是尽力而为。</li>
+<li><strong>保留策略</strong>。<code>--retain-days</code> 默认 0，也就是永久保留；大于 0 时在落盘后惰性清理过期会话目录，整目录删，成本是 O(会话数)。默认不自动删是有意取舍：这些文件往往还是 skill 下游的输入，<strong>自动删除的破坏风险高于磁盘被占满的风险</strong>。</li>
+<li><strong>配额</strong>。<code>--max-data-bytes</code> 默认 0（不限）。开启后在内存里做字节记账，落盘前先算预计总字节，超了直接拒绝，返回 <code>-32603</code>，磁盘上零残留；恰好等于上限允许写入。计数只活在进程内存里，重启清零——为一次写入的准头去做持久化，代价比偶尔拒绝一次大得多。</li>
+</ul>
+<h2 id="6-返回给模型的是什么"><a href="#6-返回给模型的是什么" class="headerlink" title="6. 返回给模型的是什么"></a>6. 返回给模型的是什么</h2><p>落盘成功后，下游 <code>tools/call</code> 的结果必须是单个 <code>text</code> 块、<code>isError: false</code>，模板固定。真正变化的是按尺寸自适应：</p>
+<ul>
+<li><strong>小结果</strong>（不超过 <code>inlineThresholdBytes</code>，默认 2048 字节，且能解析成 JSON）：preview 放全量原文，模型直接作答，不用读文件。</li>
+<li><strong>大结果</strong>：preview 按字节预算截断（数组取前 1 条，单条约 512 字节），<code>has_more: true</code>，next 指引按 <code>file</code> 路径局部取数。</li>
+<li><strong>解析失败</strong>：降级成 <code>text({N} chars)</code>。</li>
+</ul>
+<p><img src="/images/blog/mcp-proxy/return-size-adaptive.svg" alt="返回结果按尺寸自适应"></p>
+<p>返回样例：</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">[mcp-proxy] stat_student_cross ok</span><br><span class="line"><span class="string">file:</span> <span class="regexp">/home/</span>work<span class="regexp">/.mcp-proxy-data/</span>stat_student_cross/<span class="number">20260910</span><span class="number">-073733</span><span class="number">-001.</span>json</span><br><span class="line"><span class="string">items:</span> <span class="number">7</span> | <span class="string">total:</span> <span class="number">7</span> | <span class="string">has_more:</span> <span class="literal">false</span> | <span class="string">bytes:</span> <span class="number">1639</span> | <span class="string">blocks:</span> <span class="string">text:</span><span class="number">1</span> | <span class="string">duration:</span> <span class="number">7</span>ms | <span class="string">at:</span> <span class="number">2026</span><span class="number">-09</span><span class="number">-10</span><span class="string">T07:</span><span class="number">37</span>:<span class="number">33.733</span>Z</span><br><span class="line"><span class="string">shape:</span> <span class="string">total:</span>number, data[<span class="number">7</span>]:&#123;<span class="string">region:</span>string, <span class="string">type:</span>string, <span class="string">count:</span>number&#125;</span><br><span class="line"><span class="string">preview:</span></span><br><span class="line">  &#123;<span class="string">"region"</span>:<span class="string">"北京"</span>,<span class="string">"type"</span>:<span class="string">"本科生"</span>,<span class="string">"count"</span>:<span class="number">150</span>&#125;</span><br><span class="line">  &#123;<span class="string">"region"</span>:<span class="string">"上海"</span>,<span class="string">"type"</span>:<span class="string">"本科生"</span>,<span class="string">"count"</span>:<span class="number">120</span>&#125;</span><br><span class="line">  ... (共 <span class="number">7</span> 条，已全部显示)</span><br><span class="line"><span class="string">next:</span> 数据已完整显示在 preview 中，可直接作答。如需原始文件，读取 file 路径。</span><br></pre></td></tr></table></figure>
+
+<p>四元组每一块都有出处：</p>
+<table>
+<thead>
+<tr>
+<th>信息</th>
+<th>作用</th>
+<th>依据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>shape</td>
+<td>字段名加类型，消除探索性调用</td>
+<td>MCP 规范的 outputSchema，用于引导客户端与模型正确解析</td>
+</tr>
+<tr>
+<td>preview</td>
+<td>前 N 条真实数据，原样截取</td>
+<td>Anthropic 的示例本身就带值</td>
+</tr>
+<tr>
+<td>total &#x2F; has_more</td>
+<td>分页信息，让模型判断是否拿全</td>
+<td>截断必须有结构化标记</td>
+</tr>
+<tr>
+<td>next</td>
+<td>终止信号，消除重复调用</td>
+<td>Anthropic：截断必须带引导性指令</td>
+</tr>
+</tbody></table>
+<p>还有一处有意为之的偏离：每个工具的 description 前面加 <code>[代理] </code> 前缀。模型看到工具描述会默认”调用即拿到数据”，实际拿到的是路径加元信息，预期错位很容易触发重试风暴。加一句前缀，把预期提前对齐。这破坏了”逐字段透传”，但不加的话，透传本身也守不住。</p>
+<h2 id="7-踩过的四个坑"><a href="#7-踩过的四个坑" class="headerlink" title="7. 踩过的四个坑"></a>7. 踩过的四个坑</h2><h3 id="7-1-SDK-那个隐性的-60-秒"><a href="#7-1-SDK-那个隐性的-60-秒" class="headerlink" title="7.1 SDK 那个隐性的 60 秒"></a>7.1 SDK 那个隐性的 60 秒</h3><p>MCP SDK 1.30.0 的 <code>Client.callTool</code> 里有两套互相独立的超时：<code>signal</code>（AbortSignal）和 <code>timeout</code>（毫秒，不传时 SDK 默认 60 秒生效）。</p>
+<p>我们最初只传了 <code>signal</code>。SDK 的 60 秒默认墙一直在，用户把 <code>--call-timeout-ms</code> 调到 120 秒，配置就被静默架空：60 秒先到，报的是 <code>-32001</code>，跟”超时”这个语义对不上。</p>
+<p>这个缺陷藏得很深。<code>--call-timeout-ms</code> 的默认值恰好也是 60 秒，和 SDK 默认值重合，所以默认参数下永远看不见——只有用户主动调大超时才会暴露。</p>
+<p>修法是：AbortController 作为唯一中止源，SDK 的 <code>timeout</code> 只做兜底，显式传 <code>callTimeoutMs + 5000</code>。多出的 5 秒是缓冲，保证正常路径下 SDK 永远不会先于 AbortController 触发。</p>
+<p>教训不是”要读文档”，而是<strong>依赖库的默认行为也是一种契约</strong>。两个默认值恰好相等，缺陷就隐形了。</p>
+<h3 id="7-2-没有心跳的-SSE"><a href="#7-2-没有心跳的-SSE" class="headerlink" title="7.2 没有心跳的 SSE"></a>7.2 没有心跳的 SSE</h3><p>上游是 Spring AI，<code>type: SYNC</code> + <code>protocol: STREAMABLE</code>。它的 keep-alive 只有一个配置项 <code>keepAliveInterval</code>，默认 null——不配置就不发应用层心跳。而协议版本集里也没有标准的心跳机制。</p>
+<p>最后的决定是<strong>不加应用层心跳</strong>，靠既有的重连加调用整体重试兜底，把风险登记成一条待验证项，等真机长调用实测后再决定。</p>
+<p>不加的理由：版本集内 ping 的语义没定义；SYNC 模式下心跳同样占用上游线程；代理要保持薄。强行造一个心跳，等于自己发明协议。</p>
+<h3 id="7-3-字节还是字符"><a href="#7-3-字节还是字符" class="headerlink" title="7.3 字节还是字符"></a>7.3 字节还是字符</h3><p>文档写的是”按字节判定内联阈值”，实现里用了 <code>.length</code>，也就是字符数。中文这类多字节文本，偏差最大能到 3 倍。</p>
+<p>这个已经修了，换成 <code>Buffer.byteLength(text, &quot;utf8&quot;)</code>，和元信息里的 <code>bytes</code> 字段同口径。残留一处：降级文案 <code>text(N chars)</code> 里的 N 还是 <code>text.length</code>。文案本身只是兜底提示，但口径不统一，迟早还会有人踩。</p>
+<h3 id="7-4-延迟必须有上界"><a href="#7-4-延迟必须有上界" class="headerlink" title="7.4 延迟必须有上界"></a>7.4 延迟必须有上界</h3><p>单次 <code>tools/call</code> 的端到端延迟必须能算出来，不能”看情况”。最坏情况是：</p>
+<figure class="highlight basic"><table><tr><td class="code"><pre><span class="line"><span class="symbol">2 </span>× <span class="keyword">call</span>-timeout + (<span class="number">1</span> + connect-retries) × connect-timeout + 退避序列总和</span><br></pre></td></tr></table></figure>
+
+<p>默认参数下：<code>2×60 + 4×10 + (1+2+4) = 167</code> 秒。超过这个数还挂着，就是 bug，不是慢。</p>
+<h2 id="8-数据推翻了自己的设计"><a href="#8-数据推翻了自己的设计" class="headerlink" title="8. 数据推翻了自己的设计"></a>8. 数据推翻了自己的设计</h2><p>验证方法是两组模型 × 代理&#x2F;无代理 × 旧格式&#x2F;新格式，对人工执行记录做对比。这段结论和最初的直觉差得有点远。</p>
+<h3 id="8-1-省下的是轮次，不是上下文"><a href="#8-1-省下的是轮次，不是上下文" class="headerlink" title="8.1 省下的是轮次，不是上下文"></a>8.1 省下的是轮次，不是上下文</h3><p>模型 A 的第一题（按地区统计），从无代理切到代理新格式：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>无代理</th>
+<th>代理新格式</th>
+<th>降幅</th>
+<th>贡献</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LLM 轮次</td>
+<td>10</td>
+<td>4</td>
+<td><strong>-60%</strong></td>
+<td>主要贡献</td>
+</tr>
+<tr>
+<td>单轮平均 token</td>
+<td>24,590</td>
+<td>18,768</td>
+<td>-23.7%</td>
+<td>次要贡献</td>
+</tr>
+<tr>
+<td>总 token</td>
+<td>245,898</td>
+<td>75,073</td>
+<td><strong>-69.5%</strong></td>
+<td>两者乘积</td>
+</tr>
+</tbody></table>
+<p>验算：<code>1 - (4/10) × (18768/24590) = 69.5%</code>。</p>
+<p><strong>代理省的是”来回跑的趟数”，不是”每次看的量”</strong>。preview 实际是完整原文（那次 1,943 字节），单次返回的内容比无代理还多——多了 file、shape、next 这些元信息。第二题也能对上：总 token 降 17.4%，其中 95% 来自轮次从 7 降到 6。</p>
+<h3 id="8-2-两天，两种格式"><a href="#8-2-两天，两种格式" class="headerlink" title="8.2 两天，两种格式"></a>8.2 两天，两种格式</h3><p>旧格式到新格式，同一批任务重跑：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>第一题（按地区统计）</th>
+<th>第二题（按市统计）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>总 token</td>
+<td>415,967 → 75,073（<strong>-81.9%</strong>）</td>
+<td>140,752 → 119,174（<strong>-15.3%</strong>）</td>
+</tr>
+<tr>
+<td>LLM 轮次</td>
+<td>13 → 4（<strong>-69.2%</strong>）</td>
+<td>6 → 6（0%）</td>
+</tr>
+<tr>
+<td>工具调用</td>
+<td>46 → 6（<strong>-87.0%</strong>）</td>
+<td>11 → 8（-27.3%）</td>
+</tr>
+<tr>
+<td>会话时长</td>
+<td>379.7s → 20.8s（<strong>-94.5%</strong>）</td>
+<td>181.5s → 39.9s（-78.0%）</td>
+</tr>
+</tbody></table>
+<p><img src="/images/blog/mcp-proxy/metrics-old-vs-new.svg" alt="旧格式到新格式：第一题各项指标降幅"></p>
+<p>旧格式的 <code>summary: text(1130 chars)</code> 信息量等于零。模型既不知道数据结构，也不知道有没有拿全，只能反复探索。新格式给结构、给分页、给终止信号——<strong>真正消掉的是模型的不确定性</strong>。</p>
+<h3 id="8-3-效果取决于基线"><a href="#8-3-效果取决于基线" class="headerlink" title="8.3 效果取决于基线"></a>8.3 效果取决于基线</h3><table>
+<thead>
+<tr>
+<th>模型</th>
+<th>代理 vs 无代理</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>模型 A</td>
+<td>总 token -17.4% ~ -69.5%，时长 -82% ~ -94%</td>
+<td>无代理基线存在大量探索性调用</td>
+</tr>
+<tr>
+<td>模型 B</td>
+<td>第一题 token +3.8%（时长 -64.6%）；第二题 token +227.9%</td>
+<td>第二题的无代理基线已经极优（3 轮、2 次工具调用、38K token），任何附加格式都是净成本</td>
+</tr>
+</tbody></table>
+<p>判断准则只有一句：<strong>优化空间等于基线的冗余轮次数</strong>。基线反复重试、读文件验证、试参数，代理就有得赚；基线已经最优，代理只能增加成本。这条对任何 Agent 性能优化的预期管理都成立。</p>
+<h3 id="8-4-我们最初有四处判断是错的"><a href="#8-4-我们最初有四处判断是错的" class="headerlink" title="8.4 我们最初有四处判断是错的"></a>8.4 我们最初有四处判断是错的</h3><ol>
+<li><strong>preview 是完整原文，不是摘要。</strong>“数据全程不经模型上下文”这个早期说法作废，价值主张改成尺寸自适应。</li>
+<li><strong>收益主要来自轮次减少</strong>，占 60% 的贡献，不是压缩上下文。</li>
+<li><strong>“32K 截断风险”不成立。</strong><code>maxSingleCallTokens</code> 是单次调用输入加输出的总量（实测 52,050），不是输出上限；实测输出 token 最高 3,367。那个立论只在”模型逐 token 复述写文件”这个场景下成立。</li>
+<li>**模型 B 的缓存读取是轮次累积的结果，不是原因。**因果搞反了。</li>
+</ol>
+<p>还有一处没修的浪费：代理已经落盘，skill 里仍然让模型 write 一份临时副本再读回来。纯双写，多出 1 到 2 次工具调用和一轮决策。修法很简单——skill 直接读 preview 里的 <code>file</code> 字段。</p>
+<h2 id="9-交付形态与工程纪律"><a href="#9-交付形态与工程纪律" class="headerlink" title="9. 交付形态与工程纪律"></a>9. 交付形态与工程纪律</h2><p>目标环境是物理隔离的内网，产物要人工摆渡进去。这个约束把所有”标准做法”都排除了。</p>
+<p>npm 私服发包，依赖私服能代理公网 npm，未证实；Node SEA 单文件二进制，是 Node 20 的实验特性；tsc 多文件整目录拷贝，几百个传递依赖，摆渡时最容易漏。</p>
+<p>最后选了 esbuild bundle 单文件 <code>dist/index.js</code>，SDK、zod 全部内联，目标机只要有 Node ≥ 20，不用 <code>npm install</code>。产物文件名带版本号，随行一个 SHA256 校验值。代价是 bundle 到了 1MB 级，排障要靠 sourcemap——而 sourcemap 留在办公网侧，不进内网。</p>
+<p><strong>交付形态应该由部署环境倒推，而不是由工具链的默认习惯决定。</strong><code>npm install</code> 这三个字，在隔离网络里可能就是走不通。</p>
+<h3 id="9-1-质量门禁"><a href="#9-1-质量门禁" class="headerlink" title="9.1 质量门禁"></a>9.1 质量门禁</h3><p>核心模块一律先写失败测试再实现：文件存储、命名、元信息提取、配置解析、传输协商。用例命名 <code>should_{expected}_when_{precondition}</code>，<code>describe</code> 用中文，AAA 三段式。</p>
+<p>测试分三层。E2E 用 in-memory transport 串起下游客户端、代理和内嵌假上游，把全部验收项跑成自动化；契约测试是表驱动的，管 MCP 协议面和落盘契约；再往下才是单元测试。</p>
+<p>CI 四阶段串行：<code>lint → test → perf → build</code>。lint 以 Biome check 为断言，格式、lint、import 排序一把梭；perf 以绝对阈值为断言——代理自身开销 P95 &lt; 500ms、1MB 结果落盘 &lt; 100ms、10 条记录端到端 &lt; 1s、启动 &lt; 3s，任一超阈值直接失败。<code>tsc --noEmit</code>（strict）是硬门禁，<code>as any</code>、<code>@ts-ignore</code>、<code>@ts-expect-error</code> 一律不许出现。</p>
+<p>第 3 节说的”端到端 &lt; 1s”，落点就在这里：它不是一次演示，是每次提交都要过的一道门。实测数据可以对照：单次 MCP 调用的代理开销 p50 17ms、p95 27ms，直连是 7ms 和 18ms，差了大约 10ms。</p>
+<h3 id="9-2-文档不是附件"><a href="#9-2-文档不是附件" class="headerlink" title="9.2 文档不是附件"></a>9.2 文档不是附件</h3><p>项目用 mdbook 搭了文档中心：需求规格、系统设计、实施计划、ADR 索引、部署手册、使用指南、命令总表、调研报告。<strong>需求规格是唯一真相源</strong>——实现和规格对不上，先确认再改代码，不让实现悄悄漂移。</p>
+<p>一共 18 份 ADR，10 份接受、8 份提议。提议不等于没用，好几条负向决策就停在这个状态：不做下游 HTTP 监听、不做落盘数据脱敏、不对上游调用做协议级异步化。写下来的意义是，下次评审不用重新论证一遍。</p>
+<p>调研归档的规矩是”结论为父、raw 为子”：每份结论文档挂若干原始材料，原始材料忠实留档，禁止改写或选择性摘录；结论必须基于官方文档或仓库一手来源，并标注采集日期。目前是 8 篇结论、11 份原始材料。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这次实践最反直觉的一点是：Agent 的性能瓶颈往往不在模型本身，而在数据怎么流动。把”数据落盘”从大模型循环里拿出来、下沉到本地进程，延迟的来源就换了——从 token 生成速度换成了磁盘 I&#x2F;O。</p>
+<p>但代理真正省下的不是上下文，是轮次。<strong>优化空间等于基线的冗余轮次数</strong>，基线本来就没有冗余时，再精巧的输出格式也只是净成本。这个判断后来修正了我们最初的价值主张，也是最值得带走的一条。</p>
+<p>如果只能记住三件事：先把痛点量化再立项，证据要分级；给模型的元信息要描述数据本身，而不是描述数据有多大；规范可以被数据推翻，推翻的时候把过程记下来。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://modelcontextprotocol.io/specification/2025-06-18/changelog" target="_blank" rel="noopener">MCP 规范 2025-06-18 changelog</a></li>
+<li><a href="https://modelcontextprotocol.io/specification/latest/changelog" target="_blank" rel="noopener">MCP 规范 latest changelog（2026-07-28）</a></li>
+<li><a href="https://modelcontextprotocol.io/specification/2026-07-28/server/tools" target="_blank" rel="noopener">MCP 规范 Tools &#x2F; outputSchema（2026-07-28）</a></li>
+<li><a href="https://www.anthropic.com/research/writing-tools-for-agents" target="_blank" rel="noopener">Anthropic, Writing effective tools for agents</a></li>
+<li><a href="https://agentpatterns.ai/tool-engineering/graceful-tool-output-truncation/" target="_blank" rel="noopener">AgentPatterns, Graceful tool output truncation</a></li>
+<li><a href="https://opencode.ai/docs/mcp-servers/" target="_blank" rel="noopener">opencode MCP 接入文档</a></li>
+<li><a href="https://github.com/modelcontextprotocol/typescript-sdk" target="_blank" rel="noopener">MCP TypeScript SDK</a></li>
+<li><a href="https://docs.spring.io/spring-ai/reference/api/mcp/mcp-overview.html" target="_blank" rel="noopener">Spring AI MCP 文档</a></li>
+<li><a href="https://github.com/modelcontextprotocol/java-sdk" target="_blank" rel="noopener">MCP Java SDK</a></li>
+<li><a href="https://github.com/nuwax-ai/mcp-proxy" target="_blank" rel="noopener">nuwax-ai&#x2F;mcp-proxy</a></li>
+<li><a href="https://github.com/punkpeye/mcp-proxy" target="_blank" rel="noopener">punkpeye&#x2F;mcp-proxy</a></li>
+<li><a href="https://github.com/pinojs/pino/blob/main/docs/bundling.md" target="_blank" rel="noopener">pino bundling 文档</a></li>
+<li><a href="https://esbuild.github.io/" target="_blank" rel="noopener">esbuild</a></li>
+</ul>
+<blockquote>
+<p>文中数据来自 <code>mcp-proxy</code> 项目的需求规格、调研结论文档、trace 分析记录与实测日志；外部链接采集于 2026 年 9 月。trace 数字来自项目内部的修订报告转录，原始报告未随仓库分发。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" rel="tag"># 架构设计</a>
+          
+            <a href="/tags/AI-Agent/" rel="tag"># AI Agent</a>
+          
+            <a href="/tags/MCP/" rel="tag"># MCP</a>
+          
+            <a href="/tags/TypeScript/" rel="tag"># TypeScript</a>
+          
+            <a href="/tags/%E4%BB%A3%E7%90%86/" rel="tag"># 代理</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/11/06/domain-driven-design/" rel="next" title="领域驱动设计">
+                <i class="fa fa-chevron-left"></i> 领域驱动设计
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2026/11/02/deepseek-super-agent-architecture/" rel="prev" title="DeepSeek Super-agent 设计深读：一个常驻 Router，如何指挥一群 Worker 并行干活">
+                DeepSeek Super-agent 设计深读：一个常驻 Router，如何指挥一群 Worker 并行干活 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/629519?v=3&s=460"
+               alt="Tony Deng" />
+          <p class="site-author-name" itemprop="name">Tony Deng</p>
+           
+              <p class="site-description motion-element" itemprop="description">Tony Deng 的个人技术博客，分享软件架构、领域驱动设计、Java/Golang/前端工程、DevOps 与信息安全等领域的实践与思考。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">154</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tonydeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wolfdeng" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/tonydeng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-global"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-一个写文件动作，二十秒"><span class="nav-number">1.</span> <span class="nav-text">1. 一个写文件动作，二十秒</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-两个更省事的方案，为什么都不行"><span class="nav-number">2.</span> <span class="nav-text">2. 两个更省事的方案，为什么都不行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-代理的边界和在整个链路中的位置"><span class="nav-number">3.</span> <span class="nav-text">3. 代理的边界和在整个链路中的位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-先把确定性的东西钉死"><span class="nav-number">4.</span> <span class="nav-text">4. 先把确定性的东西钉死</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-协议版本"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 协议版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-两个外部代理项目"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 两个外部代理项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-日志"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-输出该长什么样"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 输出该长什么样</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-落盘契约"><span class="nav-number">5.</span> <span class="nav-text">5. 落盘契约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-返回给模型的是什么"><span class="nav-number">6.</span> <span class="nav-text">6. 返回给模型的是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-踩过的四个坑"><span class="nav-number">7.</span> <span class="nav-text">7. 踩过的四个坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-SDK-那个隐性的-60-秒"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 SDK 那个隐性的 60 秒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-没有心跳的-SSE"><span class="nav-number">7.2.</span> <span class="nav-text">7.2 没有心跳的 SSE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-字节还是字符"><span class="nav-number">7.3.</span> <span class="nav-text">7.3 字节还是字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-延迟必须有上界"><span class="nav-number">7.4.</span> <span class="nav-text">7.4 延迟必须有上界</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-数据推翻了自己的设计"><span class="nav-number">8.</span> <span class="nav-text">8. 数据推翻了自己的设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-省下的是轮次，不是上下文"><span class="nav-number">8.1.</span> <span class="nav-text">8.1 省下的是轮次，不是上下文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-两天，两种格式"><span class="nav-number">8.2.</span> <span class="nav-text">8.2 两天，两种格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-效果取决于基线"><span class="nav-number">8.3.</span> <span class="nav-text">8.3 效果取决于基线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-我们最初有四处判断是错的"><span class="nav-number">8.4.</span> <span class="nav-text">8.4 我们最初有四处判断是错的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-交付形态与工程纪律"><span class="nav-number">9.</span> <span class="nav-text">9. 交付形态与工程纪律</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-质量门禁"><span class="nav-number">9.1.</span> <span class="nav-text">9.1 质量门禁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-2-文档不是附件"><span class="nav-number">9.2.</span> <span class="nav-text">9.2 文档不是附件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">10.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">11.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2005 - 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tony Deng</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
