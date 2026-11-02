@@ -121,9 +121,9 @@ keywords: MCP, 透明代理, 数据落盘, Agent, 上下文窗口
 
 | 规则 | 条件 | 文件形态 |
 | ---- | ---- | ---- |
-| 1 | `content` 恰为单个 `text` 块，无附加字段、无 `structuredContent` | **payload**：文件体等于 text 原文，逐字节直写，业务 JSON 可以直接被 jq 消费 |
-| 2 | `content` 为空且存在 `structuredContent` | **payload**：文件体等于 `structuredContent` 的紧凑序列化 |
-| 3 | 其余情况：多块、并存、空串、带附加字段 | **envelope**：上游 CallToolResult 原文信封，顶层保留 `content` 键 |
+| 1 · `text` 原文直写 | `content` 恰为单个 `text` 块，无附加字段、无 `structuredContent` | **payload**：文件体等于 text 原文，逐字节直写，业务 JSON 可以直接被 jq 消费 |
+| 2 · `structuredContent` 序列化 | `content` 为空且存在 `structuredContent` | **payload**：文件体等于 `structuredContent` 的紧凑序列化 |
+| 3 · 原文信封 | 其余情况：多块、并存、空串、带附加字段 | **envelope**：上游 CallToolResult 原文信封，顶层保留 `content` 键 |
 
 消费侧靠一个约定判别：文件顶层有 `content` 键就是信封，没有就是数据本体。任何形态都不加代理自产的 meta 包装——**主数据文件必须无损记录上游返回的数据**，不脱敏、不截断、不重排。这条不变式在后来的评审里挡掉过好几次"顺手清洗一下"的提议。
 
