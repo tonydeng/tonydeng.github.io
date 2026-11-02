@@ -96,7 +96,7 @@
 <meta property="og:image" content="https://tonydeng.github.io/images/blog/mcp-proxy/return-size-adaptive.svg">
 <meta property="og:image" content="https://tonydeng.github.io/images/blog/mcp-proxy/metrics-old-vs-new.svg">
 <meta property="article:published_time" content="2026-11-02T03:16:20.000Z">
-<meta property="article:modified_time" content="2026-11-02T08:33:26.669Z">
+<meta property="article:modified_time" content="2026-11-02T08:44:07.464Z">
 <meta property="article:author" content="Tony Deng">
 <meta property="article:tag" content="MCP">
 <meta property="article:tag" content=" 透明代理">
@@ -535,17 +535,17 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>1</td>
+<td>1 · <code>text</code> 原文直写</td>
 <td><code>content</code> 恰为单个 <code>text</code> 块，无附加字段、无 <code>structuredContent</code></td>
 <td><strong>payload</strong>：文件体等于 text 原文，逐字节直写，业务 JSON 可以直接被 jq 消费</td>
 </tr>
 <tr>
-<td>2</td>
+<td>2 · <code>structuredContent</code> 序列化</td>
 <td><code>content</code> 为空且存在 <code>structuredContent</code></td>
 <td><strong>payload</strong>：文件体等于 <code>structuredContent</code> 的紧凑序列化</td>
 </tr>
 <tr>
-<td>3</td>
+<td>3 · 原文信封</td>
 <td>其余情况：多块、并存、空串、带附加字段</td>
 <td><strong>envelope</strong>：上游 CallToolResult 原文信封，顶层保留 <code>content</code> 键</td>
 </tr>
